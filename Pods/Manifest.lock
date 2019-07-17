@@ -1,0 +1,106 @@
+PODS:
+  - Alamofire (4.8.2)
+  - Differentiator (3.1.0)
+  - HMSegmentedControl (1.5.5)
+  - Moya (11.0.2):
+    - Moya/Core (= 11.0.2)
+  - Moya-ObjectMapper/Core (2.7):
+    - Moya (~> 11)
+    - ObjectMapper (~> 3.3)
+  - Moya-ObjectMapper/RxSwift (2.7):
+    - Moya-ObjectMapper/Core
+    - RxSwift (~> 4.1)
+  - Moya/Core (11.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (11.0.2):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - "NSObject+Rx (4.4.1)":
+    - RxSwift (~> 4.3)
+  - ObjectMapper (3.5.0)
+  - ReactorKit (1.2.1):
+    - RxSwift (>= 4.0.0)
+  - Result (3.2.4)
+  - ReusableKit (2.1.0):
+    - ReusableKit/Core (= 2.1.0)
+  - ReusableKit/Core (2.1.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxGesture (2.2.0):
+    - RxCocoa (~> 4.5)
+    - RxSwift (~> 4.5)
+  - RxSwift (4.5.0)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
+  - Segmentio (3.3)
+  - SnapKit (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - HMSegmentedControl
+  - Moya-ObjectMapper/RxSwift
+  - Moya/RxSwift (~> 11.0)
+  - "NSObject+Rx"
+  - ReactorKit
+  - ReusableKit
+  - RxCocoa (~> 4.0)
+  - RxDataSources (~> 3.0)
+  - RxGesture
+  - RxSwift (~> 4.0)
+  - RxSwiftExt
+  - Segmentio (~> 3.3)
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Differentiator
+    - HMSegmentedControl
+    - Moya
+    - Moya-ObjectMapper
+    - "NSObject+Rx"
+    - ObjectMapper
+    - ReactorKit
+    - Result
+    - ReusableKit
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxSwift
+    - RxSwiftExt
+    - Segmentio
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
+  "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  ReusableKit: d0b040de03b293288b0ca27a78602691d3346d9b
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  Segmentio: 4ff49aa4f4c916998c0d886c549ce62ca9eae251
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+
+PODFILE CHECKSUM: 88d1e87e00bb53b6357090bf81a28b4f8d9942e5
+
+COCOAPODS: 1.5.3

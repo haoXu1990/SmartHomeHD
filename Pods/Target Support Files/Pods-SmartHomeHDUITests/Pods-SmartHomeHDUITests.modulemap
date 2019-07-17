@@ -1,0 +1,6 @@
+framework module Pods_SmartHomeHDUITests {
+  umbrella header "Pods-SmartHomeHDUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
