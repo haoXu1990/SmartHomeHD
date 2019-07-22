@@ -25,7 +25,14 @@
 		695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6422DEC042001A7533 /* MessageViewController.swift */; };
 		695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6622DEC05A001A7533 /* SettingViewController.swift */; };
 		695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6B22DEFFCB001A7533 /* NibLoadable.swift */; };
-		695ADD6F22DF1A2B001A7533 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6E22DF1A2B001A7533 /* HomeHeaderView.swift */; };
+		695ADD6F22DF1A2B001A7533 /* DeviceControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */; };
+		695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */; };
+		695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */; };
+		695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8022E5973E001A7533 /* AppConfigure.swift */; };
+		695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8322E5A96B001A7533 /* SmartDeviceConst.swift */; };
+		695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8622E5B170001A7533 /* FHSoketManager.swift */; };
+		695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */; };
+		695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */; };
 		8762CC8B8B4821EAD09072F7 /* Pods_SmartHomeHDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */; };
 		924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */; };
 		9B47DB312B829B632BC1C377 /* Pods_SmartHomeHDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */; };
@@ -78,7 +85,14 @@
 		695ADD6422DEC042001A7533 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		695ADD6622DEC05A001A7533 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		695ADD6B22DEFFCB001A7533 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		695ADD6E22DF1A2B001A7533 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllView.swift; sourceTree = "<group>"; };
+		695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
+		695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		695ADD8022E5973E001A7533 /* AppConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigure.swift; sourceTree = "<group>"; };
+		695ADD8322E5A96B001A7533 /* SmartDeviceConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDeviceConst.swift; sourceTree = "<group>"; };
+		695ADD8622E5B170001A7533 /* FHSoketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHSoketManager.swift; sourceTree = "<group>"; };
+		695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllOneCell.swift; sourceTree = "<group>"; };
+		695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllTwoCell.swift; sourceTree = "<group>"; };
 		AFCB4F35F1502E21A1982877 /* Pods-SmartHomeHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.release.xcconfig"; sourceTree = "<group>"; };
 		BBEB92C4C5DCBAB9C5960601 /* Pods-SmartHomeHDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHDUITests/Pods-SmartHomeHDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC747C6B69189CEA2EC5E629 /* Pods-SmartHomeHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,19 +162,8 @@
 		695ADD1D22DC17EA001A7533 /* SmartHomeHD */ = {
 			isa = PBXGroup;
 			children = (
-				695ADD6D22DF1A0F001A7533 /* View */,
-				695ADD5B22DEB423001A7533 /* Other */,
-				695ADD4F22DC60E2001A7533 /* Controller */,
-				695ADD1E22DC17EA001A7533 /* AppDelegate.swift */,
-				695ADD2022DC17EA001A7533 /* ViewController.swift */,
-				695ADD5C22DEB47F001A7533 /* HomeViewController.swift */,
-				695ADD6222DEBDAD001A7533 /* MainViewController.swift */,
-				695ADD6422DEC042001A7533 /* MessageViewController.swift */,
-				695ADD6622DEC05A001A7533 /* SettingViewController.swift */,
-				695ADD2222DC17EA001A7533 /* Main.storyboard */,
-				695ADD2522DC17F1001A7533 /* Assets.xcassets */,
-				695ADD2722DC17F1001A7533 /* LaunchScreen.storyboard */,
-				695ADD2A22DC17F1001A7533 /* Info.plist */,
+				695ADD7122E56D93001A7533 /* Resources */,
+				695ADD7022E56D7F001A7533 /* Sources */,
 			);
 			path = SmartHomeHD;
 			sourceTree = "<group>";
@@ -192,14 +195,14 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		695ADD4F22DC60E2001A7533 /* Controller */ = {
+		695ADD4F22DC60E2001A7533 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				695ADD4C22DC190A001A7533 /* Layout */,
 				695ADD5022DC623C001A7533 /* RoomControllerViewCell.swift */,
 				695ADD5422DC6B28001A7533 /* RoomViewCell.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		695ADD5622DC6E62001A7533 /* Extension */ = {
@@ -213,6 +216,8 @@
 		695ADD5B22DEB423001A7533 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				695ADD8522E5B147001A7533 /* SokectManger */,
+				695ADD7822E58C83001A7533 /* Rx */,
 				695ADD6822DEFFA4001A7533 /* Protocol */,
 				695ADD5E22DEB6A5001A7533 /* Public */,
 				695ADD5622DC6E62001A7533 /* Extension */,
@@ -224,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				695ADD6022DEB6CF001A7533 /* Common.swift */,
+				695ADD8022E5973E001A7533 /* AppConfigure.swift */,
+				695ADD8322E5A96B001A7533 /* SmartDeviceConst.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -255,9 +262,103 @@
 		695ADD6D22DF1A0F001A7533 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				695ADD6E22DF1A2B001A7533 /* HomeHeaderView.swift */,
+				695ADD8222E5A296001A7533 /* DeivceCells */,
+				695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		695ADD7022E56D7F001A7533 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD2022DC17EA001A7533 /* ViewController.swift */,
+				695ADD1E22DC17EA001A7533 /* AppDelegate.swift */,
+				695ADD7322E56E09001A7533 /* Main */,
+				695ADD5B22DEB423001A7533 /* Other */,
+				695ADD7422E56E43001A7533 /* Modulars */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		695ADD7122E56D93001A7533 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD2222DC17EA001A7533 /* Main.storyboard */,
+				695ADD2522DC17F1001A7533 /* Assets.xcassets */,
+				695ADD2722DC17F1001A7533 /* LaunchScreen.storyboard */,
+				695ADD2A22DC17F1001A7533 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		695ADD7322E56E09001A7533 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD6222DEBDAD001A7533 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		695ADD7422E56E43001A7533 /* Modulars */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD7722E56E60001A7533 /* Setting */,
+				695ADD7622E56E55001A7533 /* Message */,
+				695ADD7522E56E49001A7533 /* Home */,
+			);
+			path = Modulars;
+			sourceTree = "<group>";
+		};
+		695ADD7522E56E49001A7533 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD6D22DF1A0F001A7533 /* View */,
+				695ADD4F22DC60E2001A7533 /* Controllers */,
+				695ADD5C22DEB47F001A7533 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		695ADD7622E56E55001A7533 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD6422DEC042001A7533 /* MessageViewController.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		695ADD7722E56E60001A7533 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD6622DEC05A001A7533 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		695ADD7822E58C83001A7533 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
+		695ADD8222E5A296001A7533 /* DeivceCells */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */,
+				695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */,
+				695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */,
+			);
+			path = DeivceCells;
+			sourceTree = "<group>";
+		};
+		695ADD8522E5B147001A7533 /* SokectManger */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD8622E5B170001A7533 /* FHSoketManager.swift */,
+			);
+			path = SokectManger;
 			sourceTree = "<group>";
 		};
 		CB86FC2A76015593F8897C80 /* Pods */ = {
@@ -472,8 +573,11 @@
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/Segmentio/Segmentio.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/UIButton-SSEdgeInsets/UIButton_SSEdgeInsets.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -494,8 +598,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segmentio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIButton_SSEdgeInsets.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -531,20 +638,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
 				695ADD5822DC6E75001A7533 /* UIColor+Extension.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
+				695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */,
+				695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */,
+				695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */,
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
 				695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */,
 				695ADD5522DC6B28001A7533 /* RoomViewCell.swift in Sources */,
 				695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */,
 				695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */,
+				695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */,
 				695ADD5D22DEB47F001A7533 /* HomeViewController.swift in Sources */,
 				695ADD5122DC623C001A7533 /* RoomControllerViewCell.swift in Sources */,
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
 				695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
-				695ADD6F22DF1A2B001A7533 /* HomeHeaderView.swift in Sources */,
+				695ADD6F22DF1A2B001A7533 /* DeviceControllView.swift in Sources */,
+				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
 				695ADD5A22DC7A98001A7533 /* CubeViewLayout.swift in Sources */,
+				695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
-				INFOPLIST_FILE = SmartHomeHD/Info.plist;
+				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -742,7 +856,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
-				INFOPLIST_FILE = SmartHomeHD/Info.plist;
+				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

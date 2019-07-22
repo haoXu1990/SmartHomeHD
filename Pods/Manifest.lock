@@ -43,8 +43,12 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
-  - Segmentio (3.3)
   - SnapKit (4.2.0)
+  - Socket.IO-Client-Swift (15.1.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.0)
+  - SwiftyUserDefaults (4.0.0)
+  - UIButton-SSEdgeInsets (0.1.7)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -59,8 +63,10 @@ DEPENDENCIES:
   - RxGesture
   - RxSwift (~> 4.0)
   - RxSwiftExt
-  - Segmentio (~> 3.3)
   - SnapKit
+  - Socket.IO-Client-Swift (~> 15.1.0)
+  - SwiftyUserDefaults (~> 4.0)
+  - UIButton-SSEdgeInsets (~> 0.1.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -79,8 +85,11 @@ SPEC REPOS:
     - RxGesture
     - RxSwift
     - RxSwiftExt
-    - Segmentio
     - SnapKit
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftyUserDefaults
+    - UIButton-SSEdgeInsets
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -98,9 +107,12 @@ SPEC CHECKSUMS:
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
-  Segmentio: 4ff49aa4f4c916998c0d886c549ce62ca9eae251
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Socket.IO-Client-Swift: 7cb44c0ffb86e158cee32d0642d30ec5fdcf8f61
+  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
+  SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
+  UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
 
-PODFILE CHECKSUM: 88d1e87e00bb53b6357090bf81a28b4f8d9942e5
+PODFILE CHECKSUM: 720220c7da14d89bf28d2f45022b30e667d0141f
 
 COCOAPODS: 1.5.3

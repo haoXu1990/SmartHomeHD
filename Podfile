@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'SmartHomeHD' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -21,14 +21,27 @@ target 'SmartHomeHD' do
   pod 'RxSwiftExt'
   
   # UI
+  # 布局
   pod 'SnapKit'
+  # 简化 Cell 注册
   pod 'ReusableKit'
-  pod 'Segmentio', '~> 3.3'
+  
+  #pod 'Segmentio', '~> 3.3'
+  
+  # 分段选择器
   pod 'HMSegmentedControl'
   
+  # 一款按钮的扩展控件，改变图片和titile的位置
+  pod 'UIButton-SSEdgeInsets', '~> 0.1.1'
   
+  pod 'SwiftyUserDefaults', '~> 4.0'
   
-
+  # Socket.IO 
+  pod 'Socket.IO-Client-Swift', '~> 15.1.0'
+ 
+  # 自定义 Switch
+  pod 'RoundedSwitch'
+ 
   # Pods for SmartHomeHD
 
   target 'SmartHomeHDTests' do
