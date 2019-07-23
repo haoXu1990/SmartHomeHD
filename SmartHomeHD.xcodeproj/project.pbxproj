@@ -33,6 +33,22 @@
 		695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8622E5B170001A7533 /* FHSoketManager.swift */; };
 		695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */; };
 		695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */; };
+		695ADD9F22E6DD4C001A7533 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9822E6DD4C001A7533 /* SocketIOJSONSerialization.m */; };
+		695ADDA022E6DD4C001A7533 /* SRWebSocket2.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9922E6DD4C001A7533 /* SRWebSocket2.m */; };
+		695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9A22E6DD4C001A7533 /* SocketIOTransportXHR.m */; };
+		695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9B22E6DD4C001A7533 /* SocketIOTransportWebsocket.m */; };
+		695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9D22E6DD4C001A7533 /* SocketIOPacket.m */; };
+		695ADDA422E6DD4C001A7533 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD9E22E6DD4C001A7533 /* SocketIO.m */; };
+		695ADDA922E6DD8A001A7533 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDA522E6DD89001A7533 /* GCDAsyncUdpSocket.m */; };
+		695ADDAA22E6DD8A001A7533 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDA622E6DD89001A7533 /* GCDAsyncSocket.m */; };
+		695ADDAC22E6E47C001A7533 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDAB22E6E47C001A7533 /* QRViewController.swift */; };
+		695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */; };
+		695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDAF22E6FAB7001A7533 /* SmartHomeHDAPI.swift */; };
+		695ADDB222E6FCD9001A7533 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */; };
+		695ADDB422E70757001A7533 /* LoginServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB322E70757001A7533 /* LoginServer.swift */; };
+		695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB522E708B7001A7533 /* ServerTool.swift */; };
+		695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB922E70CE2001A7533 /* Rx HandyJSON.swift */; };
+		695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDBA22E70CE2001A7533 /* RxMoyaMapper.swift */; };
 		8762CC8B8B4821EAD09072F7 /* Pods_SmartHomeHDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */; };
 		924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */; };
 		9B47DB312B829B632BC1C377 /* Pods_SmartHomeHDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */; };
@@ -93,6 +109,32 @@
 		695ADD8622E5B170001A7533 /* FHSoketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHSoketManager.swift; sourceTree = "<group>"; };
 		695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllOneCell.swift; sourceTree = "<group>"; };
 		695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllTwoCell.swift; sourceTree = "<group>"; };
+		695ADD8F22E6DBA6001A7533 /* SmartHomeHD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartHomeHD-Bridging-Header.h"; sourceTree = "<group>"; };
+		695ADD9222E6DD4C001A7533 /* SRWebSocket2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket2.h; sourceTree = "<group>"; };
+		695ADD9322E6DD4C001A7533 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		695ADD9422E6DD4C001A7533 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		695ADD9522E6DD4C001A7533 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		695ADD9622E6DD4C001A7533 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		695ADD9722E6DD4C001A7533 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		695ADD9822E6DD4C001A7533 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		695ADD9922E6DD4C001A7533 /* SRWebSocket2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket2.m; sourceTree = "<group>"; };
+		695ADD9A22E6DD4C001A7533 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		695ADD9B22E6DD4C001A7533 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		695ADD9C22E6DD4C001A7533 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		695ADD9D22E6DD4C001A7533 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		695ADD9E22E6DD4C001A7533 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		695ADDA522E6DD89001A7533 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		695ADDA622E6DD89001A7533 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		695ADDA722E6DD8A001A7533 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		695ADDA822E6DD8A001A7533 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		695ADDAB22E6E47C001A7533 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHDNoticationConst.swift; sourceTree = "<group>"; };
+		695ADDAF22E6FAB7001A7533 /* SmartHomeHDAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHomeHDAPI.swift; sourceTree = "<group>"; };
+		695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		695ADDB322E70757001A7533 /* LoginServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServer.swift; sourceTree = "<group>"; };
+		695ADDB522E708B7001A7533 /* ServerTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTool.swift; sourceTree = "<group>"; };
+		695ADDB922E70CE2001A7533 /* Rx HandyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx HandyJSON.swift"; sourceTree = "<group>"; };
+		695ADDBA22E70CE2001A7533 /* RxMoyaMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxMoyaMapper.swift; sourceTree = "<group>"; };
 		AFCB4F35F1502E21A1982877 /* Pods-SmartHomeHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.release.xcconfig"; sourceTree = "<group>"; };
 		BBEB92C4C5DCBAB9C5960601 /* Pods-SmartHomeHDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHDUITests/Pods-SmartHomeHDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC747C6B69189CEA2EC5E629 /* Pods-SmartHomeHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				695ADD5722DC6E75001A7533 /* UIColor+Extension.swift */,
+				695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -216,7 +259,7 @@
 		695ADD5B22DEB423001A7533 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				695ADD8522E5B147001A7533 /* SokectManger */,
+				695ADD9022E6DD19001A7533 /* Vender */,
 				695ADD7822E58C83001A7533 /* Rx */,
 				695ADD6822DEFFA4001A7533 /* Protocol */,
 				695ADD5E22DEB6A5001A7533 /* Public */,
@@ -231,6 +274,7 @@
 				695ADD6022DEB6CF001A7533 /* Common.swift */,
 				695ADD8022E5973E001A7533 /* AppConfigure.swift */,
 				695ADD8322E5A96B001A7533 /* SmartDeviceConst.swift */,
+				695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -271,6 +315,7 @@
 		695ADD7022E56D7F001A7533 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				695ADD8C22E6A254001A7533 /* Networking */,
 				695ADD2022DC17EA001A7533 /* ViewController.swift */,
 				695ADD1E22DC17EA001A7533 /* AppDelegate.swift */,
 				695ADD7322E56E09001A7533 /* Main */,
@@ -287,6 +332,7 @@
 				695ADD2522DC17F1001A7533 /* Assets.xcassets */,
 				695ADD2722DC17F1001A7533 /* LaunchScreen.storyboard */,
 				695ADD2A22DC17F1001A7533 /* Info.plist */,
+				695ADD8F22E6DBA6001A7533 /* SmartHomeHD-Bridging-Header.h */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -295,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				695ADD6222DEBDAD001A7533 /* MainViewController.swift */,
+				695ADDAB22E6E47C001A7533 /* QRViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -359,6 +406,75 @@
 				695ADD8622E5B170001A7533 /* FHSoketManager.swift */,
 			);
 			path = SokectManger;
+			sourceTree = "<group>";
+		};
+		695ADD8C22E6A254001A7533 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				695ADDB722E70CE1001A7533 /* ObjectMapper */,
+				695ADD8E22E6A26B001A7533 /* Server */,
+				695ADD8D22E6A267001A7533 /* API */,
+				695ADD8522E5B147001A7533 /* SokectManger */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		695ADD8D22E6A267001A7533 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				695ADDAF22E6FAB7001A7533 /* SmartHomeHDAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		695ADD8E22E6A26B001A7533 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				695ADDB322E70757001A7533 /* LoginServer.swift */,
+				695ADDB522E708B7001A7533 /* ServerTool.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		695ADD9022E6DD19001A7533 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				695ADD9122E6DD4C001A7533 /* SocketIO */,
+			);
+			path = Vender;
+			sourceTree = "<group>";
+		};
+		695ADD9122E6DD4C001A7533 /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				695ADDA722E6DD8A001A7533 /* GCDAsyncSocket.h */,
+				695ADDA622E6DD89001A7533 /* GCDAsyncSocket.m */,
+				695ADDA822E6DD8A001A7533 /* GCDAsyncUdpSocket.h */,
+				695ADDA522E6DD89001A7533 /* GCDAsyncUdpSocket.m */,
+				695ADD9222E6DD4C001A7533 /* SRWebSocket2.h */,
+				695ADD9322E6DD4C001A7533 /* SocketIOTransportWebsocket.h */,
+				695ADD9422E6DD4C001A7533 /* SocketIOTransport.h */,
+				695ADD9522E6DD4C001A7533 /* SocketIOTransportXHR.h */,
+				695ADD9622E6DD4C001A7533 /* SocketIO.h */,
+				695ADD9722E6DD4C001A7533 /* SocketIOPacket.h */,
+				695ADD9822E6DD4C001A7533 /* SocketIOJSONSerialization.m */,
+				695ADD9922E6DD4C001A7533 /* SRWebSocket2.m */,
+				695ADD9A22E6DD4C001A7533 /* SocketIOTransportXHR.m */,
+				695ADD9B22E6DD4C001A7533 /* SocketIOTransportWebsocket.m */,
+				695ADD9C22E6DD4C001A7533 /* SocketIOJSONSerialization.h */,
+				695ADD9D22E6DD4C001A7533 /* SocketIOPacket.m */,
+				695ADD9E22E6DD4C001A7533 /* SocketIO.m */,
+			);
+			path = SocketIO;
+			sourceTree = "<group>";
+		};
+		695ADDB722E70CE1001A7533 /* ObjectMapper */ = {
+			isa = PBXGroup;
+			children = (
+				695ADDB922E70CE2001A7533 /* Rx HandyJSON.swift */,
+				695ADDBA22E70CE2001A7533 /* RxMoyaMapper.swift */,
+			);
+			path = ObjectMapper;
 			sourceTree = "<group>";
 		};
 		CB86FC2A76015593F8897C80 /* Pods */ = {
@@ -568,16 +684,17 @@
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/ReusableKit/ReusableKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RoundedSwitch/RoundedSwitch.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/UIButton-SSEdgeInsets/UIButton_SSEdgeInsets.framework",
+				"${BUILT_PRODUCTS_DIR}/swiftScan/swiftScan.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -593,16 +710,17 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReusableKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RoundedSwitch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIButton_SSEdgeInsets.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/swiftScan.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -639,25 +757,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
+				695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */,
 				695ADD5822DC6E75001A7533 /* UIColor+Extension.swift in Sources */,
+				695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
+				695ADDA422E6DD4C001A7533 /* SocketIO.m in Sources */,
+				695ADDA922E6DD8A001A7533 /* GCDAsyncUdpSocket.m in Sources */,
 				695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */,
 				695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */,
 				695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */,
+				695ADDB222E6FCD9001A7533 /* Dictionary+Extension.swift in Sources */,
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
+				695ADD9F22E6DD4C001A7533 /* SocketIOJSONSerialization.m in Sources */,
 				695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */,
+				695ADDAC22E6E47C001A7533 /* QRViewController.swift in Sources */,
 				695ADD5522DC6B28001A7533 /* RoomViewCell.swift in Sources */,
+				695ADDB422E70757001A7533 /* LoginServer.swift in Sources */,
 				695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */,
 				695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */,
 				695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */,
+				695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */,
+				695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */,
+				695ADDAA22E6DD8A001A7533 /* GCDAsyncSocket.m in Sources */,
 				695ADD5D22DEB47F001A7533 /* HomeViewController.swift in Sources */,
 				695ADD5122DC623C001A7533 /* RoomControllerViewCell.swift in Sources */,
+				695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */,
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
+				695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */,
 				695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */,
+				695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
 				695ADD6F22DF1A2B001A7533 /* DeviceControllView.swift in Sources */,
 				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
+				695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */,
 				695ADD5A22DC7A98001A7533 /* CubeViewLayout.swift in Sources */,
+				695ADDA022E6DD4C001A7533 /* SRWebSocket2.m in Sources */,
 				695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -837,13 +971,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fh.smart.hd.SmartHomeHD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -857,13 +992,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fh.smart.hd.SmartHomeHD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

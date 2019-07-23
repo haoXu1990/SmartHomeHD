@@ -37,10 +37,17 @@ target 'SmartHomeHD' do
   pod 'SwiftyUserDefaults', '~> 4.0'
   
   # Socket.IO 
-  pod 'Socket.IO-Client-Swift', '~> 15.1.0'
+ # pod 'Socket.IO-Client-Swift', '~> 15.1.0'
+  # WebSocket
+  #pod 'Starscream', '~> 3.0.6'
  
   # 自定义 Switch
   pod 'RoundedSwitch'
+  
+  pod 'SwiftDate', '~> 5.0'
+  
+  # 二维码识别，生成工具, 原作者没更新了,
+  pod 'swiftScan', :git => "https://github.com/MxABC/swiftScan.git", :commit =>"b6c5b1c"
  
   # Pods for SmartHomeHD
 

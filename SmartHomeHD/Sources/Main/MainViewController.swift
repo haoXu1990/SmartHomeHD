@@ -40,6 +40,10 @@ class MainViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         initUI()
+        
+        FHSoketManager.shear().connectSocket()
+        
+        self.present(ViewController.init(), animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden: Bool {

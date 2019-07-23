@@ -18,13 +18,14 @@ PODS:
     - RxSwift (~> 4.0)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
-  - ObjectMapper (3.5.0)
+  - ObjectMapper (3.5.1)
   - ReactorKit (1.2.1):
     - RxSwift (>= 4.0.0)
   - Result (3.2.4)
-  - ReusableKit (2.1.0):
-    - ReusableKit/Core (= 2.1.0)
-  - ReusableKit/Core (2.1.0)
+  - ReusableKit (3.0.0):
+    - ReusableKit/Core (= 3.0.0)
+  - ReusableKit/Core (3.0.0)
+  - RoundedSwitch (2.0.2)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxDataSources (3.1.0):
@@ -43,10 +44,9 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
-  - SnapKit (4.2.0)
-  - Socket.IO-Client-Swift (15.1.0):
-    - Starscream (~> 3.1)
-  - Starscream (3.1.0)
+  - SnapKit (5.0.0)
+  - SwiftDate (5.1.0)
+  - swiftScan (1.1.5)
   - SwiftyUserDefaults (4.0.0)
   - UIButton-SSEdgeInsets (0.1.7)
 
@@ -58,13 +58,15 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - ReactorKit
   - ReusableKit
+  - RoundedSwitch
   - RxCocoa (~> 4.0)
   - RxDataSources (~> 3.0)
   - RxGesture
   - RxSwift (~> 4.0)
   - RxSwiftExt
   - SnapKit
-  - Socket.IO-Client-Swift (~> 15.1.0)
+  - SwiftDate (~> 5.0)
+  - swiftScan (from `https://github.com/MxABC/swiftScan.git`, commit `b6c5b1c`)
   - SwiftyUserDefaults (~> 4.0)
   - UIButton-SSEdgeInsets (~> 0.1.1)
 
@@ -80,16 +82,26 @@ SPEC REPOS:
     - ReactorKit
     - Result
     - ReusableKit
+    - RoundedSwitch
     - RxCocoa
     - RxDataSources
     - RxGesture
     - RxSwift
     - RxSwiftExt
     - SnapKit
-    - Socket.IO-Client-Swift
-    - Starscream
+    - SwiftDate
     - SwiftyUserDefaults
     - UIButton-SSEdgeInsets
+
+EXTERNAL SOURCES:
+  swiftScan:
+    :commit: b6c5b1c
+    :git: https://github.com/MxABC/swiftScan.git
+
+CHECKOUT OPTIONS:
+  swiftScan:
+    :commit: b6c5b1c
+    :git: https://github.com/MxABC/swiftScan.git
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -98,21 +110,22 @@ SPEC CHECKSUMS:
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
-  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  ReusableKit: d0b040de03b293288b0ca27a78602691d3346d9b
+  ReusableKit: e5f853ad4652e411f96b6119b2488afa12929be6
+  RoundedSwitch: 0ef74a23fdcce059d5225ee181c45f7106ae0d4d
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Socket.IO-Client-Swift: 7cb44c0ffb86e158cee32d0642d30ec5fdcf8f61
-  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
+  swiftScan: bc6dbf74e6a579c45a861691afc44628d8d9f6ab
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
 
-PODFILE CHECKSUM: 720220c7da14d89bf28d2f45022b30e667d0141f
+PODFILE CHECKSUM: da8c07afdb3be6f0c6ab6a0518462125ac977205
 
 COCOAPODS: 1.5.3
