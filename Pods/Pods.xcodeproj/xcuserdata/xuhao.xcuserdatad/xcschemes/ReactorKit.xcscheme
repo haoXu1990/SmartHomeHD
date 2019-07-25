@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F1A13F6DD0722BD6FD6CD3BA1E27341"
+               BlueprintIdentifier = "1EE0963B5E0DA25288EAA02D407ECD57"
                BlueprintName = "ReactorKit"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "ReactorKit.framework">

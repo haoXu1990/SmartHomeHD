@@ -9,6 +9,8 @@
 import UIKit
 import Moya
 
+let APIROOTURL = "http://sz.wisdudu.com"
+
 let SmartHomeHDAPIProvider = MoyaProvider<SmartHomeHDAPI>()
 
 public enum SmartHomeHDAPI {
@@ -25,7 +27,7 @@ extension SmartHomeHDAPI: TargetType {
     }
     
     public var path: String {
-        return ""
+        return "/inter/index.php"
     }
     
     public var method: Moya.Method {
@@ -60,3 +62,5 @@ extension SmartHomeHDAPI: TargetType {
     
     
 }
+
+

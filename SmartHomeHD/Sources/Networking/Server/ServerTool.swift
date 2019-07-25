@@ -23,7 +23,7 @@ class ServerTool: NSObject {
         /// 添加请求时间
         resultDict["temptime"] = Date.init().toFormat("yyyy-MM-dd HH:mm")
         
-        /// 忽略
+        /// 加密字段, 暂时忽略
         resultDict["sign"] = "111"
         
         return resultDict

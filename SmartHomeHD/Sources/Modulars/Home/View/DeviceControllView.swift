@@ -8,6 +8,7 @@
 
 import UIKit
 import ReusableKit
+import RxOptional
 
 class DeviceControllView: UIView {
 
@@ -15,14 +16,15 @@ class DeviceControllView: UIView {
     
     var bgImage: UIImageView!    
     
+    var deviceListModel: [DeviceModel] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         initUI()
-        
+
         layoutSubView()
     }
-    
     
     func initUI()  {
         
@@ -36,7 +38,7 @@ class DeviceControllView: UIView {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(Reusable.baseCell)
-        bgImage.addSubview(tableView)
+        self.addSubview(tableView)
         
         
     }
@@ -62,13 +64,15 @@ class DeviceControllView: UIView {
 
 extension DeviceControllView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return deviceListModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeue(Reusable.baseCell, for: indexPath)
-        cell.titleLabel.text = "● 客厅开关"
+//        cell.titleLabel.text = "● 客厅开关"
+        let model = deviceListModel[indexPath.row]
+        cell.titleLabel.text = String.init(format: "● %@", model.title.or(""))
         return cell
         
     }

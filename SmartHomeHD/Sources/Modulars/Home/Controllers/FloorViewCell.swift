@@ -4,14 +4,21 @@
 //
 //  Created by XuHao on 2019/7/15.
 //  Copyright © 2019 FH. All rights reserved.
-//  房间控制器, 管理一层房屋中所有的房间视图
+//  楼层, 管理一层房屋中所有的房间视图
 
 
 import UIKit
 import ReusableKit
+import ReactorKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+import RxDataSources
+import RxOptional
 
-
-class RoomControllerViewCell: UICollectionViewCell {
+class FloorViewCell: UICollectionViewCell, View {
+   
+    var disposeBag: DisposeBag = DisposeBag.init()
     
     /// 这个 collectionView 里面的 Cell 存放的是最终需要展示的页面
     var collectionView: UICollectionView!
@@ -27,6 +34,8 @@ class RoomControllerViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         initUI()
+        
+        DLog("initUI")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +53,7 @@ class RoomControllerViewCell: UICollectionViewCell {
         
         collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: circle3DLayout)
         collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.dataSource = self
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
         
@@ -54,33 +63,57 @@ class RoomControllerViewCell: UICollectionViewCell {
         
         layoutStyel = flowStyle
         let layout = flowStyle == .cirle3D ? circle3DLayout : flowLayout
-
         collectionView.setCollectionViewLayout(layout!, animated: true)
-        
         let indexPath = IndexPath.init(row: 0, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        
     }
 }
 
+extension FloorViewCell {
+    
+    func bind(reactor: FloorViewReactor) {
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
+            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
+            cell.bgImageView.image = UIImage.init(named: "image_home_room_bg_1")
+        
+            let section = ds.sectionModels[ip.section]
+            
+            let models = section.deviceListModel.filter({ (model) -> Bool in
+                return  model.roomid == item.roomid
+            })
+            cell.setModel(models: models)
+            return cell
+        })
+        
+        
+        reactor.state.map{$0.setcions}.filterEmpty()
+        .bind(to: collectionView.rx.items(dataSource: dataSource))
+        .disposed(by: rx.disposeBag)
+        
+    }
+}
 
-extension RoomControllerViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+// UICollectionViewDataSource
+extension FloorViewCell: UICollectionViewDelegate {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 这里返回的 Cell 应该是最终展示的 视图, 这里最好用 dataSource 的方式获取到数据
-        let cell = collectionView.dequeue(Reusable.RoomViewCell, for: indexPath)
-       
-        cell.bgImageView.image = UIImage.init(named: "image_home_room_bg_1")
-      
-        return cell        
-    }
-    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 5
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        // 这里返回的 Cell 应该是最终展示的 视图, 这里最好用 dataSource 的方式获取到数据
+//        let cell = collectionView.dequeue(Reusable.RoomViewCell, for: indexPath)
+//
+//        cell.bgImageView.image = UIImage.init(named: "image_home_room_bg_1")
+//
+//        return cell
+//    }
+//
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if layoutStyel == .cirle3D {

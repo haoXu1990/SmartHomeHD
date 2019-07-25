@@ -35,6 +35,7 @@ class MainViewController: UIViewController {
     /// 流式布局
     var flowLayoutBtn:UIButton!
     
+    var service: DeviceServerType = DeviceServer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +44,7 @@ class MainViewController: UIViewController {
         
         FHSoketManager.shear().connectSocket()
         
-        self.present(ViewController.init(), animated: true, completion: nil)
+//        self.present(ViewController.init(), animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -102,8 +103,12 @@ class MainViewController: UIViewController {
         
         // 3. 把控制器添加到 ScrollView
         /// 这里一定得强引用
-        homeVC = HomeViewController.init(frame: CGRect.init(x: 55, y: 0, width: kScreenW - 110, height: scrollViewH))
-        homeVC.view.backgroundColor = .red
+        let reactor = HomeViewReactor.init(service: self.service)
+        let rect = CGRect.init(x: 55, y: 0, width: kScreenW - 110, height: scrollViewH)
+        homeVC = HomeViewController.init(reactor: reactor, frame: rect)
+//        homeVC.reactor = reactor
+//        HomeViewController.init(frame: )
+      
         scrollView.addSubview(homeVC.view)
         
         messageVC = MessageViewController.init()

@@ -35,6 +35,9 @@ PODS:
   - RxGesture (2.2.0):
     - RxCocoa (~> 4.5)
     - RxSwift (~> 4.5)
+  - RxOptional (3.6.2):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.5.0)
   - RxSwiftExt (3.4.0):
     - RxSwiftExt/Core (= 3.4.0)
@@ -44,10 +47,14 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
+  - RxViewController (0.4.1):
+    - RxCocoa (>= 4.0.0)
+    - RxSwift (>= 4.0.0)
   - SnapKit (5.0.0)
   - SwiftDate (5.1.0)
   - swiftScan (1.1.5)
   - SwiftyUserDefaults (4.0.0)
+  - Then (2.5.0)
   - UIButton-SSEdgeInsets (0.1.7)
 
 DEPENDENCIES:
@@ -62,12 +69,15 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxDataSources (~> 3.0)
   - RxGesture
+  - RxOptional
   - RxSwift (~> 4.0)
   - RxSwiftExt
+  - RxViewController
   - SnapKit
   - SwiftDate (~> 5.0)
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`, commit `b6c5b1c`)
   - SwiftyUserDefaults (~> 4.0)
+  - Then
   - UIButton-SSEdgeInsets (~> 0.1.1)
 
 SPEC REPOS:
@@ -86,11 +96,14 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxGesture
+    - RxOptional
     - RxSwift
     - RxSwiftExt
+    - RxViewController
     - SnapKit
     - SwiftDate
     - SwiftyUserDefaults
+    - Then
     - UIButton-SSEdgeInsets
 
 EXTERNAL SOURCES:
@@ -118,14 +131,17 @@ SPEC CHECKSUMS:
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
   swiftScan: bc6dbf74e6a579c45a861691afc44628d8d9f6ab
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
+  Then: 0157115e883545c77967b452fe74a1d25fb796e1
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
 
-PODFILE CHECKSUM: da8c07afdb3be6f0c6ab6a0518462125ac977205
+PODFILE CHECKSUM: 8be34e484c2158bda31c2abf11f5cd3c0d445667
 
 COCOAPODS: 1.5.3

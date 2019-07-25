@@ -8,8 +8,10 @@
 
 import Foundation
 import RxSwift
-import ObjectMapper
 import Moya
+import ObjectMapper
+import CoreFoundation
+
 enum DCUError : Swift.Error {
     // 解析失败
     case ParseJSONError
@@ -26,20 +28,19 @@ enum RequestStatus: Int {
     case requestError
 }
 
-fileprivate let RESULT_CODE = "code"
-fileprivate let RESULT_MSG = "msg"
-fileprivate let RESULT_DATA = "data"
+fileprivate let RESULT_CODE = "errCode"
+fileprivate let RESULT_MSG = "message"
+fileprivate let RESULT_DATA = "result"
 //public extension Observable
 public extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
-    func mapResponseToObject<T: BaseMappable>(type: T.Type) -> Observable<T> {
-        return map { response in
-            
+    func mapResponseToObject<T: BaseMappable>(type: T.Type) -> Single<T> {
+        return flatMap { response -> Single<T> in
             
             // 得到response
-            guard let response = response as? Moya.Response else {
-                throw DCUError.NoResponse
-            }
-            
+            //            guard let response = response as? Moya.Response else {
+            //                throw DCUError.NoResponse
+            //            }
+            DLog("\(RESULT_DATA) \(RESULT_MSG) \(RESULT_CODE)")
             // 检查状态码
             guard ((200...209) ~= response.statusCode) else {
                 throw DCUError.RequestFailed
@@ -55,35 +56,49 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                     // get data
                     let data =  json[RESULT_DATA]
                     if let data = data as? [String: Any] {
-                        // 使用 ObjectMapper 解析成对象
+                        
+                        if data.count == 1 {
+                            
+                            let list = data["list"]
+                            if let list = list as? [String: Any] {
+                                //服务器返回信息有点特别 result -> list
+                                let object = Mapper<T>().map(JSON: list)!
+                                
+                                return Single.just(object)
+                            }
+                        }
+                        
                         let object = Mapper<T>().map(JSON: data)!
-                        return object
+                        return Single.just(object)
+                        
                     }else {
-                        throw DCUError.ParseJSONError
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
                     }
                 } else {
-                    throw DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: json[RESULT_MSG] as? String)
+                    return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: json[RESULT_MSG] as? String))
+                    
                 }
             } else {
-                throw DCUError.ParseJSONError
+                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                //                throw DCUError.ParseJSONError
             }
             
         }
     }
     
-    func mapResponseToObjectArray<T: BaseMappable>(type: T.Type) -> Observable<[T]> {
-        return map { response in
+    func mapResponseToObjectArray<T: BaseMappable>(type: T.Type, context: MapContext? = nil) -> Single<[T]> {
+        return flatMap { response  -> Single<[T]> in
             
             // 得到response
-            guard let response = response as? Moya.Response else {
-                throw DCUError.NoResponse
-            }
+            //            guard let response = response as? Moya.Response else {
+            //                throw DCUError.NoResponse
+            //            }
             
             // 检查状态码
             guard ((200...209) ~= response.statusCode) else {
                 throw DCUError.RequestFailed
             }
-
+            
             guard let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [String: Any]  else {
                 throw DCUError.NoResponse
             }
@@ -93,9 +108,18 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                 if code == RequestStatus.requestSuccess.rawValue {
                     // 对象数组
                     var objects = [T]()
-                    guard let objectsArrays = json[RESULT_DATA] as? [Any] else {
-                        throw DCUError.ParseJSONError
+                    
+                    
+                    
+                    guard let list =  json[RESULT_DATA] as? [String: Any] else {
+                        
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
                     }
+                    
+                    guard let objectsArrays = list["list"] as? [Any] else {
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                    }
+                    
                     for object in objectsArrays {
                         if let data = object as? [String: Any] {
                             // 使用 ObjectMapper 解析成对象
@@ -104,14 +128,15 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                             objects.append(object)
                         }
                     }
-                    return objects
-
+                    
+                    return  Single.just(objects)//objects
+                    
                 } else {
-                    throw DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: json[RESULT_MSG] as? String)
-
+                    return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: json[RESULT_MSG] as? String))
+                    
                 }
             } else {
-                throw DCUError.ParseJSONError
+                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
             }
         }
     }

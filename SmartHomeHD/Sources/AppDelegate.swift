@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootNav = UINavigationController.init(rootViewController: rootVC)
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootNav
+        window?.rootViewController = rootVC
         window?.makeKeyAndVisible()
         
         return true

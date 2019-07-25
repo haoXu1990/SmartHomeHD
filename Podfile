@@ -19,6 +19,9 @@ target 'SmartHomeHD' do
   pod 'Moya-ObjectMapper/RxSwift'
   pod 'ReactorKit'
   pod 'RxSwiftExt'
+  pod 'RxOptional'
+  pod 'RxViewController'
+  pod 'Then'
   
   # UI
   # 布局

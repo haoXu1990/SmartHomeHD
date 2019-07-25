@@ -14,6 +14,8 @@ class RoomViewCell: UICollectionViewCell {
   
     open var bgImageView: UIImageView!
     
+    var deviceListModel: [DeviceModel]!
+    
     var devicesView: DeviceControllView!
     
     override init(frame: CGRect) {
@@ -25,8 +27,9 @@ class RoomViewCell: UICollectionViewCell {
         bgImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
+                
         devicesView = DeviceControllView.init()
+//        devicesView.deviceListModel = deviceListModel
         self.contentView.addSubview(devicesView)
         devicesView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(50)
@@ -36,6 +39,12 @@ class RoomViewCell: UICollectionViewCell {
         }
     }
     
+    func setModel(models: [DeviceModel])  {
+        self.deviceListModel = models
+        devicesView.deviceListModel = models
+        devicesView.tableView.reloadData()
+        
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

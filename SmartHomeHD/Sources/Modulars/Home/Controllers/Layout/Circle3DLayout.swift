@@ -23,14 +23,15 @@ class Circle3DLayout: UICollectionViewLayout {
     
     /// 内容区域总大小, 不是可见区域
     override var collectionViewContentSize: CGSize {
-        if let collectionView = self.collectionView {
-            let width = collectionView.frame.size.width * CGFloat((collectionView.numberOfItems(inSection: 0) + 2))
-
-            let height = collectionView.frame.height
-            return CGSize.init(width: width, height: height)
+        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0 else {
+            return CGSize.zero
         }
+        
+        let width = collectionView.frame.size.width * CGFloat((collectionView.numberOfItems(inSection: 0) + 2))
+        
+        let height = collectionView.frame.height
+        return CGSize.init(width: width, height: height)
 
-        return CGSize.zero
     }
     
 
@@ -107,8 +108,7 @@ class Circle3DLayout: UICollectionViewLayout {
             attributes.center = CGPoint.init(x: x + screenW / 2, y: height * 0.5)
             attributes.size = CGSize.init(width: width - 300, height: height )
             DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
-
-
+            
             /// 3D 动画
             var transform = CATransform3DIdentity
             transform.m34 = -1.0 / 5800 //5800
@@ -136,18 +136,20 @@ class Circle3DLayout: UICollectionViewLayout {
         let resultArray = super.layoutAttributesForElements(in: rect)
         
         if resultArray?.count ?? 0 > 0 { return resultArray}
-        if let collectionView = self.collectionView {
-            var attributes:[UICollectionViewLayoutAttributes] = []
-            let count = collectionView.numberOfItems(inSection: 0)
-            
-            for i in 0..<count {
-                let indexPath = NSIndexPath.init(item: i, section: 0)
-                
-                attributes.append(layoutAttributesForItem(at: indexPath as IndexPath)!)
-            }
-            
-            return attributes
+        
+        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0 else {
+            return resultArray
         }
-        return resultArray
+        
+        var attributes:[UICollectionViewLayoutAttributes] = []
+        let count = collectionView.numberOfItems(inSection: 0)
+        
+        for i in 0..<count {
+            let indexPath = NSIndexPath.init(item: i, section: 0)
+            
+            attributes.append(layoutAttributesForItem(at: indexPath as IndexPath)!)
+        }
+        
+        return attributes
     }
 }

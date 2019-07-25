@@ -20,7 +20,6 @@ let SMART_HOME_TITLE_COLOR = UIColor.hexColor(0xD8D8D8)
 let SMART_HOME_SUB_TITLE_COLOR = UIColor.init()
 
 
-let APIROOTURL = "http://sz.wisdudu.com"
 
 class AppConfigure: NSObject {
 

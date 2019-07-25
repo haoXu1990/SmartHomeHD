@@ -16,4 +16,16 @@ extension Dictionary {
         let strJson = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
         return strJson! as String
     }
+    
+//    func descriptionWithLoca() -> String {
+//        
+//        let allKeys = self.keys
+//        var str = "{\t\n"
+//       
+//        for (key, value) in self.enumerated() {
+//            
+//            str.appendingFormat("\t \"%@\" = %@, \n", key, value as! CVarArg)
+//        }
+//        return str + "}"
+//    }
 }

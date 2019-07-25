@@ -1,3 +1,4 @@
+
 //
 //  HomeViewController.swift
 //  SmartHomeHD
@@ -8,21 +9,31 @@
 
 import UIKit
 import ReusableKit
+import RxSwift
+import ReactorKit
+import RxViewController
+import RxDataSources
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, ReactorKit.View {
+    var disposeBag: DisposeBag = DisposeBag.init()
+    
     var collectionView: UICollectionView!
-    var flowStyle: RoomControllViewLayoutStyle = .cirle3D
+    
+    fileprivate var flowStyle: RoomControllViewLayoutStyle = .cirle3D
+    
     fileprivate var collectionViewFrame:CGRect!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
-    init(frame:CGRect) {
-        super.init(nibName: nil, bundle: nil)
-        self.view.frame = frame
+    init(reactor: HomeViewReactor, frame:CGRect) {
+        
+        defer { self.reactor = reactor }
         collectionViewFrame = frame
+        super.init(nibName: nil, bundle: nil)
         initUI()
     }
     
@@ -30,29 +41,56 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillLayoutSubviews() {
-        self.view.frame = collectionViewFrame
-    }
+  
     func initUI()  {
         
+        self.view.frame = collectionViewFrame
         self.view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: collectionViewFrame.width, height: collectionViewFrame.height)
         
-        collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.isPagingEnabled = true
-        
-        collectionView.register(Reusable.RoomControllerViewCell)
+       collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
+        collectionView.isPagingEnabled = true        
+        collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         view.backgroundColor = .black       
     
     }
 
+    
+}
+
+extension HomeViewController {
+    
+    func bind(reactor: HomeViewReactor) {
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
+            /// 固定只有一个 Cell
+            
+            let cell = cv.dequeue(Reusable.FloorViewCell, for: ip)
+            let section = ds.sectionModels[ip.section]
+            
+            let reactor = FloorViewReactor.init(floors: section.roomModels, devicelist: section.deviceListModel)
+            cell.reactor = reactor
+            return cell
+        })
+        
+        
+        
+        reactor.state.map { $0.setcions }
+        .bind(to: collectionView.rx.items(dataSource: dataSource))
+        .disposed(by: rx.disposeBag)
+    
+        
+        Observable.just(Reactor.Action.fetchUserInfo)
+            .bind(to: reactor.action)
+            .disposed(by: self.rx.disposeBag)
+        
+        
+    }
 }
 
 ///MARK - open method
@@ -64,7 +102,7 @@ extension HomeViewController {
         self.flowStyle = flowStyle
 //        let cell = collectionView.dequeue(Reusable.RoomControllerViewCell, for: IndexPath.init(row: 0, section: 0))
 //        cell.reloadData(flowStyle: self.flowStyle)
-        let cell = collectionView.visibleCells.first as! RoomControllerViewCell
+        let cell = collectionView.visibleCells.first as! FloorViewCell
         
 //        cell.reloadData(flowStyle: self.flowStyle)
         
@@ -74,28 +112,8 @@ extension HomeViewController {
 }
 
 
-extension HomeViewController:  UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeue(Reusable.RoomControllerViewCell, for: indexPath)
-        cell.reloadData(flowStyle: self.flowStyle)
-        cell.backgroundColor = .blue
-        return cell
-    }
-    
-}
-
-
 private enum Reusable {
    
-    static let RoomControllerViewCell = ReusableCell<RoomControllerViewCell>.init(identifier: "RoomControllerViewCell", nib: nil)
+    static let FloorViewCell = ReusableCell<FloorViewCell>.init(identifier: "FloorViewCell", nib: nil)
 }
+
