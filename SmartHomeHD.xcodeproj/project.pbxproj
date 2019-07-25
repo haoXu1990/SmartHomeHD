@@ -13,6 +13,7 @@
 		690D46CC22E991F7001123AA /* FloorViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46CB22E991F7001123AA /* FloorViewSection.swift */; };
 		690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46CD22E99DDF001123AA /* RoomViewSection.swift */; };
 		690D46D022E9A5B5001123AA /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46CF22E9A5B5001123AA /* Optional+Extension.swift */; };
+		690D46D322E9B30B001123AA /* MoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D222E9B30B001123AA /* MoyaPlugin.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -93,6 +94,7 @@
 		690D46CB22E991F7001123AA /* FloorViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorViewSection.swift; sourceTree = "<group>"; };
 		690D46CD22E99DDF001123AA /* RoomViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewSection.swift; sourceTree = "<group>"; };
 		690D46CF22E9A5B5001123AA /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
+		690D46D222E9B30B001123AA /* MoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaPlugin.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,14 @@
 				690D46CD22E99DDF001123AA /* RoomViewSection.swift */,
 			);
 			path = Sections;
+			sourceTree = "<group>";
+		};
+		690D46D122E9B2E8001123AA /* MoyaPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				690D46D222E9B30B001123AA /* MoyaPlugin.swift */,
+			);
+			path = MoyaPlugin;
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -447,6 +457,7 @@
 		695ADD8C22E6A254001A7533 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				690D46D122E9B2E8001123AA /* MoyaPlugin */,
 				695ADDB722E70CE1001A7533 /* ObjectMapper */,
 				695ADD8E22E6A26B001A7533 /* Server */,
 				695ADD8D22E6A267001A7533 /* API */,
@@ -840,6 +851,7 @@
 				695ADDBF22E7F463001A7533 /* HomeViewReactor.swift in Sources */,
 				695ADD5122DC623C001A7533 /* FloorViewCell.swift in Sources */,
 				695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */,
+				690D46D322E9B30B001123AA /* MoyaPlugin.swift in Sources */,
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
 				695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */,
 				695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */,

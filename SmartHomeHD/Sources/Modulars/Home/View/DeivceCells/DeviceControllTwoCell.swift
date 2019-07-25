@@ -47,6 +47,18 @@ class DeviceControllTwoCell: BaseTableViewCell {
             make.left.equalTo(middleBtn.snp.right).offset(20)
         }
         
+        
+        middleBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
+            
+        }).disposed(by: rx.disposeBag)
+        
+        leftBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
+            
+        }).disposed(by: rx.disposeBag)
+        
+        rightBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
+            
+        }).disposed(by: rx.disposeBag)
     }
 
 }

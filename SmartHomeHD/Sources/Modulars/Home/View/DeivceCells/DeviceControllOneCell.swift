@@ -33,7 +33,7 @@ class DeviceControllOneCell: BaseTableViewCell {
         bgView.addSubview(deviceTitleLabel)
         
         moreIcon = UIImageView.init()
-        bgView.addSubview(deviceIcon)
+        bgView.addSubview(moreIcon)
         
     }
     
