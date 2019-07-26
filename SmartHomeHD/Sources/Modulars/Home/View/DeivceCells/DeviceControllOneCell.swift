@@ -7,9 +7,13 @@
 //  设备控制卡片， 适用于单个按钮、需要加载更多视图的设备: 摄像头, 投食器, 电视, 猫眼, IR, 空调 等类是设备
 
 import UIKit
+import RxSwift
+import ReactorKit
+import NSObject_Rx
 
-class DeviceControllOneCell: BaseTableViewCell {
-
+class DeviceControllOneCell: BaseTableViewCell, View {
+    var disposeBag: DisposeBag = DisposeBag.init()
+    
     var bgView: UIView!
     var deviceIcon: UIImageView!
     var moreIcon: UIImageView!
@@ -50,18 +54,52 @@ class DeviceControllOneCell: BaseTableViewCell {
         deviceIcon.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(15)
+            make.size.equalTo(CGSize.init(width: 15, height: 15))
         }
         
         moreIcon.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.size.equalTo(CGSize.init(width: 15, height: 15))
         }
         
         deviceTitleLabel.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(deviceIcon.snp.right).offset(10)
             make.right.equalTo(moreIcon.snp.right).offset(-10)
         }
         
     }
 }
+
+extension DeviceControllOneCell {
+    
+    func bind(reactor: DeviceControllCellReactor) {
+        
+        reactor.state
+            .fetchCellTitle()
+            .distinctUntilChanged()
+            .bind(to: titleLabel.rx.text)
+            .disposed(by: rx.disposeBag)        
+        
+        reactor.state.map { $0.deviceModels.title }
+            .distinctUntilChanged()
+            .bind(to: deviceTitleLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        reactor.state
+            .fetchCellDeviceIcon()
+            .distinctUntilChanged()
+            .bind(to: deviceIcon.rx.image )
+            .disposed(by: rx.disposeBag)
+        
+        reactor.state
+            .fetchCellDeviceMoreIcon()
+            .filterNil()
+            .distinctUntilChanged()
+            .bind(to: moreIcon.rx.image)
+            .disposed(by: rx.disposeBag)
+    }
+    
+}
+

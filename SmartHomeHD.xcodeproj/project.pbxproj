@@ -14,6 +14,9 @@
 		690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46CD22E99DDF001123AA /* RoomViewSection.swift */; };
 		690D46D022E9A5B5001123AA /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46CF22E9A5B5001123AA /* Optional+Extension.swift */; };
 		690D46D322E9B30B001123AA /* MoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D222E9B30B001123AA /* MoyaPlugin.swift */; };
+		690D46D722EAA767001123AA /* DeviceControllCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */; };
+		690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D822EAB20B001123AA /* DeviceTool+Rx.swift */; };
+		690D46DB22EAB5A3001123AA /* SmartDeviceTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46DA22EAB5A3001123AA /* SmartDeviceTool.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -32,7 +35,6 @@
 		695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6422DEC042001A7533 /* MessageViewController.swift */; };
 		695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6622DEC05A001A7533 /* SettingViewController.swift */; };
 		695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6B22DEFFCB001A7533 /* NibLoadable.swift */; };
-		695ADD6F22DF1A2B001A7533 /* DeviceControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */; };
 		695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */; };
 		695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */; };
 		695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD8022E5973E001A7533 /* AppConfigure.swift */; };
@@ -95,6 +97,9 @@
 		690D46CD22E99DDF001123AA /* RoomViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewSection.swift; sourceTree = "<group>"; };
 		690D46CF22E9A5B5001123AA /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		690D46D222E9B30B001123AA /* MoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaPlugin.swift; sourceTree = "<group>"; };
+		690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllCellReactor.swift; sourceTree = "<group>"; };
+		690D46D822EAB20B001123AA /* DeviceTool+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceTool+Rx.swift"; sourceTree = "<group>"; };
+		690D46DA22EAB5A3001123AA /* SmartDeviceTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDeviceTool.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +124,6 @@
 		695ADD6422DEC042001A7533 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		695ADD6622DEC05A001A7533 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		695ADD6B22DEFFCB001A7533 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllView.swift; sourceTree = "<group>"; };
 		695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		695ADD8022E5973E001A7533 /* AppConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigure.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				695ADD6022DEB6CF001A7533 /* Common.swift */,
 				695ADD8022E5973E001A7533 /* AppConfigure.swift */,
 				695ADD8322E5A96B001A7533 /* SmartDeviceConst.swift */,
+				690D46DA22EAB5A3001123AA /* SmartDeviceTool.swift */,
 				695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */,
 			);
 			path = Public;
@@ -350,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				695ADD8222E5A296001A7533 /* DeivceCells */,
-				695ADD6E22DF1A2B001A7533 /* DeviceControllView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -432,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				695ADD7B22E58CCD001A7533 /* UIView+Rx.swift */,
+				690D46D822EAB20B001123AA /* DeviceTool+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */,
 				695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */,
 				695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */,
+				690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */,
 			);
 			path = DeivceCells;
 			sourceTree = "<group>";
@@ -830,10 +836,12 @@
 				695ADDA922E6DD8A001A7533 /* GCDAsyncUdpSocket.m in Sources */,
 				695ADDC122E7FA51001A7533 /* DeviceServer.swift in Sources */,
 				695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */,
+				690D46D722EAA767001123AA /* DeviceControllCellReactor.swift in Sources */,
 				695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */,
 				695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */,
 				695ADDB222E6FCD9001A7533 /* Dictionary+Extension.swift in Sources */,
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
+				690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */,
 				695ADD9F22E6DD4C001A7533 /* SocketIOJSONSerialization.m in Sources */,
 				695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */,
 				695ADDAC22E6E47C001A7533 /* QRViewController.swift in Sources */,
@@ -858,9 +866,9 @@
 				695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */,
 				695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
-				695ADD6F22DF1A2B001A7533 /* DeviceControllView.swift in Sources */,
 				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
 				690D46D022E9A5B5001123AA /* Optional+Extension.swift in Sources */,
+				690D46DB22EAB5A3001123AA /* SmartDeviceTool.swift in Sources */,
 				695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */,
 				695ADD5A22DC7A98001A7533 /* CubeViewLayout.swift in Sources */,
 				690D46C322E84D23001123AA /* HomeViewSection.swift in Sources */,

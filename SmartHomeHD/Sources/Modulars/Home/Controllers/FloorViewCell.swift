@@ -76,14 +76,16 @@ extension FloorViewCell {
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
             let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
-            cell.bgImageView.image = UIImage.init(named: "image_home_room_bg_1")
+            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
         
             let section = ds.sectionModels[ip.section]
             
             let models = section.deviceListModel.filter({ (model) -> Bool in
                 return  model.roomid == item.roomid
             })
-            cell.setModel(models: models)
+            
+            cell.reactor = RoomViewReactor.init(devicelist: models)
+            
             return cell
         })
         

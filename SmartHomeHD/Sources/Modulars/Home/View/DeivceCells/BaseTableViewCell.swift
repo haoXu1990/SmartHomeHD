@@ -65,6 +65,13 @@ class BaseTableViewCell: UITableViewCell {
             make.centerY.equalTo(titleImage)
             make.left.equalTo(titleImage).offset(10)
         }
+        
+        controllView.snp.makeConstraints { (make) in
+            make.top.equalTo(titleImage.snp.bottom).offset(1)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     

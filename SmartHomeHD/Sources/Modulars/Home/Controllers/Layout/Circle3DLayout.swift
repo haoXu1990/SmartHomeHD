@@ -107,7 +107,7 @@ class Circle3DLayout: UICollectionViewLayout {
 
             attributes.center = CGPoint.init(x: x + screenW / 2, y: height * 0.5)
             attributes.size = CGSize.init(width: width - 300, height: height )
-            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
+//            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
             
             /// 3D 动画
             var transform = CATransform3DIdentity

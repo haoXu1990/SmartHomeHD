@@ -55,7 +55,7 @@ struct DeviceModel: ModelType {
     var actime: Int?
     var barcode: String?
     var boxsn: String?
-    var channel: Int?
+    var channel: String?
     var controlsn: String?
     var eqmid: String!
     var eqmsn: String!    

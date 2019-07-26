@@ -13,16 +13,15 @@ class RoomViewReactor: Reactor {
     typealias Action = NoAction
     
     struct State {
-        var setcions: [RoomViewSection] = []
+        var deviceModels:[DeviceModel]!
     }
     
     let initialState: RoomViewReactor.State
     
     init(devicelist: [DeviceModel]) {
         
-        let resultSection = RoomViewSection.init(items: devicelist)
         
-        self.initialState = State.init(setcions: [resultSection])
+        self.initialState = State.init(deviceModels: devicelist)
         
     }
 }
