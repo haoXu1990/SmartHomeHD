@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (4.8.2)
+  - CocoaLumberjack/Core (3.5.3)
+  - CocoaLumberjack/Swift (3.5.3):
+    - CocoaLumberjack/Core
   - Differentiator (3.1.0)
+  - EZOpenSDK (4.8.6)
   - HMSegmentedControl (1.5.5)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
@@ -59,6 +63,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - CocoaLumberjack/Swift
+  - EZOpenSDK
   - HMSegmentedControl
   - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift (~> 11.0)
@@ -83,7 +89,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - CocoaLumberjack
     - Differentiator
+    - EZOpenSDK
     - HMSegmentedControl
     - Moya
     - Moya-ObjectMapper
@@ -118,7 +126,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
@@ -142,6 +152,6 @@ SPEC CHECKSUMS:
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
 
-PODFILE CHECKSUM: 8be34e484c2158bda31c2abf11f5cd3c0d445667
+PODFILE CHECKSUM: 16a39edd7d2f50efbe10c72aa55b934df44759de
 
 COCOAPODS: 1.5.3

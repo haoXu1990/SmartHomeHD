@@ -9,11 +9,16 @@
 import UIKit
 
 
-enum SmartDeviceSwitchState: NSInteger {
-    /// 开
-    case off = 88
-    /// 关
-    case on = 89
+enum SmartDeviceSwitchState: String {
+   
+    /// 关 (左), 89
+    case off = "89"
+    
+    /// 开 (右), 88
+    case on = "88"
+    
+    /// 暂停, 96
+    case pause = "96"
 }
 
 enum SmartDeviceType: NSInteger {
@@ -51,8 +56,11 @@ enum SmartDeviceType: NSInteger {
     case Fan = 20
     /// 智能红外遥控(蘑菇 IR)
     case IR = 22
-    
-    
+    case YSCamera = 33
+    /// 双模开关
+    case SwitchDOUBLE = 63
+    /// 触摸开关
+    case SwitchTouch = 65
 }
 
 

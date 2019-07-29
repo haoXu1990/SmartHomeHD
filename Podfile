@@ -46,11 +46,14 @@ target 'SmartHomeHD' do
  
   # 自定义 Switch
   pod 'RoundedSwitch'
-  
   pod 'SwiftDate', '~> 5.0'
-  
   # 二维码识别，生成工具, 原作者没更新了,
   pod 'swiftScan', :git => "https://github.com/MxABC/swiftScan.git", :commit =>"b6c5b1c"
+  pod 'CocoaLumberjack/Swift'
+  
+  # 第三方集成
+  # 荧石云摄像头SDK
+  pod 'EZOpenSDK'
  
   # Pods for SmartHomeHD
 

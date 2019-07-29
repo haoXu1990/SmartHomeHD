@@ -63,7 +63,7 @@ struct DeviceModel: ModelType {
     var is_reset: Bool?
     var ishw: Bool?
     var maxchannel: Int?
-    var orderby: Int?
+    var orderby: String?
     var ptype: String?
     var remark: String?
     var rowcount: String?
@@ -80,7 +80,7 @@ struct DeviceModel: ModelType {
     
 //    var floor_id: Int?
     
-    var houseid: Int?
+    var houseid: String?
 }
 /// 楼层模型
 struct FloorMoel: ModelType {

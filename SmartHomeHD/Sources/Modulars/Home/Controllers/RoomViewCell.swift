@@ -4,7 +4,7 @@
 //
 //  Created by XuHao on 2019/7/15.
 //  Copyright © 2019 FH. All rights reserved.
-//  单个房间视图
+//  单个房间视图, 这个视图会比较复杂，考虑下怎么分解
 
 import UIKit
 import ReusableKit
@@ -18,11 +18,11 @@ fileprivate enum CellType {
     /// defaut
     case zero
     /// 一个按键, 当前界面不够展示，还有子视图
-    case One
-    /// 一个Switch, 用于控制只有开关功能的设备
-    case Two
+    case More
+    /// 一个开关按键, 用于控制只有开关功能的设备
+    case OneSwitch
     /// 三个按键, 用于控制有3个按键功能得设备
-    case Three
+    case ThreeButton
 }
 
 class RoomViewCell: UICollectionViewCell, View {
@@ -58,6 +58,7 @@ class RoomViewCell: UICollectionViewCell, View {
         tableView.register(Reusable.baseCell)
         tableView.register(Reusable.oneCell)
         tableView.register(Reusable.twoCell)
+        tableView.register(Reusable.switchCell)
         self.addSubview(tableView)
         
 
@@ -91,6 +92,33 @@ class RoomViewCell: UICollectionViewCell, View {
 /// UI init
 extension RoomViewCell {
     
+    func showMoreUI(model: DeviceModel)  {
+        
+        
+        deviceListBackgroundImageView.snp.remakeConstraints { (make) in
+            make.top.equalToSuperview().offset(50)
+            make.right.equalToSuperview().offset(-220)
+            make.width.equalTo(200)
+            make.bottom.equalToSuperview().offset(-50)
+        }
+        
+        initCameraView(model: model)
+    }
+    
+    func initCameraView(model: DeviceModel) {
+        
+        
+        let cameraView = SmartCameraView.init()
+        
+        cameraView.reactor = SmartCameraViewReactor.init(deviceModel: model)
+        self.addSubview(cameraView)
+        
+        UIView.animate(withDuration: 0.5) {
+            let center = self.deviceListBackgroundImageView.center
+            self.tableView.center = CGPoint.init(x: center.x - 200, y: center.y)
+            self.deviceListBackgroundImageView.center = CGPoint.init(x: center.x - 200, y: center.y)
+        }
+    }
 }
 
 
@@ -105,12 +133,16 @@ extension RoomViewCell {
             .bind(to: tableView.rx.items) { (tableView, ip, model) in
                 
                 switch self.cellFactory(typeID: Int(model.typeid!)!) {
-                case .One:
+                case .More:
                     let cell = tableView.dequeue(Reusable.oneCell)!                  
                     cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
                     return cell
-                case .Three:
+                case .ThreeButton:
                     let cell = tableView.dequeue(Reusable.twoCell)!                  
+                    cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
+                    return cell
+                case .OneSwitch:
+                    let cell = tableView.dequeue(Reusable.switchCell)!
                     cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
                     return cell
                 default:
@@ -118,11 +150,21 @@ extension RoomViewCell {
                     cell.titleLabel.text = String.init(format: "● %@", model.title.or(""))
                     return cell
                 }
-                
             }
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
-
+        tableView.rx.modelSelected(DeviceModel.self).subscribe(onNext: { [weak self] (model) in
+            
+            guard let self = self else { return }
+            let type = self.cellFactory(typeID: Int(model.typeid!)!)
+            
+            if type == .More {
+                log.debug("显示更多视图")
+                self.showMoreUI(model: model)
+            }
+            
+            
+        }).disposed(by: rx.disposeBag)
         
     }
 }
@@ -145,18 +187,22 @@ extension RoomViewCell {
         }
         
         switch typeID {
-        case .Switch: return .Two
-        case .Socket: return .Two
-        case .Curtain: return .Three
-        case .Feed: return .One
-        case .Tv: return .One
-        case .Airconditioner: return .One
-        case .IR: return .One
-        case .TranslucentScreen: return .Three
-        case .Projector: return .Three
-        case .Windowopener: return .Three
-        case .Projectormachine: return .Three
-        case .WaterValve: return .One
+        case .Switch: return .OneSwitch
+        case .SwitchTouch: return .OneSwitch
+        case .SwitchDOUBLE: return .OneSwitch
+        case .Socket: return .OneSwitch
+        case .Curtain: return .ThreeButton
+        case .Feed: return .OneSwitch
+        case .Tv: return .More
+        case .Airconditioner: return .More
+        case .IR: return .More
+        case .TranslucentScreen: return .ThreeButton
+        case .Projector: return .ThreeButton
+        case .Windowopener: return .ThreeButton
+        case .Projectormachine: return .ThreeButton
+        case .WaterValve: return .OneSwitch
+        case .YSCamera: return .More
+        
         default:
             return .zero
         }
@@ -168,6 +214,9 @@ extension RoomViewCell {
 private enum Reusable {
     
     static let baseCell = ReusableCell<BaseTableViewCell>.init(identifier: "BaseTableViewCell", nib: nil)
+    
     static let oneCell = ReusableCell<DeviceControllOneCell>.init(identifier: "DeviceControllOneCell", nib: nil)
     static let twoCell = ReusableCell<DeviceControllTwoCell>.init(identifier: "DeviceControllTwoCell", nib: nil)
+    
+     static let switchCell = ReusableCell<DeviceControllSwitchCell>.init(identifier: "DeviceControllSwitchCell", nib: nil)
 }

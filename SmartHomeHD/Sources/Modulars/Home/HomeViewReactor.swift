@@ -44,7 +44,7 @@ class HomeViewReactor: NSObject, Reactor {
         case .fetchUserInfo:
             
             /// 请求控制列表参数
-            let param: [String: Any] = ["method": "controll.eqment.info", "appid": "=jTsnmGU0", "houseid": "2430", "istype": "1"]
+            let param: [String: Any] = ["method": "controll.eqment.info", "appid": "Rd88h", "houseid": "637", "istype": "1"]
             
             return service.fetchDeviceList(parames: param)
                 .mapResponseToObject(type: HomeDeviceModel.self)

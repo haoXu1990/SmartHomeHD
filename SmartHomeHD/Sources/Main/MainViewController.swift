@@ -8,6 +8,13 @@
 
 import UIKit
 import SnapKit
+import ReusableKit
+import RxSwift
+import ReactorKit
+import RxCocoa
+import NSObject_Rx
+import RxSwiftExt
+
 
 import HMSegmentedControl
 
@@ -43,8 +50,8 @@ class MainViewController: UIViewController {
         initUI()
         
         FHSoketManager.shear().connectSocket()
-        
-//        self.present(ViewController.init(), animated: true, completion: nil)
+        let vc = ViewController.init()
+        self.present(vc, animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden: Bool {

@@ -17,6 +17,14 @@
 		690D46D722EAA767001123AA /* DeviceControllCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */; };
 		690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46D822EAB20B001123AA /* DeviceTool+Rx.swift */; };
 		690D46DB22EAB5A3001123AA /* SmartDeviceTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46DA22EAB5A3001123AA /* SmartDeviceTool.swift */; };
+		690D46DE22EE8D9A001123AA /* XHSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46DD22EE8D9A001123AA /* XHSwitch.swift */; };
+		690D46E022EE9260001123AA /* DeviceControllSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46DF22EE9260001123AA /* DeviceControllSwitchCell.swift */; };
+		690D46EB22EEA440001123AA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46EA22EEA440001123AA /* Logger.swift */; };
+		690D46EE22EEA7A1001123AA /* LogCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46ED22EEA7A1001123AA /* LogCategory.swift */; };
+		690D46F122EEA7AA001123AA /* LogCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F022EEA7A9001123AA /* LogCategory.m */; };
+		690D46F522EEE9A1001123AA /* SmartCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 690D46F422EEE9A1001123AA /* SmartCameraView.xib */; };
+		690D46F722EEEC33001123AA /* SmartCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F622EEEC33001123AA /* SmartCameraView.swift */; };
+		690D46F922EEEEB4001123AA /* SmartCameraViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -54,7 +62,7 @@
 		695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */; };
 		695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDAF22E6FAB7001A7533 /* SmartHomeHDAPI.swift */; };
 		695ADDB222E6FCD9001A7533 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */; };
-		695ADDB422E70757001A7533 /* LoginServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB322E70757001A7533 /* LoginServer.swift */; };
+		695ADDB422E70757001A7533 /* CommonServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB322E70757001A7533 /* CommonServer.swift */; };
 		695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB522E708B7001A7533 /* ServerTool.swift */; };
 		695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDB922E70CE2001A7533 /* Rx HandyJSON.swift */; };
 		695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDBA22E70CE2001A7533 /* RxMoyaMapper.swift */; };
@@ -100,6 +108,15 @@
 		690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllCellReactor.swift; sourceTree = "<group>"; };
 		690D46D822EAB20B001123AA /* DeviceTool+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceTool+Rx.swift"; sourceTree = "<group>"; };
 		690D46DA22EAB5A3001123AA /* SmartDeviceTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDeviceTool.swift; sourceTree = "<group>"; };
+		690D46DD22EE8D9A001123AA /* XHSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XHSwitch.swift; sourceTree = "<group>"; };
+		690D46DF22EE9260001123AA /* DeviceControllSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllSwitchCell.swift; sourceTree = "<group>"; };
+		690D46EA22EEA440001123AA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		690D46ED22EEA7A1001123AA /* LogCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCategory.swift; sourceTree = "<group>"; };
+		690D46EF22EEA7A9001123AA /* LogCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogCategory.h; sourceTree = "<group>"; };
+		690D46F022EEA7A9001123AA /* LogCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogCategory.m; sourceTree = "<group>"; };
+		690D46F422EEE9A1001123AA /* SmartCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartCameraView.xib; sourceTree = "<group>"; };
+		690D46F622EEEC33001123AA /* SmartCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCameraView.swift; sourceTree = "<group>"; };
+		690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCameraViewReactor.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,7 +170,7 @@
 		695ADDAD22E6F55A001A7533 /* SmartHDNoticationConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHDNoticationConst.swift; sourceTree = "<group>"; };
 		695ADDAF22E6FAB7001A7533 /* SmartHomeHDAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHomeHDAPI.swift; sourceTree = "<group>"; };
 		695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		695ADDB322E70757001A7533 /* LoginServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServer.swift; sourceTree = "<group>"; };
+		695ADDB322E70757001A7533 /* CommonServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonServer.swift; sourceTree = "<group>"; };
 		695ADDB522E708B7001A7533 /* ServerTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTool.swift; sourceTree = "<group>"; };
 		695ADDB922E70CE2001A7533 /* Rx HandyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx HandyJSON.swift"; sourceTree = "<group>"; };
 		695ADDBA22E70CE2001A7533 /* RxMoyaMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxMoyaMapper.swift; sourceTree = "<group>"; };
@@ -221,6 +238,51 @@
 				690D46D222E9B30B001123AA /* MoyaPlugin.swift */,
 			);
 			path = MoyaPlugin;
+			sourceTree = "<group>";
+		};
+		690D46DC22EE8D82001123AA /* XHSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				690D46DD22EE8D9A001123AA /* XHSwitch.swift */,
+			);
+			path = XHSwitch;
+			sourceTree = "<group>";
+		};
+		690D46E122EEA231001123AA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				690D46EF22EEA7A9001123AA /* LogCategory.h */,
+				690D46F022EEA7A9001123AA /* LogCategory.m */,
+				690D46EC22EEA783001123AA /* Formart */,
+				690D46EA22EEA440001123AA /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		690D46EC22EEA783001123AA /* Formart */ = {
+			isa = PBXGroup;
+			children = (
+				690D46ED22EEA7A1001123AA /* LogCategory.swift */,
+			);
+			path = Formart;
+			sourceTree = "<group>";
+		};
+		690D46F222EEE5DC001123AA /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				690D46F322EEE975001123AA /* 摄像头 */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		690D46F322EEE975001123AA /* 摄像头 */ = {
+			isa = PBXGroup;
+			children = (
+				690D46F422EEE9A1001123AA /* SmartCameraView.xib */,
+				690D46F622EEEC33001123AA /* SmartCameraView.swift */,
+				690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */,
+			);
+			path = "摄像头";
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -306,6 +368,7 @@
 		695ADD5B22DEB423001A7533 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				690D46E122EEA231001123AA /* Logger */,
 				695ADD9022E6DD19001A7533 /* Vender */,
 				695ADD7822E58C83001A7533 /* Rx */,
 				695ADD6822DEFFA4001A7533 /* Protocol */,
@@ -354,6 +417,7 @@
 		695ADD6D22DF1A0F001A7533 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				690D46F222EEE5DC001123AA /* ThirdParty */,
 				695ADD8222E5A296001A7533 /* DeivceCells */,
 			);
 			path = View;
@@ -447,6 +511,7 @@
 				695ADD7D22E59377001A7533 /* BaseTableViewCell.swift */,
 				695ADD8822E5B8F1001A7533 /* DeviceControllOneCell.swift */,
 				695ADD8A22E5BC6F001A7533 /* DeviceControllTwoCell.swift */,
+				690D46DF22EE9260001123AA /* DeviceControllSwitchCell.swift */,
 				690D46D622EAA767001123AA /* DeviceControllCellReactor.swift */,
 			);
 			path = DeivceCells;
@@ -483,7 +548,7 @@
 		695ADD8E22E6A26B001A7533 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				695ADDB322E70757001A7533 /* LoginServer.swift */,
+				695ADDB322E70757001A7533 /* CommonServer.swift */,
 				695ADDC022E7FA51001A7533 /* DeviceServer.swift */,
 				695ADDB522E708B7001A7533 /* ServerTool.swift */,
 			);
@@ -493,6 +558,7 @@
 		695ADD9022E6DD19001A7533 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				690D46DC22EE8D82001123AA /* XHSwitch */,
 				695ADD9122E6DD4C001A7533 /* SocketIO */,
 			);
 			path = Vender;
@@ -664,6 +730,7 @@
 				695ADD2922DC17F1001A7533 /* LaunchScreen.storyboard in Resources */,
 				695ADD2622DC17F1001A7533 /* Assets.xcassets in Resources */,
 				695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */,
+				690D46F522EEE9A1001123AA /* SmartCameraView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,7 +805,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
@@ -767,7 +836,9 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
@@ -825,6 +896,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				690D46E022EE9260001123AA /* DeviceControllSwitchCell.swift in Sources */,
 				690D46CC22E991F7001123AA /* FloorViewSection.swift in Sources */,
 				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
 				695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */,
@@ -833,6 +905,7 @@
 				690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
 				695ADDA422E6DD4C001A7533 /* SocketIO.m in Sources */,
+				690D46DE22EE8D9A001123AA /* XHSwitch.swift in Sources */,
 				695ADDA922E6DD8A001A7533 /* GCDAsyncUdpSocket.m in Sources */,
 				695ADDC122E7FA51001A7533 /* DeviceServer.swift in Sources */,
 				695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */,
@@ -840,16 +913,20 @@
 				695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */,
 				695ADD8722E5B170001A7533 /* FHSoketManager.swift in Sources */,
 				695ADDB222E6FCD9001A7533 /* Dictionary+Extension.swift in Sources */,
+				690D46EB22EEA440001123AA /* Logger.swift in Sources */,
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
 				690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */,
 				695ADD9F22E6DD4C001A7533 /* SocketIOJSONSerialization.m in Sources */,
 				695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */,
 				695ADDAC22E6E47C001A7533 /* QRViewController.swift in Sources */,
 				695ADD5522DC6B28001A7533 /* RoomViewCell.swift in Sources */,
-				695ADDB422E70757001A7533 /* LoginServer.swift in Sources */,
+				695ADDB422E70757001A7533 /* CommonServer.swift in Sources */,
+				690D46F922EEEEB4001123AA /* SmartCameraViewReactor.swift in Sources */,
 				695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */,
 				695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */,
+				690D46F722EEEC33001123AA /* SmartCameraView.swift in Sources */,
 				695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */,
+				690D46EE22EEA7A1001123AA /* LogCategory.swift in Sources */,
 				695ADDC422E8056C001A7533 /* ModelType.swift in Sources */,
 				695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */,
 				695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */,
@@ -863,6 +940,7 @@
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
 				695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */,
 				695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */,
+				690D46F122EEA7AA001123AA /* LogCategory.m in Sources */,
 				695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */,
 				695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
@@ -1052,6 +1130,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1073,6 +1152,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

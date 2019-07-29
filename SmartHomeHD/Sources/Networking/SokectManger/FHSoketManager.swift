@@ -51,12 +51,24 @@ class FHSoketManager: NSObject {
          token = "A58AD0F3-057B-4930-8C54-623B73BB86DD";
          */
         
+        /**
+         样板间
+         appid = Rd88h;
+         defaultEvnWithBox = 5CCF7F1B3199;
+         houseCreatedId = 518;
+         houseid = 637;
+         msgid = 12;
+         secret = "D=Cew36Gl";
+         surl = "sz.wisdudu.com";
+         token = "A58AD0F3-057B-4930-8C54-623B73BB86DD";
+         */
+        
         let host: String = "sz.wisdudu.com"
         let port: Int = 1018
         let params: [String: Any] = ["type": "HD",
-        "uid":"",
+        "uid":"Rd88h",
         "token": UIDevice.current.identifierForVendor!.uuidString,
-        "secret":""]
+        "secret":"D=Cew36Gl"]
         
         if socketIO.isConnected { return }
         
@@ -64,6 +76,10 @@ class FHSoketManager: NSObject {
         
     }
     
+    func sendMessage(event:String, data: [String: Any])  {
+        
+        socketIO.sendEvent(event, withData: data)
+    }
     
 }
 extension FHSoketManager: SocketIODelegate {
@@ -73,23 +89,27 @@ extension FHSoketManager: SocketIODelegate {
     func socketIODidConnect(_ socket: SocketIO!) {
         
         DLog("socket.io connect success")
-        // 重连
-        connectSocket()
+      
     }
     
     func socketIODidDisconnect(_ socket: SocketIO!, disconnectedWithError error: Error!) {
-        
+        // 重连
+        connectSocket()
     }
     
  
     func socketIO(_ socket: SocketIO!, didReceiveEvent packet: SocketIOPacket!) {
         
         let resutlJson = packet.dataAsJSON() as! [String : Any]
-        DLog("didReceiveEvent: \(resutlJson)")
         
+     
         let name:String = resutlJson["name"] as! String
         
         let args:Array = resutlJson["args"] as! Array<Any>
+        
+        if name == "pubStateChange" {
+            log.debug(resutlJson)
+        }
         
         NotificationCenter.default.post(name: NSNotification.Name.init(name), object: args[0])
        
@@ -97,19 +117,7 @@ extension FHSoketManager: SocketIODelegate {
     
     func socketIO(_ socket: SocketIO!, onError error: Error!) {
         
+        log.error("socket.io connect field \(error.localizedDescription)")     
     }
  
-    
-//    func socketIO(_ socket: SocketIO!, didSendMessage packet: SocketIOPacket!) {
-//        DLog("didSendMessage: \(String(describing: packet.ack))")
-//
-//    }
-//
-//    func socketIO(_ socket: SocketIO!, didReceiveMessage packet: SocketIOPacket!) {
-//        DLog("didReceiveMessage: \(packet)")
-//    }
-//
-//    func socketIO(_ socket: SocketIO!, didReceiveJSON packet: SocketIOPacket!) {
-//        DLog("didReceiveJSON: \(packet)")
-//    }
 }

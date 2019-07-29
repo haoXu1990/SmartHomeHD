@@ -8,12 +8,15 @@
 
 import UIKit
 
-//class SmartHDNoticationConst: NSObject {
-//
-//}
-
 extension NSNotification.Name {
     
     /// 登录通知
     static let pubLoginAuth = NSNotification.Name.init("pubLoginAuth")
+    
+    /// 修改设备状态
+    static let pubState = NSNotification.Name.init("pubState")
+    
+    /// 设备状态改变
+    static let pubStateChange = NSNotification.Name.init("pubStateChange")
+    
 }

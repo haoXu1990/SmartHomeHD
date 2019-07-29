@@ -55,6 +55,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
         collectionView.isPagingEnabled = true        
         collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
+        
         view.addSubview(collectionView)
         view.backgroundColor = .black       
     
@@ -77,8 +78,7 @@ extension HomeViewController {
             cell.reactor = reactor
             return cell
         })
-        
-        
+        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         reactor.state.map { $0.setcions }
         .bind(to: collectionView.rx.items(dataSource: dataSource))
@@ -91,6 +91,10 @@ extension HomeViewController {
         
         
     }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    
 }
 
 ///MARK - open method

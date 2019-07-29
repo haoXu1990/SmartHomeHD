@@ -4,7 +4,7 @@
 //
 //  Created by XuHao on 2019/7/22.
 //  Copyright © 2019 FH. All rights reserved.
-//
+//  设备控制卡片， 适用于3个按钮控制设备: 窗帘、升降机、开窗器 等等
 
 import UIKit
 import RxSwift
@@ -24,22 +24,19 @@ class DeviceControllTwoCell: BaseTableViewCell, View {
     override func initialize() {
         
         leftBtn = UIButton.init()
-        leftBtn.layer.cornerRadius = 25
-        leftBtn.layer.masksToBounds = true
-        leftBtn.backgroundColor = .black
+        leftBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_last_normal"), for: .normal)
+        leftBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_last_selection"), for: .highlighted)
         controllView.addSubview(leftBtn)
         
         middleBtn = UIButton.init()
-        middleBtn.layer.cornerRadius = 25
-        middleBtn.layer.masksToBounds = true
-        middleBtn.backgroundColor = .black
-        controllView.addSubview(leftBtn)
+        middleBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_puse_normal"), for: .normal)
+        middleBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_puse_selection"), for: .highlighted)
+        controllView.addSubview(middleBtn)
         
         rightBtn = UIButton.init()
-        rightBtn.layer.cornerRadius = 25
-        rightBtn.layer.masksToBounds = true
-        rightBtn.backgroundColor = .black
-        controllView.addSubview(leftBtn)
+        rightBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_next_normal"), for: .normal)
+        rightBtn.setBackgroundImage(UIImage.init(named: "image_device_contorl_next_selection"), for: .highlighted)
+        controllView.addSubview(rightBtn)
     }
     
     
@@ -74,19 +71,23 @@ extension DeviceControllTwoCell {
             .bind(to: titleLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
-    
         
-    
-//        middleBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
-//            
-//        }).disposed(by: rx.disposeBag)
-//        
-//        leftBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
-//            
-//        }).disposed(by: rx.disposeBag)
-//        
-//        rightBtn.rx.tap.subscribe(onNext: { [unowned self](_) in
-//            
-//        }).disposed(by: rx.disposeBag)
+        middleBtn.rx.tap.subscribe(onNext: {
+            Observable.just(Reactor.Action.sendCommand(.pause))
+                .bind(to: reactor.action)
+                .disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
+        leftBtn.rx.tap.subscribe(onNext: {
+            Observable.just(Reactor.Action.sendCommand(.off))
+                .bind(to: reactor.action)
+                .disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
+        rightBtn.rx.tap.subscribe(onNext: {
+            Observable.just(Reactor.Action.sendCommand(.on))
+                .bind(to: reactor.action)
+                .disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
     }
 }
