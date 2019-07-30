@@ -52,7 +52,7 @@ class FloorViewCell: UICollectionViewCell, View {
         circle3DLayout = Circle3DLayout.init()
         
         collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: circle3DLayout)
-        collectionView.delegate = self
+//        collectionView.delegate = self
 //        collectionView.dataSource = self
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
@@ -89,6 +89,8 @@ extension FloorViewCell {
             return cell
         })
         
+        
+        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         reactor.state.map{$0.setcions}.filterEmpty()
         .bind(to: collectionView.rx.items(dataSource: dataSource))

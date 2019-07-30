@@ -72,14 +72,14 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                         return Single.just(object)
                         
                     }else {
-                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "请求失败"))
                     }
                 } else {
                     return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: json[RESULT_MSG] as? String))
                     
                 }
             } else {
-                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "请求失败"))
                 //                throw DCUError.ParseJSONError
             }
             
@@ -113,11 +113,11 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                     
                     guard let list =  json[RESULT_DATA] as? [String: Any] else {
                         
-                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "请求失败"))
                     }
                     
                     guard let objectsArrays = list["list"] as? [Any] else {
-                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                        return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "请求失败"))
                     }
                     
                     for object in objectsArrays {
@@ -136,7 +136,7 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
                     
                 }
             } else {
-                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "解析失败"))
+                return Single.error(DCUError.UnexpectedResult(resultCode: json[RESULT_CODE] as? Int , resultMsg: "请求失败"))
             }
         }
     }

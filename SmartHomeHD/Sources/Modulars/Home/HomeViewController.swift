@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: collectionViewFrame.width, height: collectionViewFrame.height)
         
-       collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
+        collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
         collectionView.isPagingEnabled = true        
         collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
@@ -78,6 +78,7 @@ extension HomeViewController {
             cell.reactor = reactor
             return cell
         })
+        
         collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         reactor.state.map { $0.setcions }
@@ -94,7 +95,7 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-    
+
 }
 
 ///MARK - open method
@@ -110,8 +111,11 @@ extension HomeViewController {
         
 //        cell.reloadData(flowStyle: self.flowStyle)
         
+        collectionView.setCollectionViewLayout(self.flowStyle, animated: true)
         /// 必须直接重新加载，不然 Cell 没有强引用会消失
         collectionView.reloadData()
+//        
+//        self.reactor
     }
 }
 

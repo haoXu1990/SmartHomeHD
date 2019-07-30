@@ -59,6 +59,7 @@ PODS:
   - swiftScan (1.1.5)
   - SwiftyUserDefaults (4.0.0)
   - Then (2.5.0)
+  - Toaster (2.2.0)
   - UIButton-SSEdgeInsets (0.1.7)
 
 DEPENDENCIES:
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`, commit `b6c5b1c`)
   - SwiftyUserDefaults (~> 4.0)
   - Then
+  - Toaster
   - UIButton-SSEdgeInsets (~> 0.1.1)
 
 SPEC REPOS:
@@ -112,6 +114,7 @@ SPEC REPOS:
     - SwiftDate
     - SwiftyUserDefaults
     - Then
+    - Toaster
     - UIButton-SSEdgeInsets
 
 EXTERNAL SOURCES:
@@ -150,8 +153,9 @@ SPEC CHECKSUMS:
   swiftScan: bc6dbf74e6a579c45a861691afc44628d8d9f6ab
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
+  Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
 
-PODFILE CHECKSUM: 16a39edd7d2f50efbe10c72aa55b934df44759de
+PODFILE CHECKSUM: 370a5d8dc3fe30b7db9136d701cd67a6dc7e807a
 
 COCOAPODS: 1.5.3

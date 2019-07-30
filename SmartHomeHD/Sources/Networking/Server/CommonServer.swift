@@ -30,7 +30,7 @@ protocol CommonServerType {
     ///
     /// - Parameter parames: 请求参数
     /// - Returns: Single<Response>
-    func requestGet(parames:[String:Any]) ->Single<Response>
+    func requestGet(parames:[String: Any]) ->Single<Response>
 }
 
 final class CommonServer: CommonServerType {

@@ -175,3 +175,72 @@ struct HomeDeviceModel: ModelType {
     var floorlist: [FloorMoel]?
   
 }
+
+
+/// 萤石云设备信息模型
+struct SmartCameraYSModel: ModelType {
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        deviceSerial <- map["deviceSerial"]
+        supportExtShort <- map["supportExtShort"]
+        offlineNotify <- map["offlineNotify"]
+        status <- map["status"]
+        videoLevel <- map["videoLevel"]
+        model <- map["model"]
+        parentCategory <- map["parentCategory"]
+        deviceName <- map["deviceName"]
+        channelName <- map["channelName"]
+        alarmSoundMode <- map["alarmSoundMode"]
+        channelNo <- map["channelNo"]
+        picUrl <- map["picUrl"]
+        isEncrypt <- map["isEncrypt"]
+        defence <- map["defence"]
+        category <- map["category"]
+       
+    }
+    
+    enum Event {
+        
+    }
+    
+    /**
+     ["deviceSerial": 514734069,
+     "supportExtShort": 1,
+     "offlineNotify": 0,
+     "status": 0,
+     "videoLevel": 1,
+     "model": CS-C2W-21WPFR,
+     "parentCategory": IPC,
+     "deviceName": C2W(514734069),
+     "channelName": C2W(514734069),
+     "alarmSoundMode": 0,
+     "channelNo": 1,
+     "picUrl": https://i.ys7.com/assets/imgs/public/homeDevice.jpeg,
+     "isEncrypt": 1,
+     "defence": 0,
+     "category": C2W
+     ]
+     */
+    var deviceSerial: String?
+    var supportExtShort: String?
+    var offlineNotify: String?
+    var status: String?
+    var videoLevel: String?
+    var model: String?
+    var parentCategory: String?
+    var deviceName: String?
+    var channelName: String?
+    var alarmSoundMode: String?
+    var channelNo: String?
+    var picUrl: String?
+    var isEncrypt: String?
+    var defence: String?
+    var category: String?
+    
+}
+

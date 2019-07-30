@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import ReactorKit
 import NSObject_Rx
+import SwiftyUserDefaults
 
 class DeviceControllOneCell: BaseTableViewCell, View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -98,6 +99,20 @@ extension DeviceControllOneCell {
             .filterNil()
             .distinctUntilChanged()
             .bind(to: moreIcon.rx.image)
+            .disposed(by: rx.disposeBag)
+        
+        
+        /// 获取荧石云 token
+        reactor.state
+            .filter { (state) -> Bool in
+                let token = Defaults[.ysAccessToken]
+                /// 如果本地没有缓存就获取 token 存储在本地
+                return state.deviceModels.typeid! == "33" && (token == nil)
+            }
+            .flatMap { (state) -> Observable<DeviceControllCellReactor.Action> in
+                return Observable.just(Reactor.Action.fetchYsAccessToken)
+            }
+            .bind(to: reactor.action)
             .disposed(by: rx.disposeBag)
     }
     

@@ -12,86 +12,73 @@ import NSObject_Rx
 import Moya
 import CoreFoundation
 import Foundation
+import SwiftyUserDefaults
 
 class SmartCameraViewReactor: NSObject, Reactor {
     
     enum Action {
-        case fetchToken
+        case fetchCameraInfo
     }
     
     enum Mutaion {
         
         case setToken(String)
+        
+        case setCameraModel(SmartCameraYSModel)
     }
     
     struct State {
-       var deviceModels:DeviceModel!
+        var deviceModels:DeviceModel!
+        var cameraModel:SmartCameraYSModel?
     }
     
     var initialState: SmartCameraViewReactor.State
     let service: CommonServerType = CommonServer.init()
     
     init(deviceModel: DeviceModel) {
-        self.initialState = State.init(deviceModels: deviceModel)
+        self.initialState = State.init(deviceModels: deviceModel, cameraModel: nil)
     }
     
     func mutate(action: SmartCameraViewReactor.Action) -> Observable<SmartCameraViewReactor.Mutaion> {
         
         switch action {
-        case .fetchToken:
-            let dict = ["method": "manage.video.info",
-                        "appid": "",
-                        "houseid":""]
+        case .fetchCameraInfo:
+            let deviceSerial = self.currentState.deviceModels.eqmsn!
+            guard let token = Defaults[.ysAccessToken] else { return .empty()}
             
-            service.requestGet(parames: dict).subscribe(onSuccess: { (response) in
-                
-                guard let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [String: Any]  else {
-                    return
-                }
-                
-                log.debug(json)
-            }) { (error) in
-                log.debug("error")
-            }.disposed(by: rx.disposeBag)
+            let dict: [String: Any] = ["method": "manage.video.info",
+                        "appid": "Rd88h",
+                        "houseid":"637",
+                        "accessToken": token,
+                        "deviceSerial": deviceSerial]
             
-            return service.requestGet(parames: dict).mapJSON().asObservable().flatMap { (json) -> Observable<Mutaion> in
-                
-                guard let json = json as? [String: Any] else { return .empty() }
-                
-                if let code = json["errCode"] as? Int {
+            return service.requestGet(parames: dict)
+                .mapResponseToObject(type: SmartCameraYSModel.self)
+                .asObservable()
+                .flatMap({ (model) -> Observable<SmartCameraViewReactor.Mutaion> in
+                    return Observable.just(Mutaion.setCameraModel(model))
+                })
+                .catchError({ (error) -> Observable<SmartCameraViewReactor.Mutaion> in
                     
-                    if let result = json["result"] as? [String: Any] {
-                        let token = result["token"] as! String
-                        let deviceSerial = self.currentState.deviceModels.eqmsn
-                        let dict = ["method": "manage.video.info",
-                                    "appid": "Rd88h",
-                                    "houseid":"637",
-                                    "accessToken": token,
-                                    "deviceSerial": deviceSerial]
-                        
-                        self.service.requestGet(parames: dict).mapJSON().subscribe(onSuccess: { (json) in
-                            
-                            log.debug(json)
-                        }, onError: { (error) in
-                            
-                    
-                        }).disposed(by: self.rx.disposeBag)
-                    }
-                }
-                
-                /// 请求失败
-                return .empty()
-            }
+                    FHToaster.show(text: error.localizedDescription)
+                    return .empty()
+                })
+          
             
-            return .empty()
         }
         
     }
     
     func reduce(state: SmartCameraViewReactor.State, mutation: SmartCameraViewReactor.Mutaion) -> SmartCameraViewReactor.State {
-
-        return state
+        
+        var newState = state
+        switch mutation {
+        case .setCameraModel(let cameraModel):
+            newState.cameraModel = cameraModel
+            return newState
+        default:
+            return state
+        }
     }
-    
     
 }

@@ -36,8 +36,11 @@ target 'SmartHomeHD' do
   
   # 一款按钮的扩展控件，改变图片和titile的位置
   pod 'UIButton-SSEdgeInsets', '~> 0.1.1'
-  
+  # UserDefaults
   pod 'SwiftyUserDefaults', '~> 4.0'
+  
+  # 提示框
+  pod 'Toaster'
   
   # Socket.IO 
  # pod 'Socket.IO-Client-Swift', '~> 15.1.0'
@@ -49,6 +52,7 @@ target 'SmartHomeHD' do
   pod 'SwiftDate', '~> 5.0'
   # 二维码识别，生成工具, 原作者没更新了,
   pod 'swiftScan', :git => "https://github.com/MxABC/swiftScan.git", :commit =>"b6c5b1c"
+  # log 工具
   pod 'CocoaLumberjack/Swift'
   
   # 第三方集成

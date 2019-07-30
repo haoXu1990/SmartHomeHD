@@ -11,6 +11,7 @@ import RxSwift
 import ReactorKit
 import NSObject_Rx
 
+
 class DeviceControllSwitchCell: BaseTableViewCell, View{
     
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -46,17 +47,20 @@ extension DeviceControllSwitchCell {
             .bind(to: titleLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
-        reactor.state.flatMap { (state) -> Observable<UIImage> in
+        reactor.state
+            .flatMap { (state) -> Observable<UIImage> in
              let status = state.deviceModels.status.or("88")
             if status == SmartDeviceSwitchState.on.rawValue {
                 return Observable.just(UIImage.init(named: "image_device_control_open")!)
             }
             return Observable.just(UIImage.init(named: "image_device_control_close")!)
-        }.distinctUntilChanged().bind(to: controllBtn.rx.backgroundImage()).disposed(by: rx.disposeBag)
-    
-        
+        }
+            .distinctUntilChanged()
+            .bind(to: controllBtn.rx.backgroundImage())
+            .disposed(by: rx.disposeBag)
        
-        controllBtn.rx.tap.subscribe(onNext: {
+        controllBtn.rx
+            .tap.subscribe(onNext: {
         
             var status: SmartDeviceSwitchState = .on
             
@@ -67,6 +71,11 @@ extension DeviceControllSwitchCell {
                 .bind(to: reactor.action)
                 .disposed(by: self.rx.disposeBag)
             
-        }).disposed(by: rx.disposeBag)
+        })
+            .disposed(by: rx.disposeBag)
+        
+        
+        
+        
     }
 }

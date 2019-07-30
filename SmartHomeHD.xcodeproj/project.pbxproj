@@ -25,6 +25,8 @@
 		690D46F522EEE9A1001123AA /* SmartCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 690D46F422EEE9A1001123AA /* SmartCameraView.xib */; };
 		690D46F722EEEC33001123AA /* SmartCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F622EEEC33001123AA /* SmartCameraView.swift */; };
 		690D46F922EEEEB4001123AA /* SmartCameraViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */; };
+		690D46FB22EFDF1F001123AA /* DefaultsKeys+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46FA22EFDF1F001123AA /* DefaultsKeys+Key.swift */; };
+		690D46FD22EFED0F001123AA /* Toaster+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46FC22EFED0F001123AA /* Toaster+Extension.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -117,6 +119,8 @@
 		690D46F422EEE9A1001123AA /* SmartCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartCameraView.xib; sourceTree = "<group>"; };
 		690D46F622EEEC33001123AA /* SmartCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCameraView.swift; sourceTree = "<group>"; };
 		690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCameraViewReactor.swift; sourceTree = "<group>"; };
+		690D46FA22EFDF1F001123AA /* DefaultsKeys+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultsKeys+Key.swift"; sourceTree = "<group>"; };
+		690D46FC22EFED0F001123AA /* Toaster+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toaster+Extension.swift"; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -359,8 +363,10 @@
 			isa = PBXGroup;
 			children = (
 				690D46CF22E9A5B5001123AA /* Optional+Extension.swift */,
+				690D46FC22EFED0F001123AA /* Toaster+Extension.swift */,
 				695ADD5722DC6E75001A7533 /* UIColor+Extension.swift */,
 				695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */,
+				690D46FA22EFDF1F001123AA /* DefaultsKeys+Key.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -828,6 +834,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/UIButton-SSEdgeInsets/UIButton_SSEdgeInsets.framework",
 				"${BUILT_PRODUCTS_DIR}/swiftScan/swiftScan.framework",
 			);
@@ -859,6 +866,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIButton_SSEdgeInsets.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/swiftScan.framework",
 			);
@@ -901,6 +909,7 @@
 				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
 				695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */,
 				695ADD5822DC6E75001A7533 /* UIColor+Extension.swift in Sources */,
+				690D46FB22EFDF1F001123AA /* DefaultsKeys+Key.swift in Sources */,
 				695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */,
 				690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
@@ -945,6 +954,7 @@
 				695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
 				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
+				690D46FD22EFED0F001123AA /* Toaster+Extension.swift in Sources */,
 				690D46D022E9A5B5001123AA /* Optional+Extension.swift in Sources */,
 				690D46DB22EAB5A3001123AA /* SmartDeviceTool.swift in Sources */,
 				695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */,

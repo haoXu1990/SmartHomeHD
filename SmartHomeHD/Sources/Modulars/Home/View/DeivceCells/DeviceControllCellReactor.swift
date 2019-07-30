@@ -9,12 +9,15 @@
 
 import ReactorKit
 import RxSwift
+import SwiftyUserDefaults
 
-class DeviceControllCellReactor: Reactor {
+class DeviceControllCellReactor: NSObject,Reactor {
 
     enum Action {
         /// 控制 开(左) 、关(右)、 暂停 等命令
         case sendCommand(SmartDeviceSwitchState)
+        
+        case fetchYsAccessToken
     }
     
     enum Mutaion {
@@ -27,6 +30,8 @@ class DeviceControllCellReactor: Reactor {
     }
     
     let initialState: DeviceControllCellReactor.State
+    
+    let service: CommonServerType = CommonServer.init()
     
     init(deviceModel: DeviceModel) {
         self.initialState = State.init(deviceModels: deviceModel)
@@ -50,6 +55,29 @@ class DeviceControllCellReactor: Reactor {
             
             FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
             return .just(Mutaion.setStatus(type))
+        case .fetchYsAccessToken:
+             /// 获取萤石云 AccessToken
+            let dict = ["method": "manage.video.info",
+                        "appid": "",
+                        "houseid":""]
+            service.requestGet(parames: dict).mapJSON().subscribe(onSuccess: { (resonse) in
+                
+                guard let json = resonse as? [String: Any] else { return }
+                let code = json["errCode"] as? Int
+                
+                if code.or(-1) == 200 {
+                    
+                    if let result = json["result"] as? [String: Any] {
+                        let token = result["token"] as! String
+                        log.debug("获取到萤石云 Token: \(token)")
+                        Defaults[.ysAccessToken] = token
+                    }
+                }
+                
+            }) { (error) in
+                
+            }.disposed(by: rx.disposeBag)
+            return .empty()
         }
     }
 
