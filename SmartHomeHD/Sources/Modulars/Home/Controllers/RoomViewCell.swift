@@ -95,12 +95,12 @@ extension RoomViewCell {
     func showMoreUI(model: DeviceModel)  {
         
         
-        deviceListBackgroundImageView.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(50)
-            make.right.equalToSuperview().offset(-220)
-            make.width.equalTo(200)
-            make.bottom.equalToSuperview().offset(-50)
-        }
+//        deviceListBackgroundImageView.snp.remakeConstraints { (make) in
+//            make.top.equalToSuperview().offset(50)
+//            make.right.equalToSuperview().offset(-220)
+//            make.width.equalTo(200)
+//            make.bottom.equalToSuperview().offset(-50)
+//        }
         
         initCameraView(model: model)
     }
@@ -108,16 +108,23 @@ extension RoomViewCell {
     func initCameraView(model: DeviceModel) {
         
         
-        let cameraView = SmartCameraView.init()
+        let cameraView = SmartCameraView.loadFromNib()
         
         cameraView.reactor = SmartCameraViewReactor.init(deviceModel: model)
+      
         self.addSubview(cameraView)
-        
-        UIView.animate(withDuration: 0.5) {
-            let center = self.deviceListBackgroundImageView.center
-            self.tableView.center = CGPoint.init(x: center.x - 200, y: center.y)
-            self.deviceListBackgroundImageView.center = CGPoint.init(x: center.x - 200, y: center.y)
+
+        cameraView.snp.makeConstraints { (make) in
+            make.top.equalTo(deviceListBackgroundImageView)
+            make.right.equalTo(deviceListBackgroundImageView.snp.left)
+            make.width.equalTo(200)
+            make.bottom.equalTo(deviceListBackgroundImageView)
         }
+//        UIView.animate(withDuration: 0.5) {
+//            let center = self.deviceListBackgroundImageView.center
+//            self.tableView.center = CGPoint.init(x: center.x - 200, y: center.y)
+//            self.deviceListBackgroundImageView.center = CGPoint.init(x: center.x - 200, y: center.y)
+//        }
     }
 }
 

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MMPhotoPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Moya-ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -55,6 +60,11 @@
 			<false/>
 		</dict>
 		<key>Pods-SmartHomeHDUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PryntTrimmerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -119,6 +129,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SteviaLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftDate.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -140,6 +155,11 @@
 			<false/>
 		</dict>
 		<key>UIButton-SSEdgeInsets.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YPImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

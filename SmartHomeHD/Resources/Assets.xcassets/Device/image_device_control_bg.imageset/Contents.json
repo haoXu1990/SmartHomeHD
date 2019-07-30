@@ -5,6 +5,17 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "tile",
+          "height" : 642
+        },
+        "cap-insets" : {
+          "top" : 209,
+          "bottom" : 8
+        }
+      },
       "idiom" : "universal",
       "filename" : "image_device_control_bg@2x.png",
       "scale" : "2x"

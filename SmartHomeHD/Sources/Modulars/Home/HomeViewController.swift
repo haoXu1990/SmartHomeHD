@@ -13,6 +13,7 @@ import RxSwift
 import ReactorKit
 import RxViewController
 import RxDataSources
+import RxCocoa
 
 class HomeViewController: UIViewController, ReactorKit.View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
     
     fileprivate var collectionViewFrame:CGRect!
     
+    var dataSource: RxCollectionViewSectionedReloadDataSource<HomeViewSection>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
         collectionView.isPagingEnabled = true        
         collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
-        
+//        collectionView.delegate = self
         view.addSubview(collectionView)
         view.backgroundColor = .black       
     
@@ -68,7 +70,7 @@ extension HomeViewController {
     
     func bind(reactor: HomeViewReactor) {
         
-        let dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
+        dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
             /// 固定只有一个 Cell
             
             let cell = cv.dequeue(Reusable.FloorViewCell, for: ip)
@@ -76,10 +78,11 @@ extension HomeViewController {
             
             let reactor = FloorViewReactor.init(floors: section.roomModels, devicelist: section.deviceListModel)
             cell.reactor = reactor
+            cell.reloadData(flowStyle: self.flowStyle)
             return cell
         })
         
-        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+//        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         reactor.state.map { $0.setcions }
         .bind(to: collectionView.rx.items(dataSource: dataSource))
@@ -105,17 +108,12 @@ extension HomeViewController {
         
         if flowStyle == self.flowStyle { return }
         self.flowStyle = flowStyle
-//        let cell = collectionView.dequeue(Reusable.RoomControllerViewCell, for: IndexPath.init(row: 0, section: 0))
-//        cell.reloadData(flowStyle: self.flowStyle)
-        let cell = collectionView.visibleCells.first as! FloorViewCell
         
-//        cell.reloadData(flowStyle: self.flowStyle)
-        
-        collectionView.setCollectionViewLayout(self.flowStyle, animated: true)
-        /// 必须直接重新加载，不然 Cell 没有强引用会消失
-        collectionView.reloadData()
-//        
-//        self.reactor
+
+        // 这里需要重新加载数据, 有点问题
+//        Observable.just(Reactor.Action.fetchUserInfo)
+//            .bind(to: self.reactor!.action)
+//            .disposed(by: self.rx.disposeBag)
     }
 }
 

@@ -105,9 +105,10 @@ extension DeviceControllOneCell {
         /// 获取荧石云 token
         reactor.state
             .filter { (state) -> Bool in
-                let token = Defaults[.ysAccessToken]
+//                let token = Defaults[.ysAccessToken]
                 /// 如果本地没有缓存就获取 token 存储在本地
-                return state.deviceModels.typeid! == "33" && (token == nil)
+                return state.deviceModels.typeid! == "33"
+//                return state.deviceModels.typeid! == "33" && (token == nil)
             }
             .flatMap { (state) -> Observable<DeviceControllCellReactor.Action> in
                 return Observable.just(Reactor.Action.fetchYsAccessToken)

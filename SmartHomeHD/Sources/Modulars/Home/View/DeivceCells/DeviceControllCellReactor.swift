@@ -69,8 +69,9 @@ class DeviceControllCellReactor: NSObject,Reactor {
                     
                     if let result = json["result"] as? [String: Any] {
                         let token = result["token"] as! String
+                        let reamark = result["token"] as! String
                         log.debug("获取到萤石云 Token: \(token)")
-                        Defaults[.ysAccessToken] = token
+                        Defaults[.ysAccessToken] = token                        
                     }
                 }
                 

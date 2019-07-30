@@ -236,9 +236,9 @@ struct SmartCameraYSModel: ModelType {
     var deviceName: String?
     var channelName: String?
     var alarmSoundMode: String?
-    var channelNo: String?
+    var channelNo: Int?
     var picUrl: String?
-    var isEncrypt: String?
+    var isEncrypt: Int?
     var defence: String?
     var category: String?
     

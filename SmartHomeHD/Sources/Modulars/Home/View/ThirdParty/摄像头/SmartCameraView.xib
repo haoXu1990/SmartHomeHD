@@ -18,43 +18,91 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_device_control_bg" translatesAutoresizingMaskIntoConstraints="NO" id="rUg-C5-LzH" userLabel="bgImage">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="435"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客厅摄像头" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnK-X8-khe">
-                    <rect key="frame" x="56.5" y="20" width="87" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnK-X8-khe">
+                    <rect key="frame" x="100" y="20" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3F4-bU-eUJ">
-                    <rect key="frame" x="16" y="58" width="168" height="130"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="16" y="37" width="168" height="150"/>
+                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="130" id="WrG-NG-OuT"/>
+                        <constraint firstAttribute="height" constant="150" id="WrG-NG-OuT"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9o-CY-XJ4">
+                    <rect key="frame" x="35" y="204" width="48" height="49"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
+                    <state key="normal" image="device_control_camera_yuntai"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzE-Nq-kkS">
+                    <rect key="frame" x="117" y="204" width="48" height="48"/>
+                    <state key="normal" backgroundImage="device_control_camera_talk"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKo-Cd-MTg">
+                    <rect key="frame" x="15" y="370" width="170" height="35"/>
+                    <state key="normal" title="我的相册" backgroundImage="device_control_camera_album">
+                        <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxX-nv-nrg">
+                    <rect key="frame" x="35" y="273" width="48" height="48"/>
+                    <state key="normal" backgroundImage="device_control_camera_capture"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL9-D5-K2O">
+                    <rect key="frame" x="117" y="273" width="48" height="48"/>
+                    <state key="normal" backgroundImage="device_control_camera_recording"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="sKo-Cd-MTg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="AC7-XN-b5z"/>
                 <constraint firstAttribute="trailing" secondItem="3F4-bU-eUJ" secondAttribute="trailing" constant="16" id="CUq-dz-z61"/>
+                <constraint firstAttribute="trailing" secondItem="IzE-Nq-kkS" secondAttribute="trailing" constant="35" id="Gbb-L3-OQR"/>
+                <constraint firstItem="rUg-C5-LzH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IAv-lm-1FD"/>
                 <constraint firstItem="3F4-bU-eUJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="IbZ-ak-yeU"/>
+                <constraint firstItem="yxX-nv-nrg" firstAttribute="top" secondItem="S9o-CY-XJ4" secondAttribute="bottom" constant="20" id="MWl-76-M2Q"/>
                 <constraint firstAttribute="bottom" secondItem="rUg-C5-LzH" secondAttribute="bottom" id="PJK-HK-xh5"/>
+                <constraint firstAttribute="bottom" secondItem="sKo-Cd-MTg" secondAttribute="bottom" constant="30" id="PdX-nh-Vgp"/>
+                <constraint firstItem="IzE-Nq-kkS" firstAttribute="top" secondItem="3F4-bU-eUJ" secondAttribute="bottom" constant="17" id="Py6-pr-3Vb"/>
+                <constraint firstAttribute="bottom" secondItem="rUg-C5-LzH" secondAttribute="bottom" id="QBc-1n-sKP"/>
+                <constraint firstItem="S9o-CY-XJ4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="Sqd-rl-zq9"/>
                 <constraint firstItem="jnK-X8-khe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uy5-ka-Rli"/>
+                <constraint firstAttribute="trailing" secondItem="rUg-C5-LzH" secondAttribute="trailing" id="WQK-e6-yZT"/>
+                <constraint firstItem="oL9-D5-K2O" firstAttribute="centerY" secondItem="yxX-nv-nrg" secondAttribute="centerY" id="Xf7-WM-9FK"/>
                 <constraint firstItem="rUg-C5-LzH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XqG-Rn-jbh"/>
                 <constraint firstItem="rUg-C5-LzH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dXw-Eh-T3y"/>
                 <constraint firstItem="3F4-bU-eUJ" firstAttribute="top" secondItem="jnK-X8-khe" secondAttribute="bottom" constant="17" id="dbP-jG-xii"/>
                 <constraint firstItem="jnK-X8-khe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="e5F-nU-sa4"/>
+                <constraint firstItem="sKo-Cd-MTg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eMy-pL-J63"/>
+                <constraint firstAttribute="trailing" secondItem="sKo-Cd-MTg" secondAttribute="trailing" constant="15" id="elx-ch-1Pl"/>
+                <constraint firstItem="yxX-nv-nrg" firstAttribute="centerX" secondItem="S9o-CY-XJ4" secondAttribute="centerX" id="f2y-cj-Hpn"/>
+                <constraint firstItem="oL9-D5-K2O" firstAttribute="centerX" secondItem="IzE-Nq-kkS" secondAttribute="centerX" id="gDw-eF-2XZ"/>
+                <constraint firstItem="S9o-CY-XJ4" firstAttribute="top" secondItem="3F4-bU-eUJ" secondAttribute="bottom" constant="17" id="gnb-7Z-ESl"/>
                 <constraint firstAttribute="trailing" secondItem="rUg-C5-LzH" secondAttribute="trailing" id="gpJ-Ac-0Vw"/>
+                <constraint firstItem="rUg-C5-LzH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mLX-fw-Ukx"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cloudBtn" destination="S9o-CY-XJ4" id="Cjs-Jp-d8R"/>
+                <outlet property="intercomBtn" destination="IzE-Nq-kkS" id="1b1-pC-mRz"/>
                 <outlet property="plaerView" destination="3F4-bU-eUJ" id="xNs-rI-kGW"/>
+                <outlet property="recordingBtn" destination="oL9-D5-K2O" id="iU6-d7-vnd"/>
+                <outlet property="scrennshotsBtn" destination="yxX-nv-nrg" id="440-JX-NVS"/>
                 <outlet property="title" destination="jnK-X8-khe" id="A3I-nM-2cY"/>
             </connections>
-            <point key="canvasLocation" x="50.724637681159422" y="36.495535714285715"/>
+            <point key="canvasLocation" x="168" y="-7"/>
         </view>
     </objects>
     <resources>
-        <image name="image_device_control_bg" width="200" height="445.5"/>
+        <image name="device_control_camera_album" width="170" height="35"/>
+        <image name="device_control_camera_capture" width="48" height="48"/>
+        <image name="device_control_camera_recording" width="48" height="48"/>
+        <image name="device_control_camera_talk" width="48" height="48"/>
+        <image name="device_control_camera_yuntai" width="48" height="48"/>
+        <image name="image_device_control_bg" width="200" height="429.5"/>
     </resources>
 </document>

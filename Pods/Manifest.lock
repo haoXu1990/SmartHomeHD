@@ -6,6 +6,7 @@ PODS:
   - Differentiator (3.1.0)
   - EZOpenSDK (4.8.6)
   - HMSegmentedControl (1.5.5)
+  - MMPhotoPicker (1.8)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya-ObjectMapper/Core (2.7):
@@ -23,6 +24,7 @@ PODS:
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
   - ObjectMapper (3.5.1)
+  - PryntTrimmerView (3.0.0)
   - ReactorKit (1.2.1):
     - RxSwift (>= 4.0.0)
   - Result (3.2.4)
@@ -55,18 +57,23 @@ PODS:
     - RxCocoa (>= 4.0.0)
     - RxSwift (>= 4.0.0)
   - SnapKit (5.0.0)
+  - SteviaLayout (4.4.4)
   - SwiftDate (5.1.0)
   - swiftScan (1.1.5)
   - SwiftyUserDefaults (4.0.0)
   - Then (2.5.0)
   - Toaster (2.2.0)
   - UIButton-SSEdgeInsets (0.1.7)
+  - YPImagePicker (4.0.0):
+    - PryntTrimmerView (~> 3.0.0)
+    - SteviaLayout (~> 4.4.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - CocoaLumberjack/Swift
   - EZOpenSDK
   - HMSegmentedControl
+  - MMPhotoPicker
   - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift (~> 11.0)
   - "NSObject+Rx"
@@ -87,6 +94,7 @@ DEPENDENCIES:
   - Then
   - Toaster
   - UIButton-SSEdgeInsets (~> 0.1.1)
+  - YPImagePicker
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -95,10 +103,12 @@ SPEC REPOS:
     - Differentiator
     - EZOpenSDK
     - HMSegmentedControl
+    - MMPhotoPicker
     - Moya
     - Moya-ObjectMapper
     - "NSObject+Rx"
     - ObjectMapper
+    - PryntTrimmerView
     - ReactorKit
     - Result
     - ReusableKit
@@ -111,11 +121,13 @@ SPEC REPOS:
     - RxSwiftExt
     - RxViewController
     - SnapKit
+    - SteviaLayout
     - SwiftDate
     - SwiftyUserDefaults
     - Then
     - Toaster
     - UIButton-SSEdgeInsets
+    - YPImagePicker
 
 EXTERNAL SOURCES:
   swiftScan:
@@ -133,10 +145,12 @@ SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  MMPhotoPicker: b326127637217c556732217835ce56368c92e4e2
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   ReusableKit: e5f853ad4652e411f96b6119b2488afa12929be6
@@ -149,13 +163,15 @@ SPEC CHECKSUMS:
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
   swiftScan: bc6dbf74e6a579c45a861691afc44628d8d9f6ab
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
+  YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 370a5d8dc3fe30b7db9136d701cd67a6dc7e807a
+PODFILE CHECKSUM: cba5bb01d671151a1abd5b27ee26aa1d03c613c2
 
 COCOAPODS: 1.5.3

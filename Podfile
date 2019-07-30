@@ -42,6 +42,9 @@ target 'SmartHomeHD' do
   # 提示框
   pod 'Toaster'
   
+  pod 'YPImagePicker'
+  pod 'MMPhotoPicker'
+  
   # Socket.IO 
  # pod 'Socket.IO-Client-Swift', '~> 15.1.0'
   # WebSocket
