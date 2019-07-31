@@ -12,6 +12,14 @@
 
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
-//#import ""
+
+/// 红外控制界面异行按钮
+#import "ZAShapeButton.h"
+
+/// 恬家红外SDK
+#import "tiqiaasdk.h"
+
+/// 恬家SDK初始化需要传入指针参数，Swift不会搞
+#import "Tool.h"
 
 #endif /* SmartHomeHD_Bridging_Header_h */

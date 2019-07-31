@@ -81,6 +81,8 @@ class HomeViewReactor: NSObject, Reactor {
                 })
                 
                 /// 每个 Section 固定只有一个 Cell(items.count = 1)
+//                return HomeViewSection.ini
+             
                 return HomeViewSection.init(items: [floorModel], roomModels: roomModels, deviceListModel: models)
             }
             newState.setcions = sections

@@ -14,7 +14,7 @@ import SwiftyUserDefaults
 class DeviceControllCellReactor: NSObject,Reactor {
 
     enum Action {
-        /// 控制 开(左) 、关(右)、 暂停 等命令
+        /// Socket 控制自研设备 开(左) 、关(右)、 暂停 等命令
         case sendCommand(SmartDeviceSwitchState)
         
         case fetchYsAccessToken
@@ -69,7 +69,7 @@ class DeviceControllCellReactor: NSObject,Reactor {
                     
                     if let result = json["result"] as? [String: Any] {
                         let token = result["token"] as! String
-                        let reamark = result["token"] as! String
+//                        let reamark = result["token"] as! String
                         log.debug("获取到萤石云 Token: \(token)")
                         Defaults[.ysAccessToken] = token                        
                     }

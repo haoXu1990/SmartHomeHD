@@ -38,6 +38,9 @@ class RoomViewCell: UICollectionViewCell, View {
     /// 设备列表视图
     var tableView: UITableView!
     
+    /// 更多视图
+    var moreView: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -59,8 +62,12 @@ class RoomViewCell: UICollectionViewCell, View {
         tableView.register(Reusable.oneCell)
         tableView.register(Reusable.twoCell)
         tableView.register(Reusable.switchCell)
+        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         self.addSubview(tableView)
         
+        moreView = UIView.init()
+        moreView.backgroundColor = .clear
+        self.addSubview(moreView)
 
     }
     
@@ -81,6 +88,13 @@ class RoomViewCell: UICollectionViewCell, View {
             make.edges.equalTo(deviceListBackgroundImageView)
         }
         
+        
+        moreView.snp.makeConstraints { (make) in
+            make.top.equalTo(deviceListBackgroundImageView)
+            make.right.equalTo(deviceListBackgroundImageView.snp.left)
+            make.width.equalTo(270)
+            make.bottom.equalTo(deviceListBackgroundImageView)
+        }
     }
     
     
@@ -94,37 +108,37 @@ extension RoomViewCell {
     
     func showMoreUI(model: DeviceModel)  {
         
-        
-//        deviceListBackgroundImageView.snp.remakeConstraints { (make) in
-//            make.top.equalToSuperview().offset(50)
-//            make.right.equalToSuperview().offset(-220)
-//            make.width.equalTo(200)
-//            make.bottom.equalToSuperview().offset(-50)
-//        }
-        
         initCameraView(model: model)
+    }
+    
+    
+    /// 删除更多视图中的所有子视图
+    func removeAllSubView() {
+        for view in moreView.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
+    func initProjectorView(model: DeviceModel) {
+        /// 删除创建得视图
+        
+        let cameraView = SmartProjectorView.init()
+        cameraView.reactor = InfraredControlReactor.init(deviceModel: model)
+        moreView.addSubview(cameraView)
+        cameraView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     func initCameraView(model: DeviceModel) {
         
-        
         let cameraView = SmartCameraView.loadFromNib()
-        
         cameraView.reactor = SmartCameraViewReactor.init(deviceModel: model)
-      
-        self.addSubview(cameraView)
-
+        moreView.addSubview(cameraView)
+        
         cameraView.snp.makeConstraints { (make) in
-            make.top.equalTo(deviceListBackgroundImageView)
-            make.right.equalTo(deviceListBackgroundImageView.snp.left)
-            make.width.equalTo(200)
-            make.bottom.equalTo(deviceListBackgroundImageView)
+            make.edges.equalToSuperview()
         }
-//        UIView.animate(withDuration: 0.5) {
-//            let center = self.deviceListBackgroundImageView.center
-//            self.tableView.center = CGPoint.init(x: center.x - 200, y: center.y)
-//            self.deviceListBackgroundImageView.center = CGPoint.init(x: center.x - 200, y: center.y)
-//        }
     }
 }
 
@@ -134,7 +148,7 @@ extension RoomViewCell {
     
     func bind(reactor: RoomViewReactor) {
         
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
         
         reactor.state.map { $0.deviceModels }
             .bind(to: tableView.rx.items) { (tableView, ip, model) in
@@ -163,13 +177,23 @@ extension RoomViewCell {
         tableView.rx.modelSelected(DeviceModel.self).subscribe(onNext: { [weak self] (model) in
             
             guard let self = self else { return }
-            let type = self.cellFactory(typeID: Int(model.typeid!)!)
+            let typeID = Int(model.typeid!)!
+            let type = self.cellFactory(typeID: typeID)
+        
+            /// 删除已有得视图
+            self.removeAllSubView()
             
             if type == .More {
                 log.debug("显示更多视图")
-                self.showMoreUI(model: model)
+                
+                if typeID == SmartDeviceType.YSCamera.rawValue {
+                    self.initCameraView(model: model)
+                }
+                else if typeID == SmartDeviceType.Projector.rawValue {
+                    self.initProjectorView(model: model)
+                }
+                
             }
-            
             
         }).disposed(by: rx.disposeBag)
         
@@ -204,7 +228,7 @@ extension RoomViewCell {
         case .Airconditioner: return .More
         case .IR: return .More
         case .TranslucentScreen: return .ThreeButton
-        case .Projector: return .ThreeButton
+        case .Projector: return .More
         case .Windowopener: return .ThreeButton
         case .Projectormachine: return .ThreeButton
         case .WaterValve: return .OneSwitch

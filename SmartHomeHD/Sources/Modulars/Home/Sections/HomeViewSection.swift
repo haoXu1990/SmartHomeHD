@@ -21,6 +21,7 @@ struct HomeViewSection {
     /// 设备列表模型
     var deviceListModel: [DeviceModel]
     
+//    var reactor: [HomeViewReactor]
 }
 
 extension HomeViewSection: SectionModelType {

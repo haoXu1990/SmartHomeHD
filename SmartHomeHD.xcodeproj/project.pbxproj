@@ -72,6 +72,16 @@
 		695ADDC122E7FA51001A7533 /* DeviceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDC022E7FA51001A7533 /* DeviceServer.swift */; };
 		695ADDC422E8056C001A7533 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDC322E8056C001A7533 /* ModelType.swift */; };
 		695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDC522E80777001A7533 /* DeviceModel.swift */; };
+		69D8D0BB22F138F40033B20F /* SmartProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */; };
+		69D8D0BF22F13B310033B20F /* ZAShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BD22F13B310033B20F /* ZAShapeButton.m */; };
+		69D8D0C222F13B610033B20F /* SmartControllBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0C122F13B610033B20F /* SmartControllBaseView.swift */; };
+		69D8D0DA22F177A70033B20F /* tiqiaasdk.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69D8D0C522F177A70033B20F /* tiqiaasdk.strings */; };
+		69D8D0DB22F177A70033B20F /* libtiqiaasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D8D0D122F177A70033B20F /* libtiqiaasdk.a */; };
+		69D8D0DC22F177A70033B20F /* tiqiaasdk.db in Resources */ = {isa = PBXBuildFile; fileRef = 69D8D0D822F177A70033B20F /* tiqiaasdk.db */; };
+		69D8D0DE22F178910033B20F /* InfraredControlReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0DD22F178910033B20F /* InfraredControlReactor.swift */; };
+		69D8D0E322F197600033B20F /* Tool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0E222F197600033B20F /* Tool.mm */; };
+		69D8D0E522F19AD30033B20F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D8D0E422F19AD30033B20F /* libz.tbd */; };
+		69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */; };
 		8762CC8B8B4821EAD09072F7 /* Pods_SmartHomeHDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */; };
 		924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */; };
 		9B47DB312B829B632BC1C377 /* Pods_SmartHomeHDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */; };
@@ -182,6 +192,35 @@
 		695ADDC022E7FA51001A7533 /* DeviceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceServer.swift; sourceTree = "<group>"; };
 		695ADDC322E8056C001A7533 /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		695ADDC522E80777001A7533 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartProjectorView.swift; sourceTree = "<group>"; };
+		69D8D0BD22F13B310033B20F /* ZAShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAShapeButton.m; sourceTree = "<group>"; };
+		69D8D0BE22F13B310033B20F /* ZAShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAShapeButton.h; sourceTree = "<group>"; };
+		69D8D0C122F13B610033B20F /* SmartControllBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartControllBaseView.swift; sourceTree = "<group>"; };
+		69D8D0C622F177A70033B20F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/tiqiaasdk.strings"; sourceTree = "<group>"; };
+		69D8D0C722F177A70033B20F /* air_cond_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = air_cond_const.h; sourceTree = "<group>"; };
+		69D8D0C822F177A70033B20F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/tiqiaasdk.strings; sourceTree = "<group>"; };
+		69D8D0C922F177A70033B20F /* TJRemoteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRemoteClient.h; sourceTree = "<group>"; };
+		69D8D0CA22F177A70033B20F /* TJTvClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTvClient.h; sourceTree = "<group>"; };
+		69D8D0CB22F177A70033B20F /* TJTvModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTvModel.h; sourceTree = "<group>"; };
+		69D8D0CC22F177A70033B20F /* TJRemoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRemoteModel.h; sourceTree = "<group>"; };
+		69D8D0CD22F177A70033B20F /* TJWebErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJWebErrorCode.h; sourceTree = "<group>"; };
+		69D8D0CE22F177A70033B20F /* TJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJModel.h; sourceTree = "<group>"; };
+		69D8D0CF22F177A70033B20F /* TJStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJStringUtil.h; sourceTree = "<group>"; };
+		69D8D0D022F177A70033B20F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/tiqiaasdk.strings"; sourceTree = "<group>"; };
+		69D8D0D122F177A70033B20F /* libtiqiaasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtiqiaasdk.a; sourceTree = "<group>"; };
+		69D8D0D222F177A70033B20F /* TJSQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSQLiteDatabase.h; sourceTree = "<group>"; };
+		69D8D0D322F177A70033B20F /* InfraredConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfraredConstant.h; sourceTree = "<group>"; };
+		69D8D0D422F177A70033B20F /* icontrol_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icontrol_const.h; sourceTree = "<group>"; };
+		69D8D0D522F177A70033B20F /* tiqiaasdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiqiaasdk.h; sourceTree = "<group>"; };
+		69D8D0D622F177A70033B20F /* TJAirRemoteStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAirRemoteStateManager.h; sourceTree = "<group>"; };
+		69D8D0D722F177A70033B20F /* TJRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRemoteUtil.h; sourceTree = "<group>"; };
+		69D8D0D822F177A70033B20F /* tiqiaasdk.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tiqiaasdk.db; sourceTree = "<group>"; };
+		69D8D0D922F177A70033B20F /* TJDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDataManager.h; sourceTree = "<group>"; };
+		69D8D0DD22F178910033B20F /* InfraredControlReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfraredControlReactor.swift; sourceTree = "<group>"; };
+		69D8D0E122F197600033B20F /* Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
+		69D8D0E222F197600033B20F /* Tool.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tool.mm; sourceTree = "<group>"; };
+		69D8D0E422F19AD30033B20F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		AFCB4F35F1502E21A1982877 /* Pods-SmartHomeHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.release.xcconfig"; sourceTree = "<group>"; };
 		BBEB92C4C5DCBAB9C5960601 /* Pods-SmartHomeHDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHDUITests/Pods-SmartHomeHDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC747C6B69189CEA2EC5E629 /* Pods-SmartHomeHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +232,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */,
+				69D8D0E522F19AD30033B20F /* libz.tbd in Frameworks */,
 				924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */,
+				69D8D0DB22F177A70033B20F /* libtiqiaasdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +261,8 @@
 		50F2828A6B6CA73A739697BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */,
+				69D8D0E422F19AD30033B20F /* libz.tbd */,
 				004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */,
 				41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */,
 				5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */,
@@ -274,6 +318,8 @@
 		690D46F222EEE5DC001123AA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				69D8D0C022F13B4C0033B20F /* BaseView */,
+				690D46FE22F064F8001123AA /* 投影仪 */,
 				690D46F322EEE975001123AA /* 摄像头 */,
 			);
 			path = ThirdParty;
@@ -287,6 +333,15 @@
 				690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */,
 			);
 			path = "摄像头";
+			sourceTree = "<group>";
+		};
+		690D46FE22F064F8001123AA /* 投影仪 */ = {
+			isa = PBXGroup;
+			children = (
+				69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */,
+				69D8D0DD22F178910033B20F /* InfraredControlReactor.swift */,
+			);
+			path = "投影仪";
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -374,6 +429,7 @@
 		695ADD5B22DEB423001A7533 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				69D8D0C322F1778F0033B20F /* SDK */,
 				690D46E122EEA231001123AA /* Logger */,
 				695ADD9022E6DD19001A7533 /* Vender */,
 				695ADD7822E58C83001A7533 /* Rx */,
@@ -451,6 +507,8 @@
 				695ADD2722DC17F1001A7533 /* LaunchScreen.storyboard */,
 				695ADD2A22DC17F1001A7533 /* Info.plist */,
 				695ADD8F22E6DBA6001A7533 /* SmartHomeHD-Bridging-Header.h */,
+				69D8D0E122F197600033B20F /* Tool.h */,
+				69D8D0E222F197600033B20F /* Tool.mm */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -564,6 +622,7 @@
 		695ADD9022E6DD19001A7533 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				69D8D0BC22F13B270033B20F /* ZAShapeButton */,
 				690D46DC22EE8D82001123AA /* XHSwitch */,
 				695ADD9122E6DD4C001A7533 /* SocketIO */,
 			);
@@ -610,6 +669,56 @@
 				695ADDC522E80777001A7533 /* DeviceModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		69D8D0BC22F13B270033B20F /* ZAShapeButton */ = {
+			isa = PBXGroup;
+			children = (
+				69D8D0BE22F13B310033B20F /* ZAShapeButton.h */,
+				69D8D0BD22F13B310033B20F /* ZAShapeButton.m */,
+			);
+			path = ZAShapeButton;
+			sourceTree = "<group>";
+		};
+		69D8D0C022F13B4C0033B20F /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				69D8D0C122F13B610033B20F /* SmartControllBaseView.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		69D8D0C322F1778F0033B20F /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				69D8D0C422F177A70033B20F /* 恬家红外 */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		69D8D0C422F177A70033B20F /* 恬家红外 */ = {
+			isa = PBXGroup;
+			children = (
+				69D8D0C522F177A70033B20F /* tiqiaasdk.strings */,
+				69D8D0C722F177A70033B20F /* air_cond_const.h */,
+				69D8D0C922F177A70033B20F /* TJRemoteClient.h */,
+				69D8D0CA22F177A70033B20F /* TJTvClient.h */,
+				69D8D0CB22F177A70033B20F /* TJTvModel.h */,
+				69D8D0CC22F177A70033B20F /* TJRemoteModel.h */,
+				69D8D0CD22F177A70033B20F /* TJWebErrorCode.h */,
+				69D8D0CE22F177A70033B20F /* TJModel.h */,
+				69D8D0CF22F177A70033B20F /* TJStringUtil.h */,
+				69D8D0D122F177A70033B20F /* libtiqiaasdk.a */,
+				69D8D0D222F177A70033B20F /* TJSQLiteDatabase.h */,
+				69D8D0D322F177A70033B20F /* InfraredConstant.h */,
+				69D8D0D422F177A70033B20F /* icontrol_const.h */,
+				69D8D0D522F177A70033B20F /* tiqiaasdk.h */,
+				69D8D0D622F177A70033B20F /* TJAirRemoteStateManager.h */,
+				69D8D0D722F177A70033B20F /* TJRemoteUtil.h */,
+				69D8D0D822F177A70033B20F /* tiqiaasdk.db */,
+				69D8D0D922F177A70033B20F /* TJDataManager.h */,
+			);
+			path = "恬家红外";
 			sourceTree = "<group>";
 		};
 		CB86FC2A76015593F8897C80 /* Pods */ = {
@@ -715,6 +824,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 695ADD1222DC17EA001A7533;
 			productRefGroup = 695ADD1C22DC17EA001A7533 /* Products */;
@@ -735,6 +846,8 @@
 			files = (
 				695ADD2922DC17F1001A7533 /* LaunchScreen.storyboard in Resources */,
 				695ADD2622DC17F1001A7533 /* Assets.xcassets in Resources */,
+				69D8D0DA22F177A70033B20F /* tiqiaasdk.strings in Resources */,
+				69D8D0DC22F177A70033B20F /* tiqiaasdk.db in Resources */,
 				695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */,
 				690D46F522EEE9A1001123AA /* SmartCameraView.xib in Resources */,
 			);
@@ -916,6 +1029,7 @@
 				690D46CC22E991F7001123AA /* FloorViewSection.swift in Sources */,
 				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
 				695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */,
+				69D8D0BB22F138F40033B20F /* SmartProjectorView.swift in Sources */,
 				695ADD5822DC6E75001A7533 /* UIColor+Extension.swift in Sources */,
 				690D46FB22EFDF1F001123AA /* DefaultsKeys+Key.swift in Sources */,
 				695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */,
@@ -943,6 +1057,7 @@
 				695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */,
 				690D46F722EEEC33001123AA /* SmartCameraView.swift in Sources */,
 				695ADD8B22E5BC6F001A7533 /* DeviceControllTwoCell.swift in Sources */,
+				69D8D0C222F13B610033B20F /* SmartControllBaseView.swift in Sources */,
 				690D46EE22EEA7A1001123AA /* LogCategory.swift in Sources */,
 				695ADDC422E8056C001A7533 /* ModelType.swift in Sources */,
 				695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */,
@@ -952,6 +1067,7 @@
 				690D46C522E86950001123AA /* RoomViewReactor.swift in Sources */,
 				695ADDBF22E7F463001A7533 /* HomeViewReactor.swift in Sources */,
 				695ADD5122DC623C001A7533 /* FloorViewCell.swift in Sources */,
+				69D8D0BF22F13B310033B20F /* ZAShapeButton.m in Sources */,
 				695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */,
 				690D46D322E9B30B001123AA /* MoyaPlugin.swift in Sources */,
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
@@ -969,8 +1085,10 @@
 				695ADD5A22DC7A98001A7533 /* CubeViewLayout.swift in Sources */,
 				690D46C322E84D23001123AA /* HomeViewSection.swift in Sources */,
 				695ADDA022E6DD4C001A7533 /* SRWebSocket2.m in Sources */,
+				69D8D0DE22F178910033B20F /* InfraredControlReactor.swift in Sources */,
 				690D46C722E86ABC001123AA /* FloorViewReactor.swift in Sources */,
 				695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */,
+				69D8D0E322F197600033B20F /* Tool.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1138,16 @@
 				695ADD2822DC17F1001A7533 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		69D8D0C522F177A70033B20F /* tiqiaasdk.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69D8D0C622F177A70033B20F /* zh-Hans */,
+				69D8D0C822F177A70033B20F /* en */,
+				69D8D0D022F177A70033B20F /* zh-Hant */,
+			);
+			name = tiqiaasdk.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1155,7 +1283,77 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fh.smart.hd.SmartHomeHD;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/恬家红外",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"Differentiator\"",
+					"-framework",
+					"\"EZOpenSDKFramework\"",
+					"-framework",
+					"\"HMSegmentedControl\"",
+					"-framework",
+					"\"MMPhotoPicker\"",
+					"-framework",
+					"\"Moya\"",
+					"-framework",
+					"\"Moya_ObjectMapper\"",
+					"-framework",
+					"\"NSObject_Rx\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"ReactorKit\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"ReusableKit\"",
+					"-framework",
+					"\"RoundedSwitch\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxDataSources\"",
+					"-framework",
+					"\"RxGesture\"",
+					"-framework",
+					"\"RxOptional\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"RxSwiftExt\"",
+					"-framework",
+					"\"RxViewController\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftyUserDefaults\"",
+					"-framework",
+					"\"Then\"",
+					"-framework",
+					"\"Toaster\"",
+					"-framework",
+					"\"UIButton_SSEdgeInsets\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"swiftScan\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "wisdom.DUDU-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -1177,7 +1375,77 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fh.smart.hd.SmartHomeHD;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/恬家红外",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"Differentiator\"",
+					"-framework",
+					"\"EZOpenSDKFramework\"",
+					"-framework",
+					"\"HMSegmentedControl\"",
+					"-framework",
+					"\"MMPhotoPicker\"",
+					"-framework",
+					"\"Moya\"",
+					"-framework",
+					"\"Moya_ObjectMapper\"",
+					"-framework",
+					"\"NSObject_Rx\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"ReactorKit\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"ReusableKit\"",
+					"-framework",
+					"\"RoundedSwitch\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxDataSources\"",
+					"-framework",
+					"\"RxGesture\"",
+					"-framework",
+					"\"RxOptional\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"RxSwiftExt\"",
+					"-framework",
+					"\"RxViewController\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftyUserDefaults\"",
+					"-framework",
+					"\"Then\"",
+					"-framework",
+					"\"Toaster\"",
+					"-framework",
+					"\"UIButton_SSEdgeInsets\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"swiftScan\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "wisdom.DUDU-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

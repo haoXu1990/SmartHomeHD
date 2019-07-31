@@ -103,10 +103,10 @@ class Circle3DLayout: UICollectionViewLayout {
             let arc:CGFloat = .pi * CGFloat(2.0)
             let screenW = UIScreen.main.bounds.width
             // 这里只取 Section 0
-            let numberOfVisibleItems:Float = 5 // Float(collection.numberOfItems(inSection: 0))
+            let numberOfVisibleItems:Float = Float(collection.numberOfItems(inSection: 0))
 
             attributes.center = CGPoint.init(x: x + screenW / 2, y: height * 0.5)
-            attributes.size = CGSize.init(width: width - 300, height: height )
+            attributes.size = CGSize.init(width: screenW - 300, height: height )
 //            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
             
             /// 3D 动画

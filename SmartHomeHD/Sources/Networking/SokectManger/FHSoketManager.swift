@@ -77,7 +77,7 @@ class FHSoketManager: NSObject {
     }
     
     func sendMessage(event:String, data: [String: Any])  {
-        
+        log.debug("socke send: \(data)")
         socketIO.sendEvent(event, withData: data)
     }
     

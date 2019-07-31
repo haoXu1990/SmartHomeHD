@@ -1,0 +1,145 @@
+/* 
+  tiqiaasdk.strings
+  tiqiaasdk
+
+  Created by apple on 16/2/24.
+  Copyright © 2016年 tiqiaa.com. All rights reserved.
+*/
+
+/* Machine Type */
+
+"TV" = "TV";
+"Air Cond" = "Air Cond";
+"Fan" = "Fan";
+"Projector" = "Projector";
+"STB" = "STB";
+"DVD" = "DVD";
+"SLR" = "SLR";
+"Camera" = "Camera";
+"IR Switch" = "IR Switch";
+"Amplifier" = "Amplifier";
+"Box" = "Box";
+"Water Heater" = "Water Heater";
+"Air Cleaner" = "Air Cleaner";
+"Other" = "Other";
+"DVR" = "DVR";
+"AVR" = "AVR";
+
+/* Key Type */
+
+"key__100" = "Round";
+"key__99" = "Oval";
+"key__98" = "Square";
+"key__97" = "#Red";
+"key__96" = "#Orange";
+"key__95" = "#Yellow";
+"key__94" = "#Green";
+"key__93" = "#Blue";
+"key__92" = "#Cyan";
+"key__91" = "#Purple";
+"key__90" = "Memory key";
+"key_0" = "0";
+"key_1" = "1";
+"key_2" = "2";
+"key_3" = "3";
+"key_4" = "4";
+"key_5" = "5";
+"key_6" = "6";
+"key_7" = "7";
+"key_8" = "8";
+"key_9" = "9";
+"key_800" = "Power";
+"key_801" = "Signal";
+"key_802" = "Info";
+"key_803" = "Recall";
+"key_803" = "Recall";
+"key_804" = "Mute";
+"key_805" = "Digital";
+"key_806" = "Back";
+"key_807" = "CH +";
+"key_808" = "CH -";
+"key_809" = "Vol +";
+"key_810" = "Vol -";
+"key_811" = "Temp+";
+"key_812" = "Temp-";
+"key_813" = "Zoom in";
+"key_814" = "Zoom out";
+"key_815" = "Memory key 1";
+"key_816" = "Memory key 2";
+"key_817" = "OK";
+"key_818" = "Up";
+"key_819" = "Down";
+"key_820" = "Left";
+"key_821" = "Right";
+"key_822" = "Menu";
+"key_823" = "Exit";
+"key_824" = "Fast Forward";
+"key_825" = "Rewind";
+"key_826" = "Play/Pause";
+"key_827" = "Stop";
+"key_828" = "Previous";
+"key_829" = "Next";
+"key_830" = "Top";
+"key_831" = "Bottom";
+"key_832" = "Mode";
+"key_833" = "Wind amount";
+"key_834" = "Horizontal wind";
+"key_835" = "Vertical wind";
+"key_836" = "Head Shaking";
+"key_837" = "Wind class";
+"key_838" = "Wind velocity";
+"key_839" = "Open";
+"key_840" = "Title";
+"key_841" = "10+";
+"key_842" = "Language";
+"key_843" = "Screen Display";
+"key_844" = "Audio channel";
+"key_845" = "Standard";
+"key_846" = "Subtitle";
+"key_847" = "Dual screen";
+"key_848" = "Screen freezes";
+"key_849" = "Reset";
+"key_850" = "Video";
+"key_851" = "Slow motion";
+"key_852" = "Primary key";
+"key_853" = "Vice key";
+"key_854" = "Continuous up";
+"key_855" = "Continuous down";
+"key_856" = "Continuous right";
+"key_857" = "Continuous left";
+"key_870" = "Multistage wind";
+"key_871" = "Light";
+"key_872" = "Super";
+"key_873" = "Sleep";
+"key_874" = "Fresh Air";
+"key_875" = "Aid Hot";
+"key_876" = "Timer";
+"key_877" = "Wet";
+"key_878" = "Anion";
+"key_879" = "Power saving";
+"key_880" = "Comfort";
+"key_881" = "Temp Display";
+"key_882" = "Quick Cool";
+"key_883" = "Quick Hot";
+"key_900" = "Auto";
+"key_901" = "Signal";
+"key_902" = "Brightness";
+"key_903" = "PC";
+"key_1000" = "Cool wind";
+"key_1010" = "Home";
+"key_1011" = "Settings";
+"key_1012" = "Pop";
+"key_1013" = "Top";
+"key_1800" = "Power2";
+"key_1020" = "Keep Warm";
+"key_1021" = "Order Bath";
+"key_1022" = "Confirm";
+"key_1023" = "Dot";
+"key_1024" = "-";
+"key_1025" = "Power On";
+"key_1026" = "Power Off";
+"key_1027" = "Play";
+"key_1028" = "Pause";
+"key_2001" = "Favorites";
+"key_2002" = "Numbers";
+"key_2003" = "Custom";

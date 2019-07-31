@@ -9,11 +9,11 @@
         "mode" : "3-part-vertical",
         "center" : {
           "mode" : "tile",
-          "height" : 642
+          "height" : 1
         },
         "cap-insets" : {
-          "top" : 209,
-          "bottom" : 8
+          "top" : 598,
+          "bottom" : 292
         }
       },
       "idiom" : "universal",
