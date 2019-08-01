@@ -13,6 +13,7 @@ import RxCocoa
 import NSObject_Rx
 import RxOptional
 import ReactorKit
+import RxDataSources
 
 fileprivate enum CellType {
     /// defaut
@@ -41,6 +42,8 @@ class RoomViewCell: UICollectionViewCell, View {
     /// 更多视图
     var moreView: UIView!
     
+    var dataSource: RxTableViewSectionedReloadDataSource<DeviceControllSection>!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -62,13 +65,43 @@ class RoomViewCell: UICollectionViewCell, View {
         tableView.register(Reusable.oneCell)
         tableView.register(Reusable.twoCell)
         tableView.register(Reusable.switchCell)
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
         self.addSubview(tableView)
         
         moreView = UIView.init()
         moreView.backgroundColor = .clear
         self.addSubview(moreView)
 
+//
+//        dataSource = RxTableViewSectionedReloadDataSource<DeviceControllSection>(configureCell: {
+//            (dataSource, tableView, indexPath, element) in
+//            let typId = element.currentState.deviceModels.typeid
+//
+//
+//            switch self.cellFactory(typeID: Int(typId!)!) {
+//            case .More:
+//                //                let cell = tableView.dequeue(Reusable.oneCell)!
+//                //                if cell.reactor !== element {
+//                //                    cell.reactor = element
+//                //                }
+//                let cell = tableView.dequeue(Reusable.baseCell)!
+//                cell.titleLabel.text = String.init(format: "● %@","0")
+//                return cell
+//                //            case .ThreeButton:
+//                //                let cell = tableView.dequeue(Reusable.twoCell)!
+//                //                cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
+//                //                return cell
+//                //            case .OneSwitch:
+//                //                let cell = tableView.dequeue(Reusable.switchCell)!
+//                //                cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
+//            //                return cell
+//            default:
+//                let cell = tableView.dequeue(Reusable.baseCell)!
+//                cell.titleLabel.text = String.init(format: "● %@","0")
+//                return cell
+//            }
+//        })
+        
     }
     
     override func layoutSubviews() {
@@ -101,6 +134,16 @@ class RoomViewCell: UICollectionViewCell, View {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+        log.info("Cell 销毁")
+        self.reactor = nil
+    }
+    
+}
+extension RoomViewCell {
+    
+    
 }
 
 /// UI init
@@ -148,18 +191,29 @@ extension RoomViewCell {
     
     func bind(reactor: RoomViewReactor) {
         
+        tableView.dataSource = nil
+        tableView.delegate = nil
+        
+        
+        
+        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+   
+//        reactor.state.map{$0.setcions}.filterNil()
+//            .bind(to: tableView.rx.items(dataSource: dataSource))
+//            .disposed(by: rx.disposeBag)
         
         
         reactor.state.map { $0.deviceModels }
             .bind(to: tableView.rx.items) { (tableView, ip, model) in
-                
+
                 switch self.cellFactory(typeID: Int(model.typeid!)!) {
                 case .More:
-                    let cell = tableView.dequeue(Reusable.oneCell)!                  
+                    let cell = tableView.dequeue(Reusable.oneCell)!
                     cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
                     return cell
                 case .ThreeButton:
-                    let cell = tableView.dequeue(Reusable.twoCell)!                  
+                    let cell = tableView.dequeue(Reusable.twoCell)!
                     cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
                     return cell
                 case .OneSwitch:
@@ -175,28 +229,28 @@ extension RoomViewCell {
             .disposed(by: rx.disposeBag)
         
         tableView.rx.modelSelected(DeviceModel.self).subscribe(onNext: { [weak self] (model) in
-            
+
             guard let self = self else { return }
             let typeID = Int(model.typeid!)!
             let type = self.cellFactory(typeID: typeID)
-        
+
             /// 删除已有得视图
             self.removeAllSubView()
-            
+
             if type == .More {
                 log.debug("显示更多视图")
-                
+
                 if typeID == SmartDeviceType.YSCamera.rawValue {
                     self.initCameraView(model: model)
                 }
                 else if typeID == SmartDeviceType.Projector.rawValue {
                     self.initProjectorView(model: model)
                 }
-                
+
             }
-            
+
         }).disposed(by: rx.disposeBag)
-        
+
     }
 }
 

@@ -27,7 +27,9 @@ class Circle3DLayout: UICollectionViewLayout {
             return CGSize.zero
         }
         
-        let width = collectionView.frame.size.width * CGFloat((collectionView.numberOfItems(inSection: 0) + 2))
+//        let width = collectionView.frame.size.width * CGFloat((collectionView.numberOfItems(inSection: 0) + 2))
+        
+        let width = collectionView.frame.size.width * CGFloat((6 + 2))
         
         let height = collectionView.frame.height
         return CGSize.init(width: width, height: height)
@@ -105,8 +107,8 @@ class Circle3DLayout: UICollectionViewLayout {
             // 这里只取 Section 0
             let numberOfVisibleItems:Float = Float(collection.numberOfItems(inSection: 0))
 
-            attributes.center = CGPoint.init(x: x + screenW / 2, y: height * 0.5)
-            attributes.size = CGSize.init(width: screenW - 300, height: height )
+            attributes.center = CGPoint.init(x: x + width / 2, y: height * 0.5)
+            attributes.size = CGSize.init(width: width - 300, height: height )
 //            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
             
             /// 3D 动画

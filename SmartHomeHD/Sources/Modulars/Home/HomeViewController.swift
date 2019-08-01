@@ -57,10 +57,21 @@ class HomeViewController: UIViewController, ReactorKit.View {
         collectionView.isPagingEnabled = true        
         collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
-//        collectionView.delegate = self
         view.addSubview(collectionView)
         view.backgroundColor = .black       
     
+        
+        dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
+            /// 固定只有一个 Cell
+            
+            let cell = cv.dequeue(Reusable.FloorViewCell, for: ip)
+            
+            if cell.reactor !== item {
+                cell.reactor = item
+            }
+            cell.reloadData(flowStyle: self.flowStyle)
+            return cell
+        })
     }
 
     
@@ -69,22 +80,12 @@ class HomeViewController: UIViewController, ReactorKit.View {
 extension HomeViewController {
     
     func bind(reactor: HomeViewReactor) {
+       
+        collectionView.dataSource = nil
         
-        dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
-            /// 固定只有一个 Cell
-            
-            let cell = cv.dequeue(Reusable.FloorViewCell, for: ip)
-            let section = ds.sectionModels[ip.section]
-            
-            let reactor = FloorViewReactor.init(floors: section.roomModels, devicelist: section.deviceListModel)
-            cell.reactor = reactor
-            cell.reloadData(flowStyle: self.flowStyle)
-            return cell
-        })
+        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
-//        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
-        reactor.state.map { $0.setcions }
+        reactor.state.map { $0.setcions }.filterNil()
         .bind(to: collectionView.rx.items(dataSource: dataSource))
         .disposed(by: rx.disposeBag)
     
@@ -109,7 +110,7 @@ extension HomeViewController {
         if flowStyle == self.flowStyle { return }
         self.flowStyle = flowStyle
         
-
+        collectionView.reloadData()
         // 这里需要重新加载数据, 有点问题
 //        Observable.just(Reactor.Action.fetchUserInfo)
 //            .bind(to: self.reactor!.action)

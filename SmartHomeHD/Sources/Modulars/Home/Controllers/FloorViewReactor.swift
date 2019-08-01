@@ -16,7 +16,7 @@ class FloorViewReactor: Reactor {
         
         var deviceList: [DeviceModel]?
         
-        var setcions: [FloorViewSection] = []
+        var setcions: [FloorViewSection]?
     }
     
     let initialState: FloorViewReactor.State
@@ -26,13 +26,27 @@ class FloorViewReactor: Reactor {
         /// 这里临时添加几个
         
 //        let resultSection = FloorViewSection.init(items: [floors[0], floors[0], floors[0], floors[0], floors[0], floors[0]], deviceListModel: devicelist)
-        let resultSection = FloorViewSection.init(items: floors, deviceListModel: devicelist)
         
-        self.initialState = State.init(deviceList: devicelist, setcions: [resultSection])
+        let reactors = floors.map { (roomModel) -> RoomViewReactor in
+            
+            let devices = devicelist.filter({ (model) -> Bool in
+                return roomModel.roomid == model.roomid
+            })
+            return RoomViewReactor.init(devicelist: devices)
+        }
+        let section = FloorViewSection.init(items: reactors)
+        
+        self.initialState = State.init(deviceList: devicelist, setcions: [section])
     
     }
 }
 
+extension FloorViewReactor {
+//
+//    func fetchDevice(<#parameters#>) -> <#return type#> {
+//        <#function body#>
+//    }
+}
 
 
 

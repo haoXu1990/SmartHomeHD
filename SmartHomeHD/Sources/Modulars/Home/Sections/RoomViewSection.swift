@@ -13,13 +13,13 @@ import Foundation
 struct RoomViewSection {
     
     /// 设备列表
-    var items: [Item]
+    var items: [DeviceControllCellReactor]
 }
 
 extension RoomViewSection: SectionModelType {
     
-    typealias Item = DeviceModel
-    init(original: RoomViewSection, items: [Item]) {
+//    typealias Item = DeviceModel
+    init(original: RoomViewSection, items: [DeviceControllCellReactor]) {
         self = original
         self.items = items
     }

@@ -26,7 +26,7 @@ class HomeViewReactor: NSObject, Reactor {
     }
     
     struct State {
-        var setcions: [HomeViewSection] = []
+        var setcions: [HomeViewSection]?
     }
     
     let initialState: HomeViewReactor.State
@@ -38,7 +38,7 @@ class HomeViewReactor: NSObject, Reactor {
         self.service = service
     }
     
-    func mutate(action: HomeViewReactor.Action) -> Observable<HomeViewReactor.Mutaion> {
+    func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
         case .fetchUserInfo:
@@ -49,14 +49,17 @@ class HomeViewReactor: NSObject, Reactor {
             return service.fetchDeviceList(parames: param)
                 .mapResponseToObject(type: HomeDeviceModel.self)
                 .asObservable()
-                .flatMap({ (data) -> Observable<HomeViewReactor.Mutaion> in
+                .flatMap({ (data) -> Observable<Mutaion> in
                 
                     if let roomList = data.roomlist ,
                         let floorList = data.floorlist,
                         let devicelist = data.list {
-                        return Observable.just(Mutaion.setUserInfo(floorList, roomList, devicelist))
+                        return Observable.just(.setUserInfo(floorList, roomList, devicelist))
                     }
                     
+                    return .empty()
+                }).catchError({ (error) -> Observable<Mutaion> in
+                    FHToaster.show(text: error.localizedDescription)
                     return .empty()
                 })
         }
@@ -70,21 +73,15 @@ class HomeViewReactor: NSObject, Reactor {
         switch mutation {
             
         case .setUserInfo(let floorModels, let roomModels, let models):
-            /// 在这里创建 Section 用于显示几个楼层
             
-            
-            /// 这里应该根据 楼层模型创建 section
-            let sections = floorModels.compactMap { (floorModel) -> HomeViewSection in
-                // 查找出当前楼层下得所有房间
-                let roomModels = roomModels.filter({ (roomModel) -> Bool in
-                    return roomModel.floor_id == floorModel.floor_id
-                })
+            ///1 遍历楼层列表
+            let sections = floorModels.map { (floorModel) -> HomeViewSection in
+
+                let reactor = FloorViewReactor.init(floors: roomModels, devicelist: models)
                 
-                /// 每个 Section 固定只有一个 Cell(items.count = 1)
-//                return HomeViewSection.ini
-             
-                return HomeViewSection.init(items: [floorModel], roomModels: roomModels, deviceListModel: models)
+                return  HomeViewSection.init(items: [reactor])
             }
+           
             newState.setcions = sections
             return newState
         }

@@ -1,0 +1,6 @@
+framework module SectionReactor {
+  umbrella header "SectionReactor-umbrella.h"
+
+  export *
+  module * { export * }
+}

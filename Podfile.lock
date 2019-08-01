@@ -56,6 +56,9 @@ PODS:
   - RxViewController (0.4.1):
     - RxCocoa (>= 4.0.0)
     - RxSwift (>= 4.0.0)
+  - SectionReactor (0.5.0):
+    - ReactorKit
+    - RxDataSources
   - SnapKit (5.0.0)
   - SteviaLayout (4.4.4)
   - SwiftDate (5.1.0)
@@ -87,6 +90,7 @@ DEPENDENCIES:
   - RxSwift (~> 4.0)
   - RxSwiftExt
   - RxViewController
+  - SectionReactor
   - SnapKit
   - SwiftDate (~> 5.0)
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`, commit `b6c5b1c`)
@@ -120,6 +124,7 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxViewController
+    - SectionReactor
     - SnapKit
     - SteviaLayout
     - SwiftDate
@@ -162,6 +167,7 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
+  SectionReactor: 997154471c40d5bbb2077075ce36f2e79f81ff79
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
@@ -172,6 +178,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: cba5bb01d671151a1abd5b27ee26aa1d03c613c2
+PODFILE CHECKSUM: 6e61aa01f8efcfd1f46eedb8d8cca14f30cb008b
 
 COCOAPODS: 1.5.3

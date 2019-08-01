@@ -30,6 +30,9 @@ class FloorViewCell: UICollectionViewCell, View {
     var circle3DLayout: Circle3DLayout!
     
     var layoutStyel:RoomControllViewLayoutStyle = .cirle3D
+    
+    var dataSource: RxCollectionViewSectionedReloadDataSource<FloorViewSection>!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -58,6 +61,25 @@ class FloorViewCell: UICollectionViewCell, View {
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
         
+        
+        dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
+            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
+            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+            
+            //            let section = ds.sectionModels[ip.section]
+            //
+            //            let models = section.deviceListModel.filter({ (model) -> Bool in
+            //                return  model.roomid == item.roomid
+            //            })
+            
+            if cell.reactor !== item {
+                cell.reactor = item
+            }
+            //            cell.reactor = RoomViewReactor.init(devicelist: models)
+            
+            return cell
+        })
+        
     }
     
     open func reloadData(flowStyle: RoomControllViewLayoutStyle) {
@@ -71,31 +93,23 @@ class FloorViewCell: UICollectionViewCell, View {
     }
 }
 
+
 extension FloorViewCell {
     
     func bind(reactor: FloorViewReactor) {
+
+        collectionView.dataSource = nil
         
-        let dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
-            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
-            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
-        
-            let section = ds.sectionModels[ip.section]
-            
-            let models = section.deviceListModel.filter({ (model) -> Bool in
-                return  model.roomid == item.roomid
-            })
-            
-            cell.reactor = RoomViewReactor.init(devicelist: models)
-            
-            return cell
-        })
-        
-        
-        
-        
-        reactor.state.map{$0.setcions}.filterEmpty()
-        .bind(to: collectionView.rx.items(dataSource: dataSource))
-        .disposed(by: rx.disposeBag)
+        reactor.state.flatMap { (state) -> Observable<[FloorViewSection]?> in
+//            self.collectionView.dataSource = nil
+            return Observable.just(state.setcions)
+            }.filterNil()
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+
+//        reactor.state.map{$0.setcions}.filterNil()
+//        .bind(to: collectionView.rx.items(dataSource: dataSource))
+//        .disposed(by: rx.disposeBag)
         
     }
 }
@@ -125,7 +139,7 @@ extension FloorViewCell: UICollectionViewDelegate {
             
             let targetX = scrollView.contentOffset.x
             scrollView.isPagingEnabled = true
-            let numCount:CGFloat = CGFloat(self.collectionView.numberOfItems(inSection: 0))
+            let numCount:CGFloat =  6  //CGFloat(self.collectionView.numberOfItems(inSection: 0))
             let itemWidth = scrollView.frame.size.width
             
             if numCount >= 3 {

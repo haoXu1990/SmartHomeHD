@@ -12,16 +12,16 @@ import Foundation
 struct FloorViewSection {
     
     /// 房间模型
-    var items: [Item]
+    var items: [RoomViewReactor]
     
     /// 所有设备列表
-    var deviceListModel: [DeviceModel]
+//    var deviceListModel: [DeviceModel]
 }
 
 extension FloorViewSection: SectionModelType {
     
-    typealias Item = RoomMoel
-    init(original: FloorViewSection, items: [Item]) {
+//    typealias Item = RoomMoel
+    init(original: FloorViewSection, items: [RoomViewReactor]) {
         self = original
         self.items = items
     }
