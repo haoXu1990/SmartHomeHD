@@ -199,11 +199,15 @@ extension RoomViewCell {
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
    
+        self.rx.tapGesture().subscribe(onNext: { (_) in
+         
+            log.info("xxxxxx")
+        }).disposed(by: rx.disposeBag)
 //        reactor.state.map{$0.setcions}.filterNil()
 //            .bind(to: tableView.rx.items(dataSource: dataSource))
 //            .disposed(by: rx.disposeBag)
         
-        
+
         reactor.state.map { $0.deviceModels }
             .bind(to: tableView.rx.items) { (tableView, ip, model) in
 

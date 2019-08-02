@@ -112,10 +112,7 @@ class MainViewController: UIViewController {
         /// 这里一定得强引用
         let reactor = HomeViewReactor.init(service: self.service)
         let rect = CGRect.init(x: 55, y: 0, width: kScreenW - 110, height: scrollViewH)
-        homeVC = HomeViewController.init(reactor: reactor, frame: rect)
-//        homeVC.reactor = reactor
-//        HomeViewController.init(frame: )
-      
+        homeVC = HomeViewController.init(reactor: reactor, frame: rect)      
         scrollView.addSubview(homeVC.view)
         
         messageVC = MessageViewController.init()

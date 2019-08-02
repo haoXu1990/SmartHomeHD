@@ -22,4 +22,7 @@
 /// 恬家SDK初始化需要传入指针参数，Swift不会搞
 #import "Tool.h"
 
+
+#import "iCarousel.h"
+
 #endif /* SmartHomeHD_Bridging_Header_h */

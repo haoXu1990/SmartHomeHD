@@ -33,10 +33,16 @@ class FloorViewCell: UICollectionViewCell, View {
     
     var dataSource: RxCollectionViewSectionedReloadDataSource<FloorViewSection>!
     
+    
+    var rooms:[RoomMoel]?
+    var carouselView: iCarousel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        initUI()
+//        initUI()
+        
+        initCarouseView()
         
         DLog("initUI")
     }
@@ -46,42 +52,31 @@ class FloorViewCell: UICollectionViewCell, View {
     }
     
     fileprivate func initUI() {
-        
+
         /// 流布局
         flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.itemSize = CGSize.init(width: self.contentView.frame.width / 4, height: 100)
-        
+
         /// 3D布局
         circle3DLayout = Circle3DLayout.init()
-        
+
         collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: circle3DLayout)
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
-        
-        
+
+
         dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
             let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
             cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
-            
-            //            let section = ds.sectionModels[ip.section]
-            //
-            //            let models = section.deviceListModel.filter({ (model) -> Bool in
-            //                return  model.roomid == item.roomid
-            //            })
-            
             if cell.reactor !== item {
                 cell.reactor = item
             }
-            //            cell.reactor = RoomViewReactor.init(devicelist: models)
-            
+
             return cell
         })
-        
+
     }
-    
+
     open func reloadData(flowStyle: RoomControllViewLayoutStyle) {
         
         layoutStyel = flowStyle
@@ -96,17 +91,75 @@ class FloorViewCell: UICollectionViewCell, View {
 
 extension FloorViewCell {
     
+    func initCarouseView() {
+        
+        self.clipsToBounds = false
+        self.contentView.clipsToBounds = false
+        carouselView = iCarousel.init(frame: self.contentView.frame)
+        carouselView.delegate = self
+        carouselView.dataSource = self
+        carouselView.bounces = false
+        carouselView.isPagingEnabled = true
+        carouselView.type = .cylinder
+        contentView.addSubview(carouselView)
+    }
+    
+    
+}
+
+extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return self.reactor?.currentState.rooms?.count ?? 0
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        
+        var cellView = view
+        /// 返回 roomView
+        if cellView == nil {
+            
+            let cell = RoomViewCell.init(frame: self.contentView.frame)
+            
+//            cell.reactor = RoomViewReactor.init(devicelist: <#T##[DeviceModel]#>)
+           
+            if let sections = self.reactor?.currentState.setcions?.first {
+                
+                let reactor = sections.items[index]
+                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+                cell.reactor = reactor
+                return cell
+            }
+        }
+        else {
+            let cell = cellView as! RoomViewCell
+            
+            if let sections = self.reactor?.currentState.setcions?.first {
+                
+                let reactor = sections.items[index]
+                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+                cell.reactor = reactor
+                return cell
+            }
+            
+        }
+        
+        return view!
+    }
+    
+    
+}
+
+
+extension FloorViewCell {
+    
     func bind(reactor: FloorViewReactor) {
 
-        collectionView.dataSource = nil
-        
-        reactor.state.flatMap { (state) -> Observable<[FloorViewSection]?> in
-//            self.collectionView.dataSource = nil
-            return Observable.just(state.setcions)
-            }.filterNil()
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.disposeBag)
+//        collectionView.dataSource = nil
 
+        reactor.state.map{ $0.rooms }.filterNil().subscribe(onNext: { [weak self] (rooms) in
+            guard let self = self else { return }
+            self.carouselView.reloadData()
+        }).disposed(by: rx.disposeBag)
 //        reactor.state.map{$0.setcions}.filterNil()
 //        .bind(to: collectionView.rx.items(dataSource: dataSource))
 //        .disposed(by: rx.disposeBag)
@@ -134,25 +187,25 @@ extension FloorViewCell: UICollectionViewDelegate {
 //    }
 //
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if layoutStyel == .cirle3D {
-            
-            let targetX = scrollView.contentOffset.x
-            scrollView.isPagingEnabled = true
-            let numCount:CGFloat =  6  //CGFloat(self.collectionView.numberOfItems(inSection: 0))
-            let itemWidth = scrollView.frame.size.width
-            
-            if numCount >= 3 {
-                
-                if targetX < itemWidth / 2 {
-                    scrollView.setContentOffset(CGPoint.init(x: targetX+itemWidth*numCount, y: 0), animated: false)
-                }
-                else if targetX > itemWidth / 2 + itemWidth * numCount {
-                    scrollView.setContentOffset(CGPoint.init(x: targetX-itemWidth*numCount, y: 0), animated: false)
-                }
-            }
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if layoutStyel == .cirle3D {
+//            
+//            let targetX = scrollView.contentOffset.x
+//            scrollView.isPagingEnabled = true
+//            let numCount:CGFloat =  6  //CGFloat(self.collectionView.numberOfItems(inSection: 0))
+//            let itemWidth = scrollView.frame.size.width
+//            
+//            if numCount >= 3 {
+//                
+//                if targetX < itemWidth / 2 {
+//                    scrollView.setContentOffset(CGPoint.init(x: targetX+itemWidth*numCount, y: 0), animated: false)
+//                }
+//                else if targetX > itemWidth / 2 + itemWidth * numCount {
+//                    scrollView.setContentOffset(CGPoint.init(x: targetX-itemWidth*numCount, y: 0), animated: false)
+//                }
+//            }
+//        }
+//    }
     
     
 }

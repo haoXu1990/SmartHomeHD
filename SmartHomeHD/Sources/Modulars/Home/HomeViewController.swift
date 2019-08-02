@@ -54,7 +54,8 @@ class HomeViewController: UIViewController, ReactorKit.View {
         layout.itemSize = CGSize.init(width: collectionViewFrame.width, height: collectionViewFrame.height)
         
         collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
-        collectionView.isPagingEnabled = true        
+        collectionView.isPagingEnabled = true
+        collectionView.clipsToBounds = false
         collectionView.register(Reusable.FloorViewCell)
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
@@ -69,7 +70,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
             if cell.reactor !== item {
                 cell.reactor = item
             }
-            cell.reloadData(flowStyle: self.flowStyle)
+            
             return cell
         })
     }
@@ -83,7 +84,7 @@ extension HomeViewController {
        
         collectionView.dataSource = nil
         
-        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+//        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         reactor.state.map { $0.setcions }.filterNil()
         .bind(to: collectionView.rx.items(dataSource: dataSource))
@@ -98,10 +99,6 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-
-}
-
 ///MARK - open method
 extension HomeViewController {
     
@@ -112,9 +109,6 @@ extension HomeViewController {
         
         collectionView.reloadData()
         // 这里需要重新加载数据, 有点问题
-//        Observable.just(Reactor.Action.fetchUserInfo)
-//            .bind(to: self.reactor!.action)
-//            .disposed(by: self.rx.disposeBag)
     }
 }
 

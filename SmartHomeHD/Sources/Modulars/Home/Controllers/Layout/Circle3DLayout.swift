@@ -8,33 +8,33 @@
 
 import UIKit
 
-class Circle3DLayout: UICollectionViewLayout {
-//    override init() {
-//        super.init()
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
+class Circle3DLayout: UICollectionViewFlowLayout {
+    override init() {
+        super.init()
+     self.scrollDirection = .horizontal
+        
+//        self.itemSize = CGSize.init(width: self.contentView.frame.width / 4, height: 100)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
     /// 内容区域总大小, 不是可见区域
-    override var collectionViewContentSize: CGSize {
-        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0 else {
-            return CGSize.zero
-        }
-        
+//    override var collectionViewContentSize: CGSize {
+//        guard let collectionView = self.collectionView, collectionView.numberOfSections > 0 else {
+//            return CGSize.zero
+//        }
+//
 //        let width = collectionView.frame.size.width * CGFloat((collectionView.numberOfItems(inSection: 0) + 2))
-        
-        let width = collectionView.frame.size.width * CGFloat((6 + 2))
-        
-        let height = collectionView.frame.height
-        return CGSize.init(width: width, height: height)
-
-    }
+//        let height = collectionView.frame.height
+//        return CGSize.init(width: width, height: height)
+//
+//    }
     
 
 //    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -101,29 +101,21 @@ class Circle3DLayout: UICollectionViewLayout {
             let width:CGFloat = collection.frame.size.width
             let height:CGFloat = collection.frame.size.height
             let x:CGFloat = collection.contentOffset.x
-            /// 弧度
-            let arc:CGFloat = .pi * CGFloat(2.0)
-            let screenW = UIScreen.main.bounds.width
-            // 这里只取 Section 0
-            let numberOfVisibleItems:Float = Float(collection.numberOfItems(inSection: 0))
-
-            attributes.center = CGPoint.init(x: x + width / 2, y: height * 0.5)
-            attributes.size = CGSize.init(width: width - 300, height: height )
-//            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
+        
+            let centerX = collection.contentOffset.x + width / 2
             
-            /// 3D 动画
-            var transform = CATransform3DIdentity
-            transform.m34 = -1.0 / 5800 //5800
-
-            let radius:CGFloat = attributes.size.width / 2 / CGFloat(tanf(Float(arc / 2 / CGFloat(numberOfVisibleItems))))
-
-            let angle:CGFloat = (CGFloat(indexPath.row) - x / width + 1) / CGFloat(numberOfVisibleItems) * arc
-
-            transform = CATransform3DRotate(transform, angle, 0, 1, 0)
-            transform = CATransform3DTranslate(transform, 0, 0, radius )
-
-            attributes.transform3D = transform
-
+            
+            let distance:CGFloat = abs(attributes.center.x - centerX)
+            let screenScale = distance / width
+            let scale = abs(cos(screenScale * .pi / 4))
+            
+            attributes.size = CGSize.init(width: width , height: height )
+            
+//            attributes.transform3D = CATransform3DMakeScale(1.0, 1.0, scale)
+            
+//            attributes.alpha = scale
+            
+            
             return attributes
 
         }
@@ -133,6 +125,47 @@ class Circle3DLayout: UICollectionViewLayout {
 
     }
     
+    
+//    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+//
+//        let attributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
+//
+//        if let collection = self.collectionView {
+//
+//            let width:CGFloat = collection.frame.size.width
+//            let height:CGFloat = collection.frame.size.height
+//            let x:CGFloat = collection.contentOffset.x
+//            /// 弧度
+//            let arc:CGFloat = .pi * CGFloat(2.0)
+//            let screenW = UIScreen.main.bounds.width
+//            // 这里只取 Section 0
+//            let numberOfVisibleItems:Float = Float(collection.numberOfItems(inSection: 0))
+//
+//            attributes.center = CGPoint.init(x: x + width / 2, y: height * 0.5)
+//            attributes.size = CGSize.init(width: width - 300, height: height )
+//            //            DLog("collection.contentOffset.x = \(collection.contentOffset.x)")
+//
+//            /// 3D 动画
+//            var transform = CATransform3DIdentity
+//            transform.m34 = -1.0 / 5800 //5800
+//
+//            let radius:CGFloat = attributes.size.width / 2 / CGFloat(tanf(Float(arc / 2 / CGFloat(numberOfVisibleItems))))
+//
+//            let angle:CGFloat = (CGFloat(indexPath.row) - x / width + 1) / CGFloat(numberOfVisibleItems) * arc
+//
+//            transform = CATransform3DRotate(transform, angle, 0, 1, 0)
+//            transform = CATransform3DTranslate(transform, 0, 0, radius )
+//
+//            attributes.transform3D = transform
+//
+//            return attributes
+//
+//        }
+//
+//
+//        return attributes
+//
+//    }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let resultArray = super.layoutAttributesForElements(in: rect)

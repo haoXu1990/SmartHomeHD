@@ -16,6 +16,8 @@ class FloorViewReactor: Reactor {
         
         var deviceList: [DeviceModel]?
         
+        var rooms: [RoomMoel]?
+        
         var setcions: [FloorViewSection]?
     }
     
@@ -36,7 +38,7 @@ class FloorViewReactor: Reactor {
         }
         let section = FloorViewSection.init(items: reactors)
         
-        self.initialState = State.init(deviceList: devicelist, setcions: [section])
+        self.initialState = State.init(deviceList: devicelist, rooms: floors,setcions: [section])
     
     }
 }
