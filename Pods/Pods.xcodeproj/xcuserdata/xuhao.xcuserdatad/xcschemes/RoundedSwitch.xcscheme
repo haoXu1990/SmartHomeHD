@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BACE9EE03738AC4F945BB33944CA4E8"
+               BlueprintIdentifier = "86BFD92B68627C02482CFE7AF61261D3"
                BlueprintName = "RoundedSwitch"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "RoundedSwitch.framework">

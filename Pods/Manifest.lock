@@ -5,6 +5,7 @@ PODS:
     - CocoaLumberjack/Core
   - Differentiator (3.1.0)
   - EZOpenSDK (4.8.6)
+  - FilesProvider (0.26.0)
   - HMSegmentedControl (1.5.5)
   - MMPhotoPicker (1.8)
   - Moya (11.0.2):
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - CocoaLumberjack/Swift
   - EZOpenSDK
+  - FilesProvider
   - HMSegmentedControl
   - MMPhotoPicker
   - Moya-ObjectMapper/RxSwift
@@ -106,6 +108,7 @@ SPEC REPOS:
     - CocoaLumberjack
     - Differentiator
     - EZOpenSDK
+    - FilesProvider
     - HMSegmentedControl
     - MMPhotoPicker
     - Moya
@@ -149,6 +152,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
+  FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   MMPhotoPicker: b326127637217c556732217835ce56368c92e4e2
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -178,6 +182,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 6e61aa01f8efcfd1f46eedb8d8cca14f30cb008b
+PODFILE CHECKSUM: c26d8f9a366da7c4ad926e93a427b721d467b8a3
 
 COCOAPODS: 1.5.3

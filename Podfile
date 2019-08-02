@@ -58,10 +58,11 @@ target 'SmartHomeHD' do
   pod 'swiftScan', :git => "https://github.com/MxABC/swiftScan.git", :commit =>"b6c5b1c"
   # log 工具
   pod 'CocoaLumberjack/Swift'
-  
+  pod 'FilesProvider'
   # 第三方集成
   # 荧石云摄像头SDK
   pod 'EZOpenSDK'
+ 
  
   # Pods for SmartHomeHD
 

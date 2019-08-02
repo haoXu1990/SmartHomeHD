@@ -51,6 +51,7 @@ class InfraredControlReactor: NSObject, Reactor {
                 
                 if error == .success || error == .localDataUpdateToDate {
                     log.info("下载遥控器成功")
+                    FHToaster.show(text: "下载遥控器成功")
                     self.remoteModel = remoteModel
                 }
                 else {

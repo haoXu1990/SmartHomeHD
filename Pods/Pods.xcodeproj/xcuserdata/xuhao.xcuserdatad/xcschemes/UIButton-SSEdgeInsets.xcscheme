@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E7B2F444FAA6F946185FCF337C05B4D9"
+               BlueprintIdentifier = "6EE0FD9A9BC8F3001A4A5EEEA8A02421"
                BuildableName = "UIButton_SSEdgeInsets.framework"
                BlueprintName = "UIButton-SSEdgeInsets"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E7B2F444FAA6F946185FCF337C05B4D9"
+            BlueprintIdentifier = "6EE0FD9A9BC8F3001A4A5EEEA8A02421"
             BuildableName = "UIButton_SSEdgeInsets.framework"
             BlueprintName = "UIButton-SSEdgeInsets"
             ReferencedContainer = "container:Pods.xcodeproj">

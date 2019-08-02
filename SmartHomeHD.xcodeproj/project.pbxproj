@@ -73,7 +73,6 @@
 		695ADDC422E8056C001A7533 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDC322E8056C001A7533 /* ModelType.swift */; };
 		695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADDC522E80777001A7533 /* DeviceModel.swift */; };
 		69C4F0C722F41586007BC912 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C4F0C622F41586007BC912 /* iCarousel.m */; };
-		69C4F0C922F41A08007BC912 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C4F0C822F41A08007BC912 /* RoomView.swift */; };
 		69D8D0BB22F138F40033B20F /* SmartProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */; };
 		69D8D0BF22F13B310033B20F /* ZAShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BD22F13B310033B20F /* ZAShapeButton.m */; };
 		69D8D0C222F13B610033B20F /* SmartControllBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0C122F13B610033B20F /* SmartControllBaseView.swift */; };
@@ -198,7 +197,6 @@
 		695ADDC522E80777001A7533 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		69C4F0C522F41586007BC912 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EA69403A-EE54-4370-A189-BC4C3D95E2FD/MyCarousel/MyCarousel/CoverFlow/iCarousel.h"; sourceTree = "<group>"; };
 		69C4F0C622F41586007BC912 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EA69403A-EE54-4370-A189-BC4C3D95E2FD/MyCarousel/MyCarousel/CoverFlow/iCarousel.m"; sourceTree = "<group>"; };
-		69C4F0C822F41A08007BC912 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartProjectorView.swift; sourceTree = "<group>"; };
 		69D8D0BD22F13B310033B20F /* ZAShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAShapeButton.m; sourceTree = "<group>"; };
 		69D8D0BE22F13B310033B20F /* ZAShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAShapeButton.h; sourceTree = "<group>"; };
@@ -419,7 +417,6 @@
 				695ADD5022DC623C001A7533 /* FloorViewCell.swift */,
 				690D46C622E86ABC001123AA /* FloorViewReactor.swift */,
 				695ADD5422DC6B28001A7533 /* RoomViewCell.swift */,
-				69C4F0C822F41A08007BC912 /* RoomView.swift */,
 				690D46C422E86950001123AA /* RoomViewReactor.swift */,
 			);
 			path = Controllers;
@@ -949,6 +946,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/FilesProvider/FilesProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/MMPhotoPicker/MMPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -986,6 +984,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FilesProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1102,7 +1101,6 @@
 				690D46F122EEA7AA001123AA /* LogCategory.m in Sources */,
 				695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */,
 				695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */,
-				69C4F0C922F41A08007BC912 /* RoomView.swift in Sources */,
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
 				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
 				690D46FD22EFED0F001123AA /* Toaster+Extension.swift in Sources */,

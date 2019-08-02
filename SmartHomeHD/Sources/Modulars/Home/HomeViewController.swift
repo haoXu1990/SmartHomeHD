@@ -84,8 +84,6 @@ extension HomeViewController {
        
         collectionView.dataSource = nil
         
-//        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
         reactor.state.map { $0.setcions }.filterNil()
         .bind(to: collectionView.rx.items(dataSource: dataSource))
         .disposed(by: rx.disposeBag)

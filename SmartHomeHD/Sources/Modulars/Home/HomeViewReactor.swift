@@ -82,7 +82,7 @@ class HomeViewReactor: NSObject, Reactor {
                 return  HomeViewSection.init(items: [reactor])
             }
            
-            newState.setcions = sections
+            newState.setcions =  [sections.first!, sections.first!] 
             return newState
         }
     }
