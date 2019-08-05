@@ -24,5 +24,6 @@
 
 
 #import "iCarousel.h"
+#import "CircleAnimationBottomView.h"
 
 #endif /* SmartHomeHD_Bridging_Header_h */

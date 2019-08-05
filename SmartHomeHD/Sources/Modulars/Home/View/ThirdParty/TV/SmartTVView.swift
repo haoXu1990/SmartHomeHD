@@ -190,7 +190,6 @@ extension SmartTVView {
     
     func bind(reactor: InfraredControlReactor) {
        
-        /// 下载遥控器按键
         reactor.state.map{$0.deviceModels}
             .filterNil()
             .flatMap { (model) -> Observable<Reactor.Action> in

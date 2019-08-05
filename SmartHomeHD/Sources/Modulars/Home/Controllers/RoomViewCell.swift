@@ -167,7 +167,19 @@ extension RoomViewCell {
         }
     }
     
-    /// 创建萤投影仪更多视图
+    /// 创建 空调更多视图
+    ///
+    /// - Parameter model: 设备模型
+    func initAirView(model: DeviceModel) {
+        let airView =  SmartAirView.init()
+        airView.reactor = InfraredControlReactor.init(deviceModel: model)
+        moreView.addSubview(airView)
+        airView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    /// 创建TV更多视图
     ///
     /// - Parameter model: 设备模型
     func initTVView(model: DeviceModel) {
@@ -179,7 +191,7 @@ extension RoomViewCell {
         }
     }
     
-    /// 创建萤投影仪更多视图
+    /// 创建投影仪更多视图
     ///
     /// - Parameter model: 设备模型
     func initProjectorView(model: DeviceModel) {        
@@ -255,7 +267,7 @@ extension RoomViewCell {
             self.removeAllSubView()
 
             if type == .More {
-                log.debug("显示更多视图")
+                log.debug("显示更多视图. typeID = \(typeID)")
 
                 if typeID == SmartDeviceType.YSCamera.rawValue {
                     self.initCameraView(model: model)
@@ -265,6 +277,9 @@ extension RoomViewCell {
                 }
                 else if typeID == SmartDeviceType.Tv.rawValue {
                     self.initTVView(model: model)
+                }
+                else if typeID == SmartDeviceType.Airconditioner.rawValue {
+                    self.initAirView(model: model)
                 }
 
             }
