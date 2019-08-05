@@ -4,6 +4,7 @@ PODS:
   - CocoaLumberjack/Swift (3.5.3):
     - CocoaLumberjack/Core
   - Differentiator (3.1.0)
+  - Dollar (8.0.0)
   - EZOpenSDK (4.8.6)
   - FilesProvider (0.26.0)
   - HMSegmentedControl (1.5.5)
@@ -24,6 +25,7 @@ PODS:
     - RxSwift (~> 4.0)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
+  - NVActivityIndicatorView/AppExtension (4.7.0)
   - ObjectMapper (3.5.1)
   - PryntTrimmerView (3.0.0)
   - ReactorKit (1.2.1):
@@ -75,6 +77,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - CocoaLumberjack/Swift
+  - Dollar
   - EZOpenSDK
   - FilesProvider
   - HMSegmentedControl
@@ -82,6 +85,7 @@ DEPENDENCIES:
   - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift (~> 11.0)
   - "NSObject+Rx"
+  - NVActivityIndicatorView/AppExtension
   - ReactorKit
   - ReusableKit
   - RoundedSwitch
@@ -107,6 +111,7 @@ SPEC REPOS:
     - Alamofire
     - CocoaLumberjack
     - Differentiator
+    - Dollar
     - EZOpenSDK
     - FilesProvider
     - HMSegmentedControl
@@ -114,6 +119,7 @@ SPEC REPOS:
     - Moya
     - Moya-ObjectMapper
     - "NSObject+Rx"
+    - NVActivityIndicatorView
     - ObjectMapper
     - PryntTrimmerView
     - ReactorKit
@@ -151,6 +157,7 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Dollar: 82581ff2e4e80b26ba11fad5ac7e638892522ca5
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
@@ -158,6 +165,7 @@ SPEC CHECKSUMS:
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
@@ -182,6 +190,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: c26d8f9a366da7c4ad926e93a427b721d467b8a3
+PODFILE CHECKSUM: 9909277ad1a59a1c9b946ab44ed1650eae55e9b5
 
 COCOAPODS: 1.5.3

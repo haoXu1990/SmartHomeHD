@@ -27,6 +27,8 @@
 		690D46F922EEEEB4001123AA /* SmartCameraViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */; };
 		690D46FB22EFDF1F001123AA /* DefaultsKeys+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46FA22EFDF1F001123AA /* DefaultsKeys+Key.swift */; };
 		690D46FD22EFED0F001123AA /* Toaster+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690D46FC22EFED0F001123AA /* Toaster+Extension.swift */; };
+		6932411F22F7CA1000B4DB65 /* FilePathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6932411E22F7CA1000B4DB65 /* FilePathUtils.swift */; };
+		6932412322F8126900B4DB65 /* SmartTVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6932412222F8126900B4DB65 /* SmartTVView.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -134,6 +136,8 @@
 		690D46F822EEEEB4001123AA /* SmartCameraViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCameraViewReactor.swift; sourceTree = "<group>"; };
 		690D46FA22EFDF1F001123AA /* DefaultsKeys+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultsKeys+Key.swift"; sourceTree = "<group>"; };
 		690D46FC22EFED0F001123AA /* Toaster+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toaster+Extension.swift"; sourceTree = "<group>"; };
+		6932411E22F7CA1000B4DB65 /* FilePathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathUtils.swift; sourceTree = "<group>"; };
+		6932412222F8126900B4DB65 /* SmartTVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartTVView.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				69D8D0C022F13B4C0033B20F /* BaseView */,
+				6932412422F8249200B4DB65 /* 空调 */,
+				6932412122F8120100B4DB65 /* TV */,
 				690D46FE22F064F8001123AA /* 投影仪 */,
 				690D46F322EEE975001123AA /* 摄像头 */,
 			);
@@ -350,6 +356,29 @@
 				69D8D0DD22F178910033B20F /* InfraredControlReactor.swift */,
 			);
 			path = "投影仪";
+			sourceTree = "<group>";
+		};
+		6932412022F7CB6700B4DB65 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6932411E22F7CA1000B4DB65 /* FilePathUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6932412122F8120100B4DB65 /* TV */ = {
+			isa = PBXGroup;
+			children = (
+				6932412222F8126900B4DB65 /* SmartTVView.swift */,
+			);
+			path = TV;
+			sourceTree = "<group>";
+		};
+		6932412422F8249200B4DB65 /* 空调 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "空调";
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -437,6 +466,7 @@
 		695ADD5B22DEB423001A7533 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				6932412022F7CB6700B4DB65 /* Utils */,
 				69D8D0C322F1778F0033B20F /* SDK */,
 				690D46E122EEA231001123AA /* Logger */,
 				695ADD9022E6DD19001A7533 /* Vender */,
@@ -945,6 +975,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Dollar/Dollar.framework",
 				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FilesProvider/FilesProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
@@ -952,6 +983,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
@@ -983,6 +1015,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dollar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FilesProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
@@ -990,6 +1023,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
@@ -1089,10 +1123,12 @@
 				695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */,
 				695ADDAA22E6DD8A001A7533 /* GCDAsyncSocket.m in Sources */,
 				695ADD5D22DEB47F001A7533 /* HomeViewController.swift in Sources */,
+				6932411F22F7CA1000B4DB65 /* FilePathUtils.swift in Sources */,
 				690D46C522E86950001123AA /* RoomViewReactor.swift in Sources */,
 				695ADDBF22E7F463001A7533 /* HomeViewReactor.swift in Sources */,
 				695ADD5122DC623C001A7533 /* FloorViewCell.swift in Sources */,
 				69D8D0BF22F13B310033B20F /* ZAShapeButton.m in Sources */,
+				6932412322F8126900B4DB65 /* SmartTVView.swift in Sources */,
 				695ADDAE22E6F55A001A7533 /* SmartHDNoticationConst.swift in Sources */,
 				690D46D322E9B30B001123AA /* MoyaPlugin.swift in Sources */,
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,

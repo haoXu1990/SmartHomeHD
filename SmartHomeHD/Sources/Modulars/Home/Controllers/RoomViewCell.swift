@@ -15,7 +15,7 @@ import RxOptional
 import ReactorKit
 import RxDataSources
 
-fileprivate enum CellType {
+enum CellType {
     /// defaut
     case zero
     /// 一个按键, 当前界面不够展示，还有子视图
@@ -158,13 +158,31 @@ extension RoomViewCell {
     /// 删除更多视图中的所有子视图
     func removeAllSubView() {
         for view in moreView.subviews {
+            
+            if let view = view as? SmartCameraView {
+                view.stopPlayer()
+            }
+            
             view.removeFromSuperview()
         }
     }
     
-    func initProjectorView(model: DeviceModel) {
-        /// 删除创建得视图
-        
+    /// 创建萤投影仪更多视图
+    ///
+    /// - Parameter model: 设备模型
+    func initTVView(model: DeviceModel) {
+        let tvView = SmartTVView.init()
+        tvView.reactor = InfraredControlReactor.init(deviceModel: model)
+        moreView.addSubview(tvView)
+        tvView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    /// 创建萤投影仪更多视图
+    ///
+    /// - Parameter model: 设备模型
+    func initProjectorView(model: DeviceModel) {        
         let cameraView = SmartProjectorView.init()
         cameraView.reactor = InfraredControlReactor.init(deviceModel: model)
         moreView.addSubview(cameraView)
@@ -173,8 +191,11 @@ extension RoomViewCell {
         }
     }
     
+
+    /// 创建萤石云摄像头更多视图
+    ///
+    /// - Parameter model: 设备模型
     func initCameraView(model: DeviceModel) {
-        
         let cameraView = SmartCameraView.loadFromNib()
         cameraView.reactor = SmartCameraViewReactor.init(deviceModel: model)
         moreView.addSubview(cameraView)
@@ -203,7 +224,7 @@ extension RoomViewCell {
         reactor.state.map { $0.deviceModels }
             .bind(to: tableView.rx.items) { (tableView, ip, model) in
 
-                switch self.cellFactory(typeID: Int(model.typeid!)!) {
+                switch RoomViewCell.cellFactory(typeID: Int(model.typeid!)!) {
                 case .More:
                     let cell = tableView.dequeue(Reusable.oneCell)!
                     cell.reactor = DeviceControllCellReactor.init(deviceModel: model)
@@ -228,7 +249,7 @@ extension RoomViewCell {
 
             guard let self = self else { return }
             let typeID = Int(model.typeid!)!
-            let type = self.cellFactory(typeID: typeID)
+            let type = RoomViewCell.cellFactory(typeID: typeID)
 
             /// 删除已有得视图
             self.removeAllSubView()
@@ -241,6 +262,9 @@ extension RoomViewCell {
                 }
                 else if typeID == SmartDeviceType.Projector.rawValue {
                     self.initProjectorView(model: model)
+                }
+                else if typeID == SmartDeviceType.Tv.rawValue {
+                    self.initTVView(model: model)
                 }
 
             }
@@ -260,7 +284,7 @@ extension RoomViewCell: UITableViewDelegate {
 
 extension RoomViewCell {
     
-    fileprivate func cellFactory(typeID: Int) -> CellType {
+      class func cellFactory(typeID: Int) -> CellType {
         
         guard let typeID = SmartDeviceType.init(rawValue: typeID) else {
             

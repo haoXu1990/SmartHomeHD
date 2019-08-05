@@ -97,7 +97,8 @@ class SmartProjectorView: SmartControllBaseView, View {
     override func layoutSubview() {
         
         menuBtn.snp.makeConstraints { (make) in
-            make.left.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
         }
         
         moreBtn.snp.makeConstraints { (make) in
@@ -106,7 +107,8 @@ class SmartProjectorView: SmartControllBaseView, View {
         }
         
         directionBtn.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()            
+            make.centerY.equalToSuperview().offset(-50)
         }
         
         zoomBtn.snp.makeConstraints { (make) in
@@ -138,6 +140,12 @@ extension SmartProjectorView {
                 return Observable.just(Reactor.Action.fetchRemote)
         }
             .bind(to: reactor.action)
+            .disposed(by: rx.disposeBag)
+        
+        reactor.state.map{ $0.deviceModels.title}
+            .filterNil()
+            .distinctUntilChanged()
+            .bind(to: titleLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
         menuBtn.rx.tap.subscribe(onNext: { [weak self] (_) in

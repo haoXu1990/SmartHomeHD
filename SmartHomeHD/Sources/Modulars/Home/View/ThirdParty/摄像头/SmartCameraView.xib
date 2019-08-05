@@ -26,9 +26,21 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3F4-bU-eUJ">
                     <rect key="frame" x="16" y="37" width="243" height="150"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9R-Qp-C3t" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                            <rect key="frame" x="106.5" y="60" width="30" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Yg6-3r-pLU"/>
+                                <constraint firstAttribute="width" constant="30" id="v4Z-ad-xyA"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="d9R-Qp-C3t" firstAttribute="centerX" secondItem="3F4-bU-eUJ" secondAttribute="centerX" id="Cup-uW-bOr"/>
                         <constraint firstAttribute="height" constant="150" id="WrG-NG-OuT"/>
+                        <constraint firstItem="d9R-Qp-C3t" firstAttribute="centerY" secondItem="3F4-bU-eUJ" secondAttribute="centerY" id="huN-BP-QQE"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzE-Nq-kkS">
@@ -111,6 +123,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activityView" destination="d9R-Qp-C3t" id="NUb-GO-Ifc"/>
                 <outlet property="cloudView" destination="o4Z-GN-KLf" id="BaV-Sn-wOd"/>
                 <outlet property="intercomBtn" destination="IzE-Nq-kkS" id="1b1-pC-mRz"/>
                 <outlet property="intercomLabel" destination="PpN-mU-mM5" id="OES-QJ-hXg"/>

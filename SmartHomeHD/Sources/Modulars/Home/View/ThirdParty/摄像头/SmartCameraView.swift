@@ -16,13 +16,15 @@ import RxCocoa
 import RxGesture
 import MMPhotoPicker
 import FilesProvider
+import NVActivityIndicatorView
+import SwiftDate
 
 /// 沙河路径
 let DZM_READ_DOCUMENT_DIRECTORY_PATH:String = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String)
 
 /// 录像文件夹路径
 
-let kRECORDINGPATH = DZM_READ_DOCUMENT_DIRECTORY_PATH + "/OpenSDK/EzvizLocalRecord"
+let kRECORDINGPATH = DZM_READ_DOCUMENT_DIRECTORY_PATH + "/OpenSDK/EzvizLocalRecord/"
 
 class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
     
@@ -49,8 +51,10 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
     /// 方向
     var directionBtn: ZAShapeButton!
     
+    /// 录像存储路径
     var filePath:String = ""
     
+    @IBOutlet weak var activityView: NVActivityIndicatorView!
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -95,18 +99,22 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
         }
         
         player.delegate = self
-        
         player.setPlayerView(plaerView)
+        
+//        activityView = NVActivityIndicatorView.defa
+        
+        
+        activityView.startAnimating()
         
         player.startRealPlay()
         
     }
     
-    func replayer(model: SmartCameraYSModel, verifyCode: String?) {
-    
-    }
-
     deinit {
+        player.destoryPlayer()
+    }
+    
+    open func stopPlayer() {
         player.destoryPlayer()
     }
 }
@@ -175,10 +183,16 @@ extension SmartCameraView: EZPlayerDelegate {
         
         FHToaster.show(text: error.localizedDescription)
         log.error("出错啦:" + error.localizedDescription)
+        activityView.stopAnimating()
     }
     
     func player(_ player: EZPlayer!, didReceivedMessage messageCode: Int) {
         log.debug("didReceivedMessage: \(messageCode)")
+        
+// 可以不停止这个动画，让他一直转
+//        if activityView.isAnimating {
+//            activityView.stopAnimating()
+//        }
     }
     
     func player(_ player: EZPlayer!, didReceivedDataLength dataLength: Int) {
@@ -271,15 +285,28 @@ extension SmartCameraView {
                 if self.recordingStatus == false {
                     self.recordingStatus = true
                     
-                    self.filePath =  kRECORDINGPATH + Date.init().toString() + ".mov"
-                    self.player.startLocalRecord(withPath: self.filePath)
+                    if FileUtils.createFolder(basePath: .documents, folderName: "/OpenSDK/EzvizLocalRecord") {
+                        log.error("文件创建成功")
+                        
+                        let fileName = Date.init().toFormat("yyyy-MM-dd HH:mm:ss", locale: Locales.init(rawValue: "current"))
+                        self.filePath =  kRECORDINGPATH + fileName + ".mov"
+                        self.player.startLocalRecord(withPath: self.filePath)
+                    }
+                    else {
+                        log.error("文件创建失败")
+                    }
+                    
                     return .just("停止录像")
                 }
                 else {
                     self.recordingStatus = false
                     self.player.stopLocalRecord()
                     
-                    MMPhotoUtil.saveVideo(URL.init(string: self.filePath), completion: { (success) in
+                    let url = URL.init(fileURLWithPath: self.filePath)
+                    log.info(url)
+                    
+                    /// 录像转移到相册
+                    MMPhotoUtil.saveVideo(url, completion: { (success) in
                         
                         if success {
                             FHToaster.show(text: "录像保存成功")
@@ -294,6 +321,23 @@ extension SmartCameraView {
             .bind(to: recordingLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
+        
+        plaerView.rx.tapGesture().subscribe(onNext: { [weak self](_) in
+            guard let self = self else { return }
+            
+            if self.plaerView.frame == UIScreen.main.bounds {
+                
+                
+            }
+            else {
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.plaerView.frame = UIScreen.main.bounds
+                })
+            }
+            
+            
+        }).disposed(by: rx.disposeBag)
     
             
         /// 进入前台开始播放
@@ -321,7 +365,7 @@ extension SmartCameraView {
 extension SmartCameraView {
     
     /// 创建文件夹,如果存在则不创建
-    private class func creat_file(path:String) ->Bool {
+     func creat_file(path:String) ->Bool {
         
         let fileManager = FileManager.default
         

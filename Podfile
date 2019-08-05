@@ -23,6 +23,7 @@ target 'SmartHomeHD' do
   pod 'RxViewController'
   pod 'SectionReactor'
   pod 'Then'
+  pod 'Dollar'
   
   # UI
   # 布局
@@ -63,6 +64,7 @@ target 'SmartHomeHD' do
   # 荧石云摄像头SDK
   pod 'EZOpenSDK'
  
+  pod 'NVActivityIndicatorView/AppExtension'
  
   # Pods for SmartHomeHD
 

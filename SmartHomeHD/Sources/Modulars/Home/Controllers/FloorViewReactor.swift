@@ -32,7 +32,9 @@ class FloorViewReactor: Reactor {
         let reactors = floors.map { (roomModel) -> RoomViewReactor in
             
             let devices = devicelist.filter({ (model) -> Bool in
-                return roomModel.roomid == model.roomid
+                let typeID = Int(model.typeid!)!
+                let cellType = RoomViewCell.cellFactory(typeID: typeID)
+                return (roomModel.roomid == model.roomid) && (cellType != .zero)
             })
             return RoomViewReactor.init(devicelist: devices)
         }
@@ -43,12 +45,10 @@ class FloorViewReactor: Reactor {
     }
 }
 
-extension FloorViewReactor {
+//extension FloorViewReactor {
 //
-//    func fetchDevice(<#parameters#>) -> <#return type#> {
-//        <#function body#>
-//    }
-}
+//
+//}
 
 
 
