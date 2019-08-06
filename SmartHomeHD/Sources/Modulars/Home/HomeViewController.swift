@@ -14,6 +14,7 @@ import ReactorKit
 import RxViewController
 import RxDataSources
 import RxCocoa
+import NVActivityIndicatorView
 
 class HomeViewController: UIViewController, ReactorKit.View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -25,6 +26,8 @@ class HomeViewController: UIViewController, ReactorKit.View {
     fileprivate var collectionViewFrame:CGRect!
     
     var dataSource: RxCollectionViewSectionedReloadDataSource<HomeViewSection>!
+    
+    var activityView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +49,8 @@ class HomeViewController: UIViewController, ReactorKit.View {
   
     func initUI()  {
         
-        self.view.frame = collectionViewFrame
-        self.view.backgroundColor = .white
+        view.frame = collectionViewFrame
+ 
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
@@ -57,10 +60,14 @@ class HomeViewController: UIViewController, ReactorKit.View {
         collectionView.isPagingEnabled = true
         collectionView.clipsToBounds = false
         collectionView.register(Reusable.FloorViewCell)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
         view.backgroundColor = .black       
     
+        activityView = NVActivityIndicatorView.init(frame: CGRect.init(x: collectionViewFrame.width * 0.5 - 25, y: collectionViewFrame.height * 0.5 - 25, width: 50, height: 50))
+        activityView.type = .lineScalePulseOut
+        view.addSubview(activityView)
+//        activityView.startAnimating()
         
         dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
             /// 固定只有一个 Cell
@@ -93,7 +100,23 @@ extension HomeViewController {
             .bind(to: reactor.action)
             .disposed(by: self.rx.disposeBag)
         
-        
+        reactor.state.map{$0.showActivityView}
+            .distinctUntilChanged()
+            .bind(to: activityView.rx.animating)
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension Reactive where Base: NVActivityIndicatorView {
+    var animating: Binder<Bool> {
+        return Binder<Bool>.init(self.base) { (view, show) in
+            if show {
+                view.startAnimating()
+            }
+            else {
+                view.stopAnimating()
+            }
+        }
     }
 }
 

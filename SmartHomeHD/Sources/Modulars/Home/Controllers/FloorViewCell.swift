@@ -101,6 +101,7 @@ extension FloorViewCell {
         carouselView.bounces = false
         carouselView.isPagingEnabled = true
         carouselView.type = .cylinder
+        carouselView.backgroundColor = .clear
         contentView.addSubview(carouselView)
     }
     

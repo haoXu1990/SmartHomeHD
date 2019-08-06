@@ -421,7 +421,10 @@ typedef NS_ENUM(int, IRKeyType) {
 	/// 自定义(紫)
 	IRKeyType_BaseOvalPurple = -91,
 	/// 记忆键
-	IRKeyType_MemoryKey = -90
+	IRKeyType_MemoryKey = -90,
+    
+    /// 自定义的，空调温度设置按键
+    IRKeyType_TempSet = 8888
 };
 
 /// 默认分页大小

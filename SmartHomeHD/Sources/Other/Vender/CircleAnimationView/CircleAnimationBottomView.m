@@ -4,7 +4,7 @@
 //
 //  Created by Amale on 16/2/29.
 //  Copyright © 2016年 Amale. All rights reserved.
-//  网上随便找得一个改得
+//  网上随便找得一个改得, 只适用于红外空调控制使用，并且没有做适配
 
 #import "CircleAnimationBottomView.h"
 
@@ -23,7 +23,6 @@ static const CGFloat kAnimationTime = 0.5;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer; // 渐变进度条
 @property (nonatomic, strong) UIImageView *markerImageView; // 光标
 @property (nonatomic, strong) UIImageView *bgImageView; // 背景图片
-@property (nonatomic, strong) UILabel *commentLabel; // 中间文字label
 
 @property (nonatomic, assign) CGFloat circelRadius; //圆直径
 @property (nonatomic, assign) CGFloat lineWidth; // 弧线宽度
@@ -47,20 +46,30 @@ static const CGFloat kAnimationTime = 0.5;
     if (self) {
         
         self.bgImageView = [[UIImageView alloc] init];
-        self.bgImageView.image = [UIImage imageNamed:@"device_control_air_circle_bg"];
-        
+        self.bgImageView.image = [UIImage imageNamed:@"image_virtual_control_round"];
         self.circelRadius = self.frame.size.width - 10.f;
         self.lineWidth = 10.f;
-        self.stareAngle = -190.0f;//-225.f;
-        self.endAngle = 10.f;
+        self.stareAngle = -195.0f;//-225.f;
+        self.endAngle = 15.f;
         
         // 尺寸需根据图片进行调整
         self.bgImageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        
-        //CGRectMake(-20, -16, self.circelRadius+50, self.circelRadius +10);
-        
         [self addSubview:self.bgImageView];
         
+        CGFloat viewW = 60;
+        CGFloat viewX = self.frame.size.width * 0.5 - viewW * 0.5;
+        CGFloat viewY = self.frame.size.height * 0.5 - 25;
+        
+        
+//        self.modelTypeLabel.bounds = CGRectMake(0, 0, 100, 30);
+        self.modelTypeLabel.text = @"";
+        self.modelTypeLabel.frame = CGRectMake(viewX, viewY, viewW, 30);
+        
+//        self.temperLabel.bounds = CGRectMake(0, 0, 100, 30);
+        self.temperLabel.text = @"";
+        self.temperLabel.frame = CGRectMake(viewX, viewY + 25, viewW, 30);
+        [self addSubview:self.modelTypeLabel];
+        [self addSubview:self.temperLabel];
 //        self.commentLabel.frame = CGRectMake(self.center.x-self.circelRadius/4, self.center.y-self.circelRadius/6, self.circelRadius / 2, self.circelRadius / 3);
 //
 //        [self addSubview:self.commentLabel];
@@ -90,14 +99,14 @@ static const CGFloat kAnimationTime = 0.5;
     
     // 底色
     self.bottomLayer = [CAShapeLayer layer];
-    self.bottomLayer.frame = rect;
-    self.bottomLayer.fillColor = [[UIColor clearColor] CGColor];
-    self.bottomLayer.strokeColor = [[UIColor  colorWithRed:206.f / 256.f green:241.f / 256.f blue:227.f alpha:1.f] CGColor];
-    self.bottomLayer.opacity = 0.5;
-    self.bottomLayer.lineCap = kCALineCapRound;
-    self.bottomLayer.lineWidth = self.lineWidth;
-    self.bottomLayer.path = [path CGPath];
-    [self.layer addSublayer:self.bottomLayer];
+//    self.bottomLayer.frame = rect;
+//    self.bottomLayer.fillColor = [[UIColor clearColor] CGColor];
+//    self.bottomLayer.strokeColor = [[UIColor  colorWithRed:206.f / 256.f green:241.f / 256.f blue:227.f alpha:1.f] CGColor];
+//    self.bottomLayer.opacity = 0.5;
+//    self.bottomLayer.lineCap = kCALineCapRound;
+//    self.bottomLayer.lineWidth = self.lineWidth;
+//    self.bottomLayer.path = [path CGPath];
+//    [self.layer addSublayer:self.bottomLayer];
     
     self.progressLayer = [CAShapeLayer layer];
     self.progressLayer.frame = rect;
@@ -122,17 +131,14 @@ static const CGFloat kAnimationTime = 0.5;
                                    (id)[[UIColor colorWithHex:0xffea00] CGColor],
                                    (id)[[UIColor colorWithHex:0xff1e00] CGColor],
                                    nil]];
-    [self.gradientLayer setLocations:@[@0, @0.5, @0.7, @1]];
+    [self.gradientLayer setLocations:@[@0, @0.3, @0.6, @1]];
     [self.gradientLayer setStartPoint:CGPointMake(0, 0)];
     [self.gradientLayer setEndPoint:CGPointMake(1, 0)];
     [self.gradientLayer setMask:self.progressLayer];
-    
     [self.layer addSublayer:self.gradientLayer];
     
+    
     // 240 是用整个弧度的角度之和 |-200| + 20 = 270
-    
-    
-    
     [self createAnimationWithStartAngle:degreesToRadians(self.stareAngle)
                                endAngle:degreesToRadians(self.stareAngle + 270 * 0)];
     
@@ -221,14 +227,14 @@ static const CGFloat kAnimationTime = 0.5;
         
         
         [self createAnimationWithStartAngle:degreesToRadians(self.stareAngle)
-                                   endAngle:degreesToRadians(self.stareAngle + 270 * percent / 100)];
+                                   endAngle:degreesToRadians(self.stareAngle + 210 * percent / 100)];
     }else{
         [self createAnimationWithStartAngle:self.oldEndAngle
-                                   endAngle:degreesToRadians(self.stareAngle + 270 * percent / 100)];
+                                   endAngle:degreesToRadians(self.stareAngle + 210 * percent / 100)];
         
     }
     
-    self.oldEndAngle = degreesToRadians(self.stareAngle + 270 * percent / 100) ;
+    self.oldEndAngle = degreesToRadians(self.stareAngle + 210 * percent / 100) ;
     
 }
 
@@ -242,19 +248,21 @@ static const CGFloat kAnimationTime = 0.5;
     
     _text = text;
     
-    self.commentLabel.text = text;
+//    self.commentLabel.text = text;
     
 }
 
 -(void)setTemperInter:(CGFloat)temperInter{
     
     
-    if (temperInter>=18&& temperInter<=30) {
+    if (temperInter>=16&& temperInter<=30) {
         
-        _temperInter = temperInter ;
-        
-        self.percent = ((temperInter-18)/12)*100;
-        
+        _temperInter = temperInter;        
+        self.percent = ((temperInter-16)/2/7)*100;
+    }
+    else {
+        _temperInter = temperInter;
+        self.percent = 0;
     }
     
 }
@@ -308,49 +316,63 @@ static const CGFloat kAnimationTime = 0.5;
     return _typeImageView ;
 }
 
-- (UILabel *)commentLabel {
-    
-    if (nil == _commentLabel) {
-        _commentLabel = [[UILabel alloc] init];
-        _commentLabel.font = [UIFont systemFontOfSize:20.f];
-        _commentLabel.textColor = [UIColor colorWithHex:0x20B2AA];
-        _commentLabel.textAlignment = NSTextAlignmentCenter;
-        _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _commentLabel.numberOfLines = 0;
+- (UILabel *)modelTypeLabel {
+//    #19E1EC
+    if (nil == _modelTypeLabel) {
+        _modelTypeLabel = [[UILabel alloc] init];
+        _modelTypeLabel.font = [UIFont systemFontOfSize:18.f];
+        _modelTypeLabel.textColor = [UIColor colorWithHex:0x19E1EC];
+        _modelTypeLabel.textAlignment = NSTextAlignmentCenter;
+        _modelTypeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _modelTypeLabel.numberOfLines = 0;
     }
-    return _commentLabel;
+    return _modelTypeLabel;
 }
-
+-(UILabel *)temperLabel {
+    if (nil == _temperLabel) {
+        _temperLabel = [[UILabel alloc] init];
+        _temperLabel.font = [UIFont systemFontOfSize:16.f];
+        _temperLabel.textColor = [UIColor colorWithHex:0x19E1EC];
+        _temperLabel.textAlignment = NSTextAlignmentCenter;
+        _temperLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _temperLabel.numberOfLines = 0;
+    }
+    return _temperLabel;
+}
 - (void)handlePanGesture:(UIGestureRecognizer *)recognizer{
     
     CGPoint point = [recognizer locationInView:self];
     
     CGFloat  tapfloat = [self angleFromStartToPoint:point];
     
-    if (tapfloat>=degreesToRadians(45)&&tapfloat<=degreesToRadians(315)) {
+    if (tapfloat>=degreesToRadians(75)&&tapfloat<=degreesToRadians(285)) {
         
-        CGFloat floata = tapfloat-degreesToRadians(45) ;
+        CGFloat floata = tapfloat-degreesToRadians(75) ;
         
-        CGFloat floatb =  degreesToRadians(315)-degreesToRadians(45) ;
+        CGFloat floatb =  degreesToRadians(285)-degreesToRadians(75) ;
         
         
         
         NSLog(@"点击了正确范围 大概是多少的百分比 %f  %f  %f",floata,floatb,floata/floatb);
         
-        NSString * choose = [self decimalwithFormat:@"0" floatV:floata/floatb*12];
+        NSString * choose = [self decimalwithFormat:@"0" floatV:floata/floatb*7];
         
-        NSLog(@"重新计算后的 角度 %f",[choose floatValue]/12*100);
+        NSLog(@"选择得角度:%@, 重新计算后的 角度 %f",choose, [choose floatValue]/7*100);
         
-        //[self setPercent:[choose floatValue]/12*100] ;
+        CGFloat tmp = [choose floatValue]/7*100;
         
-        [self setTemperInter:[choose floatValue]+18];
+        [self setPercent:tmp == 0 ? 1 : tmp];
+        
+//        [self setTemperInter:[choose floatValue]+16];
         
         //  1/12 为 18
-        [self ChooseWithPresent:floata/floatb];
+//        [self ChooseWithPresent:floata/floatb];
         
         if (self.didTouchBlock) {
             
-            self.didTouchBlock([choose integerValue]+18);
+            NSInteger result = 16 + choose.intValue * 2;
+            
+            self.didTouchBlock(result);
         }
         
     }
@@ -358,16 +380,16 @@ static const CGFloat kAnimationTime = 0.5;
     
 }
 
--(void)ChooseWithPresent:(CGFloat)persent{
-    
-    float a   = persent*12;
-    
-    NSString * choose = [self decimalwithFormat:@"0" floatV:a] ;
-    
-    NSLog(@"**  %@",choose);
-    
-    self.commentLabel.text = [NSString stringWithFormat:@"%d ℃",18+[choose intValue]];
-}
+//-(void)ChooseWithPresent:(CGFloat)persent{
+//
+//    float a   = persent*12;
+//
+//    NSString * choose = [self decimalwithFormat:@"0" floatV:a] ;
+//
+//    NSLog(@"**  %@",choose);
+//
+//    self.commentLabel.text = [NSString stringWithFormat:@"%d ℃",18+[choose intValue]];
+//}
 
 #pragma mark - 四舍五入
 - (NSString *) decimalwithFormat:(NSString *)format  floatV:(float)floatV
@@ -382,7 +404,7 @@ static const CGFloat kAnimationTime = 0.5;
 - (CGFloat)angleFromStartToPoint:(CGPoint)point{
     
     CGFloat angle = [self angleBetweenLinesWithLine1Start:CGPointMake(CGRectGetWidth(self.bounds) / 2,CGRectGetHeight(self.bounds) / 2)
-                                                 Line1End:CGPointMake(CGRectGetWidth(self.bounds) / 2,CGRectGetHeight(self.bounds) / 2 - 1)
+                                                 Line1End:CGPointMake(CGRectGetWidth(self.bounds) / 2,CGRectGetHeight(self.bounds) / 2 - 5)
                                                Line2Start:CGPointMake(CGRectGetWidth(self.bounds) / 2,CGRectGetHeight(self.bounds) / 2)
                      
                                                  Line2End:point];
@@ -392,9 +414,11 @@ static const CGFloat kAnimationTime = 0.5;
         //angle = 2 * M_PI - angle;
         
         angle =  M_PI - angle;
+        NSLog(@" angle = %f",angle);
     }else{
         
         angle =  M_PI + angle;
+        NSLog(@"else  angle = %f",angle);
     }
     return angle;
 }
@@ -404,6 +428,39 @@ static const CGFloat kAnimationTime = 0.5;
                                   Line1End:(CGPoint)line1End
                                 Line2Start:(CGPoint)line2Start
                                   Line2End:(CGPoint)line2End{
+    
+//    NSLog(@"line1Start = %@, line1End = %@",line1Start, line1End);
+//    NSLog(@"line2Start = %@, line2End = %@",line2Start, line2End);
+
+    
+   
+    
+//    UIBezierPath *path = [UIBezierPath bezierPath];
+//    [path moveToPoint:line1Start];
+//    [path addLineToPoint:line1End];
+//
+//    CAShapeLayer *line1Layer = [CAShapeLayer layer];
+//    line1Layer.lineWidth = 3;
+//    line1Layer.strokeColor = [UIColor yellowColor].CGColor;
+//    line1Layer.path = path.CGPath;
+//    line1Layer.fillColor = nil;
+//    [self.layer addSublayer:line1Layer];
+//
+//
+//
+//
+//    UIBezierPath *path1 = [UIBezierPath bezierPath];
+//    [path1 moveToPoint:line2Start];
+//    [path1 addLineToPoint:line2End];
+//
+//    CAShapeLayer *line2Layer = [CAShapeLayer layer];
+//    line2Layer.lineWidth = 3;
+//    line2Layer.strokeColor = [UIColor redColor].CGColor;
+//    line2Layer.path = path1.CGPath;
+//    line2Layer.fillColor = nil;
+//    [self.layer addSublayer:line2Layer];
+    
+    
     CGFloat a = line1End.x - line1Start.x;
     CGFloat b = line1End.y - line1Start.y;
     CGFloat c = line2End.x - line2Start.x;

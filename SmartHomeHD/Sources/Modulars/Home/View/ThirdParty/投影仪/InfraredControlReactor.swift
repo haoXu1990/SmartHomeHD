@@ -22,30 +22,37 @@ class InfraredControlReactor: NSObject, Reactor {
         /// 获取遥控板
         case fetchRemote
         
+        /// 发送红外命令
         case sendCommond(IRKeyType)
+        
+        case sendAirCommand(IRKeyType, Int)
     }
     
     enum Mutaion {
+        
+        /// 设置空调状态
+        case setAirStatus(TJAirRemoteState?)
     }
     
     struct State {
         var deviceModels:DeviceModel!
+        
+        var airStatus:TJAirRemoteState?
     }
     
-    var initialState: InfraredControlReactor.State
+    var initialState: State
     let service: CommonServerType = CommonServer.init()
     var remoteModel: TJRemote?
+    
     init(deviceModel: DeviceModel) {
-        self.initialState = State.init(deviceModels: deviceModel)
+        self.initialState = State.init(deviceModels: deviceModel, airStatus: nil)
     }
     
-    func mutate(action: InfraredControlReactor.Action) -> Observable<InfraredControlReactor.Mutaion> {
+    func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
-        case . fetchRemote:
+        case .fetchRemote:
             let remoteID = self.currentState.deviceModels.rowcount!
-           
-        
             TJRemoteClient.shared().downloadRemote(remoteID) { [weak self](error, remoteModel) in
                 guard let self = self else {return}
                 
@@ -61,45 +68,102 @@ class InfraredControlReactor: NSObject, Reactor {
             }
         case .sendCommond(let keyType):
             let irList = fetchIRKey(keyType: keyType)
-            if irList.count == 0 { FHToaster.show(text: "遥控器不可用") }
-            for ir in irList {
-                
-                guard let irData = ir.data , let data = TJRemoteHelper.getIrCode(ir.freq, data: irData) else {
-                   FHToaster.show(text: "按键解析失败")
-                    return .empty()
-                }
-                
-                let sn = self.currentState.deviceModels.boxsn
-                
-                let param:[String : Any] = ["vender": "2",
-                             "boxsn": sn!,
-                             "data": Tool.dataToHexString(with: data),
-                             "type": 0]
-                
-                FHSoketManager.shear().sendMessage(event: "pubIrMatchTjia", data: param )
-            }
+            if irList.count == 0 { FHToaster.show(text: "按键获取失败") }
+            sendIRSoket(irList: irList)
             
             break
+        case .sendAirCommand(let keyType, let temper):
+            let irList = fetchAirIRKey(keyType: keyType, tmper: temper)
+            if irList.count == 0 { FHToaster.show(text: "按键获取失败") }
+            sendIRSoket(irList: irList)
             
+            if let remoteModel = self.remoteModel {
+                let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
+                return Observable.just(Mutaion.setAirStatus(remoteState))
+            }
+             break
         }
-        
+       
         return .empty()
     }
 
-}
-
-extension NSData {
-    
-    func toHexString () -> String {
-        let len = self.length        
-        var hexString = ""
-       return ""
+    func reduce(state: State, mutation: Mutaion) -> State {
+        var newState = state
+        switch mutation {
+        case .setAirStatus(let status):
+            newState.airStatus = status
+        return newState
+        }
+        
     }
 }
 
 extension InfraredControlReactor {
     
-    /// 根据 按键类型获取按键列表
+    func sendIRSoket(irList: [TJInfrared]) {
+        for ir in irList {
+            
+            guard let irData = ir.data , let data = TJRemoteHelper.getIrCode(ir.freq, data: irData) else {
+                FHToaster.show(text: "按键解析失败")
+                return
+            }
+            
+            let sn = self.currentState.deviceModels.boxsn
+            
+            let param:[String : Any] = ["vender": "2",
+                                        "boxsn": sn!,
+                                        "data": Tool.dataToHexString(with: data),
+                                        "type": 0]
+            
+            FHSoketManager.shear().sendMessage(event: "pubIrMatchTjia", data: param )
+        }
+    }
+}
+
+extension InfraredControlReactor {
+    
+    /// 根据 按键类型获取空调按键列表
+    ///
+    /// - Parameter keyType: 按键类型
+    /// - Parameter tmper: 温度 (只在温度设置时需要)
+    /// - Returns: [TJInfrared]
+    func fetchAirIRKey(keyType: IRKeyType, tmper: Int) -> [TJInfrared] {
+        
+        if let remoteModel = self.remoteModel, let keys:[TJIrKey] = remoteModel.keys as? [TJIrKey] {
+            
+            for key in  keys {
+                let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
+                if key.type == .airTimer {
+                    /// 空调空时按键
+                    
+                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirTimerInfrared(key, state: remoteState!, time: 10) else {
+                        return []
+                    }
+                    return irList
+                }
+                else if key.type == .tempSet {
+                    /// 温度设置
+                    let param = TJAdvancedAirRemoteParam.init(airRemoteState: remoteState!)
+                    param.temp = Int32(tmper)                    
+                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, state: remoteState!, param: param) else {
+                        return []
+                    }
+                    return irList
+                }
+                else {
+                    /// 空调普通按键
+                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, key: key, state: remoteState!) else {
+                        return []
+                    }
+                    return irList
+                }
+            }
+        }
+        
+        return []
+    }
+    
+    /// 根据 按键类型获取按键列表 (空调除外)
     ///
     /// - Parameter keyType: 按键类型
     /// - Returns: [TJInfrared]

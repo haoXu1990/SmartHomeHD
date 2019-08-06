@@ -81,7 +81,19 @@ struct DeviceModel: ModelType {
 //    var floor_id: Int?
     
     var houseid: String?
+    
 }
+
+extension DeviceModel:Equatable {}
+
+func ==(lhs:DeviceModel, rhs:DeviceModel) ->Bool {
+    return lhs.eqmid == rhs.eqmid
+}
+
+func !=(lhs:DeviceModel, rhs:DeviceModel) ->Bool {
+    return lhs.eqmid != rhs.eqmid
+}
+
 /// 楼层模型
 struct FloorMoel: ModelType {
     

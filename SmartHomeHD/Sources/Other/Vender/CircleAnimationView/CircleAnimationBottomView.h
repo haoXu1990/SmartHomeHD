@@ -18,7 +18,11 @@
 
 @property (nonatomic, strong) NSString *text;       // 文字
 
-@property (nonatomic, copy) NSString * typeImgName ; 
+@property (nonatomic, copy) NSString * typeImgName ;
+
+@property (nonatomic, strong) UILabel *modelTypeLabel; // 模式
+@property (nonatomic, strong) UILabel *temperLabel; // 温度
+
 
 @property(nonatomic,copy) void (^didTouchBlock) (NSInteger temp);
 

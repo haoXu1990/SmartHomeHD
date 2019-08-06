@@ -27,6 +27,8 @@ class HomeViewReactor: NSObject, Reactor {
     
     struct State {
         var setcions: [HomeViewSection]?
+        
+        var showActivityView: Bool = true
     }
     
     let initialState: HomeViewReactor.State
@@ -82,7 +84,8 @@ class HomeViewReactor: NSObject, Reactor {
                 return  HomeViewSection.init(items: [reactor])
             }
            
-            newState.setcions =  [sections.first!, sections.first!] 
+            newState.setcions =  [sections.first!, sections.first!]
+            newState.showActivityView = false
             return newState
         }
     }

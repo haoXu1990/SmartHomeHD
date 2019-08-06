@@ -80,9 +80,7 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
     func initSDK() {
         
         EZOpenSDK.initLib(withAppKey: "4d64d27449d9480bb8da793e3aec6302")
-        
         guard let token = Defaults[.ysAccessToken] else { return}
-        
         EZOpenSDK.setAccessToken(token)
     }
     
@@ -100,14 +98,8 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
         
         player.delegate = self
         player.setPlayerView(plaerView)
-        
-//        activityView = NVActivityIndicatorView.defa
-        
-        
         activityView.startAnimating()
-        
         player.startRealPlay()
-        
     }
     
     deinit {
@@ -331,9 +323,9 @@ extension SmartCameraView {
             }
             else {
                 
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.plaerView.frame = UIScreen.main.bounds
-                })
+//                UIView.animate(withDuration: 0.5, animations: {
+//                    self.plaerView.frame = UIScreen.main.bounds
+//                })
             }
             
             
