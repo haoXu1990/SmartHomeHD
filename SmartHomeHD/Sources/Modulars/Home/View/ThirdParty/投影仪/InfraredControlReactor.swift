@@ -53,19 +53,27 @@ class InfraredControlReactor: NSObject, Reactor {
         switch action {
         case .fetchRemote:
             let remoteID = self.currentState.deviceModels.rowcount!
-            TJRemoteClient.shared().downloadRemote(remoteID) { [weak self](error, remoteModel) in
-                guard let self = self else {return}
-                
-                if error == .success || error == .localDataUpdateToDate {
-                    log.info("下载遥控器成功")
-                    FHToaster.show(text: "下载遥控器成功")
-                    self.remoteModel = remoteModel
-                }
-                else {
-                    log.error("下载遥控器失败: \(error.rawValue)")
-                    FHToaster.show(text: "下载遥控器失败")
+            
+            if let remoteModel = TJDataManager.shared().getRemoteById(remoteID) {
+                FHToaster.show(text: "下载遥控器成功")
+                self.remoteModel = remoteModel
+            }
+            else {
+                TJRemoteClient.shared().downloadRemote(remoteID) { [weak self](error, remoteModel) in
+                    guard let self = self else {return}
+                    
+                    if error == .success || error == .localDataUpdateToDate {
+                        log.info("下载遥控器成功")
+                        FHToaster.show(text: "下载遥控器成功")
+                        self.remoteModel = remoteModel
+                    }
+                    else {
+                        log.error("下载遥控器失败: \(error.rawValue)")
+                        FHToaster.show(text: "下载遥控器失败")
+                    }
                 }
             }
+            
         case .sendCommond(let keyType):
             let irList = fetchIRKey(keyType: keyType)
             if irList.count == 0 { FHToaster.show(text: "按键获取失败") }
@@ -73,9 +81,10 @@ class InfraredControlReactor: NSObject, Reactor {
             
             break
         case .sendAirCommand(let keyType, let temper):
+            log.debug("keyType: \(keyType.rawValue)")
             let irList = fetchAirIRKey(keyType: keyType, tmper: temper)
             if irList.count == 0 { FHToaster.show(text: "按键获取失败") }
-            sendIRSoket(irList: irList)
+            sendIRSoket(irList: irList, type: 1)
             
             if let remoteModel = self.remoteModel {
                 let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
@@ -100,7 +109,7 @@ class InfraredControlReactor: NSObject, Reactor {
 
 extension InfraredControlReactor {
     
-    func sendIRSoket(irList: [TJInfrared]) {
+    func sendIRSoket(irList: [TJInfrared], type: Int = 0) {
         for ir in irList {
             
             guard let irData = ir.data , let data = TJRemoteHelper.getIrCode(ir.freq, data: irData) else {
@@ -113,7 +122,7 @@ extension InfraredControlReactor {
             let param:[String : Any] = ["vender": "2",
                                         "boxsn": sn!,
                                         "data": Tool.dataToHexString(with: data),
-                                        "type": 0]
+                                        "type": type]
             
             FHSoketManager.shear().sendMessage(event: "pubIrMatchTjia", data: param )
         }
@@ -131,33 +140,43 @@ extension InfraredControlReactor {
         
         if let remoteModel = self.remoteModel, let keys:[TJIrKey] = remoteModel.keys as? [TJIrKey] {
             
-            for key in  keys {
-                let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
-                if key.type == .airTimer {
-                    /// 空调空时按键
-                    
-                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirTimerInfrared(key, state: remoteState!, time: 10) else {
-                        return []
-                    }
-                    return irList
+            let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
+            /// 温度设置, 这个Type 是自定义的
+            if keyType == .tempSet {
+                
+                log.info("处理空调温度设置按键")
+                let param = TJAdvancedAirRemoteParam.init(airRemoteState: remoteState!)
+                param.temp = Int32(tmper)
+                guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, state: remoteState!, param: param) else {
+                    return []
                 }
-                else if key.type == .tempSet {
-                    /// 温度设置
-                    let param = TJAdvancedAirRemoteParam.init(airRemoteState: remoteState!)
-                    param.temp = Int32(tmper)                    
-                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, state: remoteState!, param: param) else {
-                        return []
+                return irList
+            }
+            else {
+                
+                for key in  keys {
+                    if key.type == keyType {
+                        
+                        if key.type == .airTimer {
+                            /// 空调定时按键
+                            log.info("处理空调定时按键")
+                            guard let irList = TJRemoteHelper.sharedInstance().fetchAirTimerInfrared(key, state: remoteState!, time: 10) else {
+                                return []
+                            }
+                            return irList
+                        }
+                        else {
+                            log.info("处理空调普通按键")
+                            /// 空调普通按键
+                            guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, key: key, state: remoteState!) else {
+                                return []
+                            }
+                            return irList
+                        }
                     }
-                    return irList
-                }
-                else {
-                    /// 空调普通按键
-                    guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, key: key, state: remoteState!) else {
-                        return []
-                    }
-                    return irList
                 }
             }
+            
         }
         
         return []

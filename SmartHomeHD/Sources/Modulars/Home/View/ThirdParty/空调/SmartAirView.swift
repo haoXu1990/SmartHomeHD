@@ -114,27 +114,8 @@ extension SmartAirView {
         
         reactor.state.map{$0.airStatus}
             .filterNil()
-//            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] (remoteStatus) in
-            guard let self = self, remoteStatus.power == .on else {return }
-//                self.circleAnimationView.temperInter = CGFloat(remoteStatus.temp)
-                self.circleAnimationView.temperLabel.text = String.init(format: "%dC", Int(remoteStatus.temp))
-                var tmpSt = ""
-                switch remoteStatus.mode {
-                case .auto:
-                    tmpSt = "AUTO"
-                case .wind:
-                    tmpSt = "送风"
-                case .dry:
-                    tmpSt = "抽湿"
-                case .hot:
-                    tmpSt = "制热"
-                case .cool:
-                    tmpSt = "制冷"
-                }
-                log.debug("温度: \(remoteStatus.temp), 模式: \(tmpSt)")
-                self.circleAnimationView.modelTypeLabel.text = tmpSt
-        }).disposed(by: rx.disposeBag)
+            .bind(to: circleAnimationView.rx.refreshStataus)
+            .disposed(by: rx.disposeBag)
         
         
         powerBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
@@ -169,4 +150,42 @@ extension SmartAirView {
             .bind(to: self.reactor!.action)
             .disposed(by: rx.disposeBag)
     }
+    
+    class func fetchAIRModel(mode: AirMode) -> String {
+        var tmpSt = ""
+        switch mode {
+        case .auto:
+            tmpSt = "AUTO"
+        case .wind:
+            tmpSt = "送风"
+        case .dry:
+            tmpSt = "抽湿"
+        case .hot:
+            tmpSt = "制热"
+        case .cool:
+            tmpSt = "制冷"
+        }
+        return tmpSt
+    }
 }
+
+extension Reactive where Base: CircleAnimationBottomView {
+    var refreshStataus: Binder<TJAirRemoteState> {
+        return Binder<TJAirRemoteState>.init(self.base) { (circleView, remoteState) in
+            
+            if remoteState.power == .on {                
+                circleView.temperInter = CGFloat(remoteState.temp)
+                circleView.temperLabel.text = String.init(format: "%dC", Int(remoteState.temp))
+                circleView.modelTypeLabel.text = SmartAirView.fetchAIRModel(mode: remoteState.mode)
+            }
+            else {
+                circleView.temperInter = 0
+                circleView.temperLabel.text = ""
+                circleView.modelTypeLabel.text = ""
+            }
+        }
+    }
+}
+
+
+

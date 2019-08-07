@@ -258,7 +258,7 @@ static const CGFloat kAnimationTime = 0.5;
     if (temperInter>=16&& temperInter<=30) {
         
         _temperInter = temperInter;        
-        self.percent = ((temperInter-16)/2/7)*100;
+        self.percent = ((temperInter-16)/7)*100/2;
     }
     else {
         _temperInter = temperInter;
@@ -353,20 +353,19 @@ static const CGFloat kAnimationTime = 0.5;
         
         
         
-        NSLog(@"点击了正确范围 大概是多少的百分比 %f  %f  %f",floata,floatb,floata/floatb);
+//        NSLog(@"点击了正确范围 大概是多少的百分比 %f  %f  %f",floata,floatb,floata/floatb);
         
         NSString * choose = [self decimalwithFormat:@"0" floatV:floata/floatb*7];
         
-        NSLog(@"选择得角度:%@, 重新计算后的 角度 %f",choose, [choose floatValue]/7*100);
+//        NSLog(@"选择得角度:%@, 重新计算后的 角度 %f",choose, [choose floatValue]/7*100);
         
         CGFloat tmp = [choose floatValue]/7*100;
         
+//        NSLog(@"setPercent: %f", tmp == 0 ? 1 : tmp);
+        
         [self setPercent:tmp == 0 ? 1 : tmp];
         
-//        [self setTemperInter:[choose floatValue]+16];
-        
-        //  1/12 为 18
-//        [self ChooseWithPresent:floata/floatb];
+
         
         if (self.didTouchBlock) {
             
@@ -414,11 +413,11 @@ static const CGFloat kAnimationTime = 0.5;
         //angle = 2 * M_PI - angle;
         
         angle =  M_PI - angle;
-        NSLog(@" angle = %f",angle);
+//        NSLog(@" angle = %f",angle);
     }else{
         
         angle =  M_PI + angle;
-        NSLog(@"else  angle = %f",angle);
+//        NSLog(@"else  angle = %f",angle);
     }
     return angle;
 }
