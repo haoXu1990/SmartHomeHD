@@ -126,6 +126,18 @@ class SmartProjectorView: SmartControllBaseView, View {
             make.bottom.equalToSuperview().offset(-60)
         }
     }
+    
+    func showExtensionView() {
+        
+        if let model = self.reactor?.remoteModel, let keys = self.reactor?.extensionKeys {
+            let extensionView = IRExtensionView.init()
+            extensionView.reactor = IRExtensionViewReactor.init(remote: model, keys: keys)
+            self.extensionView.addSubview(extensionView)
+            extensionView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
 }
 
 // MARK: - Reactor
@@ -156,6 +168,11 @@ extension SmartProjectorView {
         powerBtn.rx.tap.subscribe(onNext: { [weak self](_) in
             guard let self = self else {return }
             self.sendObsver(keType: .power)
+        }).disposed(by: rx.disposeBag)
+        
+        moreBtn.rx.tap.subscribe(onNext: { [weak self](_) in
+            guard let self = self else {return }
+            self.showExtensionView()
         }).disposed(by: rx.disposeBag)
     }
     
@@ -235,7 +252,11 @@ extension SmartProjectorView {
 }
 extension SmartProjectorView {
     
-    func getZAShapeButtonPostion(sender: ZAShapeButton) {
+    func allKeyType() -> [IRKeyType] {
         
+        return [.menu, .power, .menuUp,
+                .menuOk, .menuDown, .menuLeft,
+                .menuRight, .dZoomUp, .dZoomDown,
+                .volUp, .volDown]
     }
 }

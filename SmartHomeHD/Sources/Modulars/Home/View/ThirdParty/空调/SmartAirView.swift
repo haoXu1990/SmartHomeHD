@@ -63,8 +63,7 @@ class SmartAirView: SmartControllBaseView, View {
         contentView.addSubview(leftWindBtn)
         updownWindBtn = UIButton.init()
         updownWindBtn.setBackgroundImage(UIImage.init(named: "device_control_air_wind_ud"), for: .normal)
-        contentView.addSubview(updownWindBtn)
-        
+        contentView.addSubview(updownWindBtn)       
     }
     
     override func layoutSubview() {
@@ -177,11 +176,13 @@ extension Reactive where Base: CircleAnimationBottomView {
                 circleView.temperInter = CGFloat(remoteState.temp)
                 circleView.temperLabel.text = String.init(format: "%dC", Int(remoteState.temp))
                 circleView.modelTypeLabel.text = SmartAirView.fetchAIRModel(mode: remoteState.mode)
+                circleView.bgImage = UIImage.init(named: "device_control_air_circle_bg_on")
             }
             else {
                 circleView.temperInter = 0
                 circleView.temperLabel.text = ""
                 circleView.modelTypeLabel.text = ""
+                circleView.bgImage = UIImage.init(named: "device_control_air_circle_bg")
             }
         }
     }
@@ -189,3 +190,11 @@ extension Reactive where Base: CircleAnimationBottomView {
 
 
 
+extension SmartAirView {
+    
+    func allKeyType() -> [IRKeyType] {
+        
+        return []
+    }
+    
+}

@@ -14,6 +14,7 @@ import Moya
 import CoreFoundation
 import Foundation
 import SwiftyUserDefaults
+import Dollar
 
 class InfraredControlReactor: NSObject, Reactor {
 
@@ -22,10 +23,12 @@ class InfraredControlReactor: NSObject, Reactor {
         /// 获取遥控板
         case fetchRemote
         
-        /// 发送红外命令
+        /// 发送红外命令(空调除外)
         case sendCommond(IRKeyType)
         
+        /// 发送空调红外命令
         case sendAirCommand(IRKeyType, Int)
+      
     }
     
     enum Mutaion {
@@ -35,6 +38,7 @@ class InfraredControlReactor: NSObject, Reactor {
     }
     
     struct State {
+        
         var deviceModels:DeviceModel!
         
         var airStatus:TJAirRemoteState?
@@ -43,8 +47,12 @@ class InfraredControlReactor: NSObject, Reactor {
     var initialState: State
     let service: CommonServerType = CommonServer.init()
     var remoteModel: TJRemote?
+    var allKeyType: [IRKeyType]
+    var extensionKeys: [TJIrKey]?
     
-    init(deviceModel: DeviceModel) {
+    init(deviceModel: DeviceModel, allKeyType: [IRKeyType] = [.power]) {
+        
+        self.allKeyType = allKeyType
         self.initialState = State.init(deviceModels: deviceModel, airStatus: nil)
     }
     
@@ -57,6 +65,7 @@ class InfraredControlReactor: NSObject, Reactor {
             if let remoteModel = TJDataManager.shared().getRemoteById(remoteID) {
                 FHToaster.show(text: "下载遥控器成功")
                 self.remoteModel = remoteModel
+                self.extensionKeys = self.fetchExtensionKeys(remote: remoteModel)
             }
             else {
                 TJRemoteClient.shared().downloadRemote(remoteID) { [weak self](error, remoteModel) in
@@ -66,6 +75,7 @@ class InfraredControlReactor: NSObject, Reactor {
                         log.info("下载遥控器成功")
                         FHToaster.show(text: "下载遥控器成功")
                         self.remoteModel = remoteModel
+                        self.extensionKeys = self.fetchExtensionKeys(remote: remoteModel)
                     }
                     else {
                         log.error("下载遥控器失败: \(error.rawValue)")
@@ -129,6 +139,29 @@ extension InfraredControlReactor {
     }
 }
 
+extension InfraredControlReactor {
+    
+    
+    /// 获取遥控板得所有扩展按键
+    ///
+    /// - Parameter remote: 遥控板
+    /// - Returns: [TJIrKey]
+    func fetchExtensionKeys(remote: TJRemote) -> [TJIrKey] {
+        
+        var extensionKeys: [TJIrKey] = []
+        
+        if let keys = remote.keys as? [TJIrKey] {
+            for key in keys {
+                if allKeyType.contains(key.type) == false {
+                    extensionKeys.append(key)
+                }
+            }
+        }
+        
+        return extensionKeys
+    }
+
+}
 extension InfraredControlReactor {
     
     /// 根据 按键类型获取空调按键列表

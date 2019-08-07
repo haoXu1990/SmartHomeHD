@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, ReactorKit.View {
     func initUI()  {
         
         view.frame = collectionViewFrame
- 
+        view.clipsToBounds = false
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical

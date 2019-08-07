@@ -33,6 +33,9 @@
 		6932412C22F833DA00B4DB65 /* CircleAnimationBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6932412A22F833DA00B4DB65 /* CircleAnimationBottomView.m */; };
 		6932413122F8347200B4DB65 /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6932412D22F8347200B4DB65 /* UIColor+Extensions.m */; };
 		6932413222F8347200B4DB65 /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6932412F22F8347200B4DB65 /* UIView+Extensions.m */; };
+		6958D09722FA81480073FA2E /* IRExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D09622FA81480073FA2E /* IRExtensionView.swift */; };
+		6958D09D22FAB9210073FA2E /* IRExtensionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D09C22FAB9210073FA2E /* IRExtensionCell.swift */; };
+		6958D09F22FABAB80073FA2E /* IRExtensionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D09E22FABAB80073FA2E /* IRExtensionViewReactor.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -149,6 +152,9 @@
 		6932412E22F8347200B4DB65 /* UIView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
 		6932412F22F8347200B4DB65 /* UIView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extensions.m"; sourceTree = "<group>"; };
 		6932413022F8347200B4DB65 /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
+		6958D09622FA81480073FA2E /* IRExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRExtensionView.swift; sourceTree = "<group>"; };
+		6958D09C22FAB9210073FA2E /* IRExtensionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRExtensionCell.swift; sourceTree = "<group>"; };
+		6958D09E22FABAB80073FA2E /* IRExtensionViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRExtensionViewReactor.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 		690D46F222EEE5DC001123AA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				6958D09522FA810F0073FA2E /* ExtensionView */,
 				69D8D0C022F13B4C0033B20F /* BaseView */,
 				6932412422F8249200B4DB65 /* 空调 */,
 				6932412122F8120100B4DB65 /* TV */,
@@ -404,6 +411,16 @@
 				6932412A22F833DA00B4DB65 /* CircleAnimationBottomView.m */,
 			);
 			path = CircleAnimationView;
+			sourceTree = "<group>";
+		};
+		6958D09522FA810F0073FA2E /* ExtensionView */ = {
+			isa = PBXGroup;
+			children = (
+				6958D09622FA81480073FA2E /* IRExtensionView.swift */,
+				6958D09E22FABAB80073FA2E /* IRExtensionViewReactor.swift */,
+				6958D09C22FAB9210073FA2E /* IRExtensionCell.swift */,
+			);
+			path = ExtensionView;
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -1111,6 +1128,7 @@
 				690D46E022EE9260001123AA /* DeviceControllSwitchCell.swift in Sources */,
 				6932413222F8347200B4DB65 /* UIView+Extensions.m in Sources */,
 				690D46CC22E991F7001123AA /* FloorViewSection.swift in Sources */,
+				6958D09722FA81480073FA2E /* IRExtensionView.swift in Sources */,
 				695ADD7E22E59377001A7533 /* BaseTableViewCell.swift in Sources */,
 				6932412622F825F600B4DB65 /* SmartAirView.swift in Sources */,
 				695ADDB622E708B7001A7533 /* ServerTool.swift in Sources */,
@@ -1177,9 +1195,11 @@
 				690D46C322E84D23001123AA /* HomeViewSection.swift in Sources */,
 				695ADDA022E6DD4C001A7533 /* SRWebSocket2.m in Sources */,
 				69D8D0DE22F178910033B20F /* InfraredControlReactor.swift in Sources */,
+				6958D09F22FABAB80073FA2E /* IRExtensionViewReactor.swift in Sources */,
 				690D46C722E86ABC001123AA /* FloorViewReactor.swift in Sources */,
 				695ADD8122E5973E001A7533 /* AppConfigure.swift in Sources */,
 				69C4F0C722F41586007BC912 /* iCarousel.m in Sources */,
+				6958D09D22FAB9210073FA2E /* IRExtensionCell.swift in Sources */,
 				69D8D0E322F197600033B20F /* Tool.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

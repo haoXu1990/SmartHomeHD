@@ -125,7 +125,7 @@ class RoomViewCell: UICollectionViewCell, View {
         moreView.snp.makeConstraints { (make) in
             make.top.equalTo(deviceListBackgroundImageView)
             make.right.equalTo(deviceListBackgroundImageView.snp.left)
-            make.width.equalTo(270)
+            make.width.equalTo(270*2)
             make.bottom.equalTo(deviceListBackgroundImageView)
         }
     }
@@ -196,7 +196,8 @@ extension RoomViewCell {
     /// - Parameter model: 设备模型
     func initProjectorView(model: DeviceModel) {        
         let cameraView = SmartProjectorView.init()
-        cameraView.reactor = InfraredControlReactor.init(deviceModel: model)
+        
+        cameraView.reactor = InfraredControlReactor.init(deviceModel: model, allKeyType: cameraView.allKeyType())
         moreView.addSubview(cameraView)
         cameraView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()

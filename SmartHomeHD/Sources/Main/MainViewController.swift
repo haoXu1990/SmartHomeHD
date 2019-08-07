@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
     func initUI()  {
         
         view.backgroundColor = .black
+        view.clipsToBounds = false
         
         // 0. 创建顶部导航       
         headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 55))
