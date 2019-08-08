@@ -8,15 +8,32 @@
 
 import UIKit
 import Moya
+import Result
 
-
-final class RequestPlugin: PluginType {
+final class DebugPlugin: PluginType {
+    
+    
+//    private let view: UIView
+//    
+//    init(view: UIView) {
+//        self.view = view
+//    }
     
     func willSend(_ request: RequestType, target: TargetType) {
         
     }
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+       
+        if case Result.success(let response) = result {
+            
+            guard let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [String: Any]  else {
+                return
+            }
+            log.debug(json)
+        }
+        else {
         
+        }
     }
 }

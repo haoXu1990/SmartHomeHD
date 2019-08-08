@@ -30,7 +30,8 @@ target 'SmartHomeHD' do
   pod 'SnapKit'
   # 简化 Cell 注册
   pod 'ReusableKit'
-  
+#  pod 'ReusableKit/RxSwift'
+
   #pod 'Segmentio', '~> 3.3'
   
   # 分段选择器

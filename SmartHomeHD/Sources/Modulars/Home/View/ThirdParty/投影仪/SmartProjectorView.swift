@@ -129,13 +129,21 @@ class SmartProjectorView: SmartControllBaseView, View {
     
     func showExtensionView() {
         
-        if let model = self.reactor?.remoteModel, let keys = self.reactor?.extensionKeys {
+        if let model = self.reactor?.remoteModel, let keys = self.reactor?.extensionKeys,
+            let deviceModel = self.reactor?.currentState.deviceModels {
             let extensionView = IRExtensionView.init()
-            extensionView.reactor = IRExtensionViewReactor.init(remote: model, keys: keys)
+            extensionView.reactor = IRExtensionViewReactor.init(remote: model, keys: keys, deviceModel: deviceModel)
             self.extensionView.addSubview(extensionView)
             extensionView.snp.makeConstraints { (make) in
                 make.edges.equalToSuperview()
             }
+        }
+    }
+    
+    func disMissExtensionView() {
+        
+        for view in extensionView.subviews {
+            view.removeFromSuperview()
         }
     }
 }
@@ -172,7 +180,12 @@ extension SmartProjectorView {
         
         moreBtn.rx.tap.subscribe(onNext: { [weak self](_) in
             guard let self = self else {return }
-            self.showExtensionView()
+            if self.extensionView.subviews.count > 0 {
+                self.disMissExtensionView()
+            }
+            else {
+                self.showExtensionView()
+            }
         }).disposed(by: rx.disposeBag)
     }
     
@@ -181,6 +194,11 @@ extension SmartProjectorView {
         Observable.just(Reactor.Action.sendCommond(keType))
             .bind(to: self.reactor!.action)
             .disposed(by: rx.disposeBag)
+    }
+}
+extension SmartProjectorView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        disMissExtensionView()
     }
 }
 

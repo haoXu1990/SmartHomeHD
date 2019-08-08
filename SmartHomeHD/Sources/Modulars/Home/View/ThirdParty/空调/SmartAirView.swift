@@ -30,6 +30,10 @@ class SmartAirView: SmartControllBaseView, View {
     /// 上下风
     var updownWindBtn: UIButton!
     
+    /// 定时
+    var timeBtn: UIButton!
+    /// 更多
+    var moreBtn: UIButton!
     
     override func initUI() {
     
@@ -52,7 +56,7 @@ class SmartAirView: SmartControllBaseView, View {
         powerBtn.setBackgroundImage(UIImage.init(named: "device_control_tv_power"), for: .normal)
         contentView.addSubview(powerBtn)
         modelBtn = UIButton.init()
-        modelBtn.setBackgroundImage(UIImage.init(named: "device_control_tv_collect"), for: .normal)
+        modelBtn.setBackgroundImage(UIImage.init(named: "device_control_air_pattern"), for: .normal)
         contentView.addSubview(modelBtn)
         
         windlevelBtn = UIButton.init()
@@ -63,7 +67,14 @@ class SmartAirView: SmartControllBaseView, View {
         contentView.addSubview(leftWindBtn)
         updownWindBtn = UIButton.init()
         updownWindBtn.setBackgroundImage(UIImage.init(named: "device_control_air_wind_ud"), for: .normal)
-        contentView.addSubview(updownWindBtn)       
+        contentView.addSubview(updownWindBtn)
+        
+        timeBtn = UIButton.init()
+        timeBtn.setBackgroundImage(UIImage.init(named: "device_control_air_time"), for: .normal)
+        contentView.addSubview(timeBtn)
+        moreBtn = UIButton.init()
+        moreBtn.setBackgroundImage(UIImage.init(named: "device_control_tv_more"), for: .normal)
+        contentView.addSubview(moreBtn)
     }
     
     override func layoutSubview() {
@@ -88,7 +99,42 @@ class SmartAirView: SmartControllBaseView, View {
         updownWindBtn.snp.makeConstraints { (make) in
             make.right.equalTo(modelBtn)
             make.centerY.equalTo(windlevelBtn)
-        }        
+        }
+        
+        timeBtn.snp.makeConstraints { (make) in
+            make.centerX.equalTo(windlevelBtn)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        moreBtn.snp.makeConstraints { (make) in
+            make.centerX.equalTo(leftWindBtn)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+    }
+    
+    func showExtensionView() {
+        
+        if let model = self.reactor?.remoteModel, let keys = self.reactor?.extensionKeys,
+            let deviceModel = self.reactor?.currentState.deviceModels {
+            let extensionView = IRExtensionView.init()
+            extensionView.reactor = IRExtensionViewReactor.init(remote: model, keys: keys, deviceModel: deviceModel)
+            self.extensionView.addSubview(extensionView)
+            extensionView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
+    
+    func disMissExtensionView() {
+        
+        for view in extensionView.subviews {
+            view.removeFromSuperview()
+        }
+    }
+}
+
+extension SmartAirView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        disMissExtensionView()
     }
 }
 
@@ -140,6 +186,19 @@ extension SmartAirView {
             guard let self = self else {return }
             self.sendObsver(keType: .windVertical)
         }).disposed(by: rx.disposeBag)
+        
+        moreBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else {return}
+            
+            if self.extensionView.subviews.count > 0 {
+                self.disMissExtensionView()
+            }
+            else {
+                self.showExtensionView()
+            }
+            
+        }).disposed(by: rx.disposeBag)
+        
     }
 }
 
@@ -194,7 +253,7 @@ extension SmartAirView {
     
     func allKeyType() -> [IRKeyType] {
         
-        return []
+        return [.power, .mode, .windAmount, .windHorizontal, .windVertical, .airTimer]
     }
     
 }

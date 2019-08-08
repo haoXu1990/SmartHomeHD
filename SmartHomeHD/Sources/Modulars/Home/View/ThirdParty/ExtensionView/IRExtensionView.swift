@@ -76,6 +76,7 @@ extension IRExtensionView {
  
     func bind(reactor: IRExtensionViewReactor) {
        
+        
         reactor.state.map { $0.extensionKeys }
             .bind(to: collectionView.rx.items) { (cv, ip, model) in
                 
@@ -87,7 +88,35 @@ extension IRExtensionView {
             }
             .disposed(by: rx.disposeBag)
         
+        collectionView.rx.modelSelected(TJIrKey.self)
+            .subscribe(onNext: { [weak self](irKey) in
+                guard let self = self else  {return}
+                
+                // 空调
+                if reactor.deviceModel.typeid == "7" {
+                    Observable.just(Reactor.Action.sendAirCommand(irKey, 0))
+                        .bind(to: self.reactor!.action)
+                        .disposed(by: self.rx.disposeBag)
+                }
+                else {
+                    self.sendObsver(keType: irKey.type)
+                    
+                }
+                
+            
+        }).disposed(by: rx.disposeBag)
     }
+    
+    
+    func sendObsver(keType: IRKeyType) {
+        
+        Observable.just(Reactor.Action.sendCommond(keType))
+            .bind(to: self.reactor!.action)
+            .disposed(by: rx.disposeBag)
+    }
+    
+    
+    
 }
 
 extension IRExtensionView {

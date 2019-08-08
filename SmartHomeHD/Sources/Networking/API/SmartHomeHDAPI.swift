@@ -11,7 +11,7 @@ import Moya
 
 let APIROOTURL = "http://sz.wisdudu.com"
 
-let SmartHomeHDAPIProvider = MoyaProvider<SmartHomeHDAPI>()
+let SmartHomeHDAPIProvider = MoyaProvider<SmartHomeHDAPI>.init(plugins: [DebugPlugin()])
 
 public enum SmartHomeHDAPI {
     case login(parames:[String: Any], requestMethod: Moya.Method)

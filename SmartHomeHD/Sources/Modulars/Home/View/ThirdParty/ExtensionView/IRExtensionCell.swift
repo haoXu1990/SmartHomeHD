@@ -19,6 +19,7 @@ class IRExtensionCell: UICollectionViewCell {
         btn.backgroundColor = .black
         btn.titleLabel?.font = .systemFont(ofSize: 15)
         btn.titleLabel?.textAlignment = .center
+        btn.isUserInteractionEnabled = false
         contentView.addSubview(btn)
         
         btn.snp.makeConstraints { (make) in

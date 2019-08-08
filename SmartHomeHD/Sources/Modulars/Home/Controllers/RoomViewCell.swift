@@ -172,7 +172,7 @@ extension RoomViewCell {
     /// - Parameter model: 设备模型
     func initAirView(model: DeviceModel) {
         let airView =  SmartAirView.init()
-        airView.reactor = InfraredControlReactor.init(deviceModel: model)
+        airView.reactor = InfraredControlReactor.init(deviceModel: model, allKeyType: airView.allKeyType())
         moreView.addSubview(airView)
         airView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -184,7 +184,7 @@ extension RoomViewCell {
     /// - Parameter model: 设备模型
     func initTVView(model: DeviceModel) {
         let tvView = SmartTVView.init()
-        tvView.reactor = InfraredControlReactor.init(deviceModel: model)
+        tvView.reactor = InfraredControlReactor.init(deviceModel: model, allKeyType: tvView.allKeyType())
         moreView.addSubview(tvView)
         tvView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -201,6 +201,7 @@ extension RoomViewCell {
         moreView.addSubview(cameraView)
         cameraView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+
         }
     }
     
@@ -212,9 +213,10 @@ extension RoomViewCell {
         let cameraView = SmartCameraView.loadFromNib()
         cameraView.reactor = SmartCameraViewReactor.init(deviceModel: model)
         moreView.addSubview(cameraView)
-        
         cameraView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+//            make.edges.equalToSuperview()
+                        make.top.right.bottom.equalToSuperview()
+                        make.width.equalTo(270)
         }
     }
 }
@@ -258,7 +260,9 @@ extension RoomViewCell {
             }
             .disposed(by: rx.disposeBag)
         
-        tableView.rx.modelSelected(DeviceModel.self).subscribe(onNext: { [weak self] (model) in
+        tableView.rx.modelSelected(DeviceModel.self)
+            .throttle(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (model) in
 
             guard let self = self else { return }
             let typeID = Int(model.typeid!)!

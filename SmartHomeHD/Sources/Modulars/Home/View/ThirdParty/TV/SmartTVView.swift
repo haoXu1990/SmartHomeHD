@@ -177,11 +177,27 @@ class SmartTVView: SmartControllBaseView, View {
             make.centerX.equalTo(volumeBtn)
         }
         
-        
-        
-        
     }
     
+    func showExtensionView() {
+        
+        if let model = self.reactor?.remoteModel, let keys = self.reactor?.extensionKeys,
+            let deviceModel = self.reactor?.currentState.deviceModels {
+            let extensionView = IRExtensionView.init()
+            extensionView.reactor = IRExtensionViewReactor.init(remote: model, keys: keys, deviceModel: deviceModel)
+            self.extensionView.addSubview(extensionView)
+            extensionView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
+    
+    func disMissExtensionView() {
+        
+        for view in extensionView.subviews {
+            view.removeFromSuperview()
+        }
+    }
 
 }
 
@@ -250,6 +266,23 @@ extension SmartTVView {
             guard let self = self else {return }
             self.sendObsver(keType: .menuExit)
         }).disposed(by: rx.disposeBag)
+        
+        moreBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else {return }
+            if self.extensionView.subviews.count > 0 {
+                self.disMissExtensionView()
+            }
+            else {
+                self.showExtensionView()
+            }
+            
+        }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension SmartTVView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        disMissExtensionView()
     }
 }
 
@@ -318,3 +351,17 @@ extension SmartTVView {
     }
     
 }
+
+extension SmartTVView {
+    
+    func allKeyType() -> [IRKeyType] {
+        
+        return [.power, .favorite, .signal,
+                .back, .information, .mute,
+                .menu, .menuExit, .menuUp,
+                .menuDown, .menuOk, .menuLeft,
+                .menuRight, .channelUp, .channelDown,
+                .volUp, .volDown]
+    }
+}
+

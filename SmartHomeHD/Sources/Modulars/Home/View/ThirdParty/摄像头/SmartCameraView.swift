@@ -107,7 +107,10 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
     }
     
     open func stopPlayer() {
-        player.destoryPlayer()
+        if player != nil {
+            player.destoryPlayer()
+        }
+        
     }
 }
 

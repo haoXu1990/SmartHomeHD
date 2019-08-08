@@ -34,6 +34,7 @@ class FloorViewReactor: Reactor {
             let devices = devicelist.filter({ (model) -> Bool in
                 let typeID = Int(model.typeid!)!
                 let cellType = RoomViewCell.cellFactory(typeID: typeID)
+                
                 return (roomModel.roomid == model.roomid) && (cellType != .zero)
             })
             return RoomViewReactor.init(devicelist: devices)
