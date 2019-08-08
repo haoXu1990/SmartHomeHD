@@ -54,6 +54,12 @@ class MainViewController: UIViewController {
 //        self.present(vc, animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.navigationController?.navigationBar.alpha = 1;
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override var prefersStatusBarHidden: Bool {
         /// 隐藏状态栏
         return true

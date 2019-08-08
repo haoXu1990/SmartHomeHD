@@ -119,24 +119,31 @@ extension IRExtensionViewReactor {
     /// - Returns: [TJInfrared]
     func fetchAirIRKey(key: TJIrKey, tmper: Int) -> [TJInfrared] {
         
-        let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id)
         
-        if key.type == .airTimer {
-            /// 空调定时按键
-            log.info("处理空调定时按键")
-            guard let irList = TJRemoteHelper.sharedInstance().fetchAirTimerInfrared(key, state: remoteState!, time: 10) else {
+        if let remoteState = TJAirRemoteStateManager.shared()?.getAirRemoteState(remoteModel._id) {
+            if remoteState.power == .off {
+                
                 return []
             }
-            return irList
-        }
-        else {
-            log.info("处理空调普通按键")
-            /// 空调普通按键
-            guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, key: key, state: remoteState!) else {
-                return []
+            if key.type == .airTimer {
+                /// 空调定时按键
+                log.info("处理空调定时按键")
+                guard let irList = TJRemoteHelper.sharedInstance().fetchAirTimerInfrared(key, state: remoteState, time: 10) else {
+                    return []
+                }
+                return irList
             }
-            return irList
+            else {
+                log.info("处理空调普通按键")
+                /// 空调普通按键
+                guard let irList = TJRemoteHelper.sharedInstance().fetchAirRemoteInfrared(remoteModel, key: key, state: remoteState) else {
+                    return []
+                }
+                return irList
+            }
         }
+        
+        return []
     }
     
     /// 根据 按键类型获取按键列表 (空调除外)

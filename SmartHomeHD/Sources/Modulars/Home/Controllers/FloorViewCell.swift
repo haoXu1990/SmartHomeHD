@@ -95,7 +95,8 @@ extension FloorViewCell {
         
         self.clipsToBounds = false
         self.contentView.clipsToBounds = false
-        carouselView = iCarousel.init(frame: self.contentView.frame)
+        
+        carouselView = iCarousel.init(frame: CGRect.init(x: 20, y: 0, width: self.contentView.frame.width - 40, height: self.contentView.frame.height))
         carouselView.delegate = self
         carouselView.dataSource = self
         carouselView.bounces = false
@@ -115,14 +116,12 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         
-        var cellView = view
+        let cellView = view
         /// 返回 roomView
         if cellView == nil {
+            let cellFrame = CGRect.init(x: 40, y: 0, width: self.contentView.frame.width - 80, height: self.contentView.frame.height)
+            let cell = RoomViewCell.init(frame: cellFrame)
             
-            let cell = RoomViewCell.init(frame: self.contentView.frame)
-            
-//            cell.reactor = RoomViewReactor.init(devicelist: <#T##[DeviceModel]#>)
-           
             if let sections = self.reactor?.currentState.setcions?.first {
                 
                 let reactor = sections.items[index]
