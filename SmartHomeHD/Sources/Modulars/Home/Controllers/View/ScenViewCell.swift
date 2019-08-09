@@ -48,11 +48,3 @@ class ScenViewCell: UICollectionViewCell {
     }
 }
 
-extension UIView {
-    
-    /// 圆角
-    func circular() {
-        self.layer.cornerRadius =  10.0
-        self.layer.masksToBounds = true
-    }
-}

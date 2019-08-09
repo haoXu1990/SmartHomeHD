@@ -114,9 +114,9 @@ class MainViewController: UIViewController {
         homeVC = HomeViewController.init(reactor: reactor, frame: rect)      
         scrollView.addSubview(homeVC.view)
         
-        messageVC = MessageViewController.init()
+        messageVC = MessageViewController.init(reactor: MessageViewReactor())
         messageVC.view.frame = CGRect.init(x: kScreenW, y: 0, width: kScreenW, height: scrollViewH)
-        messageVC.view.backgroundColor = .yellow
+        messageVC.view.backgroundColor = .black
         scrollView.addSubview(messageVC.view)
         
         settingVC = SettingViewController.init()

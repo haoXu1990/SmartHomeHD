@@ -38,6 +38,11 @@
 		6958D09F22FABAB80073FA2E /* IRExtensionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D09E22FABAB80073FA2E /* IRExtensionViewReactor.swift */; };
 		6958D0A322FD0F7E0073FA2E /* TMMuiLazyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0A222FD0F7E0073FA2E /* TMMuiLazyScrollView.m */; };
 		6958D0A622FD1E940073FA2E /* ScenViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0A522FD1E940073FA2E /* ScenViewCell.swift */; };
+		6958D0A822FD5EEF0073FA2E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0A722FD5EEF0073FA2E /* UIView+Extension.swift */; };
+		6958D0AA22FD62120073FA2E /* MessageViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0A922FD62120073FA2E /* MessageViewReactor.swift */; };
+		6958D0AC22FD67FA0073FA2E /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0AB22FD67FA0073FA2E /* AlarmModel.swift */; };
+		6958D0B022FD6EF10073FA2E /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0AE22FD6EF10073FA2E /* MessageViewCell.swift */; };
+		6958D0B122FD6EF10073FA2E /* MessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6958D0AF22FD6EF10073FA2E /* MessageViewCell.xib */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -160,6 +165,11 @@
 		6958D0A122FD0F7E0073FA2E /* TMMuiLazyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMuiLazyScrollView.h; sourceTree = "<group>"; };
 		6958D0A222FD0F7E0073FA2E /* TMMuiLazyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMuiLazyScrollView.m; sourceTree = "<group>"; };
 		6958D0A522FD1E940073FA2E /* ScenViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenViewCell.swift; sourceTree = "<group>"; };
+		6958D0A722FD5EEF0073FA2E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		6958D0A922FD62120073FA2E /* MessageViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewReactor.swift; sourceTree = "<group>"; };
+		6958D0AB22FD67FA0073FA2E /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		6958D0AE22FD6EF10073FA2E /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
+		6958D0AF22FD6EF10073FA2E /* MessageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewCell.xib; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -445,6 +455,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6958D0AD22FD6AD00073FA2E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6958D0AE22FD6EF10073FA2E /* MessageViewCell.swift */,
+				6958D0AF22FD6EF10073FA2E /* MessageViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		695ADD1222DC17EA001A7533 = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				690D46CF22E9A5B5001123AA /* Optional+Extension.swift */,
+				6958D0A722FD5EEF0073FA2E /* UIView+Extension.swift */,
 				690D46FC22EFED0F001123AA /* Toaster+Extension.swift */,
 				695ADD5722DC6E75001A7533 /* UIColor+Extension.swift */,
 				695ADDB122E6FCD8001A7533 /* Dictionary+Extension.swift */,
@@ -650,7 +670,9 @@
 		695ADD7622E56E55001A7533 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6958D0AD22FD6AD00073FA2E /* View */,
 				695ADD6422DEC042001A7533 /* MessageViewController.swift */,
+				6958D0A922FD62120073FA2E /* MessageViewReactor.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -774,6 +796,7 @@
 			children = (
 				695ADDC322E8056C001A7533 /* ModelType.swift */,
 				695ADDC522E80777001A7533 /* DeviceModel.swift */,
+				6958D0AB22FD67FA0073FA2E /* AlarmModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -960,6 +983,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6958D0B122FD6EF10073FA2E /* MessageViewCell.xib in Resources */,
 				695ADD2922DC17F1001A7533 /* LaunchScreen.storyboard in Resources */,
 				695ADD2622DC17F1001A7533 /* Assets.xcassets in Resources */,
 				69D8D0DA22F177A70033B20F /* tiqiaasdk.strings in Resources */,
@@ -1041,12 +1065,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Dollar/Dollar.framework",
 				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FilesProvider/FilesProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/LXFProtocolTool/LXFProtocolTool.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MMPhotoPicker/MMPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
@@ -1083,12 +1110,15 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dollar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FilesProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXFProtocolTool.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
@@ -1167,11 +1197,13 @@
 				690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
 				695ADDA422E6DD4C001A7533 /* SocketIO.m in Sources */,
+				6958D0AC22FD67FA0073FA2E /* AlarmModel.swift in Sources */,
 				690D46DE22EE8D9A001123AA /* XHSwitch.swift in Sources */,
 				6932412C22F833DA00B4DB65 /* CircleAnimationBottomView.m in Sources */,
 				695ADDA922E6DD8A001A7533 /* GCDAsyncUdpSocket.m in Sources */,
 				6958D0A622FD1E940073FA2E /* ScenViewCell.swift in Sources */,
 				695ADDC122E7FA51001A7533 /* DeviceServer.swift in Sources */,
+				6958D0AA22FD62120073FA2E /* MessageViewReactor.swift in Sources */,
 				695ADD8422E5A96B001A7533 /* SmartDeviceConst.swift in Sources */,
 				690D46D722EAA767001123AA /* DeviceControllCellReactor.swift in Sources */,
 				695ADD7C22E58CCD001A7533 /* UIView+Rx.swift in Sources */,
@@ -1183,6 +1215,7 @@
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
 				690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */,
 				695ADD9F22E6DD4C001A7533 /* SocketIOJSONSerialization.m in Sources */,
+				6958D0A822FD5EEF0073FA2E /* UIView+Extension.swift in Sources */,
 				695ADD6722DEC05A001A7533 /* SettingViewController.swift in Sources */,
 				695ADDAC22E6E47C001A7533 /* QRViewController.swift in Sources */,
 				695ADD5522DC6B28001A7533 /* RoomViewCell.swift in Sources */,
@@ -1218,6 +1251,7 @@
 				695ADD6C22DEFFCB001A7533 /* NibLoadable.swift in Sources */,
 				695ADD8922E5B8F1001A7533 /* DeviceControllOneCell.swift in Sources */,
 				690D46FD22EFED0F001123AA /* Toaster+Extension.swift in Sources */,
+				6958D0B022FD6EF10073FA2E /* MessageViewCell.swift in Sources */,
 				690D46D022E9A5B5001123AA /* Optional+Extension.swift in Sources */,
 				690D46DB22EAB5A3001123AA /* SmartDeviceTool.swift in Sources */,
 				695ADDB022E6FAB7001A7533 /* SmartHomeHDAPI.swift in Sources */,

@@ -70,7 +70,8 @@ target 'SmartHomeHD' do
   pod 'EZOpenSDK'
  
   pod 'NVActivityIndicatorView/AppExtension'
- 
+  
+  pod 'LXFProtocolTool'
   # Pods for SmartHomeHD
 
   target 'SmartHomeHDTests' do

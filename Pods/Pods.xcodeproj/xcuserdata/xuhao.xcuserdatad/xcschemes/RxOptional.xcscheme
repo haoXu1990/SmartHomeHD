@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF700ED2B8CA38BB827AC1A5E0D27B37"
+               BlueprintIdentifier = "B8259DF3A78A1B28276841AC33D8D790"
                BlueprintName = "RxOptional"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "RxOptional.framework">
