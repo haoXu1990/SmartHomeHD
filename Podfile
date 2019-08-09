@@ -25,8 +25,12 @@ target 'SmartHomeHD' do
   pod 'Then'
   pod 'Dollar'
   
+  pod 'Kingfisher'
+  
+  
   # UI
   # 布局
+  pod 'TYCyclePagerView'
   pod 'SnapKit'
   # 简化 Cell 注册
   pod 'ReusableKit'

@@ -30,12 +30,12 @@ final class HomeSectionReactor: SectionReactor {
         
         var sectionItems: [SectionItem] = []
         
-        for i in rooms {
-            
-            sectionItems.append(.floorCell(FloorViewReactor.init(floors: rooms, devicelist: deviceListModel)))
-        }
-        
-        
+//        for i in rooms {
+//
+//            sectionItems.append(.floorCell(FloorViewReactor.init(floors: rooms, devicelist: deviceListModel)))
+//        }
+
+
         self.initialState = State.init(sectionItems: sectionItems)
     }
     

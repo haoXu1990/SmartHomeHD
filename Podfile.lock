@@ -8,6 +8,7 @@ PODS:
   - EZOpenSDK (4.8.6)
   - FilesProvider (0.26.0)
   - HMSegmentedControl (1.5.5)
+  - Kingfisher (5.7.0)
   - MMPhotoPicker (1.8)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
@@ -69,6 +70,7 @@ PODS:
   - SwiftyUserDefaults (4.0.0)
   - Then (2.5.0)
   - Toaster (2.2.0)
+  - TYCyclePagerView (1.2.0)
   - UIButton-SSEdgeInsets (0.1.7)
   - YPImagePicker (4.0.0):
     - PryntTrimmerView (~> 3.0.0)
@@ -81,6 +83,7 @@ DEPENDENCIES:
   - EZOpenSDK
   - FilesProvider
   - HMSegmentedControl
+  - Kingfisher
   - MMPhotoPicker
   - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift (~> 11.0)
@@ -103,6 +106,7 @@ DEPENDENCIES:
   - SwiftyUserDefaults (~> 4.0)
   - Then
   - Toaster
+  - TYCyclePagerView
   - UIButton-SSEdgeInsets (~> 0.1.1)
   - YPImagePicker
 
@@ -115,6 +119,7 @@ SPEC REPOS:
     - EZOpenSDK
     - FilesProvider
     - HMSegmentedControl
+    - Kingfisher
     - MMPhotoPicker
     - Moya
     - Moya-ObjectMapper
@@ -140,6 +145,7 @@ SPEC REPOS:
     - SwiftyUserDefaults
     - Then
     - Toaster
+    - TYCyclePagerView
     - UIButton-SSEdgeInsets
     - YPImagePicker
 
@@ -161,6 +167,7 @@ SPEC CHECKSUMS:
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   MMPhotoPicker: b326127637217c556732217835ce56368c92e4e2
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Moya-ObjectMapper: 441caa307b527331fde59e2577adc632a16f1255
@@ -187,9 +194,10 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 6a1951df1daa19337862b677dd9a4b9bd4c288cd
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
+  TYCyclePagerView: 2b051dade0615c70784aa34f40c646feeddb7344
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 9909277ad1a59a1c9b946ab44ed1650eae55e9b5
+PODFILE CHECKSUM: 87c57e5bb800e9fd4e35d153c2f2be07ae00a0e7
 
 COCOAPODS: 1.5.3

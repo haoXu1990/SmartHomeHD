@@ -15,34 +15,30 @@ import RxCocoa
 import NSObject_Rx
 import RxDataSources
 import RxOptional
+import TYCyclePagerView
+import Kingfisher
 
-class FloorViewCell: UICollectionViewCell, View {
+class FloorViewCell: UICollectionViewCell,ReactorKit.View {
    
     var disposeBag: DisposeBag = DisposeBag.init()
-    
-    /// 这个 collectionView 里面的 Cell 存放的是最终需要展示的页面
+   
     var collectionView: UICollectionView!
     
     /// 普通流式布局
     var flowLayout: UICollectionViewFlowLayout!
-    
-    /// 3D布局
-    var circle3DLayout: Circle3DLayout!
-    
+  
     var layoutStyel:RoomControllViewLayoutStyle = .cirle3D
     
-    var dataSource: RxCollectionViewSectionedReloadDataSource<FloorViewSection>!
-    
-    
-    var rooms:[RoomMoel]?
     var carouselView: iCarousel!
+    
+    var scenModeView: TYCyclePagerView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-//        initUI()
         
         initCarouseView()
+        
+        initScenModeView()
         
         DLog("initUI")
     }
@@ -57,46 +53,48 @@ class FloorViewCell: UICollectionViewCell, View {
         flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.itemSize = CGSize.init(width: self.contentView.frame.width / 4, height: 100)
 
-        /// 3D布局
-        circle3DLayout = Circle3DLayout.init()
 
-        collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: circle3DLayout)
+        collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: flowLayout)
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
-
-
-        dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
-            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
-            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
-            if cell.reactor !== item {
-                cell.reactor = item
-            }
-
-            return cell
-        })
-
     }
+    
+    func initScenModeView() {
+        scenModeView = TYCyclePagerView.init()
+        scenModeView.backgroundColor = .clear
+        scenModeView.isInfiniteLoop = true
+        scenModeView.dataSource = self
+        scenModeView.delegate = self
+        
+        scenModeView.register(ScenViewCell.classForCoder(), forCellWithReuseIdentifier: "ScenViewCell")
+        contentView.addSubview(scenModeView)
+        scenModeView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(carouselView.snp.bottom).offset(20)
+            make.left.equalTo(carouselView.snp.left).offset(200)
+            make.right.equalTo(carouselView.snp.right).offset(-200)
+            make.bottom.equalToSuperview().offset(-20)
+        }
+    }
+    
 
     open func reloadData(flowStyle: RoomControllViewLayoutStyle) {
         
-        layoutStyel = flowStyle
-        let layout = flowStyle == .cirle3D ? circle3DLayout : flowLayout
-        collectionView.setCollectionViewLayout(layout!, animated: true)
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+//        layoutStyel = flowStyle
+//        let layout = flowStyle == .cirle3D ? circle3DLayout : flowLayout
+//        collectionView.setCollectionViewLayout(layout!, animated: true)
+//        let indexPath = IndexPath.init(row: 0, section: 0)
+//        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         
     }
 }
 
-
 extension FloorViewCell {
     
     func initCarouseView() {
-        
         self.clipsToBounds = false
         self.contentView.clipsToBounds = false
-        
-        carouselView = iCarousel.init(frame: CGRect.init(x: 20, y: 0, width: self.contentView.frame.width - 40, height: self.contentView.frame.height))
+        carouselView = iCarousel.init(frame: CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100))
         carouselView.delegate = self
         carouselView.dataSource = self
         carouselView.bounces = false
@@ -105,8 +103,83 @@ extension FloorViewCell {
         carouselView.backgroundColor = .clear
         contentView.addSubview(carouselView)
     }
+}
+
+extension FloorViewCell {
+    
+    func bind(reactor: FloorViewReactor) {
+        
+//        let dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
+//            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
+//            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+//            if cell.reactor !== item {
+//                cell.reactor = item
+//            }
+//            return cell
+//        })
+        
+        reactor.state
+            .map{ $0.rooms }
+            .filterNil()
+            .subscribe(onNext: { [weak self] (rooms) in
+                guard let self = self else { return }
+                self.carouselView.reloadData()
+            }).disposed(by: rx.disposeBag)
+        
+        reactor.state
+            .map{ $0.scenModes }
+            .filterNil()
+            .subscribe(onNext: { [weak self] (rooms) in
+                guard let self = self else { return }
+                self.scenModeView.reloadData()
+            }).disposed(by: rx.disposeBag)
+    }
     
     
+    func sendObsver(model: SceneModeModel) {
+        
+        Observable.just(Reactor.Action.sendScenModeCommand(model))
+            .bind(to: self.reactor!.action)
+            .disposed(by: rx.disposeBag)
+    }
+    
+}
+
+extension FloorViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
+    func numberOfItems(in pageView: TYCyclePagerView) -> Int {
+        return self.reactor?.currentState.scenModes?.count ?? 0
+    }
+    
+    func pagerView(_ pagerView: TYCyclePagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "ScenViewCell", for: index) as! ScenViewCell
+        if let model = self.reactor?.currentState.scenModes?[index] {
+            let url = URL.init(string: model.imgs.or(""))
+            cell.imageView.kf.setImage(with: url)
+            cell.titleLabel.text = model.title
+        }
+        
+        return cell
+    }
+    
+    func layout(for pageView: TYCyclePagerView) -> TYCyclePagerViewLayout {
+        let layout = TYCyclePagerViewLayout()
+        layout.itemSize = CGSize(width: 180, height: pageView.frame.height)
+        layout.itemSpacing = 15
+        layout.itemHorizontalCenter = false
+        layout.layoutType = .linear
+        return layout
+    }
+    
+    func pagerView(_ pageView: TYCyclePagerView, didSelectedItemCell cell: UICollectionViewCell, at index: Int) {
+        
+        if let model = self.reactor?.currentState.scenModes?[index] {
+            sendObsver(model: model)
+        }
+        else {
+            log.error("情景模式执行失败")
+            FHToaster.show(text: "情景模式执行失败")
+        }
+    }
 }
 
 extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
@@ -119,11 +192,9 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
         let cellView = view
         /// 返回 roomView
         if cellView == nil {
-            let cellFrame = CGRect.init(x: 40, y: 0, width: self.contentView.frame.width - 80, height: self.contentView.frame.height)
+            let cellFrame = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100)
             let cell = RoomViewCell.init(frame: cellFrame)
-            
             if let sections = self.reactor?.currentState.setcions?.first {
-                
                 let reactor = sections.items[index]
                 cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
                 cell.reactor = reactor
@@ -132,85 +203,17 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
         }
         else {
             let cell = cellView as! RoomViewCell
-            
             if let sections = self.reactor?.currentState.setcions?.first {
-                
                 let reactor = sections.items[index]
                 cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
                 cell.reactor = reactor
                 return cell
             }
-            
         }
         
         return view!
     }
-    
-    
 }
-
-
-extension FloorViewCell {
-    
-    func bind(reactor: FloorViewReactor) {
-
-//        collectionView.dataSource = nil
-
-        reactor.state.map{ $0.rooms }.filterNil().subscribe(onNext: { [weak self] (rooms) in
-            guard let self = self else { return }
-            self.carouselView.reloadData()
-        }).disposed(by: rx.disposeBag)
-//        reactor.state.map{$0.setcions}.filterNil()
-//        .bind(to: collectionView.rx.items(dataSource: dataSource))
-//        .disposed(by: rx.disposeBag)
-        
-    }
-}
-
-// UICollectionViewDataSource
-extension FloorViewCell: UICollectionViewDelegate {
-    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 5
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        // 这里返回的 Cell 应该是最终展示的 视图, 这里最好用 dataSource 的方式获取到数据
-//        let cell = collectionView.dequeue(Reusable.RoomViewCell, for: indexPath)
-//
-//        cell.bgImageView.image = UIImage.init(named: "image_home_room_bg_1")
-//
-//        return cell
-//    }
-//
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if layoutStyel == .cirle3D {
-//            
-//            let targetX = scrollView.contentOffset.x
-//            scrollView.isPagingEnabled = true
-//            let numCount:CGFloat =  6  //CGFloat(self.collectionView.numberOfItems(inSection: 0))
-//            let itemWidth = scrollView.frame.size.width
-//            
-//            if numCount >= 3 {
-//                
-//                if targetX < itemWidth / 2 {
-//                    scrollView.setContentOffset(CGPoint.init(x: targetX+itemWidth*numCount, y: 0), animated: false)
-//                }
-//                else if targetX > itemWidth / 2 + itemWidth * numCount {
-//                    scrollView.setContentOffset(CGPoint.init(x: targetX-itemWidth*numCount, y: 0), animated: false)
-//                }
-//            }
-//        }
-//    }
-    
-    
-}
-
-
 
 private enum Reusable {
     

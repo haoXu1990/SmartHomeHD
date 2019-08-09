@@ -7,10 +7,16 @@
 //
 
 import ReactorKit
+import NSObject_Rx
+import RxSwiftExt
+import RxCocoa
+import RxSwift
 
-class FloorViewReactor: Reactor {
+class FloorViewReactor: NSObject, Reactor {
     
-    typealias Action = NoAction
+    enum Action {
+        case sendScenModeCommand(SceneModeModel)
+    }
     
     struct State {
         
@@ -19,15 +25,17 @@ class FloorViewReactor: Reactor {
         var rooms: [RoomMoel]?
         
         var setcions: [FloorViewSection]?
+        
+        var scenModes: [SceneModeModel]?
+    }
+    
+    enum Mutaion {
+        
     }
     
     let initialState: FloorViewReactor.State
     
-    init(floors: [RoomMoel], devicelist: [DeviceModel]) {
-        
-        /// 这里临时添加几个
-        
-//        let resultSection = FloorViewSection.init(items: [floors[0], floors[0], floors[0], floors[0], floors[0], floors[0]], deviceListModel: devicelist)
+    init(floors: [RoomMoel], devicelist: [DeviceModel], secnModes: [SceneModeModel]) {
         
         let reactors = floors.map { (roomModel) -> RoomViewReactor in
             
@@ -41,15 +49,33 @@ class FloorViewReactor: Reactor {
         }
         let section = FloorViewSection.init(items: reactors)
         
-        self.initialState = State.init(deviceList: devicelist, rooms: floors,setcions: [section])
+        self.initialState = State.init(deviceList: devicelist, rooms: floors,setcions: [section], scenModes: secnModes)
     
+    }
+    
+    func mutate(action: Action) -> Observable<Mutaion> {
+        switch action {
+        case .sendScenModeCommand(let mode):
+            sendSoket(model: mode)
+            FHToaster.show(text: "已执行\(mode.title ?? "")")
+            return .empty()
+        }
     }
 }
 
-//extension FloorViewReactor {
-//
-//
-//}
+extension FloorViewReactor {
+    
+    func sendSoket(model: SceneModeModel) {
+       
+            let param:[String : Any] = ["uid": model.userid.or(""),
+                                        "modId": model.modeid.or(""),
+                                        "Ind": model.orderby.or(""),
+                                        "status": model.status.or("")]
+            FHSoketManager.shear().sendMessage(event: "pubMode", data: param )
+      
+    }
+}
+
 
 
 

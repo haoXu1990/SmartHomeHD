@@ -16,8 +16,14 @@ import RxDataSources
 import RxCocoa
 import NVActivityIndicatorView
 
+
 class HomeViewController: UIViewController, ReactorKit.View {
     var disposeBag: DisposeBag = DisposeBag.init()
+    
+    /// 3D 布局
+    var circleLayoutBtn:UIButton!
+    /// 流式布局
+    var flowLayoutBtn:UIButton!
     
     var collectionView: UICollectionView!
     
@@ -37,8 +43,10 @@ class HomeViewController: UIViewController, ReactorKit.View {
     init(reactor: HomeViewReactor, frame:CGRect) {
         
         defer { self.reactor = reactor }
-        collectionViewFrame = frame
+        collectionViewFrame = CGRect.init(x: 0, y: 55, width: frame.width, height: frame.height - 55)
         super.init(nibName: nil, bundle: nil)
+        
+        initLayoutBtn()
         initUI()
     }
     
@@ -49,14 +57,13 @@ class HomeViewController: UIViewController, ReactorKit.View {
   
     func initUI()  {
         
-        view.frame = collectionViewFrame
         view.clipsToBounds = false
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: collectionViewFrame.width, height: collectionViewFrame.height)
         
-        collectionView = UICollectionView.init(frame:CGRect.init(x: 0, y: 0, width: collectionViewFrame.width, height: collectionViewFrame.height),collectionViewLayout: layout)
+        collectionView = UICollectionView.init(frame: collectionViewFrame,collectionViewLayout: layout)
         collectionView.isPagingEnabled = true
         collectionView.clipsToBounds = false
         collectionView.register(Reusable.FloorViewCell)
@@ -67,7 +74,6 @@ class HomeViewController: UIViewController, ReactorKit.View {
         activityView = NVActivityIndicatorView.init(frame: CGRect.init(x: collectionViewFrame.width * 0.5 - 25, y: collectionViewFrame.height * 0.5 - 25, width: 50, height: 50))
         activityView.type = .lineScalePulseOut
         view.addSubview(activityView)
-//        activityView.startAnimating()
         
         dataSource = RxCollectionViewSectionedReloadDataSource<HomeViewSection>.init(configureCell: { (ds, cv, ip, item) in
             /// 固定只有一个 Cell
@@ -82,7 +88,42 @@ class HomeViewController: UIViewController, ReactorKit.View {
         })
     }
 
+    func initLayoutBtn() {
+        circleLayoutBtn = UIButton.init()
+        circleLayoutBtn.addTarget(self, action: #selector(HomeViewController.circleLayoutBtnAction), for: .touchUpInside)
+        
+        circleLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_3d"), for: .normal)
+        view.addSubview(circleLayoutBtn)
+        
+        circleLayoutBtn.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview().offset(-25)
+            make.top.equalToSuperview().offset(5)
+            make.size.equalTo(CGSize.init(width: 50, height: 50))
+        }
+        
+        
+        flowLayoutBtn = UIButton.init()
+        flowLayoutBtn.addTarget(self, action: #selector(HomeViewController.flowLayoutBtnAction), for: .touchUpInside)
+        flowLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_flow"), for: .normal)
+        view.addSubview(flowLayoutBtn)
+        flowLayoutBtn.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview().offset(25)
+            make.top.equalToSuperview().offset(5)
+            make.size.equalTo(CGSize.init(width: 50, height: 50))
+        }
+    }
+}
+
+///MARK - Action
+extension HomeViewController {
     
+    @objc func circleLayoutBtnAction()  {
+//        homeVC.reloadCollectionData(flowStyle: .cirle3D)
+    }
+    
+    @objc func flowLayoutBtnAction()  {
+//        homeVC.reloadCollectionData(flowStyle: .flow)
+    }
 }
 
 extension HomeViewController {
@@ -90,15 +131,14 @@ extension HomeViewController {
     func bind(reactor: HomeViewReactor) {
        
         collectionView.dataSource = nil
+    
+        Observable.just(Reactor.Action.fetchUserInfo)
+            .bind(to: reactor.action)
+            .disposed(by: self.rx.disposeBag)
         
         reactor.state.map { $0.setcions }.filterNil()
         .bind(to: collectionView.rx.items(dataSource: dataSource))
         .disposed(by: rx.disposeBag)
-    
-        
-        Observable.just(Reactor.Action.fetchUserInfo)
-            .bind(to: reactor.action)
-            .disposed(by: self.rx.disposeBag)
         
         reactor.state.map{$0.showActivityView}
             .distinctUntilChanged()

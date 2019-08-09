@@ -22,7 +22,7 @@ class HomeViewReactor: NSObject, Reactor {
     
     enum Mutaion {
         
-        case setUserInfo([FloorMoel], [RoomMoel], [DeviceModel])
+        case setUserInfo([FloorMoel], [RoomMoel], [DeviceModel], [SceneModeModel])
     }
     
     struct State {
@@ -53,13 +53,12 @@ class HomeViewReactor: NSObject, Reactor {
                 .asObservable()
                 .flatMap({ (data) -> Observable<Mutaion> in
                 
-                    if let roomList = data.roomlist ,
-                        let floorList = data.floorlist,
-                        let devicelist = data.list {
-                        return Observable.just(.setUserInfo(floorList, roomList, devicelist))
-                    }
+                    let roomList = data.roomlist.or([])
+                    let floorList = data.floorlist.or([])
+                    let devicelist = data.list.or([])
+                    let scenModel = data.modelist.or([])
+                    return Observable.just(.setUserInfo(floorList, roomList, devicelist, scenModel))
                     
-                    return .empty()
                 }).catchError({ (error) -> Observable<Mutaion> in
                     FHToaster.show(text: error.localizedDescription)
                     return .empty()
@@ -74,17 +73,17 @@ class HomeViewReactor: NSObject, Reactor {
         
         switch mutation {
             
-        case .setUserInfo(let floorModels, let roomModels, let models):
+        case .setUserInfo(let floorModels, let roomModels, let models, let scenModes):
             
             ///1 遍历楼层列表
             let sections = floorModels.map { (floorModel) -> HomeViewSection in
 
-                let reactor = FloorViewReactor.init(floors: roomModels, devicelist: models)
+                let reactor = FloorViewReactor.init(floors: roomModels, devicelist: models, secnModes: scenModes)
                 
                 return  HomeViewSection.init(items: [reactor])
             }
            
-            newState.setcions =  [sections.first!, sections.first!]
+            newState.setcions =  sections
             newState.showActivityView = false
             return newState
         }

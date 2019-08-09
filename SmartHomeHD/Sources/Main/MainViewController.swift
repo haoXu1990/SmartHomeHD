@@ -36,12 +36,6 @@ class MainViewController: UIViewController {
     
     var headerView: UIView!
     
-    /// 3D 布局
-    var circleLayoutBtn:UIButton!
-    
-    /// 流式布局
-    var flowLayoutBtn:UIButton!
-    
     var service: DeviceServerType = DeviceServer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,11 +97,9 @@ class MainViewController: UIViewController {
         
         headerView.addSubview(segmentVC)
         
-        initLayoutBtn()
-        
         // 2. 初始化 ScrollView
-        let scrollViewY = segmentVC.frame.height + 50
-        let scrollViewH = kScreenH - scrollViewY - 100
+        let scrollViewY = segmentVC.frame.height
+        let scrollViewH = kScreenH - scrollViewY
         scrollView = UIScrollView.init(frame: CGRect.init(x: 0, y: scrollViewY, width: kScreenW, height: scrollViewH))
         scrollView.isPagingEnabled = true
         scrollView.contentSize = CGSize.init(width: kScreenW * 3, height: 300)
@@ -118,7 +110,7 @@ class MainViewController: UIViewController {
         // 3. 把控制器添加到 ScrollView
         /// 这里一定得强引用
         let reactor = HomeViewReactor.init(service: self.service)
-        let rect = CGRect.init(x: 55, y: 0, width: kScreenW - 110, height: scrollViewH)
+        let rect = CGRect.init(x: 0, y: 0, width: kScreenW, height: scrollViewH)
         homeVC = HomeViewController.init(reactor: reactor, frame: rect)      
         scrollView.addSubview(homeVC.view)
         
@@ -135,44 +127,11 @@ class MainViewController: UIViewController {
     }
     
     
-    func initLayoutBtn() {
-        circleLayoutBtn = UIButton.init()
-        circleLayoutBtn.addTarget(self, action: #selector(MainViewController.circleLayoutBtnAction), for: .touchUpInside)
-        
-        circleLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_3d"), for: .normal)
-        view.addSubview(circleLayoutBtn)
-        
-        circleLayoutBtn.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview().offset(-25)
-            make.top.equalTo(segmentVC.snp.bottom).offset(5)
-            make.size.equalTo(CGSize.init(width: 50, height: 50))
-        }
-        
-        
-        flowLayoutBtn = UIButton.init()
-        flowLayoutBtn.addTarget(self, action: #selector(MainViewController.flowLayoutBtnAction), for: .touchUpInside)
-        flowLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_flow"), for: .normal)
-        view.addSubview(flowLayoutBtn)
-        flowLayoutBtn.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview().offset(25)
-            make.top.equalTo(segmentVC.snp.bottom).offset(5)
-            make.size.equalTo(CGSize.init(width: 50, height: 50))
-        }
-    }
+    
 
 }
 
-///MARK - Action
-extension MainViewController {
-    
-    @objc func circleLayoutBtnAction()  {
-        homeVC.reloadCollectionData(flowStyle: .cirle3D)
-    }
-    
-    @objc func flowLayoutBtnAction()  {
-        homeVC.reloadCollectionData(flowStyle: .flow)
-    }
-}
+
 
 
 extension MainViewController: UIScrollViewDelegate {

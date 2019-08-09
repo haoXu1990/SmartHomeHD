@@ -174,7 +174,8 @@ struct HomeDeviceModel: ModelType {
         
         list <- map["list"]
         roomlist <- map["roomlist"]
-        floorlist <- map["floorlist"]        
+        floorlist <- map["floorlist"]
+        modelist <- map["modelist"]
     }
     
     
@@ -185,7 +186,7 @@ struct HomeDeviceModel: ModelType {
     var list: [DeviceModel]?
     var roomlist: [RoomMoel]?
     var floorlist: [FloorMoel]?
-  
+    var modelist: [SceneModeModel]?
 }
 
 
@@ -256,3 +257,43 @@ struct SmartCameraYSModel: ModelType {
     
 }
 
+
+///  情景模式模型
+struct SceneModeModel: Mappable {
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        modeid <- map["modeid"]
+        userid <- map["userid"]
+        status <- map["status"]
+        orderby <- map["orderby"]
+        issafe <- map["issafe"]
+        title <- map["title"]
+        imgs <- map["imgs"]
+        isvoice <- map["isvoice"]
+    }
+    
+    /**
+     modeid = "1022";
+     userid = "518";
+     status = "0";
+     orderby = 0;
+     issafe = "0";
+     title = "离家模式";
+     imgs = "http://wisdudu.oss-cn-shenzhen.aliyuncs.com/ys_o_1.jpg";
+     isvoice = "1"
+     */
+    var modeid: String?
+    var userid: String?
+    var status: String?
+    var orderby: String?
+    var issafe: String?
+    var title: String?
+    var imgs: String?
+    var isvoice: String?
+    
+}
