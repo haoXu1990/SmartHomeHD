@@ -23,10 +23,12 @@ class MessageViewController: UIViewController, ReactorKit.View{
     
     var titleLabel: UILabel!
     
+    var lineImageView: UIImageView!
+    
     var collectionView: UICollectionView!
     
     init(reactor: MessageViewReactor) {        
-        defer { self.reactor = reactor }        
+        defer { self.reactor = reactor }
         super.init(nibName: nil, bundle: nil)
         initUI ()
     }
@@ -38,13 +40,10 @@ class MessageViewController: UIViewController, ReactorKit.View{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
     }
     
     func initUI () {
         titleLabel = UILabel.init()
-        titleLabel.backgroundColor = .clear
         titleLabel.text = "报警记录"
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: 25)
@@ -54,7 +53,16 @@ class MessageViewController: UIViewController, ReactorKit.View{
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.height.equalTo(150)
+            make.height.equalTo(100)
+        }
+        
+        lineImageView = UIImageView.init()
+        lineImageView.image = UIImage.init(named: "device_alarm_line")
+        view.addSubview(lineImageView)
+        lineImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(1)
         }
         
         

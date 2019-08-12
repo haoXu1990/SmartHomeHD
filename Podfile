@@ -74,6 +74,8 @@ target 'SmartHomeHD' do
   pod 'LXFProtocolTool'
   # Pods for SmartHomeHD
 
+  pod 'SCLAlertView'
+  
   target 'SmartHomeHDTests' do
     inherit! :search_paths
     # Pods for testing

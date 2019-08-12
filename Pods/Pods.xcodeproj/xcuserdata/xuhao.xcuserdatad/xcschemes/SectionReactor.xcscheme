@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1AD05DDE5DB19EE335E450A6B1ED812C"
+               BlueprintIdentifier = "8BBB52CB3FCED23D0846B3754384DE14"
                BlueprintName = "SectionReactor"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "SectionReactor.framework">

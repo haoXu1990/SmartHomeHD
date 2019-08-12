@@ -26,17 +26,21 @@ class HomeViewReactor: NSObject, Reactor {
     }
     
     struct State {
-        var setcions: [HomeViewSection]?
+        var setcions: [HomeViewSection]? = []
+        
+        var floors: [FloorMoel] = []
+        
+        var rooms: [RoomMoel] = []
+        
+        var devices: [DeviceModel] = []
         
         var showActivityView: Bool = true
     }
     
-    let initialState: HomeViewReactor.State
+    let initialState: HomeViewReactor.State = State()
     let service: DeviceServerType
     
     init(service: DeviceServerType) {
-      
-        self.initialState = State.init()
         self.service = service
     }
     
@@ -84,6 +88,9 @@ class HomeViewReactor: NSObject, Reactor {
             }
            
             newState.setcions =  sections
+            newState.floors = floorModels
+            newState.rooms = roomModels
+            newState.devices = models
             newState.showActivityView = false
             return newState
         }

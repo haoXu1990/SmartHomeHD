@@ -159,6 +159,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SCLAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SectionReactor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
