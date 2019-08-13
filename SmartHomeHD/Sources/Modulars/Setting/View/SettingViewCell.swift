@@ -8,9 +8,13 @@
 
 import UIKit
 import TYCyclePagerView
+import ReactorKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
-class SettingViewCell: UITableViewCell {
-
+class SettingViewCell: UITableViewCell, View {
+    var disposeBag: DisposeBag = DisposeBag.init()
     var backgroundImageView: UIImageView!
     
     var titleLable: UILabel!
@@ -42,6 +46,7 @@ extension SettingViewCell {
     func initUI() {
         self.backgroundColor = .clear
         backgroundImageView = UIImageView.init()
+        backgroundImageView.isUserInteractionEnabled = true
         backgroundImageView.image = UIImage.init(named: "house_floor_bg")
         contentView.addSubview(backgroundImageView)
         
@@ -91,26 +96,44 @@ extension SettingViewCell {
         cyclePagerView.delegate = self
 
         cyclePagerView.register(RoomItemCell.self, forCellWithReuseIdentifier: "RoomItemCell")
-        backgroundImageView.addSubview(cyclePagerView)
+        contentView.addSubview(cyclePagerView)
         cyclePagerView.snp.makeConstraints { (make) in
             make.left.equalTo(lineImageView.snp.right).offset(40)
-            make.right.equalToSuperview().offset(-20)
-            make.top.bottom.equalToSuperview()
+            make.right.equalTo(deleteBtn.snp.left).offset(-40)
+            make.top.equalTo(backgroundImageView)
+            make.bottom.equalTo(backgroundImageView)
         }
     }
     
 }
+
+extension SettingViewCell {
+    
+    func bind(reactor: SettingViewCellReactor) {
+        reactor.state.map{$0.rooms}
+            .subscribe(onNext: { [weak self] (rooms) in
+            guard let self = self else { return }
+            self.cyclePagerView.reloadData()
+        }).disposed(by: rx.disposeBag)
+    }
+}
 extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
     func numberOfItems(in pageView: TYCyclePagerView) -> Int {
-        return 2
+        
+        let count = self.reactor?.currentState.rooms?.count ?? 0
+        return count + 1
     }
     
     func pagerView(_ pagerView: TYCyclePagerView, cellForItemAt index: Int) -> UICollectionViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "RoomItemCell", for: index) as! RoomItemCell
-       
-        cell.titleLabel.text = "卧室"
-        cell.cellType = index == 0 ? .add : .normal
         
+        if index >= (self.reactor?.currentState.rooms?.count ?? 0)  {
+            cell.cellType = .add
+        }
+        else if let model = self.reactor?.currentState.rooms?[index] {
+            cell.titleLabel.text = model.title
+            cell.cellType = .normal
+        }
         return cell
     }
     
@@ -123,6 +146,12 @@ extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource 
         return layout
     }
     
-    
+    func pagerView(_ pageView: TYCyclePagerView, didSelectedItemCell cell: UICollectionViewCell, at index: Int) {
+        log.debug("点击事件")
+    }
+    func pagerViewWillBeginDragging(_ pageView: TYCyclePagerView) {
+        
+        log.verbose("滑动")
+    }
     
 }

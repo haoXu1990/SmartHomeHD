@@ -50,7 +50,6 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.alpha = 1;
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -104,11 +103,11 @@ class MainViewController: UIViewController {
         scrollView.isPagingEnabled = true
         scrollView.contentSize = CGSize.init(width: kScreenW * 3, height: 300)
         scrollView.delegate = self
+        scrollView.isScrollEnabled = false
         scrollView.scrollRectToVisible(CGRect.init(x: 0, y: 0, width: kScreenH, height: scrollViewH), animated: false)
         view.addSubview(scrollView)
         
         // 3. 把控制器添加到 ScrollView
-        /// 这里一定得强引用
         let reactor = HomeViewReactor.init(service: self.service)
         let rect = CGRect.init(x: 0, y: 0, width: kScreenW, height: scrollViewH)
         homeVC = HomeViewController.init(reactor: reactor, frame: rect)      
@@ -120,7 +119,7 @@ class MainViewController: UIViewController {
         scrollView.addSubview(messageVC.view)
         
         settingVC = SettingViewController.init(reactor: reactor)
-        settingVC.view.frame = CGRect.init(x: kScreenW * 2, y: 0, width: kScreenW, height: scrollViewH)        
+        settingVC.view.frame = CGRect.init(x: kScreenW * 2, y: 0, width: kScreenW, height: scrollViewH)
         scrollView.addSubview(settingVC.view)
         
     }

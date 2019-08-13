@@ -66,7 +66,7 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
         scenModeView.dataSource = self
         scenModeView.delegate = self
         
-        scenModeView.register(ScenViewCell.classForCoder(), forCellWithReuseIdentifier: "ScenViewCell")
+        scenModeView.register(ScenViewCell.self, forCellWithReuseIdentifier: "ScenViewCell")
         contentView.addSubview(scenModeView)
         scenModeView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()

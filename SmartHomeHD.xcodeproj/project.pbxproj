@@ -46,6 +46,7 @@
 		6958D0B6230149AC0073FA2E /* SettingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0B5230149AC0073FA2E /* SettingViewReactor.swift */; };
 		6958D0B823014CB30073FA2E /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0B723014CB30073FA2E /* SettingViewCell.swift */; };
 		6958D0BA2301521D0073FA2E /* RoomItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0B92301521D0073FA2E /* RoomItemCell.swift */; };
+		6958D0BC230174DD0073FA2E /* SettingViewCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0BB230174DC0073FA2E /* SettingViewCellReactor.swift */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -176,6 +177,7 @@
 		6958D0B5230149AC0073FA2E /* SettingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewReactor.swift; sourceTree = "<group>"; };
 		6958D0B723014CB30073FA2E /* SettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCell.swift; sourceTree = "<group>"; };
 		6958D0B92301521D0073FA2E /* RoomItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomItemCell.swift; sourceTree = "<group>"; };
+		6958D0BB230174DC0073FA2E /* SettingViewCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCellReactor.swift; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				6958D0B723014CB30073FA2E /* SettingViewCell.swift */,
+				6958D0BB230174DC0073FA2E /* SettingViewCellReactor.swift */,
 				6958D0B92301521D0073FA2E /* RoomItemCell.swift */,
 			);
 			path = View;
@@ -1266,6 +1269,7 @@
 				695ADD6122DEB6CF001A7533 /* Common.swift in Sources */,
 				695ADDBD22E70CE2001A7533 /* RxMoyaMapper.swift in Sources */,
 				695ADD6522DEC042001A7533 /* MessageViewController.swift in Sources */,
+				6958D0BC230174DD0073FA2E /* SettingViewCellReactor.swift in Sources */,
 				690D46F122EEA7AA001123AA /* LogCategory.m in Sources */,
 				695ADDA122E6DD4C001A7533 /* SocketIOTransportXHR.m in Sources */,
 				695ADDC622E80777001A7533 /* DeviceModel.swift in Sources */,

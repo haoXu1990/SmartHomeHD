@@ -63,6 +63,7 @@ class SettingViewController: UIViewController, View {
     }
     func initUI() {
         backgroundImageView = UIImageView.init()
+        backgroundImageView.isUserInteractionEnabled = true
         backgroundImageView.image = UIImage.init(named: "house_set_bg")
         view.addSubview(backgroundImageView)
         
@@ -117,6 +118,8 @@ extension SettingViewController {
                 let cell = cv.dequeue(Reusable.SettingViewCell, for: indexPath)
                 
                 cell.titleLable.text = model.title
+                
+                cell.reactor = SettingViewCellReactor.init(rooms: reactor.currentState.rooms, devices: reactor.currentState.devices)
                 
                 return cell
             }
