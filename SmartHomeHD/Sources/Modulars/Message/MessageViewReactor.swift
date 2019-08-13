@@ -13,6 +13,7 @@ import RxSwiftExt
 import RxDataSources
 import RxCocoa
 import RxSwift
+import SwiftyUserDefaults
 
 class MessageViewReactor: NSObject, Reactor {
 
@@ -36,11 +37,15 @@ class MessageViewReactor: NSObject, Reactor {
     func mutate(action: Action) -> Observable<Mutaion> {
         switch action {
         case .fetchAlarmList:
-            
+            guard let appid = Defaults[.appid],
+                let houseid = Defaults[.houseid] else {
+                    FHToaster.show(text: "用户数据无效,请重新登录")
+                    return .empty()
+            }
             /// 请求控制列表参数
             let param: [String: Any] = ["method": "eqment.alarm.list",
-                                        "appid": "Rd88h",
-                                        "houseid": "637",
+                                        "appid": appid,
+                                        "houseid": houseid,
                                         "time": "2019-08-08",
                                         "eqmsn":"0",
                                         "isalarm":"1",

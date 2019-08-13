@@ -44,6 +44,7 @@ class SettingViewCell: UITableViewCell, View {
 extension SettingViewCell {
     
     func initUI() {
+        self.selectionStyle = .none
         self.backgroundColor = .clear
         backgroundImageView = UIImageView.init()
         backgroundImageView.isUserInteractionEnabled = true
@@ -148,10 +149,5 @@ extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource 
     
     func pagerView(_ pageView: TYCyclePagerView, didSelectedItemCell cell: UICollectionViewCell, at index: Int) {
         log.debug("点击事件")
-    }
-    func pagerViewWillBeginDragging(_ pageView: TYCyclePagerView) {
-        
-        log.verbose("滑动")
-    }
-    
+    }    
 }

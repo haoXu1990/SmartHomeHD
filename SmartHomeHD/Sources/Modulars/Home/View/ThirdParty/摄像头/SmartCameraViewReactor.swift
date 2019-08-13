@@ -44,11 +44,17 @@ class SmartCameraViewReactor: NSObject, Reactor {
         switch action {
         case .fetchCameraInfo:
             let deviceSerial = self.currentState.deviceModels.eqmsn!
-            guard let token = Defaults[.ysAccessToken] else { return .empty()}
+            guard let token = Defaults[.ysAccessToken],
+                    let appid = Defaults[.appid],
+                    let houseid = Defaults[.houseid] else {
+                        FHToaster.show(text: "用户数据无效,请重新登录")
+                        return .empty()
+                        
+            }
             
             let dict: [String: Any] = ["method": "manage.video.info",
-                        "appid": "Rd88h",
-                        "houseid":"637",
+                        "appid": appid,
+                        "houseid":houseid,
                         "accessToken": token,
                         "deviceSerial": deviceSerial]
             

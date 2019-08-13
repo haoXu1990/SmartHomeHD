@@ -12,9 +12,8 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-
 import RxOptional
-
+import SwiftyUserDefaults
 
 class SettingViewController: UIViewController, View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -28,6 +27,7 @@ class SettingViewController: UIViewController, View {
     
     var addBtn: UIButton!
     
+    var exitBtn: UIButton!
     
     init(reactor: HomeViewReactor) {
         
@@ -85,6 +85,16 @@ class SettingViewController: UIViewController, View {
         tableView.register(Reusable.SettingViewCell)
         backgroundImageView.addSubview(tableView)
         
+        exitBtn = UIButton.init()
+        exitBtn.titleLabel?.textColor = .white
+        exitBtn.titleLabel?.textAlignment = .center
+        exitBtn.layer.borderWidth = 1
+        exitBtn.layer.borderColor = UIColor.white.cgColor
+        exitBtn.layer.cornerRadius = 10
+        
+        exitBtn.setTitle("退出登录", for: .normal)
+        backgroundImageView.addSubview(exitBtn)
+        
         backgroundImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }        
@@ -100,10 +110,18 @@ class SettingViewController: UIViewController, View {
         }
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview().offset(-100)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
+        
+        exitBtn.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.height.equalTo(100)
+            make.width.equalTo(150)
+        }
+        
     }
     
 }
@@ -124,6 +142,10 @@ extension SettingViewController {
                 return cell
             }
             .disposed(by: rx.disposeBag)
+        
+        exitBtn.rx.tap.subscribe(onNext: { (_) in         
+            NotificationCenter.default.post(name: .pubExitAPP, object: nil)
+        }).disposed(by: rx.disposeBag)
     }
 }
 

@@ -12,7 +12,7 @@ import ReactorKit
 import RxSwiftExt
 import RxDataSources
 import RxCocoa
-
+import SwiftyUserDefaults
 
 class HomeViewReactor: NSObject, Reactor {
    
@@ -49,8 +49,13 @@ class HomeViewReactor: NSObject, Reactor {
         switch action {
         case .fetchUserInfo:
             
+            guard let appid = Defaults[.appid],
+                let houseid = Defaults[.houseid] else {
+                    FHToaster.show(text: "用户数据无效,请重新登录")
+                    return .empty()
+            }
             /// 请求控制列表参数
-            let param: [String: Any] = ["method": "controll.eqment.info", "appid": "Rd88h", "houseid": "637", "istype": "1"]
+            let param: [String: Any] = ["method": "controll.eqment.info", "appid": appid, "houseid": houseid, "istype": "1"]
             
             return service.fetchDeviceList(parames: param)
                 .mapResponseToObject(type: HomeDeviceModel.self)

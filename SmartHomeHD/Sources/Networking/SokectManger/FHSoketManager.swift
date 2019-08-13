@@ -7,21 +7,14 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
-
-
-let sockeURL = URL.init(string: "http://sz.wisdudu.com:1018")
 
 private var share: FHSoketManager?
 
 class FHSoketManager: NSObject {
     
     var socketIO: SocketIO!
-    
-    var socketParams:[String: Any] = ["type": "HD",
-                                "uid":"",
-                                "token": UUID.init().uuidString,
-                                "secret":""]
     
     override init() {
         super.init()
@@ -63,16 +56,37 @@ class FHSoketManager: NSObject {
          token = "A58AD0F3-057B-4930-8C54-623B73BB86DD";
          */
         
-        let host: String = "sz.wisdudu.com"
-        let port: Int = 1018
-        let params: [String: Any] = ["type": "HD",
-        "uid":"Rd88h",
-        "token": UIDevice.current.identifierForVendor!.uuidString,
-        "secret":"D=Cew36Gl"]
         
-        if socketIO.isConnected { return }
         
-        socketIO.connect(toHost: host, onPort: port, withParams: params)
+        if let uid = Defaults[.appid],
+            let secret = Defaults[.secret],
+            let host = Defaults[.surl] {
+            /// 用户已登录
+            log.debug("用户已登录")
+            let port: Int = 1018
+            let params: [String: Any] = ["type": "HD",
+                                         "uid": uid,
+                                         "token": UIDevice.current.identifierForVendor!.uuidString,
+                                         "secret":secret]
+            
+            if socketIO.isConnected { return }
+            
+            socketIO.connect(toHost: host, onPort: port, withParams: params)
+        }
+        else {
+            /// 用户未登录
+            log.debug("用户未登录")
+            let host = "sz.wisdudu.com"
+            let port: Int = 1018
+            let params: [String: Any] = ["type": "HD",
+                                         "uid": "",
+                                         "token": UIDevice.current.identifierForVendor!.uuidString,
+                                         "secret":""]
+            
+            if socketIO.isConnected { return }
+            
+            socketIO.connect(toHost: host, onPort: port, withParams: params)
+        }
         
     }
     
@@ -107,9 +121,7 @@ extension FHSoketManager: SocketIODelegate {
         
         let args:Array = resutlJson["args"] as! Array<Any>
         
-        if name == "pubStateChange" {
-            log.debug(resutlJson)
-        }
+        log.debug(resutlJson)
         
         NotificationCenter.default.post(name: NSNotification.Name.init(name), object: args[0])
        

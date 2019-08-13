@@ -14,8 +14,7 @@ import ReactorKit
 import RxCocoa
 import NSObject_Rx
 import RxSwiftExt
-
-
+import SwiftyUserDefaults
 import HMSegmentedControl
 
 enum RoomControllViewLayoutStyle:NSInteger {
@@ -41,11 +40,18 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        initUI()
+        let appid = Defaults[.appid]
+        if appid == nil {
+            let vc = ViewController.init()
+            self.present(vc, animated: true, completion: nil)
+        }
+        else {
+            initUI()
+        }
         
+        observerNotifation()
         FHSoketManager.shear().connectSocket()
-//        let vc = ViewController.init()
-//        self.present(vc, animated: true, completion: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +62,40 @@ class MainViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         /// 隐藏状态栏
         return true
+    }
+    
+    func observerNotifation()  {
+        /// 登录通知
+        NotificationCenter.default.rx.notification(.pubLoginAuth)
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+                
+                if let userInfo = data.object as? [String: String] {
+                    Defaults[.appid] = userInfo["appid"]
+                    Defaults[.houseCreatedId] = userInfo["houseCreatedId"]
+                    Defaults[.houseid] = userInfo["houseid"]
+                    Defaults[.secret] = userInfo["secret"]
+                    Defaults[.surl] = userInfo["surl"]
+                    Defaults[.token] = userInfo["token"]
+                    Defaults[.defaultEvnWithBox] = userInfo["defaultEvnWithBox"]
+                    self?.initUI()
+                    FHSoketManager.shear().socketIO.disconnectForced()
+                    FHSoketManager.shear().connectSocket()
+                }
+                
+            }).disposed(by: rx.disposeBag)
+        
+        /// 退出登录通知
+        NotificationCenter.default.rx.notification(.pubExitAPP)
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+                let vc = ViewController.init()
+                self?.present(vc, animated: true, completion: nil)
+                Defaults[.appid] = nil
+                FHSoketManager.shear().socketIO.disconnectForced()
+                log.debug("收到退出登录通知")
+                FHSoketManager.shear().connectSocket()
+            }).disposed(by: rx.disposeBag)
     }
     
     func initUI()  {

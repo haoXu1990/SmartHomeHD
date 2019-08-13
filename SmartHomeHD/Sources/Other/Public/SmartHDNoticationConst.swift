@@ -19,4 +19,6 @@ extension NSNotification.Name {
     /// 设备状态改变
     static let pubStateChange = NSNotification.Name.init("pubStateChange")
     
+    /// 退出登录
+    static let pubExitAPP = NSNotification.Name.init("pubExitAPP")
 }
