@@ -124,8 +124,16 @@ extension HomeViewController {
     @objc func flowLayoutBtnAction()  {
 //        homeVC.reloadCollectionData(flowStyle: .flow)
     }
+    
 }
 
+extension HomeViewController {
+    func reloadData() {
+        Observable.just(Reactor.Action.fetchUserInfo)
+            .bind(to: reactor!.action)
+            .disposed(by: self.rx.disposeBag)
+    }
+}
 extension HomeViewController {
     
     func bind(reactor: HomeViewReactor) {

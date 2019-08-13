@@ -17,12 +17,21 @@ import SwiftyUserDefaults
 class HomeViewReactor: NSObject, Reactor {
    
     enum Action {
+        
         case fetchUserInfo
+        
+        case addfloor(String)
+        
+        case deletedfloor(String)
     }
     
     enum Mutaion {
         
         case setUserInfo([FloorMoel], [RoomMoel], [DeviceModel], [SceneModeModel])
+        
+        case addfloor(FloorMoel)
+        
+        case deletedFloor(String)
     }
     
     struct State {
@@ -45,17 +54,19 @@ class HomeViewReactor: NSObject, Reactor {
     }
     
     func mutate(action: Action) -> Observable<Mutaion> {
+        guard let appid = Defaults[.appid],
+            let houseid = Defaults[.houseid] else {
+                FHToaster.show(text: "用户数据无效,请重新登录")
+                return .empty()
+        }
         
         switch action {
         case .fetchUserInfo:
             
-            guard let appid = Defaults[.appid],
-                let houseid = Defaults[.houseid] else {
-                    FHToaster.show(text: "用户数据无效,请重新登录")
-                    return .empty()
-            }
-            /// 请求控制列表参数
-            let param: [String: Any] = ["method": "controll.eqment.info", "appid": appid, "houseid": houseid, "istype": "1"]
+            let param: [String: Any] = ["method": "controll.eqment.info",
+                                        "appid": appid,
+                                        "houseid": houseid,
+                                        "istype": "1"]
             
             return service.fetchDeviceList(parames: param)
                 .mapResponseToObject(type: HomeDeviceModel.self)
@@ -72,6 +83,40 @@ class HomeViewReactor: NSObject, Reactor {
                     FHToaster.show(text: error.localizedDescription)
                     return .empty()
                 })
+        case .addfloor(let floorName):
+            let param: [String: Any] = ["method": "manage.house.room",
+                                        "appid": appid,
+                                        "houseid": houseid,
+                                        "istype": "2",
+                                        "title":floorName]
+            return commonService.requestPost(parames: param).mapResponseToObject(type: FloorMoel.self).asObservable().flatMap { (model) -> Observable<Mutaion> in
+                    return .just(Mutaion.addfloor(model))
+            }
+            
+        case .deletedfloor(let floorID):
+            let param: [String: Any] = ["method": "manage.house.room",
+                                        "appid": appid,
+                                        "houseid": houseid,
+                                        "istype": "2",
+                                        "id":floorID]
+            
+            return commonService.requestDeleted(parames: param).mapJSON().asObservable().flatMap({ (json) -> Observable<Mutaion> in
+                
+                guard let result = json as? [String: Any] else {return .empty()}
+                
+                if let errorCode = result["errCode"] as? Int {
+                    if errorCode == 200 {
+                        return .just(Mutaion.deletedFloor(floorID))
+                    }
+                    else {
+                        let mesg = result["message"] as? String
+                        FHToaster.show(text: mesg.or("删除失败"))
+                        return .empty()
+                    }
+                }
+                return .empty()
+            })
+            
         }
        
     }
@@ -97,6 +142,16 @@ class HomeViewReactor: NSObject, Reactor {
             newState.rooms = roomModels
             newState.devices = models
             newState.showActivityView = false
+            return newState
+        case .addfloor(let model):
+            newState.floors.append(model)
+            return newState
+        case .deletedFloor(let floolrID):
+            
+            newState.floors = newState.floors.filter({ (model) -> Bool in
+                return model.floor_id != floolrID
+            })
+            
             return newState
         }
     }

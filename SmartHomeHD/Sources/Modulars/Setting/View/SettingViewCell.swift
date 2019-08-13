@@ -12,6 +12,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import SCLAlertView
 
 class SettingViewCell: UITableViewCell, View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -22,8 +23,11 @@ class SettingViewCell: UITableViewCell, View {
     var lineImageView: UIImageView!
     
     var deleteBtn: UIButton!
-    
+
     var cyclePagerView: TYCyclePagerView!
+    
+    var relaodData: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -116,22 +120,33 @@ extension SettingViewCell {
             guard let self = self else { return }
             self.cyclePagerView.reloadData()
         }).disposed(by: rx.disposeBag)
+        
+        reactor.state
+            .map{$0.eqmids}
+            .filterNil()
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self](_) in
+                guard let self = self else { return }
+                if let block = self.relaodData {
+                    block()
+                }
+            }).disposed(by: rx.disposeBag)
     }
 }
 extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
     func numberOfItems(in pageView: TYCyclePagerView) -> Int {
         
-        let count = self.reactor?.currentState.rooms?.count ?? 0
+        let count = self.reactor?.currentState.rooms.count ?? 0
         return count + 1
     }
     
     func pagerView(_ pagerView: TYCyclePagerView, cellForItemAt index: Int) -> UICollectionViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "RoomItemCell", for: index) as! RoomItemCell
         
-        if index >= (self.reactor?.currentState.rooms?.count ?? 0)  {
+        if index >= (self.reactor?.currentState.rooms.count ?? 0)  {
             cell.cellType = .add
         }
-        else if let model = self.reactor?.currentState.rooms?[index] {
+        else if let model = self.reactor?.currentState.rooms[index] {
             cell.titleLabel.text = model.title
             cell.cellType = .normal
         }
@@ -148,6 +163,43 @@ extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource 
     }
     
     func pagerView(_ pageView: TYCyclePagerView, didSelectedItemCell cell: UICollectionViewCell, at index: Int) {
-        log.debug("点击事件")
+        guard let rooms = self.reactor?.currentState.rooms,
+            let devices = self.reactor?.currentState.devices,
+            let floorID = self.reactor?.floorID else {
+            return
+        }
+        
+        if index >= rooms.count {
+          
+            let alert = SCLAlertView.init()
+            let textField = alert.addTextField("房间名称")
+            alert.addButton("确定", action: {
+                log.debug(textField.text as Any)
+                Observable.just(Reactor.Action.addRoom(textField.text!, floorID))
+                    .bind(to: self.reactor!.action)
+                    .disposed(by: self.rx.disposeBag)
+            })
+            alert.showEdit("创建房间", subTitle: "请输入房间名称", closeButtonTitle: "取消")
+        }
+        else {
+            
+            let roomModel = rooms[index]
+            /// 显示 设备列表
+            let vc = RoomDeviceMangerView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+            vc.selectionDevices = devices.filter({ (tmpMolde) -> Bool in
+                return (roomModel.roomid == tmpMolde.roomid) && (tmpMolde.roomid != "0")
+            })
+            
+            vc.devices = devices
+            vc.didSelect = { [weak self]result in
+                guard let self = self else { return }
+                Observable.just(Reactor.Action.roomAddDevice(result, roomModel.roomid!))
+                    .bind(to: self.reactor!.action)
+                    .disposed(by: self.rx.disposeBag)
+            }
+            vc.show()
+        }
+        
+        
     }    
 }

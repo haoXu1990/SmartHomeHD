@@ -4,7 +4,7 @@
 //
 //  Created by XuHao on 2019/7/17.
 //  Copyright © 2019 FH. All rights reserved.
-//
+//  天天催得紧，so, 设置功能中的所有页面都写得很烂，有时间我会改，如果没时间。。。。
 
 import UIKit
 import ReusableKit
@@ -14,6 +14,7 @@ import RxCocoa
 import NSObject_Rx
 import RxOptional
 import SwiftyUserDefaults
+import SCLAlertView
 
 class SettingViewController: UIViewController, View {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -53,6 +54,7 @@ class SettingViewController: UIViewController, View {
         
         bottomImageView = UIImageView.init(frame: CGRect.init(x: 15, y: 0, width: kScreenW - 75, height: 105))
         bottomImageView.image = UIImage.init(named: "house_floor_bg")
+        bottomImageView.isUserInteractionEnabled = true
         let addBtnW:CGFloat = 170.0
         let addBtnH:CGFloat = CGFloat(35)
         addBtn = UIButton.init(frame: CGRect.init(x: bottomImageView.frame.width * 0.5 - addBtnW * 0.5, y: 55 - addBtnH * 0.5, width: addBtnW, height: addBtnH))
@@ -134,17 +136,43 @@ extension SettingViewController {
                 
                 let indexPath = IndexPath.init(row: ip, section: 0)
                 let cell = cv.dequeue(Reusable.SettingViewCell, for: indexPath)
-                
                 cell.titleLable.text = model.title
+                cell.reactor = SettingViewCellReactor.init(rooms: reactor.currentState.rooms, devices: reactor.currentState.devices, floorID: model.floor_id!)
                 
-                cell.reactor = SettingViewCellReactor.init(rooms: reactor.currentState.rooms, devices: reactor.currentState.devices)
                 
+                cell.deleteBtn.rx.tap.subscribe(onNext: { (_) in             
+                    Observable.just(Reactor.Action.deletedfloor(model.floor_id!))
+                        .bind(to: reactor.action)
+                        .disposed(by: self.rx.disposeBag)
+                }).disposed(by: self.rx.disposeBag)
+                
+                cell.relaodData = { () in
+                    Observable.just(Reactor.Action.fetchUserInfo)
+                        .bind(to: reactor.action)
+                        .disposed(by: self.rx.disposeBag)
+                }
                 return cell
             }
             .disposed(by: rx.disposeBag)
         
         exitBtn.rx.tap.subscribe(onNext: { (_) in         
             NotificationCenter.default.post(name: .pubExitAPP, object: nil)
+        }).disposed(by: rx.disposeBag)
+        
+        addBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else { return }
+            
+            let alert = SCLAlertView.init()
+            let textField = alert.addTextField("楼层名称")
+            alert.addButton("确定", action: {
+                log.debug(textField.text as Any)
+                
+                Observable.just(Reactor.Action.addfloor(textField.text!))
+                    .bind(to: reactor.action)
+                    .disposed(by: self.rx.disposeBag)
+            })
+            alert.showEdit("创建楼层", subTitle: "请输入楼层名称", closeButtonTitle: "取消")
+            
         }).disposed(by: rx.disposeBag)
     }
 }

@@ -76,7 +76,7 @@ struct DeviceModel: ModelType {
     var venderid: String?
     var visible: String?
     
-    var roomid: Int?
+    var roomid: String?
     
 //    var floor_id: Int?
     
@@ -116,7 +116,7 @@ struct FloorMoel: ModelType {
         
     }
     
-    var floor_id: Int?
+    var floor_id: String?
     var title: String?
     var houseid: Int?
     var imageurl: String?
@@ -151,9 +151,9 @@ struct RoomMoel: ModelType {
         
     }
     
-    var roomid: Int?
+    var roomid: String?
     var houseid: Int?
-    var floor_id: Int?
+    var floor_id: String?
     var userid: String!
     var title: String?
     var imageurl: String?

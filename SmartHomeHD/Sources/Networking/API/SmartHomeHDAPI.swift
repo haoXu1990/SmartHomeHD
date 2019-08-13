@@ -19,6 +19,10 @@ public enum SmartHomeHDAPI {
     case requestGet(parames:[String: Any])
     
     case requestPost(parames:[String: Any])
+    
+    case requestPut(parames:[String: Any])
+    
+    case requestDeleted(parames:[String: Any])
 }
 
 extension SmartHomeHDAPI: TargetType {
@@ -38,6 +42,10 @@ extension SmartHomeHDAPI: TargetType {
             return .get
         case .requestPost(_):
             return .post
+        case .requestPut(_):
+            return .put
+        case .requestDeleted(_):
+            return .delete
         }
     }
     
@@ -52,6 +60,10 @@ extension SmartHomeHDAPI: TargetType {
         case let .requestPost(parames):
             return .requestParameters(parameters: parames, encoding: URLEncoding.default)
         case let .requestGet(parames):
+            return .requestParameters(parameters: parames, encoding: URLEncoding.default)
+        case .requestPut(let parames):
+            return .requestParameters(parameters: parames, encoding: URLEncoding.default)
+        case .requestDeleted(let parames):
             return .requestParameters(parameters: parames, encoding: URLEncoding.default)
         }
     }
