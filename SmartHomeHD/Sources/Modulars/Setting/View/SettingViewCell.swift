@@ -115,10 +115,12 @@ extension SettingViewCell {
 extension SettingViewCell {
     
     func bind(reactor: SettingViewCellReactor) {
-        reactor.state.map{$0.rooms}
+        reactor.state
+            .map{$0.rooms}
             .subscribe(onNext: { [weak self] (rooms) in
             guard let self = self else { return }
             self.cyclePagerView.reloadData()
+           
         }).disposed(by: rx.disposeBag)
         
         reactor.state
@@ -149,6 +151,16 @@ extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource 
         else if let model = self.reactor?.currentState.rooms[index] {
             cell.titleLabel.text = model.title
             cell.cellType = .normal
+            
+            cell.deleteBtn
+                .rx.tap
+                .subscribe(onNext: { [weak self](_) in
+                    guard let self = self else {return}
+                    Observable.just(Reactor.Action.deletedRoom(model.roomid!))
+                        .bind(to: self.reactor!.action)
+                        .disposed(by: self.rx.disposeBag)
+                    
+                }).disposed(by: rx.disposeBag)
         }
         return cell
     }

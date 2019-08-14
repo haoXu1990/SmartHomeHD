@@ -48,6 +48,7 @@ extension RoomItemCell {
         backgroundImageView.backgroundColor = .black
         backgroundImageView.layer.cornerRadius = 5
         backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.isUserInteractionEnabled = true
         contentView.addSubview(backgroundImageView)
         
         addImageView = UIImageView.init()

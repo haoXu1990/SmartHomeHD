@@ -39,6 +39,7 @@ class SettingViewCellReactor: NSObject, Reactor  {
         
         var devices: [DeviceModel] = []
         
+        /// 无具体作用只是为了方便外界刷新数据
         var eqmids: String?
     }
     
@@ -80,22 +81,25 @@ class SettingViewCellReactor: NSObject, Reactor  {
                                         "istype": "1",
                                         "id":roomID]
             
-            return commonService.requestDeleted(parames: param).mapJSON().asObservable().flatMap({ (json) -> Observable<Mutaion> in
-                
-                guard let result = json as? [String: Any] else {return .empty()}
-                
-                if let errorCode = result["errCode"] as? Int {
-                    if errorCode == 200 {
-                        return .just(Mutaion.deletedRoom(roomID))
+            return commonService.requestDeleted(parames: param)
+                    .mapJSON()
+                    .asObservable()
+                    .flatMap({ (json) -> Observable<Mutaion> in
+                    
+                    guard let result = json as? [String: Any] else {return .empty()}
+                    
+                    if let errorCode = result["errCode"] as? Int {
+                        if errorCode == 200 {
+                            return .just(Mutaion.deletedRoom(roomID))
+                        }
+                        else {
+                            let mesg = result["message"] as? String
+                            FHToaster.show(text: mesg.or("删除失败"))
+                            return .empty()
+                        }
                     }
-                    else {
-                        let mesg = result["message"] as? String
-                        FHToaster.show(text: mesg.or("删除失败"))
-                        return .empty()
-                    }
-                }
-                return .empty()
-            })
+                    return .empty()
+                })
         case .roomAddDevice(let devices, let roomID):
             
             let eqmids = devices.map { (model) -> String in
@@ -143,11 +147,13 @@ class SettingViewCellReactor: NSObject, Reactor  {
         switch mutation {
         case .addRoom(let model):
             newState.rooms.append(model)
+            newState.eqmids = model.roomid
             return newState
         case .deletedRoom(let roomID):
             newState.rooms = newState.rooms.filter({ (model) -> Bool in
                 return model.roomid != roomID
             })
+            newState.eqmids = roomID
             return newState
         case .setdevices(let str):
             newState.eqmids = str

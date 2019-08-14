@@ -137,7 +137,12 @@ extension SettingViewController {
                 let indexPath = IndexPath.init(row: ip, section: 0)
                 let cell = cv.dequeue(Reusable.SettingViewCell, for: indexPath)
                 cell.titleLable.text = model.title
-                cell.reactor = SettingViewCellReactor.init(rooms: reactor.currentState.rooms, devices: reactor.currentState.devices, floorID: model.floor_id!)
+                
+                let rooms = reactor.currentState.rooms.filter({ (roomModel) -> Bool in
+                    return model.floor_id == roomModel.floor_id
+                })
+                
+                cell.reactor = SettingViewCellReactor.init(rooms: rooms, devices: reactor.currentState.devices, floorID: model.floor_id!)
                 
                 
                 cell.deleteBtn.rx.tap.subscribe(onNext: { (_) in             
