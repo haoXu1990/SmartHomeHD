@@ -110,8 +110,7 @@ class MainViewController: UIViewController {
         
         let logImage = UIImageView.init(image: UIImage.init(named: "image_log_style1"))
         headerView.addSubview(logImage)
-        logImage.snp.makeConstraints { (make) in
-            
+        logImage.snp.makeConstraints { (make) in            
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-55)
         }

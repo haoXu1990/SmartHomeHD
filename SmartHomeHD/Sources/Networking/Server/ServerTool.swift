@@ -21,7 +21,7 @@ class ServerTool: NSObject {
         resultDict["villageid"] = NSNumber.init(value: 3)
         
         /// 添加请求时间
-        resultDict["temptime"] = Date.init().toFormat("yyyy-MM-dd HH:mm")
+        resultDict["temptime"] = Date.init().toFormat("yyyy-MM-dd HH:mm", locale: Locale.current)
         
         /// 加密字段, 暂时忽略
         resultDict["sign"] = "111"

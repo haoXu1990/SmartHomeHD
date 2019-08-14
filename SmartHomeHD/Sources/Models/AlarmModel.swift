@@ -9,7 +9,7 @@
 
 import ObjectMapper
 
-///  情景模式模型
+///  报警记录模型
 struct AlarmModel: Mappable {
     
     init?(map: Map) {

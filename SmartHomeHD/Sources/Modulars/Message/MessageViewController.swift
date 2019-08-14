@@ -15,9 +15,10 @@ import RxDataSources
 import RxCocoa
 import NVActivityIndicatorView
 import Kingfisher
+import LXFProtocolTool
 
 
-class MessageViewController: UIViewController, ReactorKit.View{
+class MessageViewController: UIViewController, ReactorKit.View, Refreshable {
     
     var disposeBag: DisposeBag = DisposeBag.init()
     
@@ -41,19 +42,19 @@ class MessageViewController: UIViewController, ReactorKit.View{
         super.viewDidLoad()
         
     }
-    
+  
     func initUI () {
         titleLabel = UILabel.init()
         titleLabel.text = "报警记录"
         titleLabel.textColor = .white
-        titleLabel.font = .systemFont(ofSize: 25)
+        titleLabel.font = .systemFont(ofSize: 20)
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(80)
         }
         
         lineImageView = UIImageView.init()
@@ -71,9 +72,7 @@ class MessageViewController: UIViewController, ReactorKit.View{
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: itemW, height: 50)
         
-        collectionView = UICollectionView.init(frame: .zero,collectionViewLayout: layout)
-        collectionView.isPagingEnabled = true
-        collectionView.clipsToBounds = false
+        collectionView = UICollectionView.init(frame: .zero,collectionViewLayout: layout)       
         collectionView.register(Reusable.MessageViewCell)
         collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
@@ -95,7 +94,7 @@ extension MessageViewController {
     func bind(reactor: MessageViewReactor) {
         
         
-        Observable.just(Reactor.Action.fetchAlarmList)
+        Observable.just(Reactor.Action.fetchAlarmList(false))
             .bind(to: reactor.action)
             .disposed(by: self.rx.disposeBag)
 
@@ -106,13 +105,17 @@ extension MessageViewController {
 
                 let indexPath = IndexPath.init(row: ip, section: 0)
                 let cell = cv.dequeue(Reusable.MessageViewCell, for: indexPath)
-
                 cell.titleLabel.text = model.content
                 cell.timeLabel.text = model.times
                 let url = URL.init(string: model.icon.or(""))
                 cell.iconImageView.kf.setImage(with: url)
                 return cell
             }
+            .disposed(by: rx.disposeBag)
+        
+        self.rx.refresh(reactor, collectionView)
+            .map{ .fetchAlarmList($0 != .header)}
+            .bind(to: reactor.action)
             .disposed(by: rx.disposeBag)
 
     }
@@ -123,4 +126,3 @@ private enum Reusable {
     
     static let MessageViewCell = ReusableCell<MessageViewCell>.init(identifier: "MessageViewCell", nibName: "MessageViewCell")
 }
-

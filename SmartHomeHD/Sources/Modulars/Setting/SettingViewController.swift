@@ -118,10 +118,10 @@ class SettingViewController: UIViewController, View {
         }
         
         exitBtn.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(100)
-            make.width.equalTo(150)
+            make.height.equalTo(60)
+            make.width.equalTo(200)
         }
         
     }

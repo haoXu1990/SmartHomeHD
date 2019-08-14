@@ -14,16 +14,18 @@ import RxDataSources
 import RxCocoa
 import RxSwift
 import SwiftyUserDefaults
-
-class MessageViewReactor: NSObject, Reactor {
+import SwiftDate
+import LXFProtocolTool
+class MessageViewReactor: NSObject, Reactor, RefreshControllable {
 
     enum Action {
-        case fetchAlarmList
+        case fetchAlarmList(Bool)
     }
     
     enum Mutaion {
         
-        case setAlarmList([AlarmModel])
+        case setAlarmList([AlarmModel], Bool)
+        case setRefreshStatus(RefreshStatus)
     }
     
     struct State {
@@ -36,33 +38,46 @@ class MessageViewReactor: NSObject, Reactor {
     
     func mutate(action: Action) -> Observable<Mutaion> {
         switch action {
-        case .fetchAlarmList:
+        case .fetchAlarmList(let more):
             guard let appid = Defaults[.appid],
                 let houseid = Defaults[.houseid] else {
                     FHToaster.show(text: "用户数据无效,请重新登录")
                     return .empty()
             }
+            let date = Date.init()
+            
+            var minid = "0"
+            
+            if more, let lastModel =  self.currentState.alarmModels?.last {
+                minid = lastModel.tmptimes.or("0")
+            }
+            
+            let time = date.toFormat("yyyy-MM-dd",locale: Locale.current)
             /// 请求控制列表参数
             let param: [String: Any] = ["method": "eqment.alarm.list",
                                         "appid": appid,
                                         "houseid": houseid,
-                                        "time": "2019-08-08",
+                                        "time": time,
                                         "eqmsn":"0",
                                         "isalarm":"1",
-                                        "minid":"0",
+                                        "minid":minid,
                                         "calendar":"1"]
             
-            
-            return serverType.requestGet(parames: param)
+            let request = serverType.requestGet(parames: param)
                 .mapResponseToObjectArray(type: AlarmModel.self)
                 .asObservable()
                 .flatMap({ (data) -> Observable<Mutaion> in
-                    return .just(Mutaion.setAlarmList(data))
+                    return .just(Mutaion.setAlarmList(data, more))
                     
                 }).catchError({ (error) -> Observable<Mutaion> in
                     FHToaster.show(text: error.localizedDescription)
                     return .empty()
                 })
+            
+            let endRefresh:RefreshStatus = minid == "0" ? .endHeaderRefresh : .endFooterRefresh            
+            
+            return Observable.concat([Observable.just(Mutaion.setRefreshStatus(endRefresh)),
+                                      request])
          
         }
     }
@@ -71,9 +86,17 @@ class MessageViewReactor: NSObject, Reactor {
         var newState = state
         
         switch mutation {
-        case .setAlarmList(let models):
-            newState.alarmModels = models
+        case .setAlarmList(let models, let more):
+            if more {
+                newState.alarmModels?.append(contentsOf: models)
+            }
+            else {
+                newState.alarmModels = models
+            }
         return newState
+        case .setRefreshStatus(let value):
+            lxf.refreshStatus.value = value
         }
+        return newState
     }
 }

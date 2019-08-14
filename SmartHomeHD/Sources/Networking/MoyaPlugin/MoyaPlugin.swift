@@ -20,7 +20,8 @@ final class DebugPlugin: PluginType {
 //    }
     
     func willSend(_ request: RequestType, target: TargetType) {
-        
+    
+        log.debug(target.task)
     }
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {

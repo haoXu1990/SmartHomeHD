@@ -202,7 +202,10 @@ extension SettingViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource 
                 return (roomModel.roomid == tmpMolde.roomid) && (tmpMolde.roomid != "0")
             })
             
-            vc.devices = devices
+            vc.devices = devices.filter({ (deviceModel) -> Bool in
+                return Int(deviceModel.roomid.or("0")) == 0 || roomModel.roomid == deviceModel.roomid
+            })
+            
             vc.didSelect = { [weak self]result in
                 guard let self = self else { return }
                 Observable.just(Reactor.Action.roomAddDevice(result, roomModel.roomid!))

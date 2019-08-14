@@ -41,14 +41,14 @@ class RoomDeviceMangerView: UIView {
 extension RoomDeviceMangerView {
     
     func initUI() {
-        self.isOpaque = false
+//        self.isOpaque = false
         self.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         contentView = UIView.init()
         contentView.backgroundColor = .black
         contentView.layer.borderWidth = 1.5
         contentView.layer.borderColor = UIColor.hexColor(0xF2F2F2).cgColor
         contentView.layer.cornerRadius = 5
-        
+        contentView.layer.masksToBounds = true
         self.addSubview(contentView)
         
         titleLabel = UILabel.init()
@@ -78,11 +78,11 @@ extension RoomDeviceMangerView {
         layout.minimumLineSpacing = 30 // 横向
         layout.minimumInteritemSpacing = 20  //纵向
         collectionView = UICollectionView.init(frame: CGRect.zero,collectionViewLayout: layout)
-        collectionView.clipsToBounds = false
+        collectionView.clipsToBounds = true
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(Reusable.RoomDeviceMangerCell)
-        collectionView.backgroundColor = .clear
+//        collectionView.backgroundColor = .clear
         contentView.addSubview(collectionView)
 
     }
