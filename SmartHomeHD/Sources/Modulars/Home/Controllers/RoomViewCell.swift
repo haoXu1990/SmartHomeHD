@@ -15,6 +15,7 @@ import RxOptional
 import ReactorKit
 import RxDataSources
 import LXFProtocolTool
+import RxKingfisher
 enum CellType {
     /// defaut
     case zero
@@ -222,6 +223,22 @@ extension RoomViewCell {
 }
 
 
+extension Reactive where Base: UIImageView {
+    var setImage: Binder<String?> {
+        return Binder<String?>.init(self.base) { (imageView, url) in
+            
+            if url == nil {
+                imageView.image = UIImage.init(named: "image_home_room_bg_1")
+            }
+            else {
+                imageView.kf.setImage(with: URL.init(string: url!),
+                                      placeholder: UIImage.init(named: "image_home_room_bg_1"),
+                                      options: [.transition(.fade(1))])
+            }
+            
+        }
+    }
+}
 
 extension RoomViewCell {
     
@@ -230,7 +247,11 @@ extension RoomViewCell {
         tableView.dataSource = nil
         tableView.delegate = nil
         
-        
+        reactor.state
+            .map{ $0.roomImageUrlStr }
+            .bind(to: roomBackgroundImageView.rx.setImage)
+            .disposed(by: rx.disposeBag)
+                
 //        reactor.state.map{$0.setcions}.filterNil()
 //            .bind(to: tableView.rx.items(dataSource: dataSource))
 //            .disposed(by: rx.disposeBag)

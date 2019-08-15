@@ -12,7 +12,7 @@ extension DefaultsKeys {
     
     /// 荧石云摄像头 token
     static let ysAccessToken = DefaultsKey<String?>.init("ysAccessToken")
-
+    static let ysAccessTime = DefaultsKey<Int?>.init("ysAccessTime")   
     static let ysVerifyCode = DefaultsKey<String?>.init("ysverifyCode")
     
     

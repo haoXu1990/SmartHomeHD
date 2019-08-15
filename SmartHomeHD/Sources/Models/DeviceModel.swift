@@ -140,7 +140,7 @@ struct RoomMoel: ModelType {
         floor_id <- map["floor_id"]
         userid <- map["userid"]
         title <- map["title"]
-        imageurl <- map["channel"]
+        imageurl <- map["imageurl"]
         groupid <- map["groupid"]
         desc <- map["desc"]
         updatetime <- map["controlsn"]

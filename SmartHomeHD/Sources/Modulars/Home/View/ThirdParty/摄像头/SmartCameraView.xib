@@ -55,7 +55,7 @@
                     <rect key="frame" x="35" y="321" width="48" height="48"/>
                     <state key="normal" backgroundImage="device_control_camera_talk"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKo-Cd-MTg">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKo-Cd-MTg">
                     <rect key="frame" x="15" y="496" width="245" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="我的相册" backgroundImage="device_control_camera_album">

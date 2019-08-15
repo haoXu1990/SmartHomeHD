@@ -374,6 +374,7 @@
 		690D46F222EEE5DC001123AA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				6958D104230544050073FA2E /* 门铃 */,
 				6958D09522FA810F0073FA2E /* ExtensionView */,
 				69D8D0C022F13B4C0033B20F /* BaseView */,
 				6932412422F8249200B4DB65 /* 空调 */,
@@ -493,6 +494,13 @@
 				6958D0C02302A9A80073FA2E /* RoomDeviceMangerCell.swift */,
 			);
 			path = "房间设备管理";
+			sourceTree = "<group>";
+		};
+		6958D104230544050073FA2E /* 门铃 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "门铃";
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -1122,6 +1130,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/RxKingfisher/RxKingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -1168,6 +1177,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",

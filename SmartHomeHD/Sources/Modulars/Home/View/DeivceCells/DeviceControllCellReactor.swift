@@ -10,6 +10,7 @@
 import ReactorKit
 import RxSwift
 import SwiftyUserDefaults
+import SwiftDate
 
 class DeviceControllCellReactor: NSObject,Reactor {
 
@@ -56,6 +57,29 @@ class DeviceControllCellReactor: NSObject,Reactor {
             FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
             return .just(Mutaion.setStatus(type))
         case .fetchYsAccessToken:
+//            Defaults[.ysAccessTime] = 0
+            
+            let accessTime = Defaults[.ysAccessTime]
+            let remo = Region.init(calendar: Calendars.chinese, zone: Zones.current, locale: Locale.current)
+            
+            
+            if accessTime != nil || accessTime != 0 {
+                ///本地有, 需要判断是否过期
+                
+                let currentTime = DateInRegion.init(Date.init(), region: remo)
+                let expTime = DateInRegion.init(milliseconds: accessTime!, region: remo)
+                
+                if !currentTime.isAfterDate(expTime, orEqual: true, granularity: .hour) {
+                    /// 过期, 需要重新请求
+                    log.debug("获取萤石云 AccessToken 未过期, 过期时间:\(expTime.date.toFormat("yyyy-MM-dd hh:mm:ss"))")
+                    return .empty()
+                }
+                else {
+                    log.debug("萤石云 AccessToken 过期, 重新获取")
+                }
+            }
+            
+            
              /// 获取萤石云 AccessToken
             let dict = ["method": "manage.video.info",
                         "appid": "",
@@ -69,14 +93,16 @@ class DeviceControllCellReactor: NSObject,Reactor {
                     
                     if let result = json["result"] as? [String: Any] {
                         let token = result["token"] as! String
-//                        let reamark = result["token"] as! String
+                        let temptime = result["temptime"] as! Int
                         log.debug("获取到萤石云 Token: \(token)")
-                        Defaults[.ysAccessToken] = token                        
+                        Defaults[.ysAccessTime] = temptime
+                        Defaults[.ysAccessToken] = token
                     }
                 }
                 
             }) { (error) in
-                
+                FHToaster.show(text: error.localizedDescription)
+                log.error(error.localizedDescription)
             }.disposed(by: rx.disposeBag)
             return .empty()
         }

@@ -24,7 +24,7 @@ target 'SmartHomeHD' do
   pod 'SectionReactor'
   pod 'Then'
   pod 'Dollar'
-  
+  pod 'RxKingfisher'
   pod 'Kingfisher'
   
   

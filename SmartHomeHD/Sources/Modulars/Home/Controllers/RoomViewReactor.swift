@@ -16,19 +16,21 @@ class RoomViewReactor: Reactor {
         var deviceModels:[DeviceModel]!
         
         var setcions: [DeviceControllSection]?
+        
+        var roomImageUrlStr: String?
     }
     
     let initialState: RoomViewReactor.State
-    
-    init(devicelist: [DeviceModel]) {
+    var roomModel: RoomMoel
+    init(devicelist: [DeviceModel], roomModel: RoomMoel) {
         
         let reactors =  devicelist.map { (model) -> DeviceControllCellReactor in
            return DeviceControllCellReactor.init(deviceModel: model)
         }
         
        
-       
-        self.initialState = State.init(deviceModels: devicelist, setcions:  [DeviceControllSection.init(items: reactors)])
+        self.roomModel = roomModel
+        self.initialState = State.init(deviceModels: devicelist, setcions:  [DeviceControllSection.init(items: reactors)], roomImageUrlStr: roomModel.imageurl)
         
     }
 }

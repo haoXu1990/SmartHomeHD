@@ -159,13 +159,16 @@ extension SmartCameraView {
     func playerPTZControll(cameraModel: SmartCameraYSModel, command: EZPTZCommand)  {
         
         EZOpenSDK.controlPTZ(cameraModel.deviceSerial, cameraNo: cameraModel.channelNo!, command: command, action: .start, speed: 2) { (error) in
-            FHToaster.show(text: error!.localizedDescription)
+            if let str = error?.localizedDescription {
+                FHToaster.show(text: str)
+            }
         }
         
         EZOpenSDK.controlPTZ(cameraModel.deviceSerial, cameraNo: cameraModel.channelNo!, command: command, action: .stop, speed: 2) { (error) in
-            FHToaster.show(text: error!.localizedDescription)
+            if let str = error?.localizedDescription {
+                FHToaster.show(text: str)
+            }
         }
-        
     }
 }
 

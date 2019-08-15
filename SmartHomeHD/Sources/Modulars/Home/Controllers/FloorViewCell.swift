@@ -32,9 +32,11 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
     var carouselView: iCarousel!
     
     var scenModeView: TYCyclePagerView!
-    
+    var dataSource: RxCollectionViewSectionedReloadDataSource<FloorViewSection>!
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        initUI()
         
         initCarouseView()
         
@@ -49,12 +51,18 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
     
     fileprivate func initUI() {
 
+        dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
+            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
+            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+            return cell
+        })
+        
         /// 流布局
         flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.itemSize = CGSize.init(width: self.contentView.frame.width / 4, height: 100)
 
-
         collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: flowLayout)
+        collectionView.isHidden = true
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
     }
@@ -80,13 +88,8 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
 
     open func reloadData(flowStyle: RoomControllViewLayoutStyle) {
         
-//        layoutStyel = flowStyle
-//        let layout = flowStyle == .cirle3D ? circle3DLayout : flowLayout
-//        collectionView.setCollectionViewLayout(layout!, animated: true)
-//        let indexPath = IndexPath.init(row: 0, section: 0)
-//        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-        
     }
+    
 }
 
 extension FloorViewCell {
@@ -100,8 +103,32 @@ extension FloorViewCell {
         carouselView.bounces = false
         carouselView.isPagingEnabled = true
         carouselView.type = .cylinder
+        carouselView.isHidden = true
         carouselView.backgroundColor = .clear
         contentView.addSubview(carouselView)
+    }
+    
+    func showLayout(layout: Bool, index: Int = -1) {
+        
+        if layout {
+            /// 3D
+            /// 1. 隐藏 CollectionView
+            collectionView.isHidden = true
+            /// 2. 显示 iCarouselView
+            carouselView.isHidden = false
+            
+            if index >= 0 {
+                carouselView.reloadItem(at: index, animated: true)
+            }
+            
+        }
+        else {
+            /// 流布局
+            /// 1. 显示 CollectionView
+            collectionView.isHidden = false
+            /// 2. 隐藏 iCarouselView
+            carouselView.isHidden = true
+        }
     }
 }
 
@@ -109,14 +136,22 @@ extension FloorViewCell {
     
     func bind(reactor: FloorViewReactor) {
         
-//        let dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
-//            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
-//            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
-//            if cell.reactor !== item {
-//                cell.reactor = item
-//            }
-//            return cell
-//        })
+        collectionView.delegate = nil
+        collectionView.dataSource = nil
+        
+        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+        reactor.state.map{$0.fllowLayout}
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self](layout) in
+                guard let self = self else { return }                
+                self.showLayout(layout: layout)
+        }).disposed(by: rx.disposeBag)
+        
+        reactor.state.map { $0.setcions }
+            .filterNil()
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
         
         reactor.state
             .map{ $0.rooms }
@@ -143,6 +178,14 @@ extension FloorViewCell {
             .disposed(by: rx.disposeBag)
     }
     
+}
+
+extension FloorViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        showLayout(layout: true, index: indexPath.row)
+    }
 }
 
 extension FloorViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
@@ -196,7 +239,6 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
             let cell = RoomViewCell.init(frame: cellFrame)
             if let sections = self.reactor?.currentState.setcions?.first {
                 let reactor = sections.items[index]
-                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
                 cell.reactor = reactor
                 return cell
             }
@@ -205,7 +247,7 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
             let cell = cellView as! RoomViewCell
             if let sections = self.reactor?.currentState.setcions?.first {
                 let reactor = sections.items[index]
-                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+//                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
                 cell.reactor = reactor
                 return cell
             }

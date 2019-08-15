@@ -118,22 +118,26 @@ class HomeViewController: UIViewController, ReactorKit.View {
 extension HomeViewController {
     
     @objc func circleLayoutBtnAction()  {
-//        homeVC.reloadCollectionData(flowStyle: .cirle3D)
+        Observable.just(Reactor.Action.setLayout(true))
+            .bind(to: reactor!.action)
+            .disposed(by: self.rx.disposeBag)
     }
     
     @objc func flowLayoutBtnAction()  {
-//        homeVC.reloadCollectionData(flowStyle: .flow)
+        Observable.just(Reactor.Action.setLayout(false))
+            .bind(to: reactor!.action)
+            .disposed(by: self.rx.disposeBag)
     }
     
 }
 
-extension HomeViewController {
-    func reloadData() {
-        Observable.just(Reactor.Action.fetchUserInfo)
-            .bind(to: reactor!.action)
-            .disposed(by: self.rx.disposeBag)
-    }
-}
+//extension HomeViewController {
+//    func reloadData() {
+//        Observable.just(Reactor.Action.fetchUserInfo)
+//            .bind(to: reactor!.action)
+//            .disposed(by: self.rx.disposeBag)
+//    }
+//}
 extension HomeViewController {
     
     func bind(reactor: HomeViewReactor) {
@@ -144,9 +148,10 @@ extension HomeViewController {
             .bind(to: reactor.action)
             .disposed(by: self.rx.disposeBag)
         
-        reactor.state.map { $0.setcions }.filterNil()
-        .bind(to: collectionView.rx.items(dataSource: dataSource))
-        .disposed(by: rx.disposeBag)
+        reactor.state.map { $0.setcions }
+            .filterNil()
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
         
         reactor.state.map{$0.showActivityView}
             .distinctUntilChanged()
@@ -168,18 +173,18 @@ extension Reactive where Base: NVActivityIndicatorView {
     }
 }
 
-///MARK - open method
-extension HomeViewController {
-    
-    open func reloadCollectionData(flowStyle: RoomControllViewLayoutStyle) {
-        
-        if flowStyle == self.flowStyle { return }
-        self.flowStyle = flowStyle
-        
-        collectionView.reloadData()
-        // 这里需要重新加载数据, 有点问题
-    }
-}
+/////MARK - open method
+//extension HomeViewController {
+//
+//    open func reloadCollectionData(flowStyle: RoomControllViewLayoutStyle) {
+//
+//        if flowStyle == self.flowStyle { return }
+//        self.flowStyle = flowStyle
+//
+//        collectionView.reloadData()
+//        // 这里需要重新加载数据, 有点问题
+//    }
+//}
 
 
 private enum Reusable {

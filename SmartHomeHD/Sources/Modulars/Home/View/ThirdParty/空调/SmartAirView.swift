@@ -70,6 +70,7 @@ class SmartAirView: SmartControllBaseView, View {
         contentView.addSubview(updownWindBtn)
         
         timeBtn = UIButton.init()
+        timeBtn.isHidden = true
         timeBtn.setBackgroundImage(UIImage.init(named: "device_control_air_time"), for: .normal)
         contentView.addSubview(timeBtn)
         moreBtn = UIButton.init()

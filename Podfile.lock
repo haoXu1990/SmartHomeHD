@@ -73,6 +73,10 @@ PODS:
   - RxGesture (2.2.0):
     - RxCocoa (~> 4.5)
     - RxSwift (~> 4.5)
+  - RxKingfisher (0.5.0):
+    - Kingfisher (~> 5)
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
   - RxOptional (3.6.2):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
@@ -125,6 +129,7 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxDataSources (~> 3.0)
   - RxGesture
+  - RxKingfisher
   - RxOptional
   - RxSwift (~> 4.0)
   - RxSwiftExt
@@ -168,6 +173,7 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxGesture
+    - RxKingfisher
     - RxOptional
     - RxSwift
     - RxSwiftExt
@@ -220,6 +226,7 @@ SPEC CHECKSUMS:
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
+  RxKingfisher: b6c043154e287f943ea8370bda0961bc052cf6b9
   RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
@@ -237,6 +244,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: ff00e40500ddd059a4472615d28de8de9a4ab14e
+PODFILE CHECKSUM: a52043b10195878929e52548b0c7f654a5a71d35
 
 COCOAPODS: 1.5.3
