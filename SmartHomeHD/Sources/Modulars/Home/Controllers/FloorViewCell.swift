@@ -118,7 +118,7 @@ extension FloorViewCell {
             carouselView.isHidden = false
             
             if index >= 0 {
-                carouselView.reloadItem(at: index, animated: true)
+                carouselView.scrollToItem(at: index, animated: true)
             }
             
         }
