@@ -18,7 +18,7 @@ import MMPhotoPicker
 import FilesProvider
 import NVActivityIndicatorView
 import SwiftDate
-
+import LXFProtocolTool
 /// 沙河路径
 let DZM_READ_DOCUMENT_DIRECTORY_PATH:String = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as String)
 
@@ -26,13 +26,14 @@ let DZM_READ_DOCUMENT_DIRECTORY_PATH:String = (NSSearchPathForDirectoriesInDomai
 
 let kRECORDINGPATH = DZM_READ_DOCUMENT_DIRECTORY_PATH + "/OpenSDK/EzvizLocalRecord/"
 
-class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
+class SmartCameraView: UIView,ReactorKit.View, NibLoadable ,FullScreenable{
     
     var disposeBag: DisposeBag = DisposeBag.init()
     
     @IBOutlet weak var title: UILabel!
-   
+   //playerView 暂时不用, 为了解决全屏工具 bug
     @IBOutlet weak var plaerView: UIView!
+    @IBOutlet weak var playerContentSubView: UIView!
     
     var player: EZPlayer!
     var recordingStatus = false
@@ -53,6 +54,8 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
     
     /// 录像存储路径
     var filePath:String = ""
+    
+    var fullStatus: Bool = false
     
     @IBOutlet weak var activityView: NVActivityIndicatorView!
     override func awakeFromNib() {
@@ -75,6 +78,9 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
         directionBtn.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        playerContentSubView.frame = CGRect.init(x: 16, y: 50, width: 270 - 31, height: 150)
+        
     }
     
     func initSDK() {
@@ -97,7 +103,7 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable {
         }
         
         player.delegate = self
-        player.setPlayerView(plaerView)
+        player.setPlayerView(playerContentSubView)
         activityView.startAnimating()
         player.startRealPlay()
     }
@@ -317,20 +323,18 @@ extension SmartCameraView {
             .disposed(by: rx.disposeBag)
         
         
-        plaerView.rx.tapGesture().subscribe(onNext: { [weak self](_) in
+        playerContentSubView.rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self](_) in
             guard let self = self else { return }
             
-            if self.plaerView.frame == UIScreen.main.bounds {
-                
-                
-            }
-            else {
-                
-//                UIView.animate(withDuration: 0.5, animations: {
-//                    self.plaerView.frame = UIScreen.main.bounds
-//                })
-            }
-            
+            self.fullStatus = !self.fullStatus
+                if (self.fullStatus) {
+                    self.lxf.enterFullScreen(specifiedView: self.playerContentSubView)
+                } else {
+                    self.lxf.exitFullScreen(superView: self)
+                }
             
         }).disposed(by: rx.disposeBag)
     

@@ -12,20 +12,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SmartCameraView" customModule="SmartHomeHD" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="450"/>
+            <rect key="frame" x="0.0" y="0.0" width="275" height="546"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_virtual_control_bg" translatesAutoresizingMaskIntoConstraints="NO" id="rUg-C5-LzH" userLabel="bgImage">
-                    <rect key="frame" x="0.0" y="0.0" width="275" height="450"/>
+                    <rect key="frame" x="0.0" y="0.0" width="275" height="546"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnK-X8-khe">
-                    <rect key="frame" x="137.5" y="20" width="0.0" height="0.0"/>
+                    <rect key="frame" x="137.5" y="20" width="0.0" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Pro-dR-vHT"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3F4-bU-eUJ">
-                    <rect key="frame" x="16" y="37" width="243" height="150"/>
+                    <rect key="frame" x="16" y="48" width="243" height="150"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9R-Qp-C3t" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                             <rect key="frame" x="106.5" y="60" width="30" height="30"/>
@@ -43,27 +46,32 @@
                         <constraint firstItem="d9R-Qp-C3t" firstAttribute="centerY" secondItem="3F4-bU-eUJ" secondAttribute="centerY" id="huN-BP-QQE"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phb-8R-33h">
+                    <rect key="frame" x="17" y="161" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzE-Nq-kkS">
-                    <rect key="frame" x="35" y="310" width="48" height="48"/>
+                    <rect key="frame" x="35" y="321" width="48" height="48"/>
                     <state key="normal" backgroundImage="device_control_camera_talk"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKo-Cd-MTg">
-                    <rect key="frame" x="15" y="400" width="245" height="35"/>
+                    <rect key="frame" x="15" y="496" width="245" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="我的相册" backgroundImage="device_control_camera_album">
                         <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxX-nv-nrg">
-                    <rect key="frame" x="113.5" y="310" width="48" height="48"/>
+                    <rect key="frame" x="113.5" y="321" width="48" height="48"/>
                     <state key="normal" backgroundImage="device_control_camera_capture"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL9-D5-K2O">
-                    <rect key="frame" x="192" y="310" width="48" height="48"/>
+                    <rect key="frame" x="192" y="321" width="48" height="48"/>
                     <state key="normal" backgroundImage="device_control_camera_recording"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4Z-GN-KLf" userLabel="CloudView">
-                    <rect key="frame" x="87.5" y="202" width="100" height="100"/>
+                    <rect key="frame" x="87.5" y="213" width="100" height="100"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="cmU-rw-yHM"/>
@@ -71,19 +79,19 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="对讲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-mU-mM5">
-                    <rect key="frame" x="44.5" y="366" width="29" height="17"/>
+                    <rect key="frame" x="44.5" y="377" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="截图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNY-ju-nld">
-                    <rect key="frame" x="123" y="366" width="29" height="17"/>
+                    <rect key="frame" x="123" y="377" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="录像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErW-AT-BCy">
-                    <rect key="frame" x="201.5" y="366" width="29" height="17"/>
+                    <rect key="frame" x="201.5" y="377" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -104,7 +112,7 @@
                 <constraint firstItem="ErW-AT-BCy" firstAttribute="centerX" secondItem="oL9-D5-K2O" secondAttribute="centerX" id="StI-ia-HXC"/>
                 <constraint firstItem="jnK-X8-khe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uy5-ka-Rli"/>
                 <constraint firstAttribute="bottom" secondItem="rUg-C5-LzH" secondAttribute="bottom" id="Y4t-Tr-Rig"/>
-                <constraint firstItem="3F4-bU-eUJ" firstAttribute="top" secondItem="jnK-X8-khe" secondAttribute="bottom" constant="17" id="dbP-jG-xii"/>
+                <constraint firstItem="3F4-bU-eUJ" firstAttribute="top" secondItem="jnK-X8-khe" secondAttribute="bottom" constant="8" symbolic="YES" id="dbP-jG-xii"/>
                 <constraint firstItem="jnK-X8-khe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="e5F-nU-sa4"/>
                 <constraint firstItem="sKo-Cd-MTg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eMy-pL-J63"/>
                 <constraint firstItem="yxX-nv-nrg" firstAttribute="centerY" secondItem="IzE-Nq-kkS" secondAttribute="centerY" id="eg9-cp-Mj3"/>
@@ -128,12 +136,13 @@
                 <outlet property="intercomBtn" destination="IzE-Nq-kkS" id="1b1-pC-mRz"/>
                 <outlet property="intercomLabel" destination="PpN-mU-mM5" id="OES-QJ-hXg"/>
                 <outlet property="plaerView" destination="3F4-bU-eUJ" id="xNs-rI-kGW"/>
+                <outlet property="playerContentSubView" destination="phb-8R-33h" id="KlI-QA-64M"/>
                 <outlet property="recordingBtn" destination="oL9-D5-K2O" id="iU6-d7-vnd"/>
                 <outlet property="recordingLabel" destination="ErW-AT-BCy" id="DOW-U5-4wD"/>
                 <outlet property="scrennshotsBtn" destination="yxX-nv-nrg" id="440-JX-NVS"/>
                 <outlet property="title" destination="jnK-X8-khe" id="A3I-nM-2cY"/>
             </connections>
-            <point key="canvasLocation" x="103.62318840579711" y="-7.3660714285714279"/>
+            <point key="canvasLocation" x="103.62318840579711" y="-39.508928571428569"/>
         </view>
     </objects>
     <resources>

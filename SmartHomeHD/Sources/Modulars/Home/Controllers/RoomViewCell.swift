@@ -14,7 +14,7 @@ import NSObject_Rx
 import RxOptional
 import ReactorKit
 import RxDataSources
-
+import LXFProtocolTool
 enum CellType {
     /// defaut
     case zero
@@ -26,7 +26,7 @@ enum CellType {
     case ThreeButton
 }
 
-class RoomViewCell: UICollectionViewCell, View {
+class RoomViewCell: UICollectionViewCell, View, FullScreenable {
     
     var disposeBag: DisposeBag = DisposeBag.init()
     
@@ -320,7 +320,7 @@ extension RoomViewCell {
         case .Feed: return .OneSwitch
         case .Tv: return .More
         case .Airconditioner: return .More
-        case .IR: return .More
+        case .IR: return .OneSwitch
         case .TranslucentScreen: return .ThreeButton
         case .Projector: return .More
         case .Windowopener: return .ThreeButton
