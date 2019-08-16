@@ -118,6 +118,7 @@ extension MessageViewController {
             .bind(to: reactor.action)
             .disposed(by: rx.disposeBag)
 
+        self.lxf.updateEmptyDataSet(collectionView)
     }
 }
 

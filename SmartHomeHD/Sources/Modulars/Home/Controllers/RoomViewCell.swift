@@ -126,7 +126,7 @@ class RoomViewCell: UICollectionViewCell, View, FullScreenable {
         moreView.snp.makeConstraints { (make) in
             make.top.equalTo(deviceListBackgroundImageView)
             make.right.equalTo(deviceListBackgroundImageView.snp.left)
-            make.width.equalTo(270*2)
+            make.left.equalToSuperview()
             make.bottom.equalTo(deviceListBackgroundImageView)
         }
     }
@@ -285,36 +285,65 @@ extension RoomViewCell {
             .throttle(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (model) in
 
-            guard let self = self else { return }
-            let typeID = Int(model.typeid!)!
-            let type = RoomViewCell.cellFactory(typeID: typeID)
+                guard let self = self else { return }
+                let typeID = Int(model.typeid!)!
+                let type = RoomViewCell.cellFactory(typeID: typeID)
 
-            /// 删除已有得视图
-            self.removeAllSubView()
+                if self.moreView.subviews.count > 0 {
+                    self.removeAllSubView()
+                    return
+                }
+                if type == .More {
+                    log.debug("显示更多视图. typeID = \(typeID)")
 
-            if type == .More {
-                log.debug("显示更多视图. typeID = \(typeID)")
+                    if typeID == SmartDeviceType.YSCamera.rawValue {
+                        self.initCameraView(model: model)
+                    }
+                    else if typeID == SmartDeviceType.Projector.rawValue {
+                        self.initProjectorView(model: model)
+                    }
+                    else if typeID == SmartDeviceType.Tv.rawValue {
+                        self.initTVView(model: model)
+                    }
+                    else if typeID == SmartDeviceType.Airconditioner.rawValue {
+                        self.initAirView(model: model)
+                    }
 
-                if typeID == SmartDeviceType.YSCamera.rawValue {
-                    self.initCameraView(model: model)
                 }
-                else if typeID == SmartDeviceType.Projector.rawValue {
-                    self.initProjectorView(model: model)
-                }
-                else if typeID == SmartDeviceType.Tv.rawValue {
-                    self.initTVView(model: model)
-                }
-                else if typeID == SmartDeviceType.Airconditioner.rawValue {
-                    self.initAirView(model: model)
-                }
-
-            }
 
         }).disposed(by: rx.disposeBag)
 
+        
+        moreView.rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self](gesture) in
+            guard let self = self else { return }
+                /// 解决点击事件传入子视图得问题
+                
+                let point =  gesture.location(in: self.contentView)
+                var subViewW = 220 + 270
+                let moreViewW = self.contentView.frame.width
+                
+                if let moreView = self.moreView.subviews.first as? SmartControllBaseView {
+                    if moreView.extensionView.subviews.count > 0 {
+                        subViewW = subViewW + 270
+                    }
+                }
+                
+                if point.x < moreViewW - CGFloat(subViewW) {
+                    /// 删除已有得视图
+                    self.removeAllSubView()
+                }
+                
+            
+        }).disposed(by: rx.disposeBag)
     }
 }
 
+extension RoomViewCell {
+    
+}
 
 extension RoomViewCell: UITableViewDelegate {
    

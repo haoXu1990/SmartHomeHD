@@ -197,9 +197,9 @@ extension SmartProjectorView {
     }
 }
 extension SmartProjectorView {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        disMissExtensionView()
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        disMissExtensionView()
+//    }
 }
 
 // MARK: - Action

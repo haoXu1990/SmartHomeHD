@@ -63,7 +63,7 @@ class InfraredControlReactor: NSObject, Reactor {
             let remoteID = self.currentState.deviceModels.rowcount!
             
             if let remoteModel = TJDataManager.shared().getRemoteById(remoteID) {
-                FHToaster.show(text: "下载遥控器成功")
+                FHToaster.show(text: "加载本地遥控器成功")
                 self.remoteModel = remoteModel
                 self.extensionKeys = self.fetchExtensionKeys(remote: remoteModel)
             }
