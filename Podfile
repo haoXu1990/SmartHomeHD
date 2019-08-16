@@ -75,6 +75,7 @@ target 'SmartHomeHD' do
   # Pods for SmartHomeHD
 
   pod 'SCLAlertView'
+  pod 'HJViewStyle'
   
   target 'SmartHomeHDTests' do
     inherit! :search_paths

@@ -8,6 +8,7 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - EZOpenSDK (4.8.6)
   - FilesProvider (0.26.0)
+  - HJViewStyle (1.2.4)
   - HMSegmentedControl (1.5.5)
   - Kingfisher (5.7.0)
   - LXFProtocolTool (1.1.2):
@@ -115,6 +116,7 @@ DEPENDENCIES:
   - Dollar
   - EZOpenSDK
   - FilesProvider
+  - HJViewStyle
   - HMSegmentedControl
   - Kingfisher
   - LXFProtocolTool
@@ -155,6 +157,7 @@ SPEC REPOS:
     - DZNEmptyDataSet
     - EZOpenSDK
     - FilesProvider
+    - HJViewStyle
     - HMSegmentedControl
     - Kingfisher
     - LXFProtocolTool
@@ -208,6 +211,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
+  HJViewStyle: ac7f224fc298f9af7276b07369720ccf0d8356db
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   LXFProtocolTool: b6e7f86b8fd3b0d88e4fbcece8176bf71cdcf014
@@ -244,6 +248,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: a52043b10195878929e52548b0c7f654a5a71d35
+PODFILE CHECKSUM: 587a2ecfcd2b87d4db4c751e640e5680d06e88d7
 
 COCOAPODS: 1.5.3

@@ -49,6 +49,8 @@
 		6958D0BC230174DD0073FA2E /* SettingViewCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0BB230174DC0073FA2E /* SettingViewCellReactor.swift */; };
 		6958D0BF23029C1B0073FA2E /* RoomDeviceMangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0BE23029C1B0073FA2E /* RoomDeviceMangerView.swift */; };
 		6958D0C12302A9A80073FA2E /* RoomDeviceMangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0C02302A9A80073FA2E /* RoomDeviceMangerCell.swift */; };
+		6958D1062306A84E0073FA2E /* SmartDoorbell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D1052306A84E0073FA2E /* SmartDoorbell.swift */; };
+		6958D1092306B18B0073FA2E /* EquesBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D1082306B18B0073FA2E /* EquesBusiness.framework */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -182,6 +184,8 @@
 		6958D0BB230174DC0073FA2E /* SettingViewCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCellReactor.swift; sourceTree = "<group>"; };
 		6958D0BE23029C1B0073FA2E /* RoomDeviceMangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDeviceMangerView.swift; sourceTree = "<group>"; };
 		6958D0C02302A9A80073FA2E /* RoomDeviceMangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDeviceMangerCell.swift; sourceTree = "<group>"; };
+		6958D1052306A84E0073FA2E /* SmartDoorbell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDoorbell.swift; sourceTree = "<group>"; };
+		6958D1082306B18B0073FA2E /* EquesBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EquesBusiness.framework; sourceTree = "<group>"; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6958D1092306B18B0073FA2E /* EquesBusiness.framework in Frameworks */,
 				69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */,
 				69D8D0E522F19AD30033B20F /* libz.tbd in Frameworks */,
 				924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */,
@@ -499,8 +504,17 @@
 		6958D104230544050073FA2E /* 门铃 */ = {
 			isa = PBXGroup;
 			children = (
+				6958D1052306A84E0073FA2E /* SmartDoorbell.swift */,
 			);
 			path = "门铃";
+			sourceTree = "<group>";
+		};
+		6958D1072306B18B0073FA2E /* 怡康门铃 */ = {
+			isa = PBXGroup;
+			children = (
+				6958D1082306B18B0073FA2E /* EquesBusiness.framework */,
+			);
+			path = "怡康门铃";
 			sourceTree = "<group>";
 		};
 		695ADD1222DC17EA001A7533 = {
@@ -872,6 +886,7 @@
 		69D8D0C322F1778F0033B20F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				6958D1072306B18B0073FA2E /* 怡康门铃 */,
 				69D8D0C422F177A70033B20F /* 恬家红外 */,
 			);
 			path = SDK;
@@ -1112,6 +1127,7 @@
 				"${BUILT_PRODUCTS_DIR}/Dollar/Dollar.framework",
 				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FilesProvider/FilesProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/HJViewStyle/HJViewStyle.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LXFProtocolTool/LXFProtocolTool.framework",
@@ -1159,6 +1175,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dollar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FilesProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HJViewStyle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXFProtocolTool.framework",
@@ -1279,6 +1296,7 @@
 				695ADDC422E8056C001A7533 /* ModelType.swift in Sources */,
 				695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */,
 				695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */,
+				6958D1062306A84E0073FA2E /* SmartDoorbell.swift in Sources */,
 				695ADDAA22E6DD8A001A7533 /* GCDAsyncSocket.m in Sources */,
 				695ADD5D22DEB47F001A7533 /* HomeViewController.swift in Sources */,
 				6932411F22F7CA1000B4DB65 /* FilePathUtils.swift in Sources */,
@@ -1505,6 +1523,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/sdk",
+				);
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1597,6 +1619,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/sdk",
+				);
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
