@@ -8,6 +8,13 @@
 
 import UIKit
 
+/// app 自定义
+extension NSNotification.Name {
+    /// 退出登录
+    static let pubExitAPP = NSNotification.Name.init("pubExitAPP")
+}
+
+/// 设备相关
 extension NSNotification.Name {
     
     /// 登录通知
@@ -19,6 +26,14 @@ extension NSNotification.Name {
     /// 设备状态改变
     static let pubStateChange = NSNotification.Name.init("pubStateChange")
     
-    /// 退出登录
-    static let pubExitAPP = NSNotification.Name.init("pubExitAPP")
+    /// 报警
+    static let pubAlarmChange = NSNotification.Name.init("pubAlarmChange")
+}
+
+/// 怡康门铃
+extension NSNotification.Name {
+    /// 怡康门铃所有与服务器交互反馈的数据都通过监听这个通知获得
+    static let onMessageResultNotification = NSNotification.Name.init(equesOnMessageResultNotification)
+    
+    static let onMessageVideoplayingNotification = NSNotification.Name.init(equesOnMessageVideoplayingNotification)
 }

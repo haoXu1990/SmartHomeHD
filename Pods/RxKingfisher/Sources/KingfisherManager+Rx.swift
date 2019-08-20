@@ -10,22 +10,29 @@ import RxSwift
 import Kingfisher
 
 extension Reactive where Base == KingfisherManager {
-    public func retrieveImage(with resource: Resource,
+    public func retrieveImage(with source: Source,
                               options: KingfisherOptionsInfo? = nil) -> Single<Image> {
-        return Single<Image>.create { [base] single in
-            let task = base.retrieveImage(with: resource,
+        return Single.create { [base] single in
+            let task = base.retrieveImage(with: source,
                                           options: options) { result in
                 switch result {
-                case .failure(let error):
-                    single(.error(error))
                 case .success(let value):
                     single(.success(value.image))
+                case .failure(let error):
+                    single(.error(error))
                 }
             }
 
             return Disposables.create { task?.cancel() }
         }
     }
+    
+    public func retrieveImage(with resource: Resource,
+                              options: KingfisherOptionsInfo? = nil) -> Single<Image> {
+        let source = Source.network(resource)
+        return retrieveImage(with: source, options: options)
+    }
+
 }
 
 extension KingfisherManager: ReactiveCompatible {

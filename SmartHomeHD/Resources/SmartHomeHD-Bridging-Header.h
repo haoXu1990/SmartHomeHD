@@ -26,4 +26,6 @@
 #import "iCarousel.h"
 #import "CircleAnimationBottomView.h"
 
+/// 怡康门铃
+#import <EquesBusiness/YKBusinessFramework.h>
 #endif /* SmartHomeHD_Bridging_Header_h */

@@ -59,23 +59,30 @@ target 'SmartHomeHD' do
  
   # 自定义 Switch
   pod 'RoundedSwitch'
+  # 日期扩展
   pod 'SwiftDate', '~> 5.0'
   # 二维码识别，生成工具, 原作者没更新了,
   pod 'swiftScan', :git => "https://github.com/MxABC/swiftScan.git", :commit =>"b6c5b1c"
   # log 工具
   pod 'CocoaLumberjack/Swift'
+  # File 处理
   pod 'FilesProvider'
   # 第三方集成
   # 荧石云摄像头SDK
   pod 'EZOpenSDK'
  
+  # activityView
   pod 'NVActivityIndicatorView/AppExtension'
   
+  # 刷新, 空页面, 全屏 等工具
   pod 'LXFProtocolTool'
-  # Pods for SmartHomeHD
-
+  
+  #  弹窗 ALterView
   pod 'SCLAlertView'
+  # 视图圆角， 阴影，渐变色等处理
   pod 'HJViewStyle'
+  
+  # Pods for SmartHomeHD
   
   target 'SmartHomeHDTests' do
     inherit! :search_paths

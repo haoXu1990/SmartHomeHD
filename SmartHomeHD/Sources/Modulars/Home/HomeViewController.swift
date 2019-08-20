@@ -6,7 +6,7 @@
 //  Created by XuHao on 2019/7/17.
 //  Copyright © 2019 FH. All rights reserved.
 //  首页控制器, 管理  房间、楼层
-
+//  新增门铃报警弹窗
 import UIKit
 import ReusableKit
 import RxSwift
@@ -37,6 +37,31 @@ class HomeViewController: UIViewController, ReactorKit.View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /// 门铃报警
+        NotificationCenter.default.rx.notification(.pubAlarmChange)
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+                guard let _ = self, let result = data.object as? [String: Any] else { return }
+                
+                if let type = result["type"] as? Int,
+                    let state = result["state"] as? String,
+                    let bid = result["bid"] as? String,
+                    let dbcode = result["dbcode"] as? Int {
+                    
+                    if type == 15 {
+                        // 门铃呼叫
+                        if state == "2" {
+                            let title = result["text"] as? String
+                            let view = SmartDoorbell.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH))
+                            view.bid = bid
+                            view.dbcode = String(dbcode)
+                            view.show(title: title.or("门铃来电"))
+                        }
+                    }
+                }
+                
+            }).disposed(by: rx.disposeBag)
         
     }
 

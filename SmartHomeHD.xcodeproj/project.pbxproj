@@ -51,6 +51,13 @@
 		6958D0C12302A9A80073FA2E /* RoomDeviceMangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D0C02302A9A80073FA2E /* RoomDeviceMangerCell.swift */; };
 		6958D1062306A84E0073FA2E /* SmartDoorbell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6958D1052306A84E0073FA2E /* SmartDoorbell.swift */; };
 		6958D1092306B18B0073FA2E /* EquesBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D1082306B18B0073FA2E /* EquesBusiness.framework */; };
+		6958D10B230A43060073FA2E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D10A230A43060073FA2E /* SystemConfiguration.framework */; };
+		6958D10D230A43100073FA2E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D10C230A43100073FA2E /* libicucore.tbd */; };
+		6958D10F230A43180073FA2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D10E230A43180073FA2E /* MobileCoreServices.framework */; };
+		6958D111230A43200073FA2E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D110230A43200073FA2E /* AudioToolbox.framework */; };
+		6958D113230A43280073FA2E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D112230A43270073FA2E /* libiconv.tbd */; };
+		6958D115230A432E0073FA2E /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D114230A432E0073FA2E /* libbz2.tbd */; };
+		6958D117230A43350073FA2E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958D116230A43350073FA2E /* AVFoundation.framework */; };
 		695ADD1F22DC17EA001A7533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD1E22DC17EA001A7533 /* AppDelegate.swift */; };
 		695ADD2122DC17EA001A7533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ADD2022DC17EA001A7533 /* ViewController.swift */; };
 		695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695ADD2222DC17EA001A7533 /* Main.storyboard */; };
@@ -186,6 +193,13 @@
 		6958D0C02302A9A80073FA2E /* RoomDeviceMangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDeviceMangerCell.swift; sourceTree = "<group>"; };
 		6958D1052306A84E0073FA2E /* SmartDoorbell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDoorbell.swift; sourceTree = "<group>"; };
 		6958D1082306B18B0073FA2E /* EquesBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EquesBusiness.framework; sourceTree = "<group>"; };
+		6958D10A230A43060073FA2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6958D10C230A43100073FA2E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		6958D10E230A43180073FA2E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6958D110230A43200073FA2E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6958D112230A43270073FA2E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		6958D114230A432E0073FA2E /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		6958D116230A43350073FA2E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +306,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6958D1092306B18B0073FA2E /* EquesBusiness.framework in Frameworks */,
+				6958D117230A43350073FA2E /* AVFoundation.framework in Frameworks */,
+				6958D115230A432E0073FA2E /* libbz2.tbd in Frameworks */,
+				6958D113230A43280073FA2E /* libiconv.tbd in Frameworks */,
+				6958D111230A43200073FA2E /* AudioToolbox.framework in Frameworks */,
+				6958D10F230A43180073FA2E /* MobileCoreServices.framework in Frameworks */,
+				6958D10D230A43100073FA2E /* libicucore.tbd in Frameworks */,
+				6958D10B230A43060073FA2E /* SystemConfiguration.framework in Frameworks */,
 				69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */,
 				69D8D0E522F19AD30033B20F /* libz.tbd in Frameworks */,
 				924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */,
@@ -321,6 +342,13 @@
 		50F2828A6B6CA73A739697BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6958D116230A43350073FA2E /* AVFoundation.framework */,
+				6958D114230A432E0073FA2E /* libbz2.tbd */,
+				6958D112230A43270073FA2E /* libiconv.tbd */,
+				6958D110230A43200073FA2E /* AudioToolbox.framework */,
+				6958D10E230A43180073FA2E /* MobileCoreServices.framework */,
+				6958D10C230A43100073FA2E /* libicucore.tbd */,
+				6958D10A230A43060073FA2E /* SystemConfiguration.framework */,
 				69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */,
 				69D8D0E422F19AD30033B20F /* libz.tbd */,
 				004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */,
@@ -1525,7 +1553,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/sdk",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/怡康门铃",
 				);
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1621,7 +1649,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/sdk",
+					"$(PROJECT_DIR)/SmartHomeHD/Sources/Other/SDK/怡康门铃",
 				);
 				INFOPLIST_FILE = SmartHomeHD/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
