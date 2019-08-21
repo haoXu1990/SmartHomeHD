@@ -21,20 +21,20 @@ final class DebugPlugin: PluginType {
     
     func willSend(_ request: RequestType, target: TargetType) {
     
-        log.debug(target.task)
+//        log.debug(target.task)
     }
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
        
-        if case Result.success(let response) = result {
-            
-            guard let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [String: Any]  else {
-                return
-            }
-            log.debug(json)
-        }
-        else {
-        
-        }
+//        if case Result.success(let response) = result {
+//
+//            guard let json = try? JSONSerialization.jsonObject(with: response.data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! [String: Any]  else {
+//                return
+//            }
+//            log.debug(json)
+//        }
+//        else {
+//
+//        }
     }
 }

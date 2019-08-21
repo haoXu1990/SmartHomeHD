@@ -173,6 +173,7 @@ extension SmartDoorbell {
     
     func registerNotification() {
         
+        /// 门铃的所有操作结果都是通知返回
         NotificationCenter.default
             .rx.notification(.onMessageResultNotification)
             .takeUntil(self.rx.deallocated)
@@ -185,6 +186,8 @@ extension SmartDoorbell {
                         if let code = result["code"] as? Int {
                             /// 登录成功
                             if code == 4000 {
+                                /// 请求列表, 试试
+                                YKBusinessFramework.equesGetDeviceList()
                             }
                         }
                     }

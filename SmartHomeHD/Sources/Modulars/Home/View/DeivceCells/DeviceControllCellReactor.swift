@@ -43,6 +43,8 @@ class DeviceControllCellReactor: NSObject,Reactor {
         
         switch action {
         case .sendCommand(let type):
+            
+            /// 这里需要判断
             let sn = self.currentState.deviceModels.boxsn
             let eqmId = self.currentState.deviceModels.orderby!
             let state = type.rawValue
@@ -57,11 +59,10 @@ class DeviceControllCellReactor: NSObject,Reactor {
             FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
             return .just(Mutaion.setStatus(type))
         case .fetchYsAccessToken:
-//            Defaults[.ysAccessTime] = 0
+            
             
             let accessTime = Defaults[.ysAccessTime]
             let remo = Region.init(calendar: Calendars.chinese, zone: Zones.current, locale: Locale.current)
-            
             
             if accessTime != nil || accessTime != 0 {
                 ///本地有, 需要判断是否过期
@@ -78,7 +79,6 @@ class DeviceControllCellReactor: NSObject,Reactor {
                     log.debug("萤石云 AccessToken 过期, 重新获取")
                 }
             }
-            
             
              /// 获取萤石云 AccessToken
             let dict = ["method": "manage.video.info",

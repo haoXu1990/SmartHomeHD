@@ -105,21 +105,26 @@ class MainViewController: UIViewController {
         
         // 0. 创建顶部导航       
         headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 55))
-        headerView.backgroundColor = .hexColor(0x151515)
         view.addSubview(headerView)
+        
+        let bgImageView = UIImageView.init(image: UIImage.init(named: "top_avigation_bg"))
+        headerView.addSubview(bgImageView)
+        bgImageView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         
         let logImage = UIImageView.init(image: UIImage.init(named: "image_log_style1"))
         headerView.addSubview(logImage)
-        logImage.snp.makeConstraints { (make) in            
+        logImage.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-55)
         }
         
         // 1. 初始化 segment
         
-        let images:[UIImage] = [UIImage.init(named: "btn_home_segment_home")!,
-                                UIImage.init(named: "btn_home_segment_home")!,
-                                UIImage.init(named: "btn_home_segment_home")!]
+        let images:[UIImage] = [UIImage.init(named: "image_home_home")!,
+                                UIImage.init(named: "image_home_message")!,
+                                UIImage.init(named: "image_home_seting")!]
         segmentVC = HMSegmentedControl.init(sectionImages: images, sectionSelectedImages: images, titlesForSections: ["", "", ""])
         segmentVC.frame = CGRect.init(x: 55, y: 0, width: 500, height: 55)
         segmentVC.imagePosition = .leftOfText
