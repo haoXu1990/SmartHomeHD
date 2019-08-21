@@ -28,6 +28,10 @@ extension NSNotification.Name {
     
     /// 报警
     static let pubAlarmChange = NSNotification.Name.init("pubAlarmChange")
+    
+    /// 470设备控制状态返回
+    static let pubTransLinkChange = NSNotification.Name.init("TransLinkChange")    
+    
 }
 
 /// 怡康门铃

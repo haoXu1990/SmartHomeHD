@@ -71,6 +71,55 @@ extension DeviceControllTwoCell {
             .bind(to: titleLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
+        /// 监听控制状态
+        NotificationCenter.default.rx.notification(.pubTransLinkChange)
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+                guard let _ = self, let result = data.object as? [String: Any] else { return }
+                
+                if let boxsn = result["boxsn"] as? String,
+                    let cmd = result["cmd"] as? String {
+                    
+                    if boxsn == self?.reactor?.currentState.deviceModels.eqmsn {
+                        
+                        let action = cmd.subString(start: 12, end: 14)
+                        
+                        if action.toHex() == 0x81 {
+                            FHToaster.show(text: "控制成功!")
+                        }
+                        else if action.toHex() == 0x82 {
+                            
+                            let error = cmd.subString(start: 16, end: 18)
+                            var msgStr = ""
+                            switch error.toHex() {
+                            case 1:
+                                msgStr = "参数异常!";
+                                break;
+                            case 2:
+                                msgStr = "设备超时!";
+                                break;
+                            case 3:
+                                msgStr = "控制失败";
+                                break;
+                            case 4:
+                                msgStr = "开窗器自动校准中，请稍等...";
+                                break;
+                            case 5:
+                                msgStr = "开关过程中不可用";
+                                break;
+                            default:
+                                msgStr = "指令执行异常！";
+                                break;
+                                
+                            }
+                            FHToaster.show(text: msgStr)
+                        }
+                        
+                    }
+                }
+                
+                
+            }).disposed(by: rx.disposeBag)
         
         middleBtn.rx.tap.subscribe(onNext: {
             Observable.just(Reactor.Action.sendCommand(.pause))

@@ -71,11 +71,7 @@ extension DeviceControllSwitchCell {
                 .bind(to: reactor.action)
                 .disposed(by: self.rx.disposeBag)
             
-        })
-            .disposed(by: rx.disposeBag)
-        
-        
-        
+        }).disposed(by: rx.disposeBag)        
         
     }
 }

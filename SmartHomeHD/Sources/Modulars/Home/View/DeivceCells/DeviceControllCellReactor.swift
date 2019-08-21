@@ -44,19 +44,19 @@ class DeviceControllCellReactor: NSObject,Reactor {
         switch action {
         case .sendCommand(let type):
             
-            /// 这里需要判断
-            let sn = self.currentState.deviceModels.boxsn
-            let eqmId = self.currentState.deviceModels.orderby!
-            let state = type.rawValue
-            let channel = self.currentState.deviceModels.channel!
-            let param = ["msgid": "1460088436",
-                         "boxsn": sn,
-                         "eqmId": eqmId,
-                         "state": state,
-                         "energy": "0",
-                         "channel": channel]
+            let typeID = self.currentState.deviceModels.typeid!
             
-            FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
+            if Int(typeID) ==  SmartDeviceType.Windowopener.rawValue {
+                
+                if let ptype =  self.currentState.deviceModels.ptype {
+                    if ptype == "WBH" || ptype == "WBV" {
+                        send470Command(type: type)
+                        return .just(Mutaion.setStatus(type))
+                    }
+                }
+            }
+            
+            sendNormalCommand(type: type)
             return .just(Mutaion.setStatus(type))
         case .fetchYsAccessToken:
             
@@ -129,5 +129,115 @@ class DeviceControllCellReactor: NSObject,Reactor {
             }
         }
     }
+    
+}
+
+
+extension DeviceControllCellReactor {
+    
+    
+    func sendNormalCommand(type: SmartDeviceSwitchState) {
+   
+        let sn = self.currentState.deviceModels.boxsn
+        let eqmId = self.currentState.deviceModels.orderby!
+        let state = type.rawValue
+        let channel = self.currentState.deviceModels.channel!
+        let param = ["msgid": "1460088436",
+                     "boxsn": sn,
+                     "eqmId": eqmId,
+                     "state": state,
+                     "energy": "0",
+                     "channel": channel]
+        
+        FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
+    }
+    
+    func send470Command(type: SmartDeviceSwitchState) {
+        
+        /// typeid, cmdtype 先写死,目前只有 WIFI 开窗器一个设备用到本方法
+//        let uid = Defaults[.appid]
+//        let sn = self.currentState.deviceModels.boxsn
+        let eqmsn = self.currentState.deviceModels.eqmsn!
+        var resultType: WIFICurtaion
+        switch type {
+        case .on:
+            resultType = .powerOn
+        case .off:
+            resultType = .powerOff
+        case .pause:
+            resultType = .powerStop
+        }
+        
+        
+        
+        let cmdParam = intToHexString(number: resultType.rawValue, bitWith: 2)
+        /// 设备ID + cmd + 控制参数
+        let cmd = eqmsn + intToHexString(number: 0x66, bitWith: 2) + cmdParam
+        let param = ["boxsn": eqmsn,
+                     "typeid": "11",
+                     "cmdtype": "4",
+                     "cmd": cmd]
+        
+        FHSoketManager.shear().sendMessage(event: "TransLink", data: param as [String : Any])
+        
+    }
+    
+    
+    /// Int convert hexString
+    ///
+    /// - Parameters:
+    ///   - number: need convert number
+    ///   - bitWith: bitWithd
+    /// - Returns: hexString
+    func intToHexString(number:Int64, bitWith: Int) -> String {
+        
+        var tmpid = number
+        
+        var ttmping: Int64 = 0
+        
+        var nLetterValue: String = ""
+        var str: String = ""
+        for _ in 0..<19 {
+            ttmping = tmpid % 16
+            tmpid = tmpid / 16
+            
+            switch ttmping {
+            case 10:
+                nLetterValue = "a"
+                break
+            case 11:
+                nLetterValue = "b"
+                break
+            case 12:
+                nLetterValue = "c"
+                break
+            case 13:
+                nLetterValue = "d"
+                break
+            case 14:
+                nLetterValue = "e"
+                break
+            case 15:
+                nLetterValue = "f"
+                break
+            default:
+                nLetterValue = String.init(format: "%lld", ttmping)
+            }
+            
+            str = nLetterValue.appending(str)
+            
+            if tmpid == 0 { break }
+        }
+        
+        /// 根据位宽设置添0
+        let zero = bitWith - str.count
+        var result: String = ""
+        for _ in 0..<zero {
+            result.append("0")
+        }
+        
+        return result.appending(str)
+    }
+    
     
 }

@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// WIFI 开窗器
+enum WIFICurtaion: Int64 {
+    case powerOn = 0x00
+    case powerStop = 0x02
+    case powerOff = 0x01
+}
 
 enum SmartDeviceSwitchState: String {
    
