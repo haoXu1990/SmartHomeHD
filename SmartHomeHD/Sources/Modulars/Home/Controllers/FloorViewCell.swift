@@ -52,8 +52,13 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
     fileprivate func initUI() {
 
         dataSource = RxCollectionViewSectionedReloadDataSource<FloorViewSection>.init(configureCell: { (ds, cv, ip, item) in
-            let cell = cv.dequeue(Reusable.RoomViewCell, for: ip)
-            cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
+            let cell = cv.dequeue(Reusable.RoomViewFllowLayoutCell, for: ip)
+            
+            let url = URL.init(string: item.roomModel.imageurl!)
+            cell.imageView.kf.setImage(with: url, placeholder: UIImage.init(named: "image_home_room_bg_1"),options: [.transition(.fade(1))])
+            cell.imageView.cornerRadius = 10
+            cell.titleLabel.text = item.roomModel.title
+            
             return cell
         })
         
@@ -63,7 +68,7 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
 let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100)
         collectionView = UICollectionView.init(frame: rect, collectionViewLayout: flowLayout)
         collectionView.isHidden = true
-        collectionView.register(Reusable.RoomViewCell)
+        collectionView.register(Reusable.RoomViewFllowLayoutCell)
         contentView.addSubview(collectionView)
         
 //        collectionView.snp.makeConstraints { (make) in
@@ -269,5 +274,8 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
 private enum Reusable {
     
     static let RoomViewCell = ReusableCell<RoomViewCell>.init(identifier: "RoomViewCell", nib: nil)
+    
+    static let RoomViewFllowLayoutCell = ReusableCell<RoomViewFllowlayoutCell>.init(nibName: "RoomViewFllowlayoutCell")
+    
 }
 

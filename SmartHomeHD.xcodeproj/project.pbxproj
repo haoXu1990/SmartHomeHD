@@ -106,6 +106,8 @@
 		696B900B230CE5EC0037C230 /* SmartDeviceCustomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696B900A230CE5EC0037C230 /* SmartDeviceCustomProtocol.swift */; };
 		696B900D230D1C270037C230 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696B900C230D1C270037C230 /* String+Extension.swift */; };
 		69C4F0C722F41586007BC912 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C4F0C622F41586007BC912 /* iCarousel.m */; };
+		69CB9693230E726E00201C80 /* RoomViewFllowlayoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB9691230E726E00201C80 /* RoomViewFllowlayoutCell.swift */; };
+		69CB9694230E726E00201C80 /* RoomViewFllowlayoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69CB9692230E726E00201C80 /* RoomViewFllowlayoutCell.xib */; };
 		69D8D0BB22F138F40033B20F /* SmartProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */; };
 		69D8D0BF22F13B310033B20F /* ZAShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0BD22F13B310033B20F /* ZAShapeButton.m */; };
 		69D8D0C222F13B610033B20F /* SmartControllBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0C122F13B610033B20F /* SmartControllBaseView.swift */; };
@@ -267,6 +269,8 @@
 		696B900C230D1C270037C230 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		69C4F0C522F41586007BC912 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EA69403A-EE54-4370-A189-BC4C3D95E2FD/MyCarousel/MyCarousel/CoverFlow/iCarousel.h"; sourceTree = "<group>"; };
 		69C4F0C622F41586007BC912 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EA69403A-EE54-4370-A189-BC4C3D95E2FD/MyCarousel/MyCarousel/CoverFlow/iCarousel.m"; sourceTree = "<group>"; };
+		69CB9691230E726E00201C80 /* RoomViewFllowlayoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewFllowlayoutCell.swift; sourceTree = "<group>"; };
+		69CB9692230E726E00201C80 /* RoomViewFllowlayoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewFllowlayoutCell.xib; sourceTree = "<group>"; };
 		69D8D0BA22F138F40033B20F /* SmartProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartProjectorView.swift; sourceTree = "<group>"; };
 		69D8D0BD22F13B310033B20F /* ZAShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAShapeButton.m; sourceTree = "<group>"; };
 		69D8D0BE22F13B310033B20F /* ZAShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAShapeButton.h; sourceTree = "<group>"; };
@@ -615,6 +619,8 @@
 				695ADD5022DC623C001A7533 /* FloorViewCell.swift */,
 				690D46C622E86ABC001123AA /* FloorViewReactor.swift */,
 				695ADD5422DC6B28001A7533 /* RoomViewCell.swift */,
+				69CB9691230E726E00201C80 /* RoomViewFllowlayoutCell.swift */,
+				69CB9692230E726E00201C80 /* RoomViewFllowlayoutCell.xib */,
 				690D46C422E86950001123AA /* RoomViewReactor.swift */,
 			);
 			path = Controllers;
@@ -1080,6 +1086,7 @@
 				69D8D0DA22F177A70033B20F /* tiqiaasdk.strings in Resources */,
 				69D8D0DC22F177A70033B20F /* tiqiaasdk.db in Resources */,
 				695ADD2422DC17EA001A7533 /* Main.storyboard in Resources */,
+				69CB9694230E726E00201C80 /* RoomViewFllowlayoutCell.xib in Resources */,
 				690D46F522EEE9A1001123AA /* SmartCameraView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1330,6 +1337,7 @@
 				690D46EE22EEA7A1001123AA /* LogCategory.swift in Sources */,
 				695ADDC422E8056C001A7533 /* ModelType.swift in Sources */,
 				695ADDA222E6DD4C001A7533 /* SocketIOTransportWebsocket.m in Sources */,
+				69CB9693230E726E00201C80 /* RoomViewFllowlayoutCell.swift in Sources */,
 				695ADDA322E6DD4C001A7533 /* SocketIOPacket.m in Sources */,
 				6958D1062306A84E0073FA2E /* SmartDoorbell.swift in Sources */,
 				695ADDAA22E6DD8A001A7533 /* GCDAsyncSocket.m in Sources */,
