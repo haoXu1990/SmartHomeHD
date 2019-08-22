@@ -59,12 +59,20 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
         
         /// 流布局
         flowLayout = UICollectionViewFlowLayout.init()
-        flowLayout.itemSize = CGSize.init(width: self.contentView.frame.width / 4, height: 100)
-
-        collectionView = UICollectionView.init(frame: self.contentView.frame, collectionViewLayout: flowLayout)
+        flowLayout.itemSize = CGSize.init(width: 180, height: 165)
+let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100)
+        collectionView = UICollectionView.init(frame: rect, collectionViewLayout: flowLayout)
         collectionView.isHidden = true
         collectionView.register(Reusable.RoomViewCell)
         contentView.addSubview(collectionView)
+        
+//        collectionView.snp.makeConstraints { (make) in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(carouselView.snp.bottom).offset(20)
+//            make.left.equalTo(carouselView.snp.left).offset(200)
+//            make.right.equalTo(carouselView.snp.right).offset(-200)
+//            make.bottom.equalToSuperview().offset(-20)
+//        }
     }
     
     func initScenModeView() {
@@ -188,6 +196,7 @@ extension FloorViewCell: UICollectionViewDelegate {
     }
 }
 
+// MARK: - 情景模式代理
 extension FloorViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
     func numberOfItems(in pageView: TYCyclePagerView) -> Int {
         return self.reactor?.currentState.scenModes?.count ?? 0
@@ -225,6 +234,7 @@ extension FloorViewCell: TYCyclePagerViewDelegate, TYCyclePagerViewDataSource {
     }
 }
 
+// MARK: - 3D 视图代理
 extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
         return self.reactor?.currentState.rooms?.count ?? 0
@@ -247,7 +257,6 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
             let cell = cellView as! RoomViewCell
             if let sections = self.reactor?.currentState.setcions?.first {
                 let reactor = sections.items[index]
-//                cell.roomBackgroundImageView.image = UIImage.init(named: "image_home_room_bg_1")
                 cell.reactor = reactor
                 return cell
             }

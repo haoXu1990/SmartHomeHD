@@ -118,10 +118,30 @@ extension MessageViewController {
             .bind(to: reactor.action)
             .disposed(by: rx.disposeBag)
 
-        self.lxf.updateEmptyDataSet(collectionView)
+        self.lxf.updateEmptyDataSet(collectionView, config: EmptyConfig.noData)
     }
 }
 
+
+fileprivate struct EmptyConfig {
+    static let normal = EmptyDataSetConfigure(tipFont: UIFont.systemFont(ofSize: 14), tipColor: UIColor.white, tipImage: UIImage(named: "LXFEmptyDataPic")!, spaceHeight: 15)
+    
+    static let noData = { () -> EmptyDataSetConfigure in
+        var config = EmptyConfig.normal
+        config.tipStr = "暂无数据"
+        config.tipImage = UIImage(named: "LXFEmptyDataPic")
+        config.tipColor = UIColor.white
+        return config
+    }()
+    static let loadFaile = { () -> EmptyDataSetConfigure in
+        var config = EmptyConfig.normal
+        config.tipStr = "呃，页面加载失败"
+        config.buttonImageBlock = { _ in
+            return UIImage(named: "reloadData")
+        }
+        return config
+    }()
+}
 
 private enum Reusable {
     

@@ -32,10 +32,12 @@ class SmartDoorbell: UIView {
     var voiceBtn: UIButton!
     var videoBtn: UIButton!
     var closeBtn: UIButton!
+    var speakBtn: UIButton!
     
     var bid: String?
     var dbcode: String?
-    
+    /// 门铃会话 ID
+    var sid: String?
     override init(frame: CGRect) {
         super.init(frame: frame)
         initUI()
@@ -73,6 +75,7 @@ class SmartDoorbell: UIView {
         playerView.addSubview(activitiView)
         
         callImageView = UIImageView.init()
+        callImageView.image = UIImage.init(named: "imaeg_doorbell_call")
         contentView.addSubview(callImageView)
         
         answerBtn = UIButton.init()
@@ -102,6 +105,14 @@ class SmartDoorbell: UIView {
         videoBtn.setImagePositionWith(.top, spacing: 5.0)
         contentView.addSubview(videoBtn)
         
+        speakBtn = UIButton.init()
+        speakBtn.titleLabel?.font = .systemFont(ofSize: 14)
+        speakBtn.titleLabel?.textAlignment = .center
+        speakBtn.setTitleColor(.white, for: .normal)
+        speakBtn.setTitle("按住说话", for: .normal)
+        speakBtn.setBackgroundImage(UIImage.init(named: "device_camara_speak"), for: .normal)
+        contentView.addSubview(speakBtn)
+        
         closeBtn = UIButton.init()
         closeBtn.setBackgroundImage(UIImage.init(named: "house_close"), for: .normal)
         contentView.addSubview(closeBtn)
@@ -111,7 +122,7 @@ class SmartDoorbell: UIView {
         
         contentView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
-            make.size.equalTo(CGSize.init(width: 400, height: 410))
+            make.size.equalTo(CGSize.init(width: 400, height: 450))
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -121,7 +132,7 @@ class SmartDoorbell: UIView {
         
         playerView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-30)
+            make.centerY.equalToSuperview().offset(-50)
             make.height.equalTo(200)
             make.left.equalToSuperview().offset(60)
             make.right.equalToSuperview().offset(-60)
@@ -138,7 +149,7 @@ class SmartDoorbell: UIView {
         
         voiceBtn.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(playerView.snp.bottom).offset(40)
+            make.top.equalTo(playerView.snp.bottom).offset(30)
         }
         
         answerBtn.snp.makeConstraints { (make) in
@@ -149,6 +160,11 @@ class SmartDoorbell: UIView {
         videoBtn.snp.makeConstraints { (make) in
             make.centerY.equalTo(voiceBtn)
             make.left.equalTo(voiceBtn.snp.right).offset(10)
+        }
+        
+        speakBtn.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         closeBtn.snp.makeConstraints { (make) in
@@ -196,7 +212,7 @@ extension SmartDoorbell {
                         
                         if let fid = result["fid"] as? String {
                             let url = YKBusinessFramework.equesGetRingPictureUrl(self.bid, fid: fid)
-                            self.callImageView.kf.setImage(with: url)
+                            self.callImageView.kf.setImage(with: url, placeholder: UIImage.init(named: "imaeg_doorbell_call"))
                         }
                     }
                     /// 门铃挂断
@@ -241,11 +257,13 @@ extension SmartDoorbell {
                 guard let self = self else { return }
                 
                 if YKBusinessFramework.equesIsLogin() {
-                    DispatchQueue.main.async {
-                        self.activitiView.startAnimating()
-                        self.callImageView.isHidden = true
-                        // 必须在主线程播放, 这个第三方好像有问题
-                        YKBusinessFramework.equesOpenCall(self.bid!, show: self.playerView, enableVideo: true)
+                    self.activitiView.startAnimating()
+                    self.callImageView.isHidden = true
+                    // 这个第三方好像有问题
+                    self.sid = YKBusinessFramework.equesOpenCall(self.bid!, show: self.playerView, enableVideo: true)
+                    
+                    if self.sid == nil {
+                        FHToaster.show(text: "sid is null")
                     }
                 }
                 else {
@@ -258,14 +276,36 @@ extension SmartDoorbell {
             .tap
             .subscribe(onNext: { [weak self](_) in
                 guard let self = self else { return }
-                
                 if YKBusinessFramework.equesIsLogin() {
-                    DispatchQueue.main.async {
-                        YKBusinessFramework.equesOpenCall(self.bid!, show: self.callImageView, enableVideo: false)
+                    self.sid = YKBusinessFramework.equesOpenCall(self.bid!, show: self.callImageView, enableVideo: false)
+                    if self.sid == nil {
+                        FHToaster.show(text: "sid is null")
+                    }
+                    else {
+                        FHToaster.show(text: "接通成功,请按住说话")
                     }
                 }
             }).disposed(by: rx.disposeBag)
         
+        
+        speakBtn.rx.longPressGesture()
+            .when(.began, .ended)
+            .subscribe(onNext: { [weak self](state) in
+                guard let self = self, let _ = self.sid else {
+                    FHToaster.show(text: "请接通后在说话")
+                    return
+                }
+                
+                if state.state == .began {
+                    YKBusinessFramework.equesAudioRecordEnable(true)
+                    self.speakBtn.setTitle("正在说话", for: .normal)
+                }
+                else {
+                    YKBusinessFramework.equesAudioRecordEnable(false)
+                    self.speakBtn.setTitle("按住说话", for: .normal)
+                }
+                
+        }).disposed(by: rx.disposeBag)
         /// 挂断
         answerBtn.rx
             .tap
@@ -287,9 +327,10 @@ extension SmartDoorbell {
     }
     
     func dismiss() {
-        DispatchQueue.main.async {
-            YKBusinessFramework.equesCloseCall(self.bid!)
-        }        
+        
+        if let sid = self.sid {
+            YKBusinessFramework.equesCloseCall(sid)
+        }
         self.removeFromSuperview()
     }
 }

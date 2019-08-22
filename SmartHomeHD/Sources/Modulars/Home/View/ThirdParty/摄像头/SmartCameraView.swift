@@ -110,7 +110,7 @@ class SmartCameraView: UIView,ReactorKit.View, NibLoadable ,FullScreenable{
     
     deinit {
         player.destoryPlayer()
-    }
+    }    
     
     open func stopPlayer() {
         if player != nil {
