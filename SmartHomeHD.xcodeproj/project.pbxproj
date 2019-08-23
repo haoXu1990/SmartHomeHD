@@ -121,7 +121,6 @@
 		69D8D0E922F2CBEF0033B20F /* HomeSectionReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0E822F2CBEF0033B20F /* HomeSectionReactor.swift */; };
 		69D8D0EB22F2E64F0033B20F /* DeviceControllSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0EA22F2E64F0033B20F /* DeviceControllSection.swift */; };
 		8762CC8B8B4821EAD09072F7 /* Pods_SmartHomeHDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */; };
-		924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004ACE0DE13AE04CAFE04104 /* Pods_SmartHomeHD.framework */; };
 		9B47DB312B829B632BC1C377 /* Pods_SmartHomeHDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -323,7 +322,6 @@
 				6958D10B230A43060073FA2E /* SystemConfiguration.framework in Frameworks */,
 				69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */,
 				69D8D0E522F19AD30033B20F /* libz.tbd in Frameworks */,
-				924103EE18BF964F0405AB51 /* Pods_SmartHomeHD.framework in Frameworks */,
 				69D8D0DB22F177A70033B20F /* libtiqiaasdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
