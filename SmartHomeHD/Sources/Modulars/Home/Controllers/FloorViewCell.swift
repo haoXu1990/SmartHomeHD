@@ -31,6 +31,8 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
     
     var carouselView: iCarousel!
     
+
+    
     var scenModeView: TYCyclePagerView!
     var dataSource: RxCollectionViewSectionedReloadDataSource<FloorViewSection>!
     override init(frame: CGRect) {
@@ -82,7 +84,7 @@ let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, h
     
     func initScenModeView() {
         scenModeView = TYCyclePagerView.init()
-        scenModeView.backgroundColor = .clear
+//        scenModeView.backgroundColor = .clear
         scenModeView.isInfiniteLoop = true
         scenModeView.dataSource = self
         scenModeView.delegate = self
@@ -108,8 +110,8 @@ let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, h
 extension FloorViewCell {
     
     func initCarouseView() {
-        self.clipsToBounds = false
-        self.contentView.clipsToBounds = false
+//        self.clipsToBounds = false
+//        self.contentView.clipsToBounds = false
         carouselView = iCarousel.init(frame: CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100))
         carouselView.delegate = self
         carouselView.dataSource = self
@@ -117,7 +119,7 @@ extension FloorViewCell {
         carouselView.isPagingEnabled = true
         carouselView.type = .cylinder
         carouselView.isHidden = true
-        carouselView.backgroundColor = .clear
+//        carouselView.backgroundColor = .clear
         contentView.addSubview(carouselView)
     }
     

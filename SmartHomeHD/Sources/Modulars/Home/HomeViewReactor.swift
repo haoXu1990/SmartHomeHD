@@ -13,8 +13,8 @@ import RxSwiftExt
 import RxDataSources
 import RxCocoa
 import SwiftyUserDefaults
-
-class HomeViewReactor: NSObject, Reactor {
+import LXFProtocolTool
+class HomeViewReactor: NSObject, Reactor, RefreshControllable {
    
     enum Action {
         
@@ -82,7 +82,7 @@ class HomeViewReactor: NSObject, Reactor {
                 .mapResponseToObject(type: HomeDeviceModel.self)
                 .asObservable()
                 .flatMap({ (data) -> Observable<Mutaion> in
-                
+                    self.lxf.refreshStatus.value = .endHeaderRefresh
                     let roomList = data.roomlist.or([])
                     let floorList = data.floorlist.or([])
                     let devicelist = data.list.or([])
@@ -90,6 +90,7 @@ class HomeViewReactor: NSObject, Reactor {
                     return Observable.just(.setUserInfo(floorList, roomList, devicelist, scenModel))
                     
                 }).catchError({ (error) -> Observable<Mutaion> in
+                    self.lxf.refreshStatus.value = .endHeaderRefresh
                     FHToaster.show(text: error.localizedDescription)
                     return .empty()
                 })

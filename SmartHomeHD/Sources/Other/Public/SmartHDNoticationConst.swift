@@ -12,6 +12,10 @@ import UIKit
 extension NSNotification.Name {
     /// 退出登录
     static let pubExitAPP = NSNotification.Name.init("pubExitAPP")
+    
+    
+    /// 更新
+    static let pubRefresh = NSNotification.Name.init("pubRefresh")
 }
 
 /// 设备相关

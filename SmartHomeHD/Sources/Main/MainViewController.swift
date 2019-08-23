@@ -102,7 +102,7 @@ class MainViewController: UIViewController {
     func initUI()  {
         
         view.backgroundColor = .black
-        view.clipsToBounds = false
+//        view.clipsToBounds = false
         
         // 0. 创建顶部导航       
         headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: 55))
@@ -125,9 +125,10 @@ class MainViewController: UIViewController {
         
         let images:[UIImage] = [UIImage.init(named: "image_home_home")!,
                                 UIImage.init(named: "image_home_message")!,
-                                UIImage.init(named: "image_home_seting")!]
-        segmentVC = HMSegmentedControl.init(sectionImages: images, sectionSelectedImages: images, titlesForSections: ["", "", ""])
-        segmentVC.frame = CGRect.init(x: 55, y: 0, width: 500, height: 55)
+                                UIImage.init(named: "image_home_seting")!,
+                                UIImage.init(named: "image_home_refresh")!]
+        segmentVC = HMSegmentedControl.init(sectionImages: images, sectionSelectedImages: images, titlesForSections: ["", "", "", ""])
+        segmentVC.frame = CGRect.init(x: 55, y: 0, width: 600, height: 55)
         segmentVC.imagePosition = .leftOfText
         segmentVC.backgroundColor = .clear
         segmentVC.selectionIndicatorColor = .clear
@@ -136,31 +137,40 @@ class MainViewController: UIViewController {
         segmentVC.segmentWidthStyle = .dynamic
         segmentVC.indexChangeBlock = { [weak self]  (index:NSInteger) in
             guard let self = self else { return }
-            self.scrollView.scrollRectToVisible(CGRect.init(x: kScreenW * CGFloat(index), y: 0, width: kScreenW, height: 500), animated: true)
+            
+            if index == 3 {
+                NotificationCenter.default.post(name: .pubRefresh, object: true)
+            }
+            else {
+                self.scrollView.scrollRectToVisible(CGRect.init(x: kScreenW * CGFloat(index), y: 0, width: kScreenW, height: 500), animated: true)
+            }
         }
         
         headerView.addSubview(segmentVC)
         
+        
         // 2. 初始化 ScrollView
-        let scrollViewY = segmentVC.frame.height
+        let scrollViewY = headerView.frame.maxY
         let scrollViewH = kScreenH - scrollViewY
         scrollView = UIScrollView.init(frame: CGRect.init(x: 0, y: scrollViewY, width: kScreenW, height: scrollViewH))
         scrollView.isPagingEnabled = true
         scrollView.contentSize = CGSize.init(width: kScreenW * 3, height: 300)
         scrollView.delegate = self
         scrollView.isScrollEnabled = false
+        scrollView.backgroundColor = .black
         scrollView.scrollRectToVisible(CGRect.init(x: 0, y: 0, width: kScreenH, height: scrollViewH), animated: false)
         view.addSubview(scrollView)
         
         // 3. 把控制器添加到 ScrollView
         let reactor = HomeViewReactor.init(service: self.service)
         let rect = CGRect.init(x: 0, y: 0, width: kScreenW, height: scrollViewH)
-        homeVC = HomeViewController.init(reactor: reactor, frame: rect)      
+        homeVC = HomeViewController.init(reactor: reactor, frame: rect)
+        homeVC.view.frame = rect
         scrollView.addSubview(homeVC.view)
         
         messageVC = MessageViewController.init(reactor: MessageViewReactor())
         messageVC.view.frame = CGRect.init(x: kScreenW, y: 0, width: kScreenW, height: scrollViewH)
-        messageVC.view.backgroundColor = .black
+    
         scrollView.addSubview(messageVC.view)
         
         settingVC = SettingViewController.init(reactor: reactor)

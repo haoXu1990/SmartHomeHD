@@ -15,9 +15,9 @@ import RxViewController
 import RxDataSources
 import RxCocoa
 import NVActivityIndicatorView
+import LXFProtocolTool
 
-
-class HomeViewController: UIViewController, ReactorKit.View {
+class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
     var disposeBag: DisposeBag = DisposeBag.init()
     
     /// 3D 布局
@@ -63,35 +63,27 @@ class HomeViewController: UIViewController, ReactorKit.View {
                 
             }).disposed(by: rx.disposeBag)
         
-        
-        /// 状态改变
-        NotificationCenter.default.rx.notification(.pubStateChange)
+        /// 门铃报警
+        NotificationCenter.default.rx.notification(.pubRefresh)
             .takeUntil(self.rx.deallocated)
             .subscribe(onNext: { [weak self] (data) in
-                guard let self = self, let result = data.object as? [String: Any] else { return }
+                guard let self = self else { return }
                 
-                if let eqmsn = result["eqmsn"] as? String,
-                    let channel = result["channel"] as? Int,
-                    let state = result["state"] as? Int {
-                    
-                    Observable.just(Reactor.Action.modifyDeviceStatus(eqmsn, channel, state))
-                        .bind(to: self.reactor!.action)
-                                .disposed(by: self.rx.disposeBag)
-                }
-                
+                Observable.just(Reactor.Action.fetchUserInfo)
+                    .bind(to: self.reactor!.action)
+                    .disposed(by: self.rx.disposeBag)
             }).disposed(by: rx.disposeBag)
-        
-        
     }
 
     init(reactor: HomeViewReactor, frame:CGRect) {
         
         defer { self.reactor = reactor }
         collectionViewFrame = CGRect.init(x: 0, y: 55, width: frame.width, height: frame.height - 55)
-        super.init(nibName: nil, bundle: nil)
         
-        initLayoutBtn()
+        super.init(nibName: nil, bundle: nil)
         initUI()
+        initLayoutBtn()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,8 +93,6 @@ class HomeViewController: UIViewController, ReactorKit.View {
   
     func initUI()  {
         
-        view.clipsToBounds = false
-        
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: collectionViewFrame.width, height: collectionViewFrame.height)
@@ -111,10 +101,8 @@ class HomeViewController: UIViewController, ReactorKit.View {
         collectionView.isPagingEnabled = true
         collectionView.clipsToBounds = false
         collectionView.register(Reusable.FloorViewCell)
-        collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
-        view.backgroundColor = .black       
-    
+        
         activityView = NVActivityIndicatorView.init(frame: CGRect.init(x: collectionViewFrame.width * 0.5 - 25, y: collectionViewFrame.height * 0.5 - 25, width: 50, height: 50))
         activityView.type = .lineScalePulseOut
         view.addSubview(activityView)
@@ -133,9 +121,8 @@ class HomeViewController: UIViewController, ReactorKit.View {
     }
 
     func initLayoutBtn() {
-        circleLayoutBtn = UIButton.init()
-        circleLayoutBtn.addTarget(self, action: #selector(HomeViewController.circleLayoutBtnAction), for: .touchUpInside)
         
+        circleLayoutBtn = UIButton.init()
         circleLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_3d"), for: .normal)
         view.addSubview(circleLayoutBtn)
         
@@ -147,9 +134,9 @@ class HomeViewController: UIViewController, ReactorKit.View {
         
         
         flowLayoutBtn = UIButton.init()
-        flowLayoutBtn.addTarget(self, action: #selector(HomeViewController.flowLayoutBtnAction), for: .touchUpInside)
         flowLayoutBtn.setImage(UIImage.init(named: "btn_home_roomlayout_flow"), for: .normal)
         view.addSubview(flowLayoutBtn)
+        
         flowLayoutBtn.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview().offset(25)
             make.top.equalToSuperview().offset(5)
@@ -158,35 +145,24 @@ class HomeViewController: UIViewController, ReactorKit.View {
     }
 }
 
-///MARK - Action
-extension HomeViewController {
-    
-    @objc func circleLayoutBtnAction()  {
-        Observable.just(Reactor.Action.setLayout(true))
-            .bind(to: reactor!.action)
-            .disposed(by: self.rx.disposeBag)
-    }
-    
-    @objc func flowLayoutBtnAction()  {
-        Observable.just(Reactor.Action.setLayout(false))
-            .bind(to: reactor!.action)
-            .disposed(by: self.rx.disposeBag)
-    }
-    
-}
 
-//extension HomeViewController {
-//    func reloadData() {
-//        Observable.just(Reactor.Action.fetchUserInfo)
-//            .bind(to: reactor!.action)
-//            .disposed(by: self.rx.disposeBag)
-//    }
-//}
+
 extension HomeViewController {
     
     func bind(reactor: HomeViewReactor) {
        
         collectionView.dataSource = nil
+        
+        circleLayoutBtn.rx.tap
+            .map{_ in Reactor.Action.setLayout(true)}
+            .bind(to: reactor.action)
+            .disposed(by: rx.disposeBag)
+        
+        flowLayoutBtn.rx.tap
+            .map{_ in Reactor.Action.setLayout(false)}
+            .bind(to: reactor.action)
+            .disposed(by: rx.disposeBag)
+        
     
         Observable.just(Reactor.Action.fetchUserInfo)
             .bind(to: reactor.action)
@@ -202,6 +178,10 @@ extension HomeViewController {
             .bind(to: activityView.rx.animating)
             .disposed(by: rx.disposeBag)
         
+//        self.rx.headerRefresh(reactor, collectionView, headerConfig: RefreshConfig.normalHeader)
+//            .map{_ in Reactor.Action.fetchUserInfo }
+//            .bind(to: reactor.action)
+//            .disposed(by: rx.disposeBag)
         
     }
 }
@@ -219,22 +199,10 @@ extension Reactive where Base: NVActivityIndicatorView {
     }
 }
 
-/////MARK - open method
-//extension HomeViewController {
-//
-//    open func reloadCollectionData(flowStyle: RoomControllViewLayoutStyle) {
-//
-//        if flowStyle == self.flowStyle { return }
-//        self.flowStyle = flowStyle
-//
-//        collectionView.reloadData()
-//        // 这里需要重新加载数据, 有点问题
-//    }
-//}
-
-
 private enum Reusable {
    
     static let FloorViewCell = ReusableCell<FloorViewCell>.init(identifier: "FloorViewCell", nib: nil)
 }
+
+
 
