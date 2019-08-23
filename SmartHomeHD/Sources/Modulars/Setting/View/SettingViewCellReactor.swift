@@ -71,6 +71,7 @@ class SettingViewCellReactor: NSObject, Reactor  {
                 return .just(Mutaion.addRoom(model))
                 }.catchError({ (error) -> Observable<SettingViewCellReactor.Mutaion> in
                     log.error(error.localizedDescription)
+                    FHToaster.show(text: error.localizedDescription)
                     return .empty()
                 })
         

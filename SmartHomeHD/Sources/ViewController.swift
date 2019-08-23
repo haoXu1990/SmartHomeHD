@@ -11,20 +11,43 @@ import swiftScan
 import ObjectMapper
 import RxSwift
 import NSObject_Rx
+import EFColorPicker
+
 class ViewController: UIViewController {
+  
+    private let hsbColorView: EFColorWheelView = EFColorWheelView()
     
     var qrImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+   
         
+        
+//        hsbColorView.addTarget(
+//            self, action: #selector(ef_colorDidChangeValue(sender:)), for: UIControl.Event.valueChanged
+//        )
+////        hsbColorView.addTarget(self, action: #selector(colorValueChange(sender:)), for: .valueChanged)
+//        view.addSubview(hsbColorView)
+//        hsbColorView.snp.makeConstraints { (make) in
+//            make.center.equalToSuperview()
+//            make.size.equalTo(CGSize.init(width: 200, height: 200))
+//        }
         initUI()
         
         createQR()
         
         observerNotifation()
     }
-    
+    @objc func ef_colorDidChangeValue(sender: EFColorWheelView) {
+        
+//        self.view.backgroundColor = UIColor(
+//            hue: sender.hue,
+//            saturation: sender.saturation,
+//            brightness: sender.brightness,
+//            alpha: sender.alpha
+//        )
+    }
     func observerNotifation()  {
         
         /// 登录通知

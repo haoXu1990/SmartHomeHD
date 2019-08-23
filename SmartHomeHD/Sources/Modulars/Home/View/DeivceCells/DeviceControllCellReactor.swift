@@ -64,7 +64,7 @@ class DeviceControllCellReactor: NSObject,Reactor {
             let accessTime = Defaults[.ysAccessTime]
             let remo = Region.init(calendar: Calendars.chinese, zone: Zones.current, locale: Locale.current)
             
-            if accessTime != nil || accessTime != 0 {
+            if accessTime != nil && accessTime != 0 {
                 ///本地有, 需要判断是否过期
                 
                 let currentTime = DateInRegion.init(Date.init(), region: remo)

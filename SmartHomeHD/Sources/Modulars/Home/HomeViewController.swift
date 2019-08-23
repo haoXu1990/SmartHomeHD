@@ -63,6 +63,25 @@ class HomeViewController: UIViewController, ReactorKit.View {
                 
             }).disposed(by: rx.disposeBag)
         
+        
+        /// 状态改变
+        NotificationCenter.default.rx.notification(.pubStateChange)
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+                guard let self = self, let result = data.object as? [String: Any] else { return }
+                
+                if let eqmsn = result["eqmsn"] as? String,
+                    let channel = result["channel"] as? Int,
+                    let state = result["state"] as? Int {
+                    
+                    Observable.just(Reactor.Action.modifyDeviceStatus(eqmsn, channel, state))
+                        .bind(to: self.reactor!.action)
+                                .disposed(by: self.rx.disposeBag)
+                }
+                
+            }).disposed(by: rx.disposeBag)
+        
+        
     }
 
     init(reactor: HomeViewReactor, frame:CGRect) {
@@ -182,6 +201,8 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(to: activityView.rx.animating)
             .disposed(by: rx.disposeBag)
+        
+        
     }
 }
 

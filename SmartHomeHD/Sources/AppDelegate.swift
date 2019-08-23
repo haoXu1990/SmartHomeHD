@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// 初始化恬家 SDK
         Tool.initTQSDK()
-        
+        //
         let rootVC = MainViewController()
 //        let rootVC = HomeViewController.init(frame: CGRect.init(x: 0, y: 50, width: kScreenW, height: 550))
         let rootNav = UINavigationController.init(rootViewController: rootVC)

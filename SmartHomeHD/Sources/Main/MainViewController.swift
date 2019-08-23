@@ -92,6 +92,7 @@ class MainViewController: UIViewController {
                 let vc = ViewController.init()
                 self?.present(vc, animated: true, completion: nil)
                 Defaults[.appid] = nil
+                Defaults[.ysAccessTime] = nil
                 FHSoketManager.shear().socketIO.disconnectForced()
                 log.debug("收到退出登录通知")
                 FHSoketManager.shear().connectSocket()

@@ -82,6 +82,8 @@ target 'SmartHomeHD' do
   # 视图圆角， 阴影，渐变色等处理
   pod 'HJViewStyle'
   
+  pod 'EFColorPicker'
+  
   # Pods for SmartHomeHD
   
   target 'SmartHomeHDTests' do

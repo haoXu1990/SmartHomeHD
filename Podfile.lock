@@ -6,6 +6,7 @@ PODS:
   - Differentiator (3.1.0)
   - Dollar (9.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - EFColorPicker (5.1.0)
   - EZOpenSDK (4.8.6)
   - FilesProvider (0.26.0)
   - HJViewStyle (1.2.8)
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - CocoaLumberjack/Swift
   - Dollar
+  - EFColorPicker
   - EZOpenSDK
   - FilesProvider
   - HJViewStyle
@@ -155,6 +157,7 @@ SPEC REPOS:
     - Differentiator
     - Dollar
     - DZNEmptyDataSet
+    - EFColorPicker
     - EZOpenSDK
     - FilesProvider
     - HJViewStyle
@@ -209,6 +212,7 @@ SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Dollar: 2fc9bdeeb2d3ae1f251461803240d5c93829ee0c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EFColorPicker: 6fa37bd9cde0f8dc58762698f1e9809f554dfe6c
   EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
   FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
   HJViewStyle: 98c1b467f2dec78f44148329a9c4a68a35ed9be6
@@ -248,6 +252,6 @@ SPEC CHECKSUMS:
   UIButton-SSEdgeInsets: 64a600adc670d98e140ddcde1d0e64d7b952502c
   YPImagePicker: 8039f89ad79281545fa868486f32d9bf5d65ede1
 
-PODFILE CHECKSUM: 587a2ecfcd2b87d4db4c751e640e5680d06e88d7
+PODFILE CHECKSUM: 8cfac2c43ba88ed8b24b65d31981ee7b1ed72eac
 
 COCOAPODS: 1.5.3

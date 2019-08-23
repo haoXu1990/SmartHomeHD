@@ -25,6 +25,8 @@ class HomeViewReactor: NSObject, Reactor {
         case deletedfloor(String)
         
         case setLayout(Bool)
+        
+        case modifyDeviceStatus(String ,Int, Int)
     }
     
     enum Mutaion {
@@ -36,6 +38,8 @@ class HomeViewReactor: NSObject, Reactor {
         case deletedFloor(String)
         
         case setLayout(Bool)
+        
+        case setDeviceStatus(String, Int, Int)
     }
     
     struct State {
@@ -125,6 +129,8 @@ class HomeViewReactor: NSObject, Reactor {
             
         case .setLayout(let layout):
             return .just(Mutaion.setLayout(layout))
+        case .modifyDeviceStatus(let eqmsn, let channel, let state):
+            return .just(Mutaion.setDeviceStatus(eqmsn, channel, state))
         }
        
     }
@@ -138,18 +144,18 @@ class HomeViewReactor: NSObject, Reactor {
         case .setUserInfo(let floorModels, let roomModels, let models, let scenModes):
             
             ///1 遍历楼层列表
-            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-
-                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-                })
-                
-                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-                
-                return  HomeViewSection.init(items: [reactor])
-            }
-           
-            newState.setcions =  sections
+//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
+//
+//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
+//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
+//                })
+//
+//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
+//
+//                return  HomeViewSection.init(items: [reactor])
+//            }
+//
+            newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)// sections
             newState.floors = floorModels
             newState.rooms = roomModels
             newState.devices = models
@@ -162,18 +168,18 @@ class HomeViewReactor: NSObject, Reactor {
             let roomModels = newState.rooms
             let models = newState.devices
             let scenModes = newState.secenModels
-            ///1 遍历楼层列表
-            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-                
-                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-                })
-             
-                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-                
-                return  HomeViewSection.init(items: [reactor])
-            }
-            newState.setcions = sections
+//            ///1 遍历楼层列表
+//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
+//
+//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
+//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
+//                })
+//
+//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
+//
+//                return  HomeViewSection.init(items: [reactor])
+//            }
+            newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)
             return newState
         case .deletedFloor(let floolrID):
             
@@ -186,17 +192,17 @@ class HomeViewReactor: NSObject, Reactor {
             let models = newState.devices
             let scenModes = newState.secenModels
             ///1 遍历楼层列表
-            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-                
-                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-                })
-                
-                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-                
-                return  HomeViewSection.init(items: [reactor])
-            }
-            newState.setcions = sections
+//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
+//
+//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
+//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
+//                })
+//
+//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
+//
+//                return  HomeViewSection.init(items: [reactor])
+//            }
+            newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)
             
             
             return newState
@@ -208,17 +214,41 @@ class HomeViewReactor: NSObject, Reactor {
             let models = newState.devices
             
             ///1 遍历楼层列表
-            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-                
-                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-                })
-                
-                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout)
-                
-                return  HomeViewSection.init(items: [reactor])
+//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
+//
+//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
+//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
+//                })
+//
+//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout)
+//
+//                return  HomeViewSection.init(items: [reactor])
+//            }
+            newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: layout)
+            
+            return newState
+        case .setDeviceStatus(let eqmsn, let channel, let state):
+            
+            let floorModels = newState.floors
+            let roomModels = newState.rooms
+            let scenModes = newState.secenModels
+//            let models = newState.devices
+            
+            /// 找到设备列表中的设备，
+            newState.devices = newState.devices.map { (deviceModel) -> DeviceModel in
+                var tmpModel = deviceModel
+                if  deviceModel.eqmsn == eqmsn
+                && deviceModel.channel?.toInt() == channel {
+                    /// 修改状态
+                    tmpModel.status = String(state)
+                    return tmpModel
+                }
+                return deviceModel
             }
-            newState.setcions = sections
+            
+            
+            newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: newState.devices, scenModes: scenModes, layout: true)
+            
             
             return newState
         }
@@ -226,4 +256,27 @@ class HomeViewReactor: NSObject, Reactor {
 }
 
 
+
+extension HomeViewReactor {
+    
+    func sectionFactory(floorModels:[FloorMoel],
+                        roomModels:[RoomMoel],
+                        models:[DeviceModel],
+                        scenModes:[SceneModeModel],
+                        layout: Bool) -> [HomeViewSection] {
+        ///1 遍历楼层列表
+        let sections = floorModels.map { (floorModel) -> HomeViewSection in
+            
+            let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
+                return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
+            })
+            
+            let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout)
+            
+            return  HomeViewSection.init(items: [reactor])
+        }
+        
+        return sections
+    }
+}
 
