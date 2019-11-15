@@ -120,6 +120,8 @@
 		69D8D0E722F19ADF0033B20F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */; };
 		69D8D0E922F2CBEF0033B20F /* HomeSectionReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0E822F2CBEF0033B20F /* HomeSectionReactor.swift */; };
 		69D8D0EB22F2E64F0033B20F /* DeviceControllSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8D0EA22F2E64F0033B20F /* DeviceControllSection.swift */; };
+		69DFD5FF237E934700F9765C /* SmartLaundryRackViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DFD5FE237E934700F9765C /* SmartLaundryRackViewReactor.swift */; };
+		69DFD601237E990700F9765C /* SmartLaundryRackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DFD600237E990700F9765C /* SmartLaundryRackView.swift */; };
 		8762CC8B8B4821EAD09072F7 /* Pods_SmartHomeHDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E328A8EA4E355BCDC4F36ED /* Pods_SmartHomeHDUITests.framework */; };
 		9B47DB312B829B632BC1C377 /* Pods_SmartHomeHDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DFAA3587CA1CA27CAD78FA /* Pods_SmartHomeHDTests.framework */; };
 /* End PBXBuildFile section */
@@ -203,7 +205,7 @@
 		6958D112230A43270073FA2E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		6958D114230A432E0073FA2E /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		6958D116230A43350073FA2E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHomeHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		695ADD1B22DC17EA001A7533 /* 嘟嘟智能家居.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "嘟嘟智能家居.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		695ADD1E22DC17EA001A7533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695ADD2022DC17EA001A7533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		695ADD2322DC17EA001A7533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -301,6 +303,8 @@
 		69D8D0E622F19ADF0033B20F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		69D8D0E822F2CBEF0033B20F /* HomeSectionReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionReactor.swift; sourceTree = "<group>"; };
 		69D8D0EA22F2E64F0033B20F /* DeviceControllSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceControllSection.swift; sourceTree = "<group>"; };
+		69DFD5FE237E934700F9765C /* SmartLaundryRackViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLaundryRackViewReactor.swift; sourceTree = "<group>"; };
+		69DFD600237E990700F9765C /* SmartLaundryRackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLaundryRackView.swift; sourceTree = "<group>"; };
 		AFCB4F35F1502E21A1982877 /* Pods-SmartHomeHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.release.xcconfig"; sourceTree = "<group>"; };
 		BBEB92C4C5DCBAB9C5960601 /* Pods-SmartHomeHDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHDUITests/Pods-SmartHomeHDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC747C6B69189CEA2EC5E629 /* Pods-SmartHomeHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeHD/Pods-SmartHomeHD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -413,6 +417,7 @@
 		690D46F222EEE5DC001123AA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				69DFD5FA237E91A500F9765C /* 晾衣架 */,
 				6958D104230544050073FA2E /* 门铃 */,
 				6958D09522FA810F0073FA2E /* ExtensionView */,
 				69D8D0C022F13B4C0033B20F /* BaseView */,
@@ -566,7 +571,7 @@
 		695ADD1C22DC17EA001A7533 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */,
+				695ADD1B22DC17EA001A7533 /* 嘟嘟智能家居.app */,
 				695ADD2F22DC17F1001A7533 /* SmartHomeHDTests.xctest */,
 				695ADD3A22DC17F1001A7533 /* SmartHomeHDUITests.xctest */,
 			);
@@ -955,6 +960,15 @@
 			path = "恬家红外";
 			sourceTree = "<group>";
 		};
+		69DFD5FA237E91A500F9765C /* 晾衣架 */ = {
+			isa = PBXGroup;
+			children = (
+				69DFD600237E990700F9765C /* SmartLaundryRackView.swift */,
+				69DFD5FE237E934700F9765C /* SmartLaundryRackViewReactor.swift */,
+			);
+			path = "晾衣架";
+			sourceTree = "<group>";
+		};
 		CB86FC2A76015593F8897C80 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,7 +1001,7 @@
 			);
 			name = SmartHomeHD;
 			productName = SmartHomeHD;
-			productReference = 695ADD1B22DC17EA001A7533 /* SmartHomeHD.app */;
+			productReference = 695ADD1B22DC17EA001A7533 /* 嘟嘟智能家居.app */;
 			productType = "com.apple.product-type.application";
 		};
 		695ADD2E22DC17F1001A7533 /* SmartHomeHDTests */ = {
@@ -1301,6 +1315,7 @@
 				695ADDBC22E70CE2001A7533 /* Rx HandyJSON.swift in Sources */,
 				690D46CE22E99DDF001123AA /* RoomViewSection.swift in Sources */,
 				695ADD6322DEBDAD001A7533 /* MainViewController.swift in Sources */,
+				69DFD5FF237E934700F9765C /* SmartLaundryRackViewReactor.swift in Sources */,
 				695ADDA422E6DD4C001A7533 /* SocketIO.m in Sources */,
 				6958D0AC22FD67FA0073FA2E /* AlarmModel.swift in Sources */,
 				690D46DE22EE8D9A001123AA /* XHSwitch.swift in Sources */,
@@ -1317,6 +1332,7 @@
 				690D46EB22EEA440001123AA /* Logger.swift in Sources */,
 				69D8D0EB22F2E64F0033B20F /* DeviceControllSection.swift in Sources */,
 				6932413122F8347200B4DB65 /* UIColor+Extensions.m in Sources */,
+				69DFD601237E990700F9765C /* SmartLaundryRackView.swift in Sources */,
 				696B900B230CE5EC0037C230 /* SmartDeviceCustomProtocol.swift in Sources */,
 				695ADD4E22DC1A53001A7533 /* Circle3DLayout.swift in Sources */,
 				690D46D922EAB20B001123AA /* DeviceTool+Rx.swift in Sources */,
@@ -1565,7 +1581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 666;
+				CURRENT_PROJECT_VERSION = 6666;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1650,7 +1666,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wisdudu.smarthomehd;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "嘟嘟智能家居";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1663,7 +1679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 666;
+				CURRENT_PROJECT_VERSION = 6666;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1747,7 +1763,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wisdudu.smarthomehd;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "嘟嘟智能家居";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartHomeHD/Resources/SmartHomeHD-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

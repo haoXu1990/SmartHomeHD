@@ -220,6 +220,16 @@ extension RoomViewCell {
                         make.width.equalTo(270)
         }
     }
+    
+    func initSmartLaundryRackView(model: DeviceModel) {
+        let rackView = SmartLaundryRackView.init()
+        rackView.reactor = SmartLaundryRackViewReactor.init(deviceModel: model)
+        moreView.addSubview(rackView)
+        rackView.snp.makeConstraints { (make) in
+            make.top.right.bottom.equalToSuperview()
+            make.width.equalTo(270)
+        }
+    }
 }
 
 
@@ -309,7 +319,9 @@ extension RoomViewCell {
                     else if typeID == SmartDeviceType.Airconditioner.rawValue {
                         self.initAirView(model: model)
                     }
-
+                    else if typeID == SmartDeviceType.LaundryRack.rawValue {
+                        self.initSmartLaundryRackView(model: model)
+                    }
                 }
 
         }).disposed(by: rx.disposeBag)
@@ -378,7 +390,7 @@ extension RoomViewCell {
         case .Projectormachine: return .ThreeButton
         case .WaterValve: return .OneSwitch
         case .YSCamera: return .More
-        
+        case .LaundryRack: return .More
         default:
             return .zero
         }

@@ -159,7 +159,7 @@ extension DeviceControllCellReactor {
     }
     
     func sendIrCommand(type: SmartDeviceSwitchState) {
-        guard let deviceModel = self.currentState.deviceModels else { return }
+        guard self.currentState.deviceModels != nil else { return }
         
         let sn =  self.currentState.deviceModels.eqmsn
         let state = type.rawValue

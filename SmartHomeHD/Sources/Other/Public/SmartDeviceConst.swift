@@ -67,6 +67,9 @@ enum SmartDeviceType: NSInteger {
     case SwitchDOUBLE = 63
     /// 触摸开关
     case SwitchTouch = 65
+    
+    /// 晾衣架
+    case LaundryRack = 57
 }
 
 
