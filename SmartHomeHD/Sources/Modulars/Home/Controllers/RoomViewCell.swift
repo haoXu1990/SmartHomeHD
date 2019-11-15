@@ -282,7 +282,8 @@ extension RoomViewCell {
             .disposed(by: rx.disposeBag)
         
         tableView.rx.modelSelected(DeviceModel.self)
-            .throttle(2, scheduler: MainScheduler.instance)
+            .skip(RxTimeInterval.init(2), scheduler: MainScheduler.instance)
+//            .throttle(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (model) in
 
                 guard let self = self else { return }

@@ -121,22 +121,21 @@ extension DeviceControllTwoCell {
                 
             }).disposed(by: rx.disposeBag)
         
-        middleBtn.rx.tap.subscribe(onNext: {
-            Observable.just(Reactor.Action.sendCommand(.pause))
-                .bind(to: reactor.action)
-                .disposed(by: self.rx.disposeBag)
-        }).disposed(by: rx.disposeBag)
+        middleBtn.rx.tap
+            .map { Reactor.Action.sendCommand(.pause) }
+            .bind(to: reactor.action)
+            .disposed(by: rx.disposeBag)
         
-        leftBtn.rx.tap.subscribe(onNext: {
-            Observable.just(Reactor.Action.sendCommand(.off))
-                .bind(to: reactor.action)
-                .disposed(by: self.rx.disposeBag)
-        }).disposed(by: rx.disposeBag)
+        leftBtn.rx.tap
+        .map { Reactor.Action.sendCommand(.off) }
+        .bind(to: reactor.action)
+        .disposed(by: rx.disposeBag)
+
         
-        rightBtn.rx.tap.subscribe(onNext: {
-            Observable.just(Reactor.Action.sendCommand(.on))
-                .bind(to: reactor.action)
-                .disposed(by: self.rx.disposeBag)
-        }).disposed(by: rx.disposeBag)
+        rightBtn.rx.tap
+        .map { Reactor.Action.sendCommand(.on) }
+        .bind(to: reactor.action)
+        .disposed(by: rx.disposeBag)
+
     }
 }

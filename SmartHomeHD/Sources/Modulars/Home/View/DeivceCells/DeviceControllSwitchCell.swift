@@ -58,20 +58,17 @@ extension DeviceControllSwitchCell {
             .distinctUntilChanged()
             .bind(to: controllBtn.rx.backgroundImage())
             .disposed(by: rx.disposeBag)
-       
-        controllBtn.rx
-            .tap.subscribe(onNext: {
         
+        controllBtn.rx.tap.filter { return self.reactor != nil }
+            .map { (_) -> Reactor.Action in
             var status: SmartDeviceSwitchState = .on
-            
-            if reactor.currentState.deviceModels.status == "88" {
+            if self.reactor?.currentState.deviceModels.status == "88" {
                 status = .off
             }
-            Observable.just(Reactor.Action.sendCommand(status))
-                .bind(to: reactor.action)
-                .disposed(by: self.rx.disposeBag)
-            
-        }).disposed(by: rx.disposeBag)        
+            return Reactor.Action.sendCommand(status)
+        }
+        .bind(to: reactor.action)
+        .disposed(by: rx.disposeBag)
         
     }
 }

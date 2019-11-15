@@ -112,7 +112,6 @@ extension MessageViewController {
                 return cell
             }
             .disposed(by: rx.disposeBag)
-        
         self.rx.refresh(reactor, collectionView)
             .map{ .fetchAlarmList($0 != .header)}
             .bind(to: reactor.action)

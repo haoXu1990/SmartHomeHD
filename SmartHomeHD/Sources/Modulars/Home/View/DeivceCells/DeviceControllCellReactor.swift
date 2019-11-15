@@ -53,7 +53,12 @@ class DeviceControllCellReactor: NSObject,Reactor {
                         send470Command(type: type)
                         return .just(Mutaion.setStatus(type))
                     }
-                }
+                } 
+            }
+            
+            if Int(typeID) == SmartDeviceType.IR.rawValue {
+                sendIrCommand(type: type)
+                return .just(Mutaion.setStatus(type))
             }
             
             sendNormalCommand(type: type)
@@ -137,11 +142,12 @@ extension DeviceControllCellReactor {
     
     
     func sendNormalCommand(type: SmartDeviceSwitchState) {
-   
-        let sn = self.currentState.deviceModels.boxsn
-        let eqmId = self.currentState.deviceModels.orderby!
+        guard let deviceModel = self.currentState.deviceModels else { return }
+             
+        let sn =  deviceModel.boxsn
+        let eqmId = deviceModel.orderby!
         let state = type.rawValue
-        let channel = self.currentState.deviceModels.channel!
+        let channel = deviceModel.channel!
         let param = ["msgid": "1460088436",
                      "boxsn": sn,
                      "eqmId": eqmId,
@@ -150,6 +156,21 @@ extension DeviceControllCellReactor {
                      "channel": channel]
         
         FHSoketManager.shear().sendMessage(event: "pubState", data: param as [String : Any])
+    }
+    
+    func sendIrCommand(type: SmartDeviceSwitchState) {
+        guard let deviceModel = self.currentState.deviceModels else { return }
+        
+        let sn =  self.currentState.deviceModels.eqmsn
+        let state = type.rawValue
+        let param = ["ind": "2",
+                     "boxsn": sn,
+                     "key": "W",
+                     "val": state,
+                     "rem": "0"
+                     ]
+        
+        FHSoketManager.shear().sendMessage(event: "pubRemreg", data: param as [String : Any])
     }
     
     func send470Command(type: SmartDeviceSwitchState) {

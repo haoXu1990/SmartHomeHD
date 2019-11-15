@@ -16,6 +16,7 @@ import NSObject_Rx
 import RxSwiftExt
 import SwiftyUserDefaults
 import HMSegmentedControl
+import SCLAlertView
 
 enum RoomControllViewLayoutStyle:NSInteger {
     case cirle3D // 3D
@@ -69,7 +70,12 @@ class MainViewController: UIViewController {
         NotificationCenter.default.rx.notification(.pubLoginAuth)
             .takeUntil(self.rx.deallocated)
             .subscribe(onNext: { [weak self] (data) in
-                
+                guard let self = self else {
+                    let alert = SCLAlertView.init()
+               
+                    alert.showEdit("扯淡1", subTitle: "控制器已消息", closeButtonTitle: "取消")
+                    return
+                }
                 if let userInfo = data.object as? [String: String] {
                     Defaults[.appid] = userInfo["appid"]
                     Defaults[.houseCreatedId] = userInfo["houseCreatedId"]
@@ -78,9 +84,13 @@ class MainViewController: UIViewController {
                     Defaults[.surl] = userInfo["surl"]
                     Defaults[.token] = userInfo["token"]
                     Defaults[.defaultEvnWithBox] = userInfo["defaultEvnWithBox"]
-                    self?.initUI()
+                    self.initUI()
                     FHSoketManager.shear().socketIO.disconnectForced()
                     FHSoketManager.shear().connectSocket()
+                }
+                else {
+                    let alert = SCLAlertView.init()
+                    alert.showEdit("扯淡2", subTitle: "解析数据失败", closeButtonTitle: "取消")
                 }
                 
             }).disposed(by: rx.disposeBag)
