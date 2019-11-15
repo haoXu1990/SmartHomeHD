@@ -234,7 +234,7 @@ extension SmartLaundryRackView {
         lgithBtn.rx.tap
             .map{ (_) -> Reactor.Action in
                 self.lgithBtn.isSelected =  !self.lgithBtn.isSelected
-                return  Reactor.Action.sendCommand(key: .light, param:  self.lgithBtn.isSelected ? .on : .off, time: 1, cmdType: "4")
+                return  Reactor.Action.sendCommand(key: .light, param:  self.lgithBtn.isSelected ? .on : .off, time: 10, cmdType: "4")
             }
             .bind(to: reactor.action)
             .disposed(by: rx.disposeBag)
@@ -243,7 +243,7 @@ extension SmartLaundryRackView {
         .map{ (_) -> Reactor.Action in
             self.antivirusBtn.isSelected =  !self.antivirusBtn.isSelected
             
-            return  Reactor.Action.sendCommand(key: .antivirus, param:  self.antivirusBtn.isSelected ? .on : .off, time: 1, cmdType: "4")
+            return  Reactor.Action.sendCommand(key: .antivirus, param:  self.antivirusBtn.isSelected ? .on : .off, time: 10, cmdType: "4")
         }
         .bind(to: reactor.action)
         .disposed(by: rx.disposeBag)
@@ -251,7 +251,7 @@ extension SmartLaundryRackView {
         dringBtn.rx.tap
         .map{ (_) -> Reactor.Action in
             self.dringBtn.isSelected =  !self.dringBtn.isSelected
-            return  Reactor.Action.sendCommand(key: .dring, param:  self.dringBtn.isSelected ? .on : .off, time: 1, cmdType: "4")
+            return  Reactor.Action.sendCommand(key: .dring, param:  self.dringBtn.isSelected ? .on : .off, time: 10, cmdType: "4")
         }
         .bind(to: reactor.action)
         .disposed(by: rx.disposeBag)
@@ -260,7 +260,7 @@ extension SmartLaundryRackView {
         windBtn.rx.tap
         .map{ (_) -> Reactor.Action in
             self.windBtn.isSelected =  !self.windBtn.isSelected
-            return  Reactor.Action.sendCommand(key: .wind, param:  self.windBtn.isSelected ? .on : .off, time: 1, cmdType: "4")
+            return  Reactor.Action.sendCommand(key: .wind, param:  self.windBtn.isSelected ? .on : .off, time: 10, cmdType: "4")
         }
         .bind(to: reactor.action)
         .disposed(by: rx.disposeBag)
