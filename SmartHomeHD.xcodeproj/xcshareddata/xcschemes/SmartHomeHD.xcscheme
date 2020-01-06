@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "695ADD1A22DC17EA001A7533"
-               BuildableName = "SmartHomeHD.app"
+               BuildableName = "&#x561f;&#x561f;&#x667a;&#x80fd;&#x5bb6;&#x5c45;.app"
                BlueprintName = "SmartHomeHD"
                ReferencedContainer = "container:SmartHomeHD.xcodeproj">
             </BuildableReference>
@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "695ADD1A22DC17EA001A7533"
+            BuildableName = "&#x561f;&#x561f;&#x667a;&#x80fd;&#x5bb6;&#x5c45;.app"
+            BlueprintName = "SmartHomeHD"
+            ReferencedContainer = "container:SmartHomeHD.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -49,17 +58,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "695ADD1A22DC17EA001A7533"
-            BuildableName = "SmartHomeHD.app"
-            BlueprintName = "SmartHomeHD"
-            ReferencedContainer = "container:SmartHomeHD.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -76,13 +74,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "695ADD1A22DC17EA001A7533"
-            BuildableName = "SmartHomeHD.app"
+            BuildableName = "&#x561f;&#x561f;&#x667a;&#x80fd;&#x5bb6;&#x5c45;.app"
             BlueprintName = "SmartHomeHD"
             ReferencedContainer = "container:SmartHomeHD.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -95,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "695ADD1A22DC17EA001A7533"
-            BuildableName = "SmartHomeHD.app"
+            BuildableName = "&#x561f;&#x561f;&#x667a;&#x80fd;&#x5bb6;&#x5c45;.app"
             BlueprintName = "SmartHomeHD"
             ReferencedContainer = "container:SmartHomeHD.xcodeproj">
          </BuildableReference>

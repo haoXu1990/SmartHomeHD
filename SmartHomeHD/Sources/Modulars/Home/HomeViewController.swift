@@ -16,6 +16,7 @@ import RxDataSources
 import RxCocoa
 import NVActivityIndicatorView
 import LXFProtocolTool
+import Then
 
 class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
     var disposeBag: DisposeBag = DisposeBag.init()
@@ -34,6 +35,12 @@ class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
     var dataSource: RxCollectionViewSectionedReloadDataSource<HomeViewSection>!
     
     var activityView: NVActivityIndicatorView!
+    
+    let titleLabel = UILabel.init().then {
+        $0.textColor = .white
+        $0.font = .systemFont(ofSize: 15)
+        $0.textAlignment = .left
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +80,32 @@ class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
                     .bind(to: self.reactor!.action)
                     .disposed(by: self.rx.disposeBag)
             }).disposed(by: rx.disposeBag)
+        
+        /// title
+        NotificationCenter.default.rx.notification(NSNotification.Name.init("titleLabel"))
+            .takeUntil(self.rx.deallocated)
+            .subscribe(onNext: { [weak self] (data) in
+               guard let self = self, let result = data.object as? String else { return }
+                
+                self.titleLabel.text = result
+            }).disposed(by: rx.disposeBag)
+        
+        NotificationCenter.default.rx.notification(.pubStateChange)
+        .takeUntil(self.rx.deallocated)
+        .subscribe(onNext: { [weak self] (data) in
+           guard let self = self, let result = data.object as? [String: Any] else { return }
+
+            if let eqmsn = result["eqmsn"] as? String,
+            let channel = result["channel"] as? Int,
+                let state = result["state"] as? Int {
+                Observable.just(Reactor.Action.modifyDeviceStatus(eqmsn, channel, state))
+                .bind(to: self.reactor!.action)
+                .disposed(by: self.rx.disposeBag)
+            }
+            
+            
+            
+        }).disposed(by: rx.disposeBag)
     }
 
     init(reactor: HomeViewReactor, frame:CGRect) {
@@ -142,6 +175,13 @@ class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
             make.top.equalToSuperview().offset(5)
             make.size.equalTo(CGSize.init(width: 50, height: 50))
         }
+        
+        view.addSubview(titleLabel)
+        
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(flowLayoutBtn)
+            make.left.equalToSuperview().offset(60)
+        }
     }
 }
 
@@ -184,6 +224,14 @@ extension HomeViewController {
 //            .disposed(by: rx.disposeBag)
         
     }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let floorCell = cell as! FloorViewCell
+//        floorCell.showTitle()
+//    }
+    
 }
 
 extension Reactive where Base: NVActivityIndicatorView {

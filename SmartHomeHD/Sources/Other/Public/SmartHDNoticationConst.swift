@@ -24,6 +24,9 @@ extension NSNotification.Name {
     /// 登录通知
     static let pubLoginAuth = NSNotification.Name.init("pubLoginAuth")
     
+    /// 重复登录
+    static let pubDisconnect = NSNotification.Name.init("pubDisconnect")
+    
     /// 修改设备状态
     static let pubState = NSNotification.Name.init("pubState")
     

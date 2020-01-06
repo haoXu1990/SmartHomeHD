@@ -73,7 +73,7 @@ class MainViewController: UIViewController {
                 guard let self = self else {
                     let alert = SCLAlertView.init()
                
-                    alert.showEdit("扯淡1", subTitle: "控制器已消息", closeButtonTitle: "取消")
+                    alert.showEdit("错误1", subTitle: "控制器已消息", closeButtonTitle: "取消")
                     return
                 }
                 if let userInfo = data.object as? [String: String] {
@@ -90,7 +90,7 @@ class MainViewController: UIViewController {
                 }
                 else {
                     let alert = SCLAlertView.init()
-                    alert.showEdit("扯淡2", subTitle: "解析数据失败", closeButtonTitle: "取消")
+                    alert.showEdit("错误2", subTitle: "解析数据失败", closeButtonTitle: "取消")
                 }
                 
             }).disposed(by: rx.disposeBag)
@@ -107,6 +107,20 @@ class MainViewController: UIViewController {
                 log.debug("收到退出登录通知")
                 FHSoketManager.shear().connectSocket()
             }).disposed(by: rx.disposeBag)
+        
+        /// 退出登录通知
+//        NotificationCenter.default.rx.notification(.pubDisconnect)
+//            .takeUntil(self.rx.deallocated)
+//            .subscribe(onNext: { [weak self] (data) in
+//                FHToaster.show(text: "帐号已在其它地方登录")
+//                let vc = ViewController.init()
+//                self?.present(vc, animated: true, completion: nil)
+//                Defaults[.appid] = nil
+//                Defaults[.ysAccessTime] = nil
+//                FHSoketManager.shear().socketIO.disconnectForced()
+//                log.debug("收到退出登录通知")
+//                FHSoketManager.shear().connectSocket()
+//            }).disposed(by: rx.disposeBag)
     }
     
     func initUI()  {

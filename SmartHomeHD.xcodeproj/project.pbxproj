@@ -622,9 +622,9 @@
 				695ADD5022DC623C001A7533 /* FloorViewCell.swift */,
 				690D46C622E86ABC001123AA /* FloorViewReactor.swift */,
 				695ADD5422DC6B28001A7533 /* RoomViewCell.swift */,
+				690D46C422E86950001123AA /* RoomViewReactor.swift */,
 				69CB9691230E726E00201C80 /* RoomViewFllowlayoutCell.swift */,
 				69CB9692230E726E00201C80 /* RoomViewFllowlayoutCell.xib */,
-				690D46C422E86950001123AA /* RoomViewReactor.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1581,7 +1581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6666;
+				CURRENT_PROJECT_VERSION = 77777;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1679,7 +1679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6666;
+				CURRENT_PROJECT_VERSION = 77777;
 				DEVELOPMENT_TEAM = TBT5MVEH82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

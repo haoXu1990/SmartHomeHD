@@ -38,9 +38,9 @@ class FloorViewReactor: NSObject, Reactor {
     }
     
     let initialState: FloorViewReactor.State
-
-    init(roomModels: [RoomMoel], devicelist: [DeviceModel], secnModes: [SceneModeModel], layout: Bool) {
-        
+    var floorModel: FloorMoel?
+    init(roomModels: [RoomMoel], devicelist: [DeviceModel], secnModes: [SceneModeModel], layout: Bool, floorModel: FloorMoel) {
+        self.floorModel = floorModel
         let reactors = roomModels.map { (roomModel) -> RoomViewReactor in
             
             let devices = devicelist.filter({ (model) -> Bool in

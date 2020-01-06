@@ -272,7 +272,7 @@ extension HomeViewReactor {
                 return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
             })
             
-            let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout)
+            let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout, floorModel: floorModel)
             
             return  HomeViewSection.init(items: [reactor])
         }

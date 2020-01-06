@@ -67,7 +67,7 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
         /// 流布局
         flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.itemSize = CGSize.init(width: 180, height: 165)
-let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100)
+        let rect = CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100)
         collectionView = UICollectionView.init(frame: rect, collectionViewLayout: flowLayout)
         collectionView.isHidden = true
         collectionView.register(Reusable.RoomViewFllowLayoutCell)
@@ -270,6 +270,28 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
         }
         
         return view!
+    }
+
+    func carouselDidEndScrollingAnimation(_ carousel: iCarousel) {
+        if let sections = self.reactor?.currentState.setcions?.first,
+            let floorModel = self.reactor?.floorModel {
+            
+            let reactor = sections.items[carousel.currentItemIndex]
+            
+            let title = floorModel.title.or("")  + "-" + reactor.roomModel.title.or("")
+            NotificationCenter.default.post(name: NSNotification.Name.init("titleLabel"), object: title)
+        }
+    }
+    
+    func showTitle() {
+        if let sections = self.reactor?.currentState.setcions?.first,
+            let floorModel = self.reactor?.floorModel {
+            
+            let reactor = sections.items[0]
+            
+            let title = floorModel.title.or("")  + "-" + reactor.roomModel.title.or("")
+            NotificationCenter.default.post(name: NSNotification.Name.init("titleLabel"), object: title)
+        }
     }
 }
 
