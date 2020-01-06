@@ -36,6 +36,9 @@ class MainViewController: UIViewController {
     
     var headerView: UIView!
     
+    /// 刷新按钮
+    var refreshBtn: UIButton!
+    
     var service: DeviceServerType = DeviceServer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,14 +79,14 @@ class MainViewController: UIViewController {
                     alert.showEdit("错误1", subTitle: "控制器已消息", closeButtonTitle: "取消")
                     return
                 }
-                if let userInfo = data.object as? [String: String] {
-                    Defaults[.appid] = userInfo["appid"]
-                    Defaults[.houseCreatedId] = userInfo["houseCreatedId"]
-                    Defaults[.houseid] = userInfo["houseid"]
-                    Defaults[.secret] = userInfo["secret"]
-                    Defaults[.surl] = userInfo["surl"]
-                    Defaults[.token] = userInfo["token"]
-                    Defaults[.defaultEvnWithBox] = userInfo["defaultEvnWithBox"]
+                if let userInfo = data.object as? [String: Any] {
+                    Defaults[.appid] = userInfo["appid"] as? String
+                    Defaults[.houseCreatedId] = userInfo["houseCreatedId"] as? String
+                    Defaults[.houseid] = userInfo["houseid"] as? String
+                    Defaults[.secret] = userInfo["secret"] as? String
+                    Defaults[.surl] = userInfo["surl"] as? String
+                    Defaults[.token] = userInfo["token"] as? String
+                    Defaults[.defaultEvnWithBox] = userInfo["defaultEvnWithBox"] as? String
                     self.initUI()
                     FHSoketManager.shear().socketIO.disconnectForced()
                     FHSoketManager.shear().connectSocket()
@@ -149,10 +152,9 @@ class MainViewController: UIViewController {
         
         let images:[UIImage] = [UIImage.init(named: "image_home_home")!,
                                 UIImage.init(named: "image_home_message")!,
-                                UIImage.init(named: "image_home_seting")!,
-                                UIImage.init(named: "image_home_refresh")!]
-        segmentVC = HMSegmentedControl.init(sectionImages: images, sectionSelectedImages: images, titlesForSections: ["", "", "", ""])
-        segmentVC.frame = CGRect.init(x: 55, y: 0, width: 600, height: 55)
+                                UIImage.init(named: "image_home_seting")!]
+        segmentVC = HMSegmentedControl.init(sectionImages: images, sectionSelectedImages: images, titlesForSections: ["", "", ""])
+        segmentVC.frame = CGRect.init(x: 55, y: 0, width: 350, height: 55)
         segmentVC.imagePosition = .leftOfText
         segmentVC.backgroundColor = .clear
         segmentVC.selectionIndicatorColor = .clear
@@ -163,14 +165,21 @@ class MainViewController: UIViewController {
             guard let self = self else { return }
             
             if index == 3 {
-                NotificationCenter.default.post(name: .pubRefresh, object: true)
+                
             }
             else {
                 self.scrollView.scrollRectToVisible(CGRect.init(x: kScreenW * CGFloat(index), y: 0, width: kScreenW, height: 500), animated: true)
             }
         }
-        
         headerView.addSubview(segmentVC)
+        
+        refreshBtn = UIButton.init(frame: CGRect.init(x: 350 + 55, y: 0, width: 150, height: 55))
+        refreshBtn.setImage(UIImage.init(named: "image_home_refresh")!, for: .normal)
+        refreshBtn.rx.tap.subscribe(onNext: { (_) in
+            NotificationCenter.default.post(name: .pubRefresh, object: true)
+        }).disposed(by: rx.disposeBag)
+        
+        headerView.addSubview(refreshBtn)
         
         
         // 2. 初始化 ScrollView
@@ -204,7 +213,10 @@ class MainViewController: UIViewController {
     }
     
     
-    
+    @objc func segmentAction() {
+        
+        
+    }
 
 }
 

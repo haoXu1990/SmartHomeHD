@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
                 
             }).disposed(by: rx.disposeBag)
         
-        /// 门铃报警
+        /// 刷新界面
         NotificationCenter.default.rx.notification(.pubRefresh)
             .takeUntil(self.rx.deallocated)
             .subscribe(onNext: { [weak self] (data) in
@@ -82,7 +82,7 @@ class HomeViewController: UIViewController, ReactorKit.View, Refreshable {
             }).disposed(by: rx.disposeBag)
         
         /// title
-        NotificationCenter.default.rx.notification(NSNotification.Name.init("titleLabel"))
+        NotificationCenter.default.rx.notification(.updateFlooerTitle)
             .takeUntil(self.rx.deallocated)
             .subscribe(onNext: { [weak self] (data) in
                guard let self = self, let result = data.object as? String else { return }
@@ -192,7 +192,7 @@ extension HomeViewController {
     func bind(reactor: HomeViewReactor) {
        
         collectionView.dataSource = nil
-        
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         circleLayoutBtn.rx.tap
             .map{_ in Reactor.Action.setLayout(true)}
             .bind(to: reactor.action)
@@ -227,10 +227,20 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        let floorCell = cell as! FloorViewCell
-//        floorCell.showTitle()
-//    }
+
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let originPoint: CGPoint = self.view.convert(self.collectionView.center, to: collectionView)
+        guard let path = collectionView.indexPathForItem(at: originPoint) else { return }
+        if path.section < self.reactor?.currentState.setcions?.count ?? 0 {
+            let section = self.reactor!.currentState.setcions![path.section]
+            
+            let item = section.items[0]
+            let room = item.currentState.rooms![0]
+            self.titleLabel.text = item.floorModel!.title! + "-" + room.title!
+        }
+    }
     
 }
 

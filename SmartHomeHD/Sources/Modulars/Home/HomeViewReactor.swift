@@ -87,6 +87,7 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
                     let floorList = data.floorlist.or([])
                     let devicelist = data.list.or([])
                     let scenModel = data.modelist.or([])
+                    FHToaster.show(text: "更新界面成功")
                     return Observable.just(.setUserInfo(floorList, roomList, devicelist, scenModel))
                     
                 }).catchError({ (error) -> Observable<Mutaion> in
@@ -142,20 +143,8 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
         
         switch mutation {
             
-        case .setUserInfo(let floorModels, let roomModels, let models, let scenModes):
-            
-            ///1 遍历楼层列表
-//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-//
-//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-//                })
-//
-//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-//
-//                return  HomeViewSection.init(items: [reactor])
-//            }
-//
+        case .setUserInfo(let floorModels, let roomModels, let models, let scenModes):            
+
             newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)// sections
             newState.floors = floorModels
             newState.rooms = roomModels
@@ -169,17 +158,6 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
             let roomModels = newState.rooms
             let models = newState.devices
             let scenModes = newState.secenModels
-//            ///1 遍历楼层列表
-//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-//
-//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-//                })
-//
-//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-//
-//                return  HomeViewSection.init(items: [reactor])
-//            }
             newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)
             return newState
         case .deletedFloor(let floolrID):
@@ -192,17 +170,6 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
             let roomModels = newState.rooms
             let models = newState.devices
             let scenModes = newState.secenModels
-            ///1 遍历楼层列表
-//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-//
-//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-//                })
-//
-//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: true)
-//
-//                return  HomeViewSection.init(items: [reactor])
-//            }
             newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: true)
             
             
@@ -213,18 +180,6 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
             let roomModels = newState.rooms
             let scenModes = newState.secenModels
             let models = newState.devices
-            
-            ///1 遍历楼层列表
-//            let sections = floorModels.map { (floorModel) -> HomeViewSection in
-//
-//                let tmpRooms = roomModels.filter({ (tmpModel) -> Bool in
-//                    return (floorModel.floor_id == tmpModel.floor_id) && (tmpModel.floor_id != "0")
-//                })
-//
-//                let reactor = FloorViewReactor.init(roomModels: tmpRooms, devicelist: models, secnModes: scenModes, layout: layout)
-//
-//                return  HomeViewSection.init(items: [reactor])
-//            }
             newState.setcions = sectionFactory(floorModels: floorModels, roomModels: roomModels, models: models, scenModes: scenModes, layout: layout)
             
             return newState
@@ -233,8 +188,6 @@ class HomeViewReactor: NSObject, Reactor, RefreshControllable {
             let floorModels = newState.floors
             let roomModels = newState.rooms
             let scenModes = newState.secenModels
-//            let models = newState.devices
-            
             /// 找到设备列表中的设备，
             newState.devices = newState.devices.map { (deviceModel) -> DeviceModel in
                 var tmpModel = deviceModel

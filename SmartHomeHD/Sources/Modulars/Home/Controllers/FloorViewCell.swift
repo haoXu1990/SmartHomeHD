@@ -110,8 +110,7 @@ class FloorViewCell: UICollectionViewCell,ReactorKit.View {
 extension FloorViewCell {
     
     func initCarouseView() {
-//        self.clipsToBounds = false
-//        self.contentView.clipsToBounds = false
+        
         carouselView = iCarousel.init(frame: CGRect.init(x: 55, y: 0, width: self.contentView.frame.width - 110, height: self.contentView.frame.height - 100))
         carouselView.delegate = self
         carouselView.dataSource = self
@@ -279,20 +278,20 @@ extension FloorViewCell: iCarouselDelegate, iCarouselDataSource {
             let reactor = sections.items[carousel.currentItemIndex]
             
             let title = floorModel.title.or("")  + "-" + reactor.roomModel.title.or("")
-            NotificationCenter.default.post(name: NSNotification.Name.init("titleLabel"), object: title)
+            NotificationCenter.default.post(name: .updateFlooerTitle, object: title)
         }
     }
     
-    func showTitle() {
-        if let sections = self.reactor?.currentState.setcions?.first,
-            let floorModel = self.reactor?.floorModel {
-            
-            let reactor = sections.items[0]
-            
-            let title = floorModel.title.or("")  + "-" + reactor.roomModel.title.or("")
-            NotificationCenter.default.post(name: NSNotification.Name.init("titleLabel"), object: title)
-        }
-    }
+//    func showTitle() {
+//        if let sections = self.reactor?.currentState.setcions?.first,
+//            let floorModel = self.reactor?.floorModel {
+//            
+//            let reactor = sections.items[0]
+//            
+//            let title = floorModel.title.or("")  + "-" + reactor.roomModel.title.or("")
+//            NotificationCenter.default.post(name: .updateFlooerTitle, object: title)
+//        }
+//    }
 }
 
 private enum Reusable {

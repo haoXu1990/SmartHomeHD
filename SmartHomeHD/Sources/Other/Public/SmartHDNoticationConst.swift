@@ -16,6 +16,9 @@ extension NSNotification.Name {
     
     /// 更新
     static let pubRefresh = NSNotification.Name.init("pubRefresh")
+    
+    /// 更新楼层信息
+    static let updateFlooerTitle = NSNotification.Name.init("updateFlooerTitle")
 }
 
 /// 设备相关

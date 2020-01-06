@@ -61,6 +61,11 @@ class DeviceControllCellReactor: NSObject,Reactor {
                 return .just(Mutaion.setStatus(type))
             }
             
+            if Int(typeID) == SmartDeviceType.Socket.rawValue {
+                sendChazuoCommand(type: type)
+                return .just(Mutaion.setStatus(type))
+            }
+            
             sendNormalCommand(type: type)
             return .just(Mutaion.setStatus(type))
         case .fetchYsAccessToken:
@@ -171,6 +176,21 @@ extension DeviceControllCellReactor {
                      ]
         
         FHSoketManager.shear().sendMessage(event: "pubRemreg", data: param as [String : Any])
+    }
+    
+    func sendChazuoCommand(type: SmartDeviceSwitchState) {
+        guard self.currentState.deviceModels != nil else { return }
+        
+        let sn =  self.currentState.deviceModels.eqmsn
+        let state = type.rawValue
+        let param = ["ind": "2",
+                     "boxsn": sn,
+                     "key": "W",
+                     "val": state,
+                     "rem": "0"
+                     ]
+        
+        FHSoketManager.shear().sendMessage(event: "pubRemregTc", data: param as [String : Any])
     }
     
     func send470Command(type: SmartDeviceSwitchState) {
